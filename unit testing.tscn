@@ -1,0 +1,44 @@
+[gd_scene load_steps=6 format=3 uid="uid://pqfsq3gcyqnc"]
+
+[ext_resource type="Script" uid="uid://clti16eyk3e63" path="res://tests/test health.gd" id="1_erjmo"]
+[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://classes/health.gd" id="2_7kleg"]
+[ext_resource type="Script" uid="uid://cfkxgjwpaiqs8" path="res://health bar.gd" id="3_7kleg"]
+[ext_resource type="Script" uid="uid://dc2s2rckif0o3" path="res://tests/test health plus.gd" id="4_k85e1"]
+[ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://classes/health plus.gd" id="5_dxfvx"]
+
+[node name="root" type="Node"]
+
+[node name="test health" type="Node" parent="."]
+script = ExtResource("1_erjmo")
+
+[node name="Health" type="Node" parent="test health" node_paths=PackedStringArray("shield")]
+script = ExtResource("2_7kleg")
+shield = NodePath("Shield")
+metadata/_custom_type_script = "uid://jrf8kxsondmi"
+
+[node name="Shield" type="Node" parent="test health/Health"]
+script = ExtResource("2_7kleg")
+health = 50.0
+max_health = 50.0
+metadata/_custom_type_script = "uid://jrf8kxsondmi"
+
+[node name="health bar" type="ProgressBar" parent="test health/Health" node_paths=PackedStringArray("health")]
+offset_right = 295.0
+offset_bottom = 27.0
+value = 5.5
+script = ExtResource("3_7kleg")
+health = NodePath("..")
+
+[node name="test health plus" type="Node" parent="."]
+script = ExtResource("4_k85e1")
+
+[node name="HealthPlus" type="Node" parent="test health plus" node_paths=PackedStringArray("shield")]
+script = ExtResource("5_dxfvx")
+shield = NodePath("ShieldPlus")
+metadata/_custom_type_script = "uid://dj3aadubv4gi"
+
+[node name="ShieldPlus" type="Node" parent="test health plus/HealthPlus"]
+script = ExtResource("5_dxfvx")
+health = 50.0
+max_health = 50.0
+metadata/_custom_type_script = "uid://dj3aadubv4gi"

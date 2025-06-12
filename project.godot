@@ -1,0 +1,19 @@
+config_version=5
+
+[application]
+
+config/name="Classes (unit-tested)"
+config/tags=PackedStringArray("gut")
+run/main_scene="uid://pqfsq3gcyqnc"
+config/features=PackedStringArray("4.4", "Forward Plus")
+config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gut/plugin.cfg")
+
+[file_customization]
+
+folder_colors={
+"res://classes/": "orange"
+}
