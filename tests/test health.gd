@@ -1,5 +1,5 @@
 # INFO:
-# - Each unit test should build on top of the ones before it, for easier troubleshooting.
+# Each unit test should build on top of the ones before it, for easier troubleshooting.
 # TODO:
 # - More shield testing, i'm not convinced in its robustness.
 # - Testing can_die feels insufficient.

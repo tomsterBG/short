@@ -1,6 +1,6 @@
 # TODO:
-# - test regen more
-# - test get_seconds_for_full_regen, interrupt_regen, regen_interruption_length, regen_interruption_time, is_regen_interrupted
+# - Test regen more.
+# - Test get_seconds_for_full_regen, interrupt_regen, regen_interruption_length, regen_interruption_time, is_regen_interrupted.
 
 extends GutTest
 

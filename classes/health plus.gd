@@ -1,16 +1,16 @@
 # TODO:
-# - in-engine errors for relevant things
+# - In-engine errors for relevant things.
 # BAD IDEAS:
-# - disable regen in the editor
-# - emit reneration signals for when regen state changes (is_regenerating), when fully regenerated (ensure this one doesn't emit when manually fully regenerating)
-# - free_owner_on_death, might be useless and more complex than needed
-# - can add an immunity to damage like the Roblox shield system, but it feels like unnecessary jank
-# - negative resistance adds effective damage (for brittle stuff), for example 1 damage with -10 means 11 effective damage, 1 with -100% means 2 effective, 1 damage with -1 flat and -100% means 4 effective damage
-# - signal on_fully_regenerated or on_max_health_reached
-# - get remaining time until full regen
-# - add interrupted signal which does not emit if length is 0
-# - interruption time is not set if length is 0
-# - add HealResult returned by heal()
+# - Disable regen in the editor.
+# - Emit reneration signals for when regen state changes (is_regenerating), when fully regenerated (ensure this one doesn't emit when manually fully regenerating).
+# - Free_owner_on_death, might be useless and more complex than needed.
+# - Can add an immunity to damage like the Roblox shield system, but it feels like unnecessary jank.
+# - Negative resistance adds effective damage (for brittle stuff), for example 1 damage with -10 means 11 effective damage, 1 with -100% means 2 effective, 1 damage with -1 flat and -100% means 4 effective damage.
+# - Signal on_fully_regenerated or on_max_health_reached.
+# - Get remaining time until full regen.
+# - Add interrupted signal which does not emit if length is 0.
+# - Don't set interruption time if length is 0.
+# - Add HealResult returned by heal().
 
 ## @deprecated: This class will be changed.
 ## [Health] with extra functionality.
