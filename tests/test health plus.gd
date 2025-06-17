@@ -1,6 +1,8 @@
 # TODO:
 # - Test regen more.
 # - Test get_seconds_for_full_regen, interrupt_regen, regen_interruption_length, regen_interruption_time, is_regen_interrupted.
+# IDEAS:
+# - Time-dependent testing should happen with Time.get_ticks_msec() for a solid timeframe, preventing accumulation of per-frame delay.
 
 extends GutTest
 

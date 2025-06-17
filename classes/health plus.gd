@@ -12,7 +12,7 @@
 # - Don't set interruption time if length is 0.
 # - Add HealResult returned by heal().
 
-## @deprecated: This class will be changed.
+## @experimental: This class will be changed.
 ## [Health] with extra functionality.
 ##
 ## Less widely applicable. An overhead class used for janky, but much needed functionality.
