@@ -1,23 +1,23 @@
 [gd_scene load_steps=6 format=3 uid="uid://pqfsq3gcyqnc"]
 
-[ext_resource type="Script" uid="uid://clti16eyk3e63" path="res://tests/test health.gd" id="1_erjmo"]
-[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://classes/health.gd" id="2_7kleg"]
-[ext_resource type="Script" uid="uid://cfkxgjwpaiqs8" path="res://health bar.gd" id="3_7kleg"]
-[ext_resource type="Script" uid="uid://dc2s2rckif0o3" path="res://tests/test health plus.gd" id="4_k85e1"]
-[ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://classes/health plus.gd" id="5_dxfvx"]
+[ext_resource type="Script" uid="uid://clti16eyk3e63" path="res://tests/test health.gd" id="1_i7se7"]
+[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://classes/health.gd" id="2_8yw2y"]
+[ext_resource type="Script" uid="uid://cfkxgjwpaiqs8" path="res://other/health bar.gd" id="3_wc3g4"]
+[ext_resource type="Script" uid="uid://dc2s2rckif0o3" path="res://tests/test health plus.gd" id="4_rskh2"]
+[ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://classes/health plus.gd" id="5_7sqgn"]
 
 [node name="root" type="Node"]
 
 [node name="test health" type="Node" parent="."]
-script = ExtResource("1_erjmo")
+script = ExtResource("1_i7se7")
 
 [node name="Health" type="Node" parent="test health" node_paths=PackedStringArray("shield")]
-script = ExtResource("2_7kleg")
+script = ExtResource("2_8yw2y")
 shield = NodePath("Shield")
 metadata/_custom_type_script = "uid://jrf8kxsondmi"
 
 [node name="Shield" type="Node" parent="test health/Health"]
-script = ExtResource("2_7kleg")
+script = ExtResource("2_8yw2y")
 health = 50.0
 max_health = 50.0
 metadata/_custom_type_script = "uid://jrf8kxsondmi"
@@ -26,19 +26,19 @@ metadata/_custom_type_script = "uid://jrf8kxsondmi"
 offset_right = 295.0
 offset_bottom = 27.0
 value = 5.5
-script = ExtResource("3_7kleg")
+script = ExtResource("3_wc3g4")
 health = NodePath("..")
 
 [node name="test health plus" type="Node" parent="."]
-script = ExtResource("4_k85e1")
+script = ExtResource("4_rskh2")
 
 [node name="HealthPlus" type="Node" parent="test health plus" node_paths=PackedStringArray("shield")]
-script = ExtResource("5_dxfvx")
+script = ExtResource("5_7sqgn")
 shield = NodePath("ShieldPlus")
 metadata/_custom_type_script = "uid://dj3aadubv4gi"
 
 [node name="ShieldPlus" type="Node" parent="test health plus/HealthPlus"]
-script = ExtResource("5_dxfvx")
+script = ExtResource("5_7sqgn")
 health = 50.0
 max_health = 50.0
 metadata/_custom_type_script = "uid://dj3aadubv4gi"
