@@ -1,5 +1,6 @@
 # INFO:
 # When adding new test scripts, add them here.
+# First are global scripts. If a script has a dependency, its dependency must be tested first.
 # TODO:
 # - Add a system to append unadded scripts and tell me about it.
 
@@ -9,6 +10,9 @@ extends GutHookScript
 #region virtual methods
 func run():
 	var ordered_tests := [
+		# Globals:
+		"res://tests/test helpers.gd",
+		# Classes:
 		"res://tests/test health.gd",
 		"res://tests/test health plus.gd",
 	]

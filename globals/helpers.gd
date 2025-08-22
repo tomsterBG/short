@@ -2,7 +2,7 @@
 # TODO:
 # - Add unit tests.
 # - Improve documentation.
-# - Ensure similar code structure to Health. Regions, documentation, new lines, etc.
+# - Ensure correct code formatting.
 # IDEAS:
 # - Find children and parents by method and signal.
 
