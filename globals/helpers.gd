@@ -21,7 +21,9 @@ extends Node
 
 
 #region methods
-## Finds the first descendant of a node that has the given [param method]. Works similarly to [method Node.find_child]. See [method Object.has_method].
+#region find_
+## @experimental: Untested.
+## Finds the first descendant of a [param node] that has [param method]. Works similarly to [method Node.find_child]. See [method Object.has_method].
 func find_child_with_method(node: Node, method: StringName, recursive := true, owned := true) -> Node:
 	var children_cache = node.get_children()
 	for child: Node in children_cache:
@@ -32,7 +34,8 @@ func find_child_with_method(node: Node, method: StringName, recursive := true, o
 			children_cache.append_array(child.get_children())
 	return null
 
-## Finds the first descendant of a node that has the given [param signal_name]. Works similarly to [method Node.find_child]. See [method Object.has_signal].
+## @experimental: Untested.
+## Finds the first descendant of a [param node] that has [param signal_name]. Works similarly to [method Node.find_child]. See [method Object.has_signal].
 func find_child_with_signal(node: Node, signal_name: StringName, recursive := true, owned := true) -> Node:
 	var children_cache = node.get_children()
 	for child: Node in children_cache:
@@ -43,7 +46,8 @@ func find_child_with_signal(node: Node, signal_name: StringName, recursive := tr
 			children_cache.append_array(child.get_children())
 	return null
 
-## Finds all descendants of a node that have the given [param method]. Works similarly to [method Node.find_children]. See [method Object.has_method].
+## @experimental: Untested.
+## Finds all descendants of a [param node] that have [param method]. Works similarly to [method Node.find_children]. See [method Object.has_method].
 func find_children_with_method(node: Node, method: StringName, recursive := true, owned := true) -> Array[Node]:
 	var array := []
 	var children_cache = node.get_children()
@@ -55,7 +59,8 @@ func find_children_with_method(node: Node, method: StringName, recursive := true
 			children_cache.append_array(child.get_children())
 	return array
 
-## Finds all descendants of a node that have the given [param signal_name]. Works similarly to [method Node.find_children]. See [method Object.has_signal].
+## @experimental: Untested.
+## Finds all descendants of a [param node] that have [param signal_name]. Works similarly to [method Node.find_children]. See [method Object.has_signal].
 func find_children_with_signal(node: Node, signal_name: StringName, recursive := true, owned := true) -> Array[Node]:
 	var array := []
 	var children_cache = node.get_children()
@@ -66,4 +71,15 @@ func find_children_with_signal(node: Node, signal_name: StringName, recursive :=
 		if recursive:
 			children_cache.append_array(child.get_children())
 	return array
+#endregion find_
+
+## @experimental: Untested. Useless bloat, but more useful than a "[param get_grandparent()]".
+## Returns [param node]'s nth ancestor node [code]n[/code] [param levels] up, or [code]null[/code] if the node doesn't have such ancestor. Calls [method Node.get_parent] [code]n[/code] times.
+func get_ancestor(node: Node, levels: int) -> Node:
+	var ancestor := node
+	while levels > 0:
+		levels -= 1
+		ancestor = ancestor.get_parent()
+		if ancestor == null: return null
+	return ancestor
 #endregion methods

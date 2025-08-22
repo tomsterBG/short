@@ -5,6 +5,7 @@
 # INFO:
 # This works without knowing about other nodes. Knowing is optional.
 # TODO:
+# - Fix initialization causing the doc link to HealthPlus to not be available.
 # IDEAS:
 # - More signals: damaged(DamageResult), healed(HealResult), shields_became_cyclic() -> bool.
 # - Shield methods? what if revive() method would propagate through all shields.
@@ -36,10 +37,10 @@ signal health_changed(difference: float)
 ## Controls the order in which resistances are applied. 
 enum ResistanceOrder {
 	## First reduce damage by [member resistance_percent], then by [member resistance_flat].
-	##[br][br][b]Note:[/b] This resists more damage if [member resistance_percent] is not [param 0].
+	##[br][br][b]Note:[/b] This resists more damage if [member resistance_percent] is not [code]0[/code].
 	PERCENT_FLAT,
 	## First reduce damage by [member resistance_flat], then by [member resistance_percent].
-	##[br][br][b]Note:[/b] This resists less damage if [member resistance_percent] is not [param 0].
+	##[br][br][b]Note:[/b] This resists less damage if [member resistance_percent] is not [code]0[/code].
 	FLAT_PERCENT,
 }
 #endregion enums
@@ -60,10 +61,10 @@ class DamageResult:
 #region variables
 @export_group("Health")
 
-## Clamped between [param 0 and max_health]. If this reaches [param 0], [method kill] is called.
+## Clamped between [code]0[/code] and [member max_health]. If this reaches [code]0[/code], [method kill] is called.
 @export var health := 100.0: set = set_health
 
-## Can't be less than [param 0] because of [member health]. If this reaches [param 0], [member health] will also reach [param 0].
+## Can't be less than [code]0[/code] because of [member health]. If this reaches [code]0[/code], [member health] will also reach [code]0[/code].
 @export var max_health := 100.0: set = set_max_health
 
 #region resistances
@@ -81,14 +82,14 @@ class DamageResult:
 
 @export_group("Other")
 
-## If this is [param false], [member is_dead] can't become [param true]. Useful for a constantly depleted [member shield].
+## If this is [code]false[/code], [member is_dead] can't become [code]true[/code]. Useful for a constantly depleted [member shield].
 @export var can_die := true: set = set_can_die
 
-## If this is [param true], it emits [signal died], but only if it was [param false]. See [method kill] and [method revive].
+## If this is [code]true[/code], it emits [signal died], but only if it was [code]false[/code]. See [method kill] and [method revive].
 var is_dead := false: set = set_is_dead
 
 ## Optional. If there's a shield, all [method damage] first goes through it. Useful for games with shields that guard your [member health]. See [method make_shield].
-##[br][br][b]Note:[/b] The shield can have its own shield! ([param caution]: don't make circular dependencies)
+##[br][br][b]Note:[/b] The shield can have its own shield! ([code]caution[/code]: don't make circular dependencies)
 @export var shield: Health: set = set_shield
 #endregion variables
 
@@ -147,21 +148,21 @@ func damage(value: float) -> DamageResult:
 func heal(value: float) -> void:
 	health += value
 
-## Represents the fullness of [member health] in [member max_health] as a percent, or [method get_health_ratio] [param * 100].
+## Represents the fullness of [member health] in [member max_health] as a percent, or [method get_health_ratio] [code] * 100[/code].
 func get_health_percent() -> float:
 	return get_health_ratio() * 100.0
 
-## Represents the fullness of [member health] in [member max_health] as a normalized value, or [param health / max_health].
+## Represents the fullness of [member health] in [member max_health] as a normalized value, or [member health] [code]/[/code] [member max_health].
 func get_health_ratio() -> float:
 	if max_health == 0: return 0.0
 	return health / max_health
 
-## Syntax sugar to set [member is_dead] to [param true]. If the parameter is [param true], [member health] will be set to [param 0].
+## Syntax sugar to set [member is_dead] to [code]true[/code]. If the parameter is [code]true[/code], [member health] will be set to [code]0[/code].
 func kill(should_health_be_zero := false) -> void:
 	is_dead = true
 	if should_health_be_zero: health = 0.0
 
-## Syntax sugar to set [member is_dead] to [param false]. If the parameter is [param true], [member health] will be set to [member max_health].
+## Syntax sugar to set [member is_dead] to [code]false[/code]. If the parameter is [code]true[/code], [member health] will be set to [member max_health].
 func revive(should_health_be_max := false) -> void:
 	is_dead = false
 	if should_health_be_max: health = max_health
@@ -177,13 +178,13 @@ func are_shields_cyclic() -> bool:
 		current_shield = current_shield.shield
 	return false
 
-## Makes a new [member shield] as child of [Health]. Sets its [member can_die] to [param false] because shields are supposed to lose health and not die. The parameter sets [member max_health] and [member health].
-func make_shield(new_shield_hp := max_health) -> Health:
+## Makes a new [member shield] as child of [Health]. Sets its [member can_die] to [code]false[/code] because shields are supposed to lose health and not die. The parameter sets [member max_health] and [member health].
+func make_shield(shield_hp := max_health) -> Health:
 	var new_shield := Health.new()
 	shield = new_shield
 	add_child(new_shield)
 	new_shield.can_die = false
-	new_shield.max_health = new_shield_hp
+	new_shield.max_health = shield_hp
 	new_shield.health = new_shield.max_health
 	return new_shield
 

@@ -37,7 +37,7 @@ var regen_interruption_time := 0
 
 
 #region methods
-## If [member Health.health] was [param 0], how long until it fully regens to [member Health.max_health]?
+## If [member Health.health] was [code]0[/code], how long until it fully regens to [member Health.max_health]?
 func get_seconds_for_full_regen() -> float:
 	return max_health / regen_per_second
 
