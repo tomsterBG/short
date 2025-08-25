@@ -1,5 +1,7 @@
 # TODO:
 # - In-engine errors for relevant things.
+# IDEAS:
+# - Update health from regeneration only when script tries to read health. Know when the health was last updated and calculate delta time * regen to get how much regen must be applied.
 # BAD IDEAS:
 # - Disable regen in the editor.
 # - Emit reneration signals for when regen state changes (is_regenerating), when fully regenerated (ensure this one doesn't emit when manually fully regenerating).
@@ -48,7 +50,7 @@ func interrupt_regen() -> void:
 ## Is time since interruption more than [member regen_interruption_length]?
 func is_regen_interrupted() -> bool:
 	var time_since_interruption := Time.get_ticks_msec() - regen_interruption_time
-	return time_since_interruption < regen_interruption_length * 1000.0
+	return time_since_interruption < Helpers.sec_to_msec(regen_interruption_length)
 #endregion methods
 
 

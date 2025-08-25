@@ -1,12 +1,16 @@
 # TODO:
 # - Test regen more.
-# - Test get_seconds_for_full_regen, interrupt_regen, regen_interruption_length, regen_interruption_time, is_regen_interrupted.
+# - Test get_seconds_for_full_regen, interrupt_regen, regen_interruption_length, regen_interruption_time.
 # IDEAS:
 # - Time-dependent testing should happen with Time.get_ticks_msec() for a solid timeframe, preventing accumulation of per-frame delay.
+# - Change await for OS.delay_msec() without blocking the main thread in hopes of more accurate timing.
 
 extends GutTest
 
 var health: HealthPlus
+
+var regen_speed := 3.0
+var regen_error := 1.0
 
 
 #region virtual methods
@@ -30,25 +34,26 @@ func test_initial_method_values():
 func test_regen():
 	assert_eq(health.health, health.max_health, "Health is full.")
 	health.damage(90)
-	health.regen_per_second = 90.0
+	health.regen_per_second = 90.0 * regen_speed
 	assert_eq(health.health, 10.0, "Took 90 damage.")
 	assert_false(health.is_regen_interrupted(), "Regen is not interrupted.")
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0 / regen_speed).timeout
 	assert_true(health.health == health.max_health, "Fully regenerated.")
 
 func test_regen_interrupt():
-	health.regen_interruption_length = 1.0
+	health.regen_interruption_length = 1.0 / regen_speed
 	health.damage(50)
-	health.regen_per_second = 50.0
+	health.regen_per_second = 50.0 * regen_speed
 	assert_eq(health.health, 50.0, "Took 50 damage.")
 	assert_true(health.is_regen_interrupted(), "Regen is interrupted for 1 second.")
-	await get_tree().create_timer(0.9).timeout
+	await get_tree().create_timer(0.9 / regen_speed).timeout
 	assert_true(health.is_regen_interrupted(), "Regen is still interrupted.")
 	assert_eq(health.health, 50.0, "Health didn't change.")
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(0.5 / regen_speed).timeout
 	assert_false(health.is_regen_interrupted(), "Regen is not interrupted since 0.4 seconds.")
-	assert_between(health.health, 69.0, 71.0, "Half regenerated to 70 (50 + 50 * 0.4).")
-	await get_tree().create_timer(0.65).timeout
+	assert_between(health.health, 70.0 - (regen_error*regen_speed), 70.0 + (regen_error*regen_speed),\
+		"Half regenerated to 70 (50 + 50 * 0.4) +- error.")
+	await get_tree().create_timer(0.65 / regen_speed).timeout
 	assert_false(health.is_regen_interrupted(), "Regen is not interrupted.")
 	assert_eq(health.health, health.max_health, "Fully regenerated.")
 #endregion tests

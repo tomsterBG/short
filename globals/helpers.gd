@@ -9,6 +9,7 @@
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.
 # 		- However this ignores a very important design pattern which is to not access parents.
+# - Make all time conversions. From msec to sec and usec, from usec to sec and msec.
 
 ## @experimental: This class is immature.
 ## Global helper functions to shorten your code.
@@ -21,6 +22,24 @@ extends Node
 
 
 #region methods
+#region conversions
+## Converts a time expressed in seconds to milliseconds.
+func sec_to_msec(sec: float) -> float:
+	return sec * 1_000.0
+
+## Converts a time expressed in seconds to microseconds.
+func sec_to_usec(sec: float) -> float:
+	return sec * 1_000_000.0
+
+## Converts a number expressed in units to percentages. Units are from [code]0[/code] to [code]1[/code]. Percentages are from [code]0[/code] to [code]100[/code].
+func unit_to_percent(unit: float) -> float:
+	return unit * 100.0
+
+## Converts a number expressed in percentages to units. Percentages are from [code]0[/code] to [code]100[/code]. Units are from [code]0[/code] to [code]1[/code].
+func percent_to_unit(percent: float) -> float:
+	return percent / 100.0
+#endregion conversions
+
 #region find_
 ## Finds the first descendant of a [param node] that has [param method]. Works similarly to [method Node.find_child]. See [method Object.has_method].
 ##[br][br][b]Note:[/b] This method can be slow.

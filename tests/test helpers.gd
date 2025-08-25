@@ -74,6 +74,12 @@ func test_collision_shape_3d():
 func test_existence():
 	assert_is(Helpers, HelperMethods, "Helpers exists.")
 
+func test_conversions():
+	assert_eq(Helpers.sec_to_msec(25), 25_000.0, "Milliseconds is seconds * 1000.")
+	assert_eq(Helpers.sec_to_usec(999), 999_000_000.0, "Microseconds is seconds * 1000_000.")
+	assert_eq(Helpers.unit_to_percent(1.75), 175.0, "Percentages are units * 100.")
+	assert_eq(Helpers.percent_to_unit(0.5), 0.005, "Units are percentages / 100.")
+
 func test_find_children_with_method():
 	var characters = Helpers.find_children_with_method(test_scene, "is_on_floor")
 	assert_eq(characters.size(), 2, "Found two characters.")

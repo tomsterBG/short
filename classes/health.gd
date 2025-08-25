@@ -131,7 +131,7 @@ func set_shield(value: Health) -> void:
 #region getters
 ## Represents the fullness of [member health] in [member max_health] as a percent, or [method get_health_ratio] [code] * 100[/code].
 func get_health_percent() -> float:
-	return get_health_ratio() * 100.0
+	return Helpers.unit_to_percent(get_health_ratio())
 
 ## Represents the fullness of [member health] in [member max_health] as a normalized value, or [member health] [code]/[/code] [member max_health].
 func get_health_ratio() -> float:
