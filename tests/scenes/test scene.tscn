@@ -1,0 +1,416 @@
+[gd_scene load_steps=4 format=3 uid="uid://c111v0vk5tgal"]
+
+[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://classes/health.gd" id="1_olqau"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_poy3p"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_olqau"]
+
+[node name="root" type="Node"]
+
+[node name="glue" type="Node" parent="."]
+
+[node name="tree" type="Node" parent="."]
+
+[node name="1" type="Node" parent="tree"]
+
+[node name="1" type="Node" parent="tree/1"]
+
+[node name="1" type="Node" parent="tree/1/1"]
+
+[node name="2" type="Node" parent="tree/1/1"]
+
+[node name="3" type="Node" parent="tree/1/1"]
+
+[node name="4" type="Node" parent="tree/1/1"]
+
+[node name="5" type="Node" parent="tree/1/1"]
+
+[node name="2" type="Node" parent="tree/1"]
+
+[node name="3" type="Node" parent="tree/1"]
+
+[node name="1" type="Node" parent="tree/1/3"]
+
+[node name="2" type="Node" parent="tree/1/3"]
+
+[node name="3" type="Node" parent="tree/1/3"]
+
+[node name="4" type="Node" parent="tree/1/3"]
+
+[node name="5" type="Node" parent="tree/1/3"]
+
+[node name="4" type="Node" parent="tree/1"]
+
+[node name="1" type="Node" parent="tree/1/4"]
+
+[node name="2" type="Node" parent="tree/1/4"]
+
+[node name="3" type="Node" parent="tree/1/4"]
+
+[node name="4" type="Node" parent="tree/1/4"]
+
+[node name="5" type="Node" parent="tree/1/4"]
+
+[node name="5" type="Node" parent="tree/1"]
+
+[node name="1" type="Node" parent="tree/1/5"]
+
+[node name="2" type="Node" parent="tree/1/5"]
+
+[node name="3" type="Node" parent="tree/1/5"]
+
+[node name="4" type="Node" parent="tree/1/5"]
+
+[node name="5" type="Node" parent="tree/1/5"]
+
+[node name="2" type="Node" parent="tree"]
+
+[node name="1" type="Node" parent="tree/2"]
+
+[node name="2" type="Node" parent="tree/2"]
+
+[node name="3" type="Node" parent="tree/2"]
+
+[node name="4" type="Node" parent="tree/2"]
+
+[node name="1" type="Node" parent="tree/2/4"]
+
+[node name="2" type="Node" parent="tree/2/4"]
+
+[node name="3" type="Node" parent="tree/2/4"]
+
+[node name="4" type="Node" parent="tree/2/4"]
+
+[node name="5" type="Node" parent="tree/2/4"]
+
+[node name="5" type="Node" parent="tree/2"]
+
+[node name="1" type="Node" parent="tree/2/5"]
+
+[node name="2" type="Node" parent="tree/2/5"]
+
+[node name="3" type="Node" parent="tree/2/5"]
+
+[node name="4" type="Node" parent="tree/2/5"]
+
+[node name="5" type="Node" parent="tree/2/5"]
+
+[node name="3" type="Node" parent="tree"]
+
+[node name="1" type="Node" parent="tree/3"]
+
+[node name="2" type="Node" parent="tree/3"]
+
+[node name="1" type="Node" parent="tree/3/2"]
+
+[node name="2" type="Node" parent="tree/3/2"]
+
+[node name="3" type="Node" parent="tree/3/2"]
+
+[node name="4" type="Node" parent="tree/3/2"]
+
+[node name="5" type="Node" parent="tree/3/2"]
+
+[node name="3" type="Node" parent="tree/3"]
+
+[node name="4" type="Node" parent="tree/3"]
+
+[node name="5" type="Node" parent="tree/3"]
+
+[node name="1" type="Node" parent="tree/3/5"]
+
+[node name="2" type="Node" parent="tree/3/5"]
+
+[node name="3" type="Node" parent="tree/3/5"]
+
+[node name="4" type="Node" parent="tree/3/5"]
+
+[node name="5" type="Node" parent="tree/3/5"]
+
+[node name="4" type="Node" parent="tree"]
+
+[node name="1" type="Node" parent="tree/4"]
+
+[node name="1" type="Node" parent="tree/4/1"]
+
+[node name="2" type="Node" parent="tree/4/1"]
+
+[node name="3" type="Node" parent="tree/4/1"]
+
+[node name="4" type="Node" parent="tree/4/1"]
+
+[node name="5" type="Node" parent="tree/4/1"]
+
+[node name="2" type="Node" parent="tree/4"]
+
+[node name="1" type="Node" parent="tree/4/2"]
+
+[node name="2" type="Node" parent="tree/4/2"]
+
+[node name="3" type="Node" parent="tree/4/2"]
+
+[node name="4" type="Node" parent="tree/4/2"]
+
+[node name="5" type="Node" parent="tree/4/2"]
+
+[node name="3" type="Node" parent="tree/4"]
+
+[node name="1" type="Node" parent="tree/4/3"]
+
+[node name="2" type="Node" parent="tree/4/3"]
+
+[node name="3" type="Node" parent="tree/4/3"]
+
+[node name="4" type="Node" parent="tree/4/3"]
+
+[node name="5" type="Node" parent="tree/4/3"]
+
+[node name="4" type="Node" parent="tree/4"]
+
+[node name="1" type="Node" parent="tree/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/3"]
+
+[node name="2" type="Node" parent="tree/4/4/3"]
+
+[node name="3" type="Node" parent="tree/4/4/3"]
+
+[node name="4" type="Node" parent="tree/4/4/3"]
+
+[node name="5" type="Node" parent="tree/4/4/3"]
+
+[node name="4" type="Node" parent="tree/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/1"]
+
+[node name="2" type="Node" parent="tree/4/4/4/1"]
+
+[node name="3" type="Node" parent="tree/4/4/4/1"]
+
+[node name="4" type="Node" parent="tree/4/4/4/1"]
+
+[node name="5" type="Node" parent="tree/4/4/4/1"]
+
+[node name="2" type="Node" parent="tree/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/2"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/2"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/2"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/2"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/2"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4/4/3"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4/4/3"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4/4/3"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4/4/3"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4/4/3"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="2" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="3" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="4" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="deepest four" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="confirmation dialog" type="ConfirmationDialog" parent="tree/4/4/4/4/4/4/4/4/4/4/4/4/4/deepest four"]
+visible = true
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4/4"]
+
+[node name="four fours" type="Node" parent="tree/4/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4/4"]
+
+[node name="5" type="Node" parent="tree/4/4"]
+
+[node name="1" type="Node" parent="tree/4/4/5"]
+
+[node name="2" type="Node" parent="tree/4/4/5"]
+
+[node name="3" type="Node" parent="tree/4/4/5"]
+
+[node name="4" type="Node" parent="tree/4/4/5"]
+
+[node name="5" type="Node" parent="tree/4/4/5"]
+
+[node name="5" type="Node" parent="tree/4"]
+
+[node name="1" type="Node" parent="tree/4/5"]
+
+[node name="2" type="Node" parent="tree/4/5"]
+
+[node name="3" type="Node" parent="tree/4/5"]
+
+[node name="4" type="Node" parent="tree/4/5"]
+
+[node name="5" type="Node" parent="tree/4/5"]
+
+[node name="5" type="Node" parent="tree"]
+
+[node name="1" type="Node" parent="tree/5"]
+
+[node name="2" type="Node" parent="tree/5"]
+
+[node name="3" type="Node" parent="tree/5"]
+
+[node name="4" type="Node" parent="tree/5"]
+
+[node name="5" type="Node" parent="tree/5"]
+
+[node name="health" type="Node" parent="."]
+script = ExtResource("1_olqau")
+metadata/_custom_type_script = "uid://jrf8kxsondmi"
+
+[node name="control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="color rect" type="ColorRect" parent="control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="color picker button" type="ColorPickerButton" parent="control/color rect"]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+
+[node name="progress bar" type="ProgressBar" parent="control"]
+layout_mode = 0
+offset_right = 4.0
+offset_bottom = 27.0
+
+[node name="animation player" type="AnimationPlayer" parent="control/progress bar"]
+root_node = NodePath("../../..")
+
+[node name="texture progress bar" type="TextureProgressBar" parent="control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="animation player" type="AnimationPlayer" parent="control/texture progress bar"]
+root_node = NodePath("../../..")
+
+[node name="animation player" type="AnimationPlayer" parent="."]
+
+[node name="node 2d" type="Node2D" parent="."]
+
+[node name="character body 2d" type="CharacterBody2D" parent="node 2d"]
+
+[node name="collision shape 2d" type="CollisionShape2D" parent="node 2d/character body 2d"]
+shape = SubResource("CircleShape2D_poy3p")
+
+[node name="sprite 2d" type="Sprite2D" parent="node 2d/character body 2d"]
+
+[node name="node 3d" type="Node3D" parent="."]
+
+[node name="character body 3d" type="CharacterBody3D" parent="node 3d"]
+
+[node name="collision shape 3d" type="CollisionShape3D" parent="node 3d/character body 3d"]
+shape = SubResource("CapsuleShape3D_olqau")
+
+[node name="sprite 3d" type="Sprite3D" parent="node 3d/character body 3d"]

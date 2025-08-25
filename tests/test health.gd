@@ -95,6 +95,12 @@ func test_health_changed_signal():
 	health.heal(3.0)
 	assert_signal_emit_count(health, "health_changed", 4, "Emit health_changed with difference 3.")
 	assert_signal_emitted_with_parameters(health, "health_changed", [3.0])
+	health.damage(200.0)
+	assert_signal_emit_count(health, "health_changed", 5, "Emit health_changed with difference -98.")
+	assert_signal_emitted_with_parameters(health, "health_changed", [-98.0])
+	health.heal(200.0)
+	assert_signal_emit_count(health, "health_changed", 6, "Emit health_changed with difference 100.")
+	assert_signal_emitted_with_parameters(health, "health_changed", [100.0])
 
 func test_is_dead_and_died_signal():
 	assert_signal_not_emitted(health, "died", "Don't emit died initially.")

@@ -96,9 +96,10 @@ var is_dead := false: set = set_is_dead
 
 #region setters
 func set_health(value: float) -> void:
+	value = clamp(value, 0.0, max_health)
 	if health != value:
 		health_changed.emit(value - health)
-	health = clamp(value, 0.0, max_health)
+	health = value
 	if health <= 0: kill()
 
 func set_max_health(value: float) -> void:
@@ -127,6 +128,25 @@ func set_shield(value: Health) -> void:
 #endregion setters
 
 
+#region getters
+## Represents the fullness of [member health] in [member max_health] as a percent, or [method get_health_ratio] [code] * 100[/code].
+func get_health_percent() -> float:
+	return get_health_ratio() * 100.0
+
+## Represents the fullness of [member health] in [member max_health] as a normalized value, or [member health] [code]/[/code] [member max_health].
+func get_health_ratio() -> float:
+	if max_health == 0: return 0.0
+	return health / max_health
+
+## Applies flat and percent resistances in the order of [member resistance_order] without applying the damage. Used by [method damage].
+func get_damage_after_resistance(value: float) -> float:
+	if resistance_order == ResistanceOrder.PERCENT_FLAT:
+		return max((value * ((100.0 - resistance_percent) / 100.0)) - resistance_flat, 0.0)
+	else:
+		return max(value - resistance_flat, 0.0) * ((100.0 - resistance_percent) / 100.0)
+#endregion getters
+
+
 #region methods
 ## Applies flat and percent resistances. If [member shield] is present, first damages that to absorb as much as it can. See [Health.DamageResult].
 func damage(value: float) -> DamageResult:
@@ -147,15 +167,6 @@ func damage(value: float) -> DamageResult:
 ## Syntax sugar to add [param value] to [member health].
 func heal(value: float) -> void:
 	health += value
-
-## Represents the fullness of [member health] in [member max_health] as a percent, or [method get_health_ratio] [code] * 100[/code].
-func get_health_percent() -> float:
-	return get_health_ratio() * 100.0
-
-## Represents the fullness of [member health] in [member max_health] as a normalized value, or [member health] [code]/[/code] [member max_health].
-func get_health_ratio() -> float:
-	if max_health == 0: return 0.0
-	return health / max_health
 
 ## Syntax sugar to set [member is_dead] to [code]true[/code]. If the parameter is [code]true[/code], [member health] will be set to [code]0[/code].
 func kill(should_health_be_zero := false) -> void:
@@ -187,13 +198,6 @@ func make_shield(shield_hp := max_health) -> Health:
 	new_shield.max_health = shield_hp
 	new_shield.health = new_shield.max_health
 	return new_shield
-
-## Applies flat and percent resistances in the order of [member resistance_order] without applying the damage. Used by [method damage].
-func get_damage_after_resistance(value: float) -> float:
-	if resistance_order == ResistanceOrder.PERCENT_FLAT:
-		return max((value * ((100.0 - resistance_percent) / 100.0)) - resistance_flat, 0.0)
-	else:
-		return max(value - resistance_flat, 0.0) * ((100.0 - resistance_percent) / 100.0)
 #endregion methods
 
 
