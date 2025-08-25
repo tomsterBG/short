@@ -133,7 +133,7 @@ func test_get_ancestor():
 	assert_eq(Helpers.get_ancestor(nested_four, 6), test_scene, "Found node is 6 levels deep.")
 	assert_eq(Helpers.get_ancestor(nested_four, 5), test_scene.find_child("tree"), "And 5 levels inside tree.")
 
-func test_find_performance():
+func test_performance_of_find():
 	var start_time = Time.get_ticks_usec()
 	assert_not_null(test_scene.find_child("deepest four"), "Found deepest four.")
 	var taken_time: Dictionary
