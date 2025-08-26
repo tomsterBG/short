@@ -3,6 +3,7 @@
 # First are global scripts. If a script has a dependency, its dependency must be tested first.
 # TODO:
 # - Add a system to append unadded scripts and tell me about it.
+# - Turn this into a dependency table.
 
 extends GutHookScript
 
