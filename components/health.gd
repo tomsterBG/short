@@ -3,7 +3,9 @@
 # Type all variables, parameters and returns.
 # Keep complete documentation.
 # INFO:
-# This works without knowing about other nodes. Knowing is optional.
+# This works without knowing about other components.
+# NOTE:
+# This assumes that the Helpers global exists.
 # TODO:
 # - Fix initialization causing the doc link to HealthPlus to not be available.
 # IDEAS:

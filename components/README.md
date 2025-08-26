@@ -4,7 +4,7 @@ This is the meat. Here are the scripts you need and want to use in your own proj
 
 Everything should be well documented so open the in-engine documentation for each script.
 
-The classes are intended to be black boxes. No need to worry about what's inside. This makes project development more efficient and bug-free.
+The components are intended to be black boxes. No need to worry about what's inside. This makes project development less error-prone.
 
 # Other
 

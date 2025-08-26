@@ -49,4 +49,5 @@ Test order: First run the tests that cover less dependent code. In my case i fir
 
 # Code
 
-Instead of var with getter, only make a getter function.
+Instead of var with getter, only make a getter function if it's modifying something.
+- This just looks like bloat: `get_health() -> float: return health`

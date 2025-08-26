@@ -1,3 +1,5 @@
+# NOTE:
+# This assumes that the Helpers global exists.
 # TODO:
 # - In-engine errors for relevant things.
 # IDEAS:
@@ -55,7 +57,7 @@ func is_regen_interrupted() -> bool:
 
 
 #region internal
-# CRITICAL: This is bad, do not overwrite internal methods in custom classes because what happens if you extend the class and need the method? You overwrite it again.
+# CRITICAL: This is bad, do not overwrite internal methods in custom components. What happens if you extend the class and need the method? You overwrite it again.
 func _ready() -> void:
 	health_changed.connect(_on_health_changed)
 

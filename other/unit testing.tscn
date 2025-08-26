@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://pqfsq3gcyqnc"]
 
 [ext_resource type="Script" uid="uid://clti16eyk3e63" path="res://tests/test health.gd" id="1_i7se7"]
-[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://classes/health.gd" id="2_8yw2y"]
+[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://components/health.gd" id="2_8yw2y"]
 [ext_resource type="Script" uid="uid://cfkxgjwpaiqs8" path="res://other/health bar.gd" id="3_wc3g4"]
 [ext_resource type="Script" uid="uid://dc2s2rckif0o3" path="res://tests/test health plus.gd" id="4_rskh2"]
-[ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://classes/health plus.gd" id="5_7sqgn"]
+[ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://components/health plus.gd" id="5_7sqgn"]
 
 [node name="root" type="Node"]
 

@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c111v0vk5tgal"]
 
-[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://classes/health.gd" id="1_olqau"]
+[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://components/health.gd" id="1_olqau"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_poy3p"]
 

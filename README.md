@@ -1,19 +1,19 @@
 # About
 
-Custom nodes, classes and globals designed to seamlessly integrate with Godot for easier game development.
+Custom nodes, components and globals designed to seamlessly integrate with Godot for easier game development.
 
 This project is designed to be high quality (as much as i can, but nobody is perfect), to adhere to Godot standards and style guides, and to be useful to everyone, not just me.
 
 Contents include:
 - The GUT addon by bitwes for unit testing.
 - Globals: Helper methods.
-- Classes: Primarily components designed like default Godot nodes.
-- Tests for globals and classes.
+- Components: Designed like Godot nodes.
+- Tests for globals and components.
 
 # How to use
 
 Download the project and delete anything you don't need.
-- Everything you need is in two folders: globals and classes. Everything else is just helping me develop this project.
+- Everything you need is in two folders: globals and components. Everything else is just helping me develop this project.
 
 Copy-paste whatever you want in your project.
 
@@ -36,11 +36,12 @@ Each script must follow rules that make it extendable, simple and understandable
 These rules include, but are not limited to:
 - Full in-engine documentation with doc comments.
 - Strict order of comments at the beginning of a script.
-	- Order: IMPORTANT, INFO, TODO, IDEAS, BAD IDEAS.
+	- Order: IMPORTANT, INFO, NOTE, TODO, IDEAS, BAD IDEAS.
 - Strict order of regions, wrapped by region comments and separated by 2 lines.
 	- Order: signals, enums, classes, constants, variables, setters, getters, methods, virtual methods, tests, internal.
 - Everything within a region, with some exceptions, is to be separated by 1 line.
-- Instead of var with getter, make getter functions separate. (this may change)
+- Instead of var with getter, only make a getter function if it's modifying something.
+	- This just looks like bloat: `get_health() -> float: return health`
 - If a func returns void, it mutates state. If it returns non-void, it doesn't mutate state, with some exceptions.
 	- Exceptions are recognized by their name.
 - If it starts with is_ or has_, it returns a bool.

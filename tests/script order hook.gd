@@ -12,7 +12,7 @@ func run():
 	var ordered_tests := [
 		# Globals:
 		"res://tests/test helpers.gd",
-		# Classes:
+		# Components:
 		"res://tests/test health.gd",
 		"res://tests/test health plus.gd",
 	]
