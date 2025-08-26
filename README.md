@@ -19,11 +19,13 @@ Copy-paste whatever you want in your project.
 
 # License
 
-This project is licensed under GNU GPL v3 which basically means you can do absolutely everything, except take away people's freedom to access the source code.
+This project is licensed under MIT which basically means you can do absolutely everything, except sue me.
 
-My goal is not to limit people, but to ensure the code is always accessible. If you want to use this and the license is incompatible, feel free to contact me.
+My goal is not to limit people which is why i changed it from my original choice which was GPL V3. It makes a lot of sense to use GPL for FOSS, such as preventing distributors from taking away one's freedom to access the source code. However with games this just doesn't make much sense and most Godot tools are MIT for a good reason, which is why i switch now when it's still possible.
 
-GUT has its own license, respect it.
+If you want to use this and the license is incompatible, feel free to contact me. Though what are you doing if MIT is incompatible?
+
+GUT has its own MIT license, respect it.
 
 # Convention
 
