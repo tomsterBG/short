@@ -140,20 +140,20 @@ func test_performance_of_find():
 	assert_not_null(test_scene.find_child("deepest four"), "Found deepest four.")
 	var taken_time: Dictionary
 	taken_time.find_child = Time.get_ticks_usec() - start_time
-	print("find_child(\"deepest four\") took " + str(taken_time.find_child) + " usec.")
+	gut.logger.info("find_child(\"deepest four\") took " + str(taken_time.find_child) + " usec.")
 	
 	start_time = Time.get_ticks_usec()
 	assert_eq(test_scene.find_children("*", "ConfirmationDialog").size(), 1, "Found a ConfirmationDialog.")
 	taken_time.find_children = Time.get_ticks_usec() - start_time
-	print("find_children(\"*\", \"ConfirmationDialog\") took " + str(taken_time.find_children) + " usec.")
+	gut.logger.info("find_children(\"*\", \"ConfirmationDialog\") took " + str(taken_time.find_children) + " usec.")
 	
 	start_time = Time.get_ticks_usec()
 	assert_not_null(Helpers.find_child_with_method(test_scene, "get_cancel_button"), "Found a ConfirmationDialog.")
 	taken_time.find_child_with_method = Time.get_ticks_usec() - start_time
-	print("find_child_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_child_with_method) + " usec.")
+	gut.logger.info("find_child_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_child_with_method) + " usec.")
 	
 	start_time = Time.get_ticks_usec()
 	assert_eq(Helpers.find_children_with_method(test_scene, "get_cancel_button").size(), 1, "Found a ConfirmationDialog.")
 	taken_time.find_children_with_method = Time.get_ticks_usec() - start_time
-	print("find_children_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_children_with_method) + " usec.")
+	gut.logger.info("find_children_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_children_with_method) + " usec.")
 #endregion tests

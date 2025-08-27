@@ -45,6 +45,7 @@ These rules include, but are not limited to:
 - If a func returns void, it mutates state. If it returns non-void, it doesn't mutate state, with some exceptions.
 	- Exceptions are recognized by their name.
 - If it starts with is_ or has_, it returns a bool.
+- If an inherited method is overwritten, ensure to note that in the description of the class.
 
 Rules for test scripts:
 - Each unit test should build on top of the ones before it, for easier troubleshooting.
@@ -54,5 +55,6 @@ Rules for test scripts:
 		- If Health has a bug, the error will also show up in HealthPlus. If you don't have a strict order for the tests, how do you determine which error to fix?
 - Tests should only assume already asserted facts.
 	- If a test makes an assumption, that wasn't asserted earlier, put a WARNING comment.
+- If something is untested, add @experimental: Untested. in the main class, not in the comments of the test script.
 
 If in doubt, just write code however you want. Then look at how i've done it in other scripts and refactor your code. The health script is by far the best representative of how it should be done.

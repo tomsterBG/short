@@ -19,6 +19,7 @@
 ##
 ## Widely applicable for most health stuff. See also [HealthPlus].
 ##[br][br][b]Note:[/b] Can have a shield, and that shield can have its own shield!
+##[br][br][b]Note:[/b] This overwrites [method Node._get_configuration_warnings]. Use [code]super()[/code] if you want to extend the same method.
 
 @tool
 @icon("health.svg")
@@ -150,7 +151,7 @@ func get_damage_after_resistance(value: float) -> float:
 
 
 #region methods
-## Applies flat and percent resistances. If [member shield] is present, first damages that to absorb as much as it can. See [Health.DamageResult].
+## Applies flat and percent resistances. If [member shield] is present, first damages that to absorb as much as it can. See [Health.DamageResult]. Can't damage by a negative amount.
 func damage(value: float) -> DamageResult:
 	var shield_result := DamageResult.new()
 	if shield and shield.health > 0.0 and not are_shields_cyclic():
@@ -166,9 +167,9 @@ func damage(value: float) -> DamageResult:
 	damage_result.remaining_damage = damage_after_resistance - taken_damage
 	return damage_result
 
-## Syntax sugar to add [param value] to [member health].
+## Syntax sugar to add [param value] to [member health]. Can't heal by a negative amount.
 func heal(value: float) -> void:
-	health += value
+	health += max(value, 0.0)
 
 ## Syntax sugar to set [member is_dead] to [code]true[/code]. If the parameter is [code]true[/code], [member health] will be set to [code]0[/code].
 func kill(should_health_be_zero := false) -> void:

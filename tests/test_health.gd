@@ -78,6 +78,8 @@ func test_heal():
 	health.damage(50.0)
 	health.heal(20.0)
 	assert_eq(health.health, 70.0, "Heal by 20 after taking 50 damage.")
+	health.heal(-20.0)
+	assert_eq(health.health, 70.0, "Don't heal negative health.")
 
 func test_health_changed_signal():
 	assert_signal_not_emitted(health, "health_changed", "Don't emit health_changed initially.")

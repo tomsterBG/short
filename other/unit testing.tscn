@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://pqfsq3gcyqnc"]
+[gd_scene load_steps=10 format=3 uid="uid://pqfsq3gcyqnc"]
 
 [ext_resource type="Script" uid="uid://clti16eyk3e63" path="res://tests/test_health.gd" id="1_i7se7"]
 [ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://components/health.gd" id="2_8yw2y"]
 [ext_resource type="Script" uid="uid://cfkxgjwpaiqs8" path="res://other/health bar.gd" id="3_wc3g4"]
 [ext_resource type="Script" uid="uid://dc2s2rckif0o3" path="res://tests/test_health_plus.gd" id="4_rskh2"]
 [ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://components/health plus.gd" id="5_7sqgn"]
+[ext_resource type="Script" uid="uid://c82bjlcgb0cjd" path="res://other/super 1.gd" id="6_8yw2y"]
+[ext_resource type="Script" uid="uid://d20rld6g4xj7" path="res://other/super 2.gd" id="7_wc3g4"]
+[ext_resource type="Script" uid="uid://i008ckuxstdw" path="res://other/super 3.gd" id="8_rskh2"]
+[ext_resource type="Script" uid="uid://b5w0rybqy68go" path="res://other/super 4.gd" id="9_7sqgn"]
 
 [node name="root" type="Node"]
 
@@ -42,3 +46,19 @@ script = ExtResource("5_7sqgn")
 health = 50.0
 max_health = 50.0
 metadata/_custom_type_script = "uid://dj3aadubv4gi"
+
+[node name="Super1" type="Node" parent="."]
+script = ExtResource("6_8yw2y")
+metadata/_custom_type_script = "uid://c82bjlcgb0cjd"
+
+[node name="Super2" type="Node" parent="."]
+script = ExtResource("7_wc3g4")
+metadata/_custom_type_script = "uid://d20rld6g4xj7"
+
+[node name="Super3" type="Node" parent="."]
+script = ExtResource("8_rskh2")
+metadata/_custom_type_script = "uid://i008ckuxstdw"
+
+[node name="Super4" type="Node" parent="."]
+script = ExtResource("9_7sqgn")
+metadata/_custom_type_script = "uid://b5w0rybqy68go"
