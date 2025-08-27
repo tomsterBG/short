@@ -7,9 +7,9 @@ extends GutTest
 
 
 #region constants
-var IS_RECURSIVE = true
-var IS_OWNED = true
-var IS_NAME_READABLE = true
+const IS_RECURSIVE = true
+const IS_OWNED = true
+const IS_NAME_READABLE = true
 #endregion constants
 
 

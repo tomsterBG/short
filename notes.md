@@ -32,6 +32,8 @@ extends Node class_name Health
 
 When i have doc comments after a region comment, the collapse triangle for the doc comments disappears if there isn't an empty line.
 
+If you use a string literal syntax for a Dictionary, the keys are of type StringName.
+
 # GUT
 
 https://github.com/bitwes/Gut
