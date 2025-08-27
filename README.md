@@ -51,7 +51,8 @@ Rules for test scripts:
 	- Order each testcase in each script.
 	- Order each test script.
 	- As the Factorio devs have found, first run the tests that cover less dependent code. This way the first error will lead you closer to where the real problem is.
-		- Say you test HealthPlus before Health and there's an error in HealthPlus. This error may be because of Health, but that isn't clear. Ordering tests makes it clearer.
-- If a test makes an assumption, test the assumption before, or put a WARNING comment.
+		- If Health has a bug, the error will also show up in HealthPlus. If you don't have a strict order for the tests, how do you determine which error to fix?
+- Tests should only assume already asserted facts.
+	- If a test makes an assumption, that wasn't asserted earlier, put a WARNING comment.
 
 If in doubt, just write code however you want. Then look at how i've done it in other scripts and refactor your code. The health script is by far the best representative of how it should be done.
