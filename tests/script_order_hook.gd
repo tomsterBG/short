@@ -2,8 +2,8 @@
 # When adding new test scripts, add them here.
 # First are global scripts. If a script has a dependency, its dependency must be tested first.
 # TODO:
-# - Add a system to append unadded scripts and tell me about it.
-# - Turn this into a dependency table.
+# IDEAS:
+# - Make the ordering function recursive. add_script_to_order(name, order), if a dependency isn't found, call the function recursively until the dependency is found or doesn't exist. Protect from circular dependencies.
 
 extends GutHookScript
 

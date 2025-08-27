@@ -77,6 +77,8 @@ func test_existence():
 func test_conversions():
 	assert_eq(Helpers.sec_to_msec(25), 25_000.0, "Milliseconds is seconds * 1000.")
 	assert_eq(Helpers.sec_to_usec(999), 999_000_000.0, "Microseconds is seconds * 1000_000.")
+	assert_eq(Helpers.msec_to_sec(999), 0.999, "Seconds is milliseconds / 1000.")
+	assert_eq(Helpers.usec_to_sec(80_200), 0.080_2, "Seconds is microseconds / 1000_000.")
 	assert_eq(Helpers.unit_to_percent(1.75), 175.0, "Percentages are units * 100.")
 	assert_eq(Helpers.percent_to_unit(0.5), 0.005, "Units are percentages / 100.")
 

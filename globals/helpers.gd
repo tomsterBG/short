@@ -31,6 +31,14 @@ func sec_to_msec(sec: float) -> float:
 func sec_to_usec(sec: float) -> float:
 	return sec * 1_000_000.0
 
+## Converts a time expressed in milliseconds to seconds.
+func msec_to_sec(msec: float) -> float:
+	return msec / 1_000.0
+
+## Converts a time expressed in microseconds to seconds.
+func usec_to_sec(usec: float) -> float:
+	return usec / 1_000_000.0
+
 ## Converts a number expressed in units to percentages. Units are from [code]0[/code] to [code]1[/code]. Percentages are from [code]0[/code] to [code]100[/code].
 func unit_to_percent(unit: float) -> float:
 	return unit * 100.0
