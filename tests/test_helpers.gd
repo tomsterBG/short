@@ -20,7 +20,7 @@ var test_scene: Node
 
 #region virtual methods
 func before_all():
-	test_scene = preload("res://tests/scenes/test scene.tscn").instantiate()
+	test_scene = preload("res://tests/scenes/test_scene.tscn").instantiate()
 	add_child(test_scene, IS_NAME_READABLE)
 	test_scene.find_children("*", "CollisionShape2D")[0].owner = null # WARNING: Assumption before tests.
 
@@ -30,7 +30,7 @@ func after_all():
 
 
 #region tests
-#region test scene
+#region test_scene
 func test_color_picker_button():
 	var buttons: Array[Node] = test_scene.find_children("*", "ColorPickerButton")
 	assert_eq(buttons.size(), 1, "Found a ColorPickerButton.")
@@ -69,7 +69,7 @@ func test_collision_shape_3d():
 	assert_eq(collisions.size(), 1, "Found a CollisionShape3D.")
 	assert_not_null(collisions[0].owner, "CollisionShape3D has an owner.")
 	assert_ne(collisions[0].get_parent(), test_scene, "CollisionShape3D is not child of test_scene.")
-#endregion test scene
+#endregion test_scene
 
 func test_existence():
 	assert_is(Helpers, HelperMethods, "Helpers exists.")

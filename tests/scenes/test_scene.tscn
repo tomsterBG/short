@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c111v0vk5tgal"]
 
-[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://components/health.gd" id="1_olqau"]
+[ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://components/health.gd" id="1_lrf84"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_poy3p"]
 
@@ -360,7 +360,7 @@ visible = true
 [node name="5" type="Node" parent="tree/5"]
 
 [node name="health" type="Node" parent="."]
-script = ExtResource("1_olqau")
+script = ExtResource("1_lrf84")
 metadata/_custom_type_script = "uid://jrf8kxsondmi"
 
 [node name="control" type="Control" parent="."]
