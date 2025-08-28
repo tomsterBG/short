@@ -5,7 +5,7 @@
 # INFO:
 # This works without knowing about other components.
 # NOTE:
-# This assumes that the Helpers global exists.
+# This assumes that the Helper class exists.
 # TODO:
 # - Fix initialization causing the doc link to HealthPlus to not be available.
 # IDEAS:
@@ -134,7 +134,7 @@ func set_shield(value: Health) -> void:
 #region getters
 ## Represents the fullness of [member health] in [member max_health] as a percent, or [method get_health_ratio] [code] * 100[/code].
 func get_health_percent() -> float:
-	return Helpers.unit_to_percent(get_health_ratio())
+	return Helper.unit_to_percent(get_health_ratio())
 
 ## Represents the fullness of [member health] in [member max_health] as a normalized value, or [member health] [code]/[/code] [member max_health].
 func get_health_ratio() -> float:

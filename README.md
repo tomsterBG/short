@@ -1,21 +1,20 @@
 # About
 
-Custom nodes, components and globals designed to seamlessly integrate with Godot for easier game development.
+Custom scripts designed to seamlessly integrate with Godot for easier game development.
 
 This project is designed to be high quality (as much as i can, but nobody is perfect), to adhere to Godot standards and style guides, and to be useful to everyone, not just me.
 
 Contents include:
 - The GUT addon by bitwes for unit testing.
-- Globals: Helper methods.
+- Classes: Helper methods.
 - Components: Designed like Godot nodes.
-- Tests for globals and components.
+- Tests for the above.
 
 # How to use
 
 Download the project and delete anything you don't need.
-- Everything you need is in two folders: globals and components. Everything else is just helping me develop this project.
-
-Copy-paste whatever you want in your project.
+- Everything you need is in two folders: classes and components. Everything else is just helping me develop this project.
+- Careful with deleting things in the two folders. Some scripts depend on each other.
 
 # License
 

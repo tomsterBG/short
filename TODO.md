@@ -14,8 +14,6 @@
 - It's just a message scene with internal stack and a helper method add_message("text", seconds), intended to streamline development of showing messages one after another for the chosen amount of time.
 - The script should be decoupled from the style, so i can style the scene however i want and use the script for the functionality.
 
-## Helpers
+## CI
 
-Helper functions in a global script.
-- Test them.
-- Find more functions to add.
+- Create a Github workflow that will spit out a downloadable artifact, ready for the asset lib.

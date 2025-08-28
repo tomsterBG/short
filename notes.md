@@ -27,7 +27,7 @@ extends Node class_name Health
 ```
 
 ```gdscript
-# - emit reneration signals for when regen state changes (is_regenerating), when fully regenerated (ensure this one doesn't emit when manually fully regenerating) <- shows red only if cursor is after ) because wrapped line can't see the previous line
+# - emit regen signals for when regen state changes (is_regenerating), when fully regenerated (ensure this one doesn't emit when manually fully regenerating) <- shows red only if cursor is after ) because wrapped line can't see the previous line
 ```
 
 When i have doc comments after a region comment, the collapse triangle for the doc comments disappears if there isn't an empty line.

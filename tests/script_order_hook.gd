@@ -19,11 +19,11 @@ var path_suffix = ".gd"
 
 var test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
-	# globals:
-	helpers = [],
+	# classes:
+	helper = [],
 	# components:
-	health = [&"helpers"],
-	health_plus = [&"health", &"helpers"],
+	health = [&"helper"],
+	health_plus = [&"health", &"helper"],
 }
 #endregion variables
 

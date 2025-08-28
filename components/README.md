@@ -1,10 +1,12 @@
 # About
 
-This is the meat. Here are the scripts you need and want to use in your own projects.
+This is part of the meat.
+
+Components for usage in other projects.
 
 Everything should be well documented so open the in-engine documentation for each script.
 
-The components are intended to be black boxes. No need to worry about what's inside. This makes project development less error-prone.
+The components are like black boxes. No need to worry about what's inside. This makes project development simpler and more bug-free.
 
 # Other
 

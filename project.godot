@@ -16,10 +16,6 @@ run/main_scene="uid://pqfsq3gcyqnc"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-Helpers="*res://globals/helpers.gd"
-
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/gut/plugin.cfg")
@@ -27,5 +23,6 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://classes/": "green",
 "res://components/": "orange"
 }

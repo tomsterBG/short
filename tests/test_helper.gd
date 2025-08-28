@@ -71,69 +71,66 @@ func test_collision_shape_3d():
 	assert_ne(collisions[0].get_parent(), test_scene, "CollisionShape3D is not child of test_scene.")
 #endregion test_scene
 
-func test_existence():
-	assert_is(Helpers, HelperMethods, "Helpers exists.")
-
 func test_conversions():
-	assert_eq(Helpers.sec_to_msec(25), 25_000.0, "Milliseconds is seconds * 1000.")
-	assert_eq(Helpers.sec_to_usec(999), 999_000_000.0, "Microseconds is seconds * 1000_000.")
-	assert_eq(Helpers.msec_to_sec(999), 0.999, "Seconds is milliseconds / 1000.")
-	assert_eq(Helpers.usec_to_sec(80_200), 0.080_2, "Seconds is microseconds / 1000_000.")
-	assert_eq(Helpers.unit_to_percent(1.75), 175.0, "Percentages are units * 100.")
-	assert_eq(Helpers.percent_to_unit(0.5), 0.005, "Units are percentages / 100.")
+	assert_eq(Helper.sec_to_msec(25), 25_000.0, "Milliseconds is seconds * 1000.")
+	assert_eq(Helper.sec_to_usec(999), 999_000_000.0, "Microseconds is seconds * 1000_000.")
+	assert_eq(Helper.msec_to_sec(999), 0.999, "Seconds is milliseconds / 1000.")
+	assert_eq(Helper.usec_to_sec(80_200), 0.080_2, "Seconds is microseconds / 1000_000.")
+	assert_eq(Helper.unit_to_percent(1.75), 175.0, "Percentages are units * 100.")
+	assert_eq(Helper.percent_to_unit(0.5), 0.005, "Units are percentages / 100.")
 
 func test_find_children_with_method():
-	var characters = Helpers.find_children_with_method(test_scene, "is_on_floor")
+	var characters = Helper.find_children_with_method(test_scene, "is_on_floor")
 	assert_eq(characters.size(), 2, "Found two characters.")
 	assert_true(characters[0].is_class("CharacterBody2D"), "The first is CharacterBody2D.")
 	assert_true(characters[1].is_class("CharacterBody3D"), "The second is CharacterBody3D.")
-	characters = Helpers.find_children_with_method(test_scene, "is_on_floor", !IS_RECURSIVE)
+	characters = Helper.find_children_with_method(test_scene, "is_on_floor", !IS_RECURSIVE)
 	assert_eq(characters.size(), 0, "Nothing because characters are not children of test_scene.")
-	characters = Helpers.find_children_with_method(test_scene, "is_on_floor", IS_RECURSIVE, !IS_OWNED)
+	characters = Helper.find_children_with_method(test_scene, "is_on_floor", IS_RECURSIVE, !IS_OWNED)
 	assert_eq(characters.size(), 0, "Nothing because characters are owned.")
-	characters = Helpers.find_children_with_method(test_scene, "is_on_floor", !IS_RECURSIVE, !IS_OWNED)
+	characters = Helper.find_children_with_method(test_scene, "is_on_floor", !IS_RECURSIVE, !IS_OWNED)
 	assert_eq(characters.size(), 0, "Nothing because characters are not children of test_scene.")
-	var collisions: Array[Node] = Helpers.find_children_with_method(test_scene, "is_one_way_collision_enabled")
+	var collisions: Array[Node] = Helper.find_children_with_method(test_scene, "is_one_way_collision_enabled")
 	assert_eq(collisions.size(), 0, "Nothing because is_one_way_collision_enabled is a setter, not a method.")
 
 func test_find_child_with_method():
-	var character = Helpers.find_child_with_method(test_scene, "is_on_floor")
+	var character = Helper.find_child_with_method(test_scene, "is_on_floor")
 	assert_true(character.is_class("CharacterBody2D"), "Found a character.")
-	character = Helpers.find_child_with_method(test_scene, "is_on_floor", !IS_RECURSIVE)
+	character = Helper.find_child_with_method(test_scene, "is_on_floor", !IS_RECURSIVE)
 	assert_null(character, "Nothing because character is not child of test_scene.")
-	character = Helpers.find_child_with_method(test_scene, "is_on_floor", IS_RECURSIVE, !IS_OWNED)
+	character = Helper.find_child_with_method(test_scene, "is_on_floor", IS_RECURSIVE, !IS_OWNED)
 	assert_null(character, "Nothing because character is owned.")
-	character = Helpers.find_child_with_method(test_scene, "is_on_floor", !IS_RECURSIVE, !IS_OWNED)
+	character = Helper.find_child_with_method(test_scene, "is_on_floor", !IS_RECURSIVE, !IS_OWNED)
 	assert_null(character, "Nothing because character is not child of test_scene.")
-	var collision = Helpers.find_child_with_method(test_scene, "is_one_way_collision_enabled")
+	var collision = Helper.find_child_with_method(test_scene, "is_one_way_collision_enabled")
 	assert_null(collision, "Nothing because is_one_way_collision_enabled is a setter, not a method.")
 
 func test_find_children_with_signal():
-	var buttons = Helpers.find_children_with_signal(test_scene, "picker_created")
+	var buttons = Helper.find_children_with_signal(test_scene, "picker_created")
 	assert_eq(buttons.size(), 1, "Found a button.")
 	assert_true(buttons[0].is_class("ColorPickerButton"), "Of class ColorPickerButton.")
-	buttons = Helpers.find_children_with_signal(test_scene, "picker_created", !IS_RECURSIVE)
+	buttons = Helper.find_children_with_signal(test_scene, "picker_created", !IS_RECURSIVE)
 	assert_eq(buttons.size(), 0, "Nothing because button is not child of test_scene.")
-	buttons = Helpers.find_children_with_signal(test_scene, "picker_created", IS_RECURSIVE, !IS_OWNED)
+	buttons = Helper.find_children_with_signal(test_scene, "picker_created", IS_RECURSIVE, !IS_OWNED)
 	assert_eq(buttons.size(), 0, "Nothing because button is owned.")
-	buttons = Helpers.find_children_with_signal(test_scene, "picker_created", !IS_RECURSIVE, !IS_OWNED)
+	buttons = Helper.find_children_with_signal(test_scene, "picker_created", !IS_RECURSIVE, !IS_OWNED)
 	assert_eq(buttons.size(), 0, "Nothing because button is not child of test_scene.")
 
 func test_find_child_with_signal():
-	var button = Helpers.find_child_with_signal(test_scene, "picker_created")
+	var button = Helper.find_child_with_signal(test_scene, "picker_created")
 	assert_true(button.is_class("ColorPickerButton"), "Found a button.")
-	button = Helpers.find_child_with_signal(test_scene, "picker_created", !IS_RECURSIVE)
+	button = Helper.find_child_with_signal(test_scene, "picker_created", !IS_RECURSIVE)
 	assert_null(button, "Nothing because button is not child of test_scene.")
-	button = Helpers.find_child_with_signal(test_scene, "picker_created", IS_RECURSIVE, !IS_OWNED)
+	button = Helper.find_child_with_signal(test_scene, "picker_created", IS_RECURSIVE, !IS_OWNED)
 	assert_null(button, "Nothing because button is owned.")
-	button = Helpers.find_child_with_signal(test_scene, "picker_created", !IS_RECURSIVE, !IS_OWNED)
+	button = Helper.find_child_with_signal(test_scene, "picker_created", !IS_RECURSIVE, !IS_OWNED)
 	assert_null(button, "Nothing because button is not child of test_scene.")
 
 func test_get_ancestor():
 	var nested_four := test_scene.find_child("four fours")
 	assert_true(nested_four.is_class("Node"), "Found a node.")
-	assert_eq(Helpers.get_ancestor(nested_four, 6), test_scene, "Found node is 6 levels deep.")
-	assert_eq(Helpers.get_ancestor(nested_four, 5), test_scene.find_child("tree"), "And 5 levels inside tree.")
+	assert_eq(Helper.get_ancestor(nested_four, 6), test_scene, "Found node is 6 levels deep.")
+	assert_eq(Helper.get_ancestor(nested_four, 5), test_scene.find_child("tree"), "And 5 levels inside tree.")
 
 func test_performance_of_find():
 	var start_time = Time.get_ticks_usec()
@@ -148,12 +145,12 @@ func test_performance_of_find():
 	gut.logger.info("find_children(\"*\", \"ConfirmationDialog\") took " + str(taken_time.find_children) + " usec.")
 	
 	start_time = Time.get_ticks_usec()
-	assert_not_null(Helpers.find_child_with_method(test_scene, "get_cancel_button"), "Found a ConfirmationDialog.")
+	assert_not_null(Helper.find_child_with_method(test_scene, "get_cancel_button"), "Found a ConfirmationDialog.")
 	taken_time.find_child_with_method = Time.get_ticks_usec() - start_time
 	gut.logger.info("find_child_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_child_with_method) + " usec.")
 	
 	start_time = Time.get_ticks_usec()
-	assert_eq(Helpers.find_children_with_method(test_scene, "get_cancel_button").size(), 1, "Found a ConfirmationDialog.")
+	assert_eq(Helper.find_children_with_method(test_scene, "get_cancel_button").size(), 1, "Found a ConfirmationDialog.")
 	taken_time.find_children_with_method = Time.get_ticks_usec() - start_time
 	gut.logger.info("find_children_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_children_with_method) + " usec.")
 #endregion tests
