@@ -10,6 +10,10 @@
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.
 # 		- However this ignores a very important design pattern which is to not access parents.
+# - toggle(bool) -> !bool: It's an idea, but like... why?
+# - approach a value: We already have move_toward(), this could work differently though.
+# - calculate linear crossfade volume: First steps towards an engine sound system.
+# - toggle fullscreen: Maybe? Ensure it doesn't need me to remember state.
 
 ## @experimental: This class is immature.
 ## Public helper methods to shorten your code.
