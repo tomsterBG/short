@@ -132,6 +132,15 @@ func test_get_ancestor():
 	assert_eq(Helper.get_ancestor(nested_four, 6), test_scene, "Found node is 6 levels deep.")
 	assert_eq(Helper.get_ancestor(nested_four, 5), test_scene.find_child("tree"), "And 5 levels inside tree.")
 
+func test_get_dir_children():
+	var dir_children := Helper.get_dir_children("res://")
+	assert_has(dir_children.files, "res://README.md", "Found README.md file.")
+	assert_has(dir_children.folders, "res://addons", "Found addons folder.")
+	assert_does_not_have(dir_children.files, "res://tests/test_helper.gd", "Not recursive.")
+	dir_children = Helper.get_dir_children("res://", IS_RECURSIVE)
+	assert_has(dir_children.files, "res://tests/test_helper.gd", "Found test_helper.gd file.")
+
+#region performance
 func test_performance_of_find():
 	var start_time = Time.get_ticks_usec()
 	assert_not_null(test_scene.find_child("deepest four"), "Found deepest four.")
@@ -153,4 +162,5 @@ func test_performance_of_find():
 	assert_eq(Helper.find_children_with_method(test_scene, "get_cancel_button").size(), 1, "Found a ConfirmationDialog.")
 	taken_time.find_children_with_method = Time.get_ticks_usec() - start_time
 	gut.logger.info("find_children_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_children_with_method) + " usec.")
+#endregion performance
 #endregion tests

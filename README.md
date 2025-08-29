@@ -1,11 +1,19 @@
+# Godot short - Code shortening scripts for Godot 4.
+
 # About
 
-Custom scripts designed to seamlessly integrate with Godot for easier game dev.
+Various scripts designed to make your code shorter and more elegant.
 
-These scripts are like black boxes. No need to worry about what's inside. They are also tested, so no need to worry about bugs.
+These scripts are like black boxes. No need to worry about what's inside. Everything is documented. They are also tested, so no need to worry about bugs.
 - Using this allows you to write less code, yet focus on more complex features.
 
-This project is designed to be high quality (as much as i can, but nobody is perfect). To adhere to Godot standards and style guides, to be as simple as possible, and to be useful to everyone, not just me.
+This project is designed to...
+...be high quality (as much as i can, but nobody is perfect).
+...seamlessly integrate with the engine.
+...adhere to Godot standards and style guides.
+...be as simple as possible.
+...be useful to everyone, not just me.
+...achieve more with less.
 
 # Content
 
@@ -21,8 +29,15 @@ Before even stepping forward, you should know why you're using this.
 
 ## Shorter code
 
-Personally i don't find writing to be a problem. Autocompletion exists. However when reading code, i would do everything i can to help my brain see less, because that lets me focus on what's truly important.
-- I don't want to figure out a math formula and every time i read it again, ask myself "What does this do here?". That slows me down.
+Personally i don't find writing to be a problem. Autocompletion exists.
+However when reading code, i would do everything i can to help my brain see less, because that lets me focus on what's truly important.
+I don't want to figure out...
+...a math formula and every time i read it again, ask myself "What does this do here?".
+...how to access files every time i need file access.
+All that slows me down.
+
+Long story *short*, hehe, figuring things out once is faster than dealing with them multiple times.
+- **Note:** If you're new to programming, this might be too much of a power tool for you. Consider using it later.
 
 # How to use?
 
