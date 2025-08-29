@@ -140,6 +140,12 @@ func test_get_dir_children():
 	dir_children = Helper.get_dir_children("res://", IS_RECURSIVE)
 	assert_has(dir_children.files, "res://tests/test_helper.gd", "Found test_helper.gd file.")
 
+func test_get_lines_in_file():
+	var lines := Helper.get_lines_in_file("res://tests/files/123 line script.gd")
+	assert_eq(lines, 123, "Lines are 123.")
+	lines = Helper.get_lines_in_file("res://tests/files/79 line text.md")
+	assert_eq(lines, 79, "Lines are 79.")
+
 #region performance
 func test_performance_of_find():
 	var start_time = Time.get_ticks_usec()

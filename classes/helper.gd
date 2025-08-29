@@ -141,4 +141,14 @@ static func get_dir_children(path: String, recursive: bool = false) -> DirChildr
 		result.folders.append_array(this_result.folders)
 	
 	return result
+
+## Returns the amount of lines in a file.
+static func get_lines_in_file(path: String) -> int:
+	var lines := 0
+	var file := FileAccess.open(path, FileAccess.READ)
+	while !file.eof_reached():
+		file.get_line()
+		lines += 1
+	file.close()
+	return lines
 #endregion methods
