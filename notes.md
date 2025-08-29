@@ -51,5 +51,8 @@ Test order: First run the tests that cover less dependent code. In my case i fir
 
 # Code
 
-Instead of var with getter, only make a getter function if it's modifying something.
-- This just looks like bloat: `get_health() -> float: return health`
+## Get and Set
+
+Setters are useful to ensure a value doesn't exit a limit.
+
+Getters are useful when you read an inferred variable, but in such case, you don't even need a variable.

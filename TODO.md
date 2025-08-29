@@ -8,6 +8,16 @@
 
 - Needs figuring out how to better do timed tests.
 
+## Change map
+
+- A node which changes the current scene with the given PackedScene.
+- Lets you execute custom code before that, and maybe after? Like how the state machine has an exiting function.
+
+## Trigger gates
+
+- Single trigger gate may be useless.
+- Dual trigger gate however, that's interesting!
+
 ## Messages
 
 - Needs better planning for cleaner code and a wider range of usecases. Also needs proper timed testing.
