@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Classes (unit-tested)"
+config/name="short"
 config/tags=PackedStringArray("git_project", "gut")
 run/main_scene="uid://pqfsq3gcyqnc"
 config/features=PackedStringArray("4.4", "Forward Plus")
