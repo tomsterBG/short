@@ -113,7 +113,7 @@ static func find_children_with_signal(node: Node, signal_name: StringName, recur
 	return array
 #endregion find_
 
-## @experimental: Bad code practice. More useful than "[code]get_grandparent()[/code]" (that method does not exist).
+## @experimental: Bad code practice. Nodes should be unaware of their parents. More useful than "[code]get_grandparent()[/code]" (that method does not exist).
 ## Returns [param node]'s nth ancestor node [code]n[/code] [param levels] up, or [code]null[/code] if the node doesn't have such ancestor. Calls [method Node.get_parent] [code]n[/code] times.
 static func get_ancestor(node: Node, levels: int) -> Node:
 	var ancestor := node

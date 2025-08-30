@@ -27,3 +27,14 @@
 ## CI
 
 - Create a Github workflow that will spit out a downloadable artifact, ready for the asset lib.
+
+## Templates
+
+Specific scripts that are game-specific and aren't suitable for this because you HAVE to modify them. However, instead of writing one from scratch, you can just copy the template.
+- Signal bus.
+- Constants.
+- Magic numbers.
+
+It must be well distinct that these scripts are supposed to be edited by you per-game and aren't just black boxes.
+
+They support good coding practices.
