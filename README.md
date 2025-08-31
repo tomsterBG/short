@@ -61,13 +61,18 @@ I try to be as consistent as possible.
 
 Each script must follow rules that make it extendable, simple and understandable.
 
-These rules include, but are not limited to:
-- Full in-engine documentation with doc comments.
-- Strict order of comments at the beginning of a script.
-	- Order: IMPORTANT, INFO, NOTE, TODO, IDEAS, BAD IDEAS.
+## These rules include, but are not limited to
+
+**Regions:**
 - Strict order of regions, wrapped by region comments and separated by 2 lines.
 	- Order: signals, enums, classes, constants, variables, setters, getters, methods, virtual methods, tests, internal.
 - Everything within a region, with some exceptions, is to be separated by 1 line.
+- Each nested region comment must be indented correctly.
+
+**Other:**
+- Full in-engine documentation with doc comments.
+- Strict order of comments at the beginning of a script.
+	- Order: IMPORTANT, INFO, NOTE, TODO, IDEAS, BAD IDEAS.
 - Getter functions usually don't need a variable associated with them.
 	- This getter is useless: `get_health() -> float: return health`.
 	- This doesn't need a health_ratio var: `get_health_ratio() -> float: return health / max_health`.
@@ -77,7 +82,8 @@ These rules include, but are not limited to:
 - If it starts with is_ or has_, it returns a bool.
 - If an inherited method is overwritten, ensure to note that in the description of the class.
 
-Rules for test scripts:
+## Rules for test scripts
+
 - Each unit test should build on top of the ones before it, for easier troubleshooting.
 	- Order each testcase in each script.
 	- Order each test script.
@@ -85,6 +91,6 @@ Rules for test scripts:
 		- If Health has a bug, the error will also show up in HealthPlus. If you don't have a strict order for the tests, how do you determine which error to fix?
 - Tests should only assume already asserted facts.
 	- If a test makes an assumption, that wasn't asserted earlier, put a WARNING comment.
-- If something is untested, add @experimental: Untested. in the main class, not in the comments of the test script.
+- If something is untested, add "@experimental: Untested." where it is defined, not where it is tested.
 
 If in doubt, just write code however you want. Then look at how i've done it in other scripts and refactor your code. The health script is by far the best representative of how it should be done.

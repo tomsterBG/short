@@ -30,7 +30,7 @@ func after_all():
 
 
 #region tests
-#region test_scene
+	#region test_scene
 func test_color_picker_button():
 	var buttons: Array[Node] = test_scene.find_children("*", "ColorPickerButton")
 	assert_eq(buttons.size(), 1, "Found a ColorPickerButton.")
@@ -69,7 +69,7 @@ func test_collision_shape_3d():
 	assert_eq(collisions.size(), 1, "Found a CollisionShape3D.")
 	assert_not_null(collisions[0].owner, "CollisionShape3D has an owner.")
 	assert_ne(collisions[0].get_parent(), test_scene, "CollisionShape3D is not child of test_scene.")
-#endregion test_scene
+	#endregion test_scene
 
 func test_constants():
 	assert_eq(Helper.EARTH_GRAVITY, 9.80665, "Gravity (Earth) = 9.80665 (m/s^2)")
@@ -149,7 +149,7 @@ func test_get_lines_in_file():
 	lines = Helper.get_lines_in_file("res://tests/files/79 line text.md")
 	assert_eq(lines, 79, "Lines are 79.")
 
-#region performance
+	#region performance
 func test_performance_of_find():
 	var start_time = Time.get_ticks_usec()
 	assert_not_null(test_scene.find_child("deepest four"), "Found deepest four.")
@@ -171,5 +171,5 @@ func test_performance_of_find():
 	assert_eq(Helper.find_children_with_method(test_scene, "get_cancel_button").size(), 1, "Found a ConfirmationDialog.")
 	taken_time.find_children_with_method = Time.get_ticks_usec() - start_time
 	gut.logger.info("find_children_with_method(test_scene, \"get_cancel_button\") took " + str(taken_time.find_children_with_method) + " usec.")
-#endregion performance
+	#endregion performance
 #endregion tests

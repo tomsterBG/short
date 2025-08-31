@@ -35,41 +35,49 @@ class DirChildrenResult:
 
 
 #region constants
+## Represents the acceleration of the Earth.
 ## Gravity (Earth) = 9.80665 (m/s^2)
 const EARTH_GRAVITY = 9.80665
 #endregion constants
 
 
 #region methods
-#region conversions
+	#region conversions
+		#region time
 ## Converts a time from seconds to milliseconds.
-##[br][br]Time (seconds) * 1000 = Time (milliseconds)
+##[br][br][b]Time (seconds) * 1000 = Time (milliseconds)[/b]
 static func sec_to_msec(sec: float) -> float:
 	return sec * 1_000.0
 
 ## Converts a time from milliseconds to seconds.
-##[br][br]Time (milliseconds) / 1000 = Time (seconds)
+##[br][br][b]Time (milliseconds) / 1000 = Time (seconds)[/b]
 static func msec_to_sec(msec: float) -> float:
 	return msec / 1_000.0
 
 ## Converts a time from seconds to microseconds.
-##[br][br]Time (seconds) * 1000 000 = Time (microseconds)
+##[br][br][b]Time (seconds) * 1000 000 = Time (microseconds)[/b]
 static func sec_to_usec(sec: float) -> float:
 	return sec * 1_000_000.0
 
 ## Converts a time from microseconds to seconds.
-##[br][br]Time (microseconds) / 1000 000 = Time (seconds)
+##[br][br][b]Time (microseconds) / 1000 000 = Time (seconds)[/b]
 static func usec_to_sec(usec: float) -> float:
 	return usec / 1_000_000.0
+		#endregion time
 
-## Converts a number from units to percentages. Units are from [code]0[/code] to [code]1[/code]. Percentages are from [code]0[/code] to [code]100[/code]. See [method percent_to_unit].
+		#region proportion
+## Converts a proportion from units to percentages. Units are from [code]0[/code] to [code]1[/code]. Percentages are from [code]0[/code] to [code]100[/code]. See [method percent_to_unit].
+##[br][br][b]Proportion (units) * 100 = Proportion (percentages)[/b]
 static func unit_to_percent(unit: float) -> float:
 	return unit * 100.0
 
-## Converts a number from percentages to units. Percentages are from [code]0[/code] to [code]100[/code]. Units are from [code]0[/code] to [code]1[/code]. See [method unit_to_percent].
+## Converts a proportion from percentages to units. Percentages are from [code]0[/code] to [code]100[/code]. Units are from [code]0[/code] to [code]1[/code]. See [method unit_to_percent].
+##[br][br][b]Proportion (percentages) / 100 = Proportion (units)[/b]
 static func percent_to_unit(percent: float) -> float:
 	return percent / 100.0
+		#endregion proportion
 
+		#region speed
 ## @experimental: Untested.
 ## Converts a speed from [code]meters/second[/code] to [code]km/h[/code]. See also [url=https://www.youtube.com/watch?v=wFV3ycTIfn0]Converting m/s to km/h[/url].
 ##[br][br][b]Speed (meters/second) * 3.6 = Speed (km/h)[/b]
@@ -95,9 +103,10 @@ static func kmh_to_mph(kmh: float) -> float:
 ##[br][br][b]Speed (miles/h) / 0.6213712 = Speed (km/h)[/b]
 static func mph_to_kmh(mph: float) -> float:
 	return mph * 1.609344
-#endregion conversions
+		#endregion speed
+	#endregion conversions
 
-#region find_
+	#region find_
 ## Finds the first descendant of a [param node] that has [param method]. Works similarly to [method Node.find_child]. See [method Object.has_method].
 ##[br][br][b]Note:[/b] This method can be slow.
 static func find_child_with_method(node: Node, method: StringName, recursive := true, owned := true) -> Node:
@@ -147,7 +156,7 @@ static func find_children_with_signal(node: Node, signal_name: StringName, recur
 		if recursive:
 			children_cache.append_array(child.get_children())
 	return array
-#endregion find_
+	#endregion find_
 
 ## @experimental: Bad code practice. Nodes should be unaware of their parents. More useful than "[code]get_grandparent()[/code]" (that method does not exist).
 ## Returns [param node]'s nth ancestor node [code]n[/code] [param levels] up, or [code]null[/code] if the node doesn't have such ancestor. Calls [method Node.get_parent] [code]n[/code] times.

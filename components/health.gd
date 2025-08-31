@@ -70,7 +70,7 @@ class DamageResult:
 ## Can't be less than [code]0[/code] because of [member health]. If this reaches [code]0[/code], [member health] will also reach [code]0[/code].
 @export var max_health := 100.0: set = set_max_health
 
-#region resistances
+	#region resistances
 @export_group("Resistance", "resistance_")
 
 ## Reduces incoming damage by this number. Used when calling [method damage] and ignored when setting [member health] directly.
@@ -81,7 +81,7 @@ class DamageResult:
 
 ## Controls the order in which [member resistance_flat] and [member resistance_percent] are applied. See [enum ResistanceOrder].
 @export var resistance_order := ResistanceOrder.PERCENT_FLAT
-#endregion resistances
+	#endregion resistances
 
 @export_group("Other")
 
