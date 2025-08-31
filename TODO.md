@@ -1,5 +1,12 @@
 # TODO
 
+## Camera switcher
+
+A Node that holds references to cameras and provides useful ways to switch between them.
+- Shortcut to cycle cameras.
+- Shortcut for each specific camera view.
+- Enable, disable, change and rebind each shortcut.
+
 ## State machine
 
 - Needs very good planning to be done properly in a widely applicable way that wouldn't limit me.

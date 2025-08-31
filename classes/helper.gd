@@ -78,6 +78,20 @@ static func percent_to_unit(percent: float) -> float:
 	return percent / 100.0
 		#endregion proportion
 
+		#region distance
+## @experimental: Untested.
+## Converts a distance from meters to millimeters.
+##[br][br][b]Distance (meters) * 1000 = Distance (millimeters)[/b]
+static func meter_to_mm(meter: float) -> float:
+	return meter * 1000.0
+
+## @experimental: Untested.
+## Converts a distance from millimeters to meters.
+##[br][br][b]Distance (millimeters) / 1000 = Distance (meters)[/b]
+static func mm_to_meter(mm: float) -> float:
+	return mm / 1000.0
+		#endregion distance
+
 		#region speed
 ## @experimental: Untested.
 ## Converts a speed from [code]meters/second[/code] to [code]km/h[/code]. See also [url=https://www.youtube.com/watch?v=wFV3ycTIfn0]Converting m/s to km/h[/url].
