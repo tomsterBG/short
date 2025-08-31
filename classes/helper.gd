@@ -18,7 +18,8 @@
 ## @experimental: This class is immature.
 ## Public helper methods to shorten your code.
 ##
-## Available in all scripts.
+## Available in all scripts without any setup.
+##[br][br]An abstract script full of methods and constants to reduce the amount of code you need to write, and to improve readability.
 
 class_name Helper
 extends Node
@@ -35,7 +36,7 @@ class DirChildrenResult:
 
 
 #region constants
-## Represents the acceleration of the Earth.
+## Represents the acceleration of the Earth on its surface. For true realism, according to Wikipedia, gravity varies by 0.7% depending on your location.
 ## Gravity (Earth) = 9.80665 (m/s^2)
 const EARTH_GRAVITY = 9.80665
 #endregion constants
