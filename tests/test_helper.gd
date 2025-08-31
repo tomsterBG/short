@@ -71,6 +71,9 @@ func test_collision_shape_3d():
 	assert_ne(collisions[0].get_parent(), test_scene, "CollisionShape3D is not child of test_scene.")
 #endregion test_scene
 
+func test_constants():
+	assert_eq(Helper.EARTH_GRAVITY, 9.80665, "Gravity (Earth) = 9.80665 (m/s^2)")
+
 func test_conversions():
 	assert_eq(Helper.sec_to_msec(25), 25_000.0, "Milliseconds is seconds * 1000.")
 	assert_eq(Helper.sec_to_usec(999), 999_000_000.0, "Microseconds is seconds * 1000_000.")
