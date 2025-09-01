@@ -6,6 +6,7 @@
 # - Ensure correct code formatting.
 # IDEAS:
 # - Improve performance of the find_child family of methods.
+# - Make tire size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TireSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.
@@ -14,6 +15,7 @@
 # - approach a value: We already have move_toward(), this could work differently though.
 # - calculate linear crossfade volume: First steps towards an engine sound system.
 # - toggle fullscreen: Maybe? Ensure it doesn't need me to remember state.
+# - mouse axis input with deadzones: Must first check how to do that without helper.
 
 ## @experimental: This class is immature.
 ## Public helper methods to shorten your code.
