@@ -90,6 +90,18 @@ static func meter_to_mm(meter: float) -> float:
 ##[br][br][b]Distance (millimeters) / 1000 = Distance (meters)[/b]
 static func mm_to_meter(mm: float) -> float:
 	return mm / 1000.0
+
+## @experimental: Untested.
+## Converts a distance from millimeters to inches.
+##[br][br][b]Distance (millimeters) * 0.03937008 = Distance (inches)[/b]
+static func mm_to_inch(mm: float) -> float:
+	return mm * 0.03937008
+
+## @experimental: Untested.
+## Converts a distance from inches to millimeters.
+##[br][br][b]Distance (inches) * 25.4 = Distance (millimeters)[/b]
+static func inch_to_mm(inch: float) -> float:
+	return inch * 25.4
 		#endregion distance
 
 		#region speed
