@@ -1,3 +1,10 @@
+# NOTE:
+# - https://www.youtube.com/watch?v=lt7iUBE3_AE
+# 	- Torque = Force * Radius, Force = Torque / Radius
+# 	- Velocity = Distance * Time
+# 	- Power = Force * Velocity
+# TODO:
+# - Add torque to hp correctly while respecting units.
 # BAD IDEAS:
 # - Move Helper.EARTH_GRAVITY here? Not really, it's not a conversion.
 

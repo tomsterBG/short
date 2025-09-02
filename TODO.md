@@ -19,6 +19,7 @@ A Node that holds references to cameras and provides useful ways to switch betwe
 
 - A node which changes the current scene with the given PackedScene.
 - Lets you execute custom code before that, and maybe after? Like how the state machine has an exiting function.
+- An option to just replace a map instead of the whole scene. This may need it to become more abstract.
 
 ## Trigger gates
 
