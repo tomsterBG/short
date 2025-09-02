@@ -200,9 +200,8 @@ static func get_ancestor(node: Node, levels: int) -> Node:
 static func get_dir_children(path: String, recursive: bool = false) -> DirChildrenResult:
 	var result := DirChildrenResult.new()
 	
-	var files = DirAccess.get_files_at(path)
-	for file in files: # Is there a way to fast-add prefix to all strings in an array?
-		result.files.append(path+file)
+	var files: Array = DirAccess.get_files_at(path)
+	result.files.assign(files.map(func(f): return path+f))
 	
 	var folders = DirAccess.get_directories_at(path)
 	for folder in folders:
