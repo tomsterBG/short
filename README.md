@@ -18,9 +18,8 @@ This project is designed to...
 # Content
 
 - The GUT addon by bitwes for unit testing.
-- Classes: Helper methods.
-- Components: Designed like Godot nodes. Health.
-- Tests for the above.
+- The short addon by me.
+- Tests for the short addon.
 - Other things. Either unused or specific to this project.
 
 # Why use this?
