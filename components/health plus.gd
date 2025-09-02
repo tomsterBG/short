@@ -1,8 +1,7 @@
 # NOTE:
-# This assumes that the Helper class exists.
+# This assumes that the Convert class exists.
 # TODO:
 # - In-engine errors for relevant things.
-# - Add a helper method that takes time in seconds and simulates regeneration. Specifically for easier testing.
 # IDEAS:
 # - Update health from regeneration only when script tries to read health. Know when the health was last updated and calculate delta time * regen to get how much regen must be applied.
 # BAD IDEAS:
@@ -22,6 +21,7 @@
 ##
 ## Less widely applicable. An overhead class used for janky, but much needed functionality.
 ##[br][br][b]Note:[/b] This overwrites [method Node._ready] and [method Node._process]. Use [code]super()[/code] if you want to extend the same methods.
+##[br][br][b]Note:[/b] This assumes that the [Convert] class exists.
 
 @tool
 class_name HealthPlus
@@ -51,7 +51,7 @@ func get_seconds_for_full_regen() -> float:
 ## How many seconds until interruption ends?
 func get_interruption_time_left() -> float:
 	var time_since_interruption := Time.get_ticks_msec() - regen_interruption_time
-	return max(0.0, regen_interruption_length - Helper.msec_to_sec(time_since_interruption))
+	return max(0.0, regen_interruption_length - Convert.msec_to_sec(time_since_interruption))
 
 ## @experimental: Untested.
 ## Cause an interruption to regeneration.
@@ -61,13 +61,13 @@ func interrupt_regen() -> void:
 ## Is time since interruption more than [member regen_interruption_length]?
 func is_regen_interrupted() -> bool:
 	var time_since_interruption := Time.get_ticks_msec() - regen_interruption_time
-	return time_since_interruption < Helper.sec_to_msec(regen_interruption_length)
+	return time_since_interruption < Convert.sec_to_msec(regen_interruption_length)
 
 ## Simulate regeneration for [param delta] seconds.
 func simulate_regen(delta: float) -> void:
 	if regen_per_second == 0.0: return
 	heal(regen_per_second * (delta-get_interruption_time_left()))
-	regen_interruption_time -= int(Helper.sec_to_msec(delta))
+	regen_interruption_time -= int(Convert.sec_to_msec(delta))
 #endregion methods
 
 

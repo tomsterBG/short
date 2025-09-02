@@ -74,22 +74,6 @@ func test_collision_shape_3d():
 func test_constants():
 	assert_eq(Helper.EARTH_GRAVITY, 9.80665, "Gravity (Earth) = 9.80665 (m/s^2)")
 
-	#region conversions
-func test_time_conversions():
-	assert_eq(Helper.sec_to_msec(25), 25_000.0, "Milliseconds is seconds * 1000.")
-	assert_eq(Helper.sec_to_usec(999), 999_000_000.0, "Microseconds is seconds * 1000_000.")
-	assert_eq(Helper.msec_to_sec(999), 0.999, "Seconds is milliseconds / 1000.")
-	assert_eq(Helper.usec_to_sec(80_200), 0.080_2, "Seconds is microseconds / 1000_000.")
-
-func test_proportion_conversions():
-	assert_eq(Helper.unit_to_percent(1.75), 175.0, "Percentages are units * 100.")
-	assert_eq(Helper.percent_to_unit(0.5), 0.005, "Units are percentages / 100.")
-
-func test_distance_conversions():
-	assert_eq(Helper.meter_to_mm(0.5), 500.0, "Millimeters are meters * 1000.")
-	assert_eq(Helper.mm_to_meter(10.0), 0.01, "Meters are millimeters / 1000.")
-	#endregion conversions
-
 func test_find_children_with_method():
 	var characters = Helper.find_children_with_method(test_scene, "is_on_floor")
 	assert_eq(characters.size(), 2, "Found two characters.")

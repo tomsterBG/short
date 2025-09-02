@@ -20,10 +20,11 @@ var path_suffix = ".gd"
 var test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
 	# classes:
+	convert = [],
 	helper = [],
 	# components:
-	health = [&"helper"],
-	health_plus = [&"health", &"helper"],
+	health = [&"convert"],
+	health_plus = [&"health", &"convert"],
 }
 #endregion variables
 
