@@ -1,5 +1,12 @@
 # TODO
 
+## Weighted list
+
+An abstract system for weighted elements and a list with methods to control these elements.
+- Element class with value and weight.
+- Pick a random element by accounting for the weight, or 1 by default.
+- Filter duplicate values.
+
 ## Camera switcher
 
 A Node that holds references to cameras and provides useful ways to switch between them.
