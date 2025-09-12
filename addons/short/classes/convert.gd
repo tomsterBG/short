@@ -4,7 +4,32 @@
 # 	- Velocity = Distance * Time
 # 	- Power = Force * Velocity
 # - https://whycalculator.com
+# - https://www.unitconverters.net
+# - https://www.omnicalculator.com
 # TODO:
+# - angular speed
+# 	- rpm to rad/s
+# 	- rad/s to deg/s
+# 	- deg/s to rad/s
+# - torque
+# 	- lbft to nm
+# - power
+# 	- hp to kw
+# 		- 1 mechanical hp equals 745.70 W
+# 	- kw to hp
+# 	- kw to w
+# 	- w to kw
+# 	- kw to mw
+# 	- mw to kw
+# 	- mw to gw
+# 	- gw to mw
+# - temperature
+# 	- c to k
+# 	- k to c
+# 	- c to f
+# 	- f to c
+# - other
+# 	- nm rpm to kw
 # BAD IDEAS:
 # - Move Helper.EARTH_GRAVITY here? Not really, it's not a conversion.
 
@@ -83,12 +108,20 @@ static func mph_to_kmh(mph: float) -> float:
 	#endregion speed
 
 	#region angular speed
+## Converts an angular speed from [code]radians/s[/code] to [code]rpm[/code].
 static func rads_to_rpm(rads: float) -> float:
 	return rads * (60.0 / TAU)
 	#endregion angular speed
 
-# IMPORTANT: More than one type of unit. Force, angular speed and power.
+	#region torque
+## Converts a torque from [code]n*m[/code] to [code]lb-ft[/code].
+static func nm_to_lbft(nm: float) -> float:
+	return nm * 0.7375621493
+	#endregion torque
+
+	#region multiple units
 ## @experimental: Untested.
-static func tq_lbft_to_hp(tq_lbft: float, rpm: float) -> float:
+static func lbft_rpm_to_hp(tq_lbft: float, rpm: float) -> float:
 	return (tq_lbft * rpm) / 5252.0
+	#endregion multiple units
 #endregion methods

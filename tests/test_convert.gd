@@ -26,4 +26,7 @@ func test_speed():
 
 func test_angular_speed():
 	assert_almost_eq(Convert.rads_to_rpm(2.0), 19.098_593, 0.000_001)
+
+func test_torque():
+	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, 0.000_001)
 #endregion tests
