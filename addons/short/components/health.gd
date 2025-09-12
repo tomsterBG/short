@@ -20,8 +20,7 @@
 
 @tool
 @icon("health.svg")
-class_name Health
-extends Node
+class_name Health extends Node
 
 
 #region signals

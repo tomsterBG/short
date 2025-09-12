@@ -1,10 +1,10 @@
-# NOTE:
+# SOURCES:
 # - https://www.youtube.com/watch?v=lt7iUBE3_AE
 # 	- Torque = Force * Radius, Force = Torque / Radius
 # 	- Velocity = Distance * Time
 # 	- Power = Force * Velocity
+# - https://whycalculator.com
 # TODO:
-# - Add torque to hp correctly while respecting units.
 # BAD IDEAS:
 # - Move Helper.EARTH_GRAVITY here? Not really, it's not a conversion.
 
@@ -14,8 +14,7 @@
 ## Available in all scripts without any setup.
 ##[br][br]A conversion script full of methods to make value conversions easy, and to improve readability.
 
-class_name Convert
-extends Node
+@abstract class_name Convert extends Node
 
 
 #region methods
@@ -82,4 +81,14 @@ static func kmh_to_mph(kmh: float) -> float:
 static func mph_to_kmh(mph: float) -> float:
 	return mph * 1.609344
 	#endregion speed
+
+	#region angular speed
+static func rads_to_rpm(rads: float) -> float:
+	return rads * (60.0 / TAU)
+	#endregion angular speed
+
+# IMPORTANT: More than one type of unit. Force, angular speed and power.
+## @experimental: Untested.
+static func tq_lbft_to_hp(tq_lbft: float, rpm: float) -> float:
+	return (tq_lbft * rpm) / 5252.0
 #endregion methods

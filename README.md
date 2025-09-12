@@ -71,7 +71,7 @@ Each script must follow rules that make it extendable, simple and understandable
 **Other:**
 - Full in-engine documentation with doc comments.
 - Strict order of comments at the beginning of a script.
-	- Order: IMPORTANT, INFO, NOTE, TODO, IDEAS, BAD IDEAS.
+	- Order: IMPORTANT, INFO, NOTE, SOURCES, TODO, IDEAS, BAD IDEAS.
 - Getter functions usually don't need a variable associated with them.
 	- This getter is useless: `get_health() -> float: return health`.
 	- This doesn't need a health_ratio var: `get_health_ratio() -> float: return health / max_health`.

@@ -24,8 +24,7 @@
 ##[br][br][b]Note:[/b] This assumes that the [Convert] class exists.
 
 @tool
-class_name HealthPlus
-extends Health
+class_name HealthPlus extends Health
 
 
 #region variables

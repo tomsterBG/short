@@ -23,8 +23,7 @@
 ## Available in all scripts without any setup.
 ##[br][br]An abstract script full of methods and constants to reduce the amount of code you need to write, and to improve readability.
 
-class_name Helper
-extends Node
+@abstract class_name Helper extends Node
 
 
 #region classes

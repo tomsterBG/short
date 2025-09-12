@@ -1,8 +1,3 @@
-# TODO:
-# - Ensure correct code formatting.
-# - Look at Godot source code to accurately improve the find_child functions.
-# - Test large-scale performance on the find_child family of methods in a scene.
-
 extends GutTest
 
 
