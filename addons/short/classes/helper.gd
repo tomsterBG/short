@@ -7,6 +7,7 @@
 # IDEAS:
 # - Improve performance of the find_child family of methods.
 # - Make tire size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TireSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).
+# - Get air pressure at height (Earth).
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.

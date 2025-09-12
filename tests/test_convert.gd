@@ -1,3 +1,6 @@
+# TODO:
+# - Test equality when you convert forward and back.
+
 extends GutTest
 
 
@@ -21,12 +24,55 @@ func test_distance():
 func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
 	assert_eq(Convert.kmh_to_ms(360.0), 100.0)
-	assert_eq(Convert.kmh_to_mph(100.0), 62.137_120)
-	assert_eq(Convert.mph_to_kmh(20.0), 32.186_880)
+	assert_almost_eq(Convert.kmh_to_mph(100.0), 62.137_119, 0.000_001)
+	assert_almost_eq(Convert.mph_to_kmh(20.0), 32.186_88, 0.000_001)
 
 func test_angular_speed():
-	assert_almost_eq(Convert.rads_to_rpm(2.0), 19.098_593, 0.000_001)
+	assert_eq(Convert.rads_to_rpm(TAU), 60.0)
+	assert_eq(Convert.rpm_to_rads(30.0), PI)
 
 func test_torque():
 	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, 0.000_001)
+	assert_almost_eq(Convert.lbft_to_nm(3.0), 4.067_453, 0.000_001)
+
+func test_power():
+	assert_eq(Convert.w_to_kw(995.0), 0.995)
+	assert_eq(Convert.kw_to_w(0.69), 690.0)
+	assert_eq(Convert.kw_to_mw(41.0), 0.041)
+	assert_eq(Convert.mw_to_kw(0.13), 130.0)
+	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, 0.000_001)
+	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, 0.000_001)
+
+func test_temperature():
+	assert_eq(Convert.c_to_k(50.0), 323.15)
+	assert_eq(Convert.k_to_c(303.15), 30.0)
+	assert_eq(Convert.c_to_f(10.0), 50.0)
+	assert_eq(Convert.f_to_c(122.0), 50.0)
+
+func test_multiple_units():
+	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, 0.000_001)
+
+func test_convert_and_back():
+	# time
+	assert_eq(Convert.sec_to_msec(Convert.msec_to_sec(23.4)), 23.4)
+	assert_eq(Convert.sec_to_usec(Convert.usec_to_sec(23.4)), 23.4)
+	# proportion
+	assert_eq(Convert.unit_to_percent(Convert.percent_to_unit(23.4)), 23.4)
+	# distance
+	assert_eq(Convert.meter_to_mm(Convert.mm_to_meter(23.4)), 23.4)
+	assert_eq(Convert.mm_to_inch(Convert.inch_to_mm(23.4)), 23.4)
+	# speed
+	assert_eq(Convert.ms_to_kmh(Convert.kmh_to_ms(23.4)), 23.4)
+	assert_eq(Convert.kmh_to_mph(Convert.mph_to_kmh(100.0)), 100.0)
+	# angular_speed
+	assert_eq(Convert.rads_to_rpm(Convert.rpm_to_rads(3.12)), 3.12)
+	# torque
+	assert_eq(Convert.nm_to_lbft(Convert.lbft_to_nm(40.8)), 40.8)
+	# power
+	assert_eq(Convert.w_to_kw(Convert.kw_to_w(23.4)), 23.4)
+	assert_eq(Convert.kw_to_mw(Convert.mw_to_kw(23.4)), 23.4)
+	assert_eq(Convert.hp_to_kw(Convert.kw_to_hp(23.4)), 23.4)
+	# temperature
+	assert_eq(Convert.c_to_k(Convert.k_to_c(23.0)), 23.0)
+	assert_eq(Convert.c_to_f(Convert.f_to_c(94.2)), 94.2)
 #endregion tests
