@@ -5,8 +5,11 @@
 # TODO:
 # - Fix initialization causing the doc link to HealthPlus to not be available.
 # IDEAS:
+# - heal() returns HealResult.
+# - Heal() recursively heals shields first.
+# - Add an optional recursive parameter to damage and heal.
 # - More signals: damaged(DamageResult), healed(HealResult), shields_became_cyclic() -> bool.
-# - Shield methods? what if revive() method would propagate through all shields.
+# - Shield methods? what if revive() would propagate through all shields.
 # - Add an automatically updated variable shield_of or parent_health or parent_of, it holds the health this shield is a shield of.
 # - Add absorbed_damage to DamageResult.
 
@@ -69,6 +72,9 @@ class DamageResult:
 	#region resistances
 @export_group("Resistance", "resistance_")
 
+## Toggles resistance.
+@export_custom(PROPERTY_HINT_GROUP_ENABLE, "Resistance Enabled") var resistance_enabled := false
+
 ## Reduces incoming damage by this number. Used when calling [method damage] and ignored when setting [member health] directly.
 @export var resistance_flat := 0.0: set = set_resistance_flat
 
@@ -128,17 +134,19 @@ func set_shield(value: Health) -> void:
 
 
 #region getters
-## Represents the fullness of [member health] in [member max_health] as a percent, or [method get_health_ratio] [code] * 100[/code].
+## Represents the fullness of [member health] in [member max_health] as a percent from [code]0[/code] to [code]100[/code].
 func get_health_percent() -> float:
 	return Convert.unit_to_percent(get_health_ratio())
 
-## Represents the fullness of [member health] in [member max_health] as a normalized value, or [member health] [code]/[/code] [member max_health].
+## Represents the fullness of [member health] in [member max_health] as a unit from [code]0[/code] to [code]1[/code].
 func get_health_ratio() -> float:
 	if max_health == 0: return 0.0
 	return health / max_health
 
+## @experimental: Untested.
 ## Applies flat and percent resistances in the order of [member resistance_order] without applying the damage. Used by [method damage].
 func get_damage_after_resistance(value: float) -> float:
+	if !resistance_enabled: return max(value, 0.0)
 	if resistance_order == ResistanceOrder.PERCENT_FLAT:
 		return max((value * ((100.0 - resistance_percent) / 100.0)) - resistance_flat, 0.0)
 	else:

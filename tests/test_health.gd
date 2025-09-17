@@ -4,6 +4,7 @@
 # - More shield testing, i'm not convinced in its robustness.
 # - Testing can_die feels insufficient.
 # - Test when all shields die and get revived.
+# - Refactor tests. Break them up. Make them more atomic and focused on less things.
 
 extends GutTest
 
@@ -24,6 +25,7 @@ func test_initial_values():
 	assert_eq(health.max_health, 100.0, "Max_health is 100.")
 	assert_eq(health.can_die, true, "Can_die is true.")
 	assert_eq(health.is_dead, false, "Is_dead is false.")
+	assert_eq(health.resistance_enabled, false, "Resistance is off.")
 	assert_eq(health.resistance_flat, 0.0, "Flat resistance is 0.")
 	assert_eq(health.resistance_percent, 0.0, "Percent resistance is 0.")
 	assert_eq(health.resistance_order, health.ResistanceOrder.PERCENT_FLAT, "Resistance order is percent flat.")
@@ -36,7 +38,7 @@ func test_initial_method_values():
 
 func test_value_clamping():
 	health.max_health -= 1.0
-	assert_eq(health.health, health.max_health, "Clamp health down to max_health to stay within limits.")
+	assert_eq(health.health, health.max_health, "Health can't be above max_health.")
 	health.health = health.max_health + 1.0
 	assert_eq(health.health, health.max_health, "Can't set health above max_health.")
 	health.health = -1.0
@@ -50,31 +52,31 @@ func test_value_clamping():
 	health.resistance_percent = -1.0
 	assert_eq(health.resistance_percent, 0.0, "Percent resistance can't be negative.")
 
-func test_health_percent_and_ratio():
-	health.max_health = 90.0
-	assert_eq(health.get_health_percent(), 100.0, "Stay at full health.")
-	assert_eq(health.get_health_ratio(), 1.0, "Stay at full health.")
+func test_health_ratio_and_percent():
+	health.max_health = 50.0
+	assert_eq(health.get_health_ratio(), 1.0, "Full health.")
+	assert_eq(health.get_health_percent(), 100.0, "Full health.")
 	health.max_health = 100.0
-	assert_eq(health.get_health_percent(), 90.0, "Now health is at 90%.")
-	assert_eq(health.get_health_ratio(), 0.9, "Now health is at 90%.")
+	assert_eq(health.get_health_ratio(), 0.5, "Half health.")
+	assert_eq(health.get_health_percent(), 50.0, "Half health.")
 	health.max_health = 0.0
-	assert_eq(health.get_health_percent(), 0.0, "Now health is at 0%.")
-	assert_eq(health.get_health_ratio(), 0.0, "Now health is at 0%.")
+	assert_eq(health.get_health_ratio(), 0.0, "No health.")
+	assert_eq(health.get_health_percent(), 0.0, "No health.")
 
 func test_damage():
 	var result = health.damage(10.0)
-	assert_eq(health.health, health.max_health - 10.0, "Take 10 damage.")
-	assert_eq(result.taken_damage, 10.0, "Take 10 damage.")
-	result = health.damage(80.0)
-	assert_eq(health.health, health.max_health - 10.0 - 80.0, "Take 80 damage.")
-	assert_eq(result.taken_damage, 80.0, "Take 80 damage.")
+	assert_eq(health.health, health.max_health - 10.0, "Take full damage.")
+	assert_eq(result.taken_damage, 10.0, "Take full damage.")
 	result = health.damage(-10.0)
-	assert_eq(health.health, health.max_health - 10.0 - 80.0, "Don't take negative damage.")
+	assert_eq(health.health, health.max_health - 10.0, "Don't take negative damage.")
 	assert_eq(result.taken_damage, 0.0, "Don't take negative damage.")
+	result = health.damage(health.max_health * 2)
+	assert_eq(health.health, 0.0, "Take damage to 0 health.")
+	assert_eq(result.taken_damage, 90.0, "Take damage to 0 health.")
 
 func test_heal():
 	health.heal(10.0)
-	assert_eq(health.health, health.max_health, "Healing at max_health doesn't result any changes.")
+	assert_eq(health.health, health.max_health, "Health doesn't change.")
 	health.damage(50.0)
 	health.heal(20.0)
 	assert_eq(health.health, 70.0, "Heal by 20 after taking 50 damage.")
@@ -151,34 +153,48 @@ func test_kill_and_revive():
 	assert_signal_emit_count(health, "died", 4, "Health died 4 times.")
 	assert_eq(health.health, 0.0, "Kill set health to 0.")
 
+func test_resistance_off():
+	var damage = 10.0
+	health.resistance_flat = 10.0
+	health.health -= damage
+	assert_eq(health.health, health.max_health - damage, "Take full damage.")
+	health.damage(damage)
+	assert_eq(health.health, health.max_health - damage * 2, "Take full damage.")
+	health.resistance_flat = 0.0
+	health.resistance_percent = 50.0
+	health.damage(damage)
+	assert_eq(health.health, health.max_health - damage * 3, "Take full damage.")
+
 func test_resistance_flat():
+	health.resistance_enabled = true
 	health.resistance_flat = 10.0
 	health.health -= 10.0
-	assert_eq(health.health, health.max_health - 10.0, "Take 10 damage.")
+	assert_eq(health.health, health.max_health - 10.0, "Take full damage.")
 	var result = health.damage(11.0)
-	assert_eq(health.health, health.max_health - 10.0 - 1.0, "Take 1 damage.")
-	assert_eq(result.taken_damage, 1.0, "Take 1 damage.")
+	assert_eq(health.health, health.max_health - 10.0 - 1.0, "Take resisted damage.")
+	assert_eq(result.taken_damage, 1.0, "Take resisted damage.")
 	health.health = health.max_health
 	result = health.damage(105.0)
-	assert_eq(health.health, health.max_health - 95.0, "Take 95 damage.")
-	assert_eq(result.taken_damage, 95.0, "Take 95 damage.")
+	assert_eq(health.health, health.max_health - 95.0, "Take resisted damage.")
+	assert_eq(result.taken_damage, 95.0, "Take resisted damage.")
 	health.resistance_flat = 200.0
 	health.health = health.max_health
 	result = health.damage(250.0)
-	assert_eq(health.health, 50.0, "Take 50 damage.")
-	assert_eq(result.taken_damage, 50.0, "Take 50 damage.")
+	assert_eq(health.health, 50.0, "Take resisted damage.")
+	assert_eq(result.taken_damage, 50.0, "Take resisted damage.")
 	assert_false(health.is_dead, "Don't die when raw damage is more than max_health.")
 	result = health.damage(-240.0)
 	assert_eq(health.health, 50.0, "Don't take negative damage.")
 	assert_eq(result.taken_damage, 0.0, "Don't take negative damage.")
 
 func test_resistance_percent():
+	health.resistance_enabled = true
 	health.resistance_percent = 10.0
 	health.health -= 50.0
-	assert_eq(health.health, health.max_health - 50.0, "Take 50 damage.")
+	assert_eq(health.health, health.max_health - 50.0, "Take full damage.")
 	var result = health.damage(50.0)
-	assert_eq(health.health, health.max_health - 50.0 - 45.0, "Take 45 damage at half health.")
-	assert_eq(result.taken_damage, 45.0, "Take 45 damage at half health.")
+	assert_eq(health.health, health.max_health - 50.0 - 45.0, "Take resisted damage.")
+	assert_eq(result.taken_damage, 45.0, "Take resisted damage.")
 	health.health = health.max_health
 	result = health.damage(50.0)
 	assert_eq(health.health, health.max_health - 45.0, "Take 45 damage at full health.")
@@ -199,6 +215,7 @@ func test_resistance_percent():
 	assert_eq(result.taken_damage, 0.0, "Don't take damage at full percent resistance.")
 
 func test_both_resistances():
+	health.resistance_enabled = true
 	health.resistance_order = health.ResistanceOrder.PERCENT_FLAT
 	health.resistance_flat = 10.0
 	health.resistance_percent = 50.0
@@ -212,6 +229,7 @@ func test_both_resistances():
 	assert_eq(result.taken_damage, 0.0, "Don't take negative damage.")
 
 func test_inverted_resistances():
+	health.resistance_enabled = true
 	health.resistance_order = health.ResistanceOrder.FLAT_PERCENT
 	health.resistance_flat = 10.0
 	health.resistance_percent = 50.0
@@ -243,7 +261,9 @@ func _test_shield(shield: Health):
 	assert_eq(shield.max_health, 50.0, "Shield max_health is 50.")
 	assert_eq(shield.health, 50.0, "Shield health is 50.")
 	assert_false(shield.can_die, "Shield can't die.")
+	shield.resistance_enabled = true
 	shield.resistance_flat = 10.0
+	health.resistance_enabled = true
 	health.resistance_flat = 10.0
 	health.resistance_percent = 25.0
 	assert_eq(shield.health, 50.0, "Clamp health down to max_health to stay within limits.")

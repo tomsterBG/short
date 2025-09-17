@@ -1,9 +1,6 @@
 # INFO:
 # This works standalone and is publicly accessible.
 # TODO:
-# - Make more helper methods.
-# - Improve documentation.
-# - Ensure correct code formatting.
 # IDEAS:
 # - Improve performance of the find_child family of methods.
 # - Make tire size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TireSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).
