@@ -1,5 +1,4 @@
 # NOTE:
-# This assumes that the Convert class exists.
 # TODO:
 # - In-engine errors for relevant things.
 # IDEAS:
@@ -14,7 +13,6 @@
 # - Get remaining time until full regen.
 # - Add interrupted signal which does not emit if length is 0.
 # - Don't set interruption time if length is 0.
-# - Add HealResult returned by heal().
 
 ## @experimental: This class will be changed.
 ## [Health] with extra functionality.
