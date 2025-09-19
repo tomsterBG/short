@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://c111v0vk5tgal"]
+[gd_scene load_steps=5 format=3 uid="uid://c111v0vk5tgal"]
 
 [ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://addons/short/components/health.gd" id="1_lrf84"]
+[ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://addons/short/components/health_regen.gd" id="2_r0f7j"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_poy3p"]
 
@@ -364,6 +365,13 @@ visible = true
 [node name="health" type="Node" parent="."]
 script = ExtResource("1_lrf84")
 metadata/_custom_type_script = "uid://jrf8kxsondmi"
+
+[node name="HealthRegen" type="Node" parent="health" node_paths=PackedStringArray("health")]
+script = ExtResource("2_r0f7j")
+health = NodePath("..")
+regen_per_second = 1.0
+regen_pause_for = 1.0
+metadata/_custom_type_script = "uid://dj3aadubv4gi"
 
 [node name="control" type="Control" parent="."]
 layout_mode = 3

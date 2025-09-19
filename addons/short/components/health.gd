@@ -3,7 +3,6 @@
 # Type all variables, parameters and returns.
 # Keep complete documentation.
 # TODO:
-# - Fix initialization causing the doc link to HealthPlus to not be available.
 # IDEAS:
 # - More signals: shield_changed(is_cyclic: bool).
 # - Shield methods? what if revive() would propagate through all shields.
@@ -16,7 +15,7 @@
 ## @experimental: This class is immature.
 ## Health for anything that can live and die.
 ##
-## Widely applicable for most health stuff. See also [HealthPlus].
+## Widely applicable for most health stuff. See also [HealthRegen].
 ##[br][br][b]Note:[/b] Can have a shield, and that shield can have its own shield!
 ##[br][br][b]Note:[/b] This overwrites [method Node._get_configuration_warnings]. Use [code]super()[/code] if you want to extend the same method.
 ##[br][br][b]Note:[/b] This assumes that the [Convert] class exists.

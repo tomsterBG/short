@@ -24,7 +24,7 @@ var test_scripts: Dictionary[StringName, Array] = {
 	helper = [],
 	# components:
 	health = [&"convert"],
-	health_plus = [&"health", &"convert"],
+	health_regen = [&"health", &"convert"],
 }
 #endregion variables
 
