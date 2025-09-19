@@ -32,7 +32,8 @@ func test_initial_values():
 	assert_eq(health_regen.regen_in__process, true, "Regen in _process is on.")
 	assert_eq(health_regen.regen_per_second, 0.0, "Regen per second is 0.")
 	assert_eq(health_regen.regen_pause_for, 0.0, "Regen pause for 0.")
-	assert_eq(health_regen.regen_paused_at, 0, "Regen paused at 0.")
+	assert_eq(health_regen.regen_paused_at, -1_000_000_000_000_000, "Regen paused at -1_000_000_000_000_000.")
+	assert_eq(health_regen.regen_pause_when_damaged, true, "Regen pauses when health is damaged.")
 
 func test_initial_method_values():
 	assert_eq(health_regen.get_seconds_for_full_regen(), INF, "Won't regen.")
@@ -40,6 +41,7 @@ func test_initial_method_values():
 	assert_eq(health_regen.get_pause_time_left(), 0.0, "No pause time.")
 
 func test_regen_paused_at():
+	health_regen.regen_pause_for = 1.0
 	health_regen.pause_regen()
 	assert_eq(health_regen.regen_paused_at, Time.get_ticks_msec(), "Paused now.")
 
@@ -50,6 +52,7 @@ func test_get_seconds_for_full_regen():
 	assert_eq(health_regen.get_seconds_for_full_regen(), INF, "Won't regen.")
 
 func test_get_time_since_pause():
+	health_regen.regen_pause_for = 1.0
 	health_regen.pause_regen()
 	assert_eq(health_regen.get_time_since_pause(), 0.0, "No time since pause.")
 	health_regen.regen_per_second = 1.0
@@ -84,8 +87,8 @@ func test_regen_enabled():
 
 func test_regen_pause_for():
 	health_regen.regen_in__process = false
-	health_regen.regen_pause_for = 2.0
 	health_regen.regen_per_second = 60.0
+	health_regen.regen_pause_for = 2.0
 	health.damage(60)
 	assert_eq(health_regen.get_pause_time_left(), 2.0, "Regen is paused for 2 seconds.")
 	health_regen.simulate_regen(1.5)
@@ -94,4 +97,14 @@ func test_regen_pause_for():
 	health_regen.simulate_regen(1.0)
 	assert_eq(health.health, 70.0, "Half regenerated to 70.")
 	assert_eq(health_regen.get_pause_time_left(), 0.0, "Regen is not paused since 0.5 seconds.")
+
+func test_regen_pause_when_damaged():
+	health_regen.regen_in__process = false
+	health_regen.regen_per_second = 40.0
+	health_regen.regen_pause_for = 100.0
+	health_regen.regen_pause_when_damaged = false
+	health.damage(40)
+	assert_eq(health_regen.get_pause_time_left(), 0.0, "Regen is not paused.")
+	health_regen.simulate_regen(1.0)
+	assert_eq(health.health, health.max_health, "Fully regenerated.")
 #endregion tests

@@ -1,27 +1,17 @@
-# NOTE:
 # TODO:
-# - Config warning if health is null.
 # IDEAS:
-# - Disable automatic pausing when taking damage.
-# - Update health from regeneration only when script tries to read health. Know when the health was last updated and calculate delta time * regen to get how much regen must be applied.
 # BAD IDEAS:
-# - Disable regen in the editor.
-# - Emit reneration signals for when regen state changes (is_regenerating), when fully regenerated (ensure this one doesn't emit when manually fully regenerating).
-# - Free_owner_on_death, might be useless and more complex than needed.
-# - Can add an immunity to damage like the Roblox shield system, but it feels like unnecessary jank.
-# - Negative resistance adds effective damage (for brittle stuff), for example 1 damage with -10 means 11 effective damage, 1 with -100% means 2 effective, 1 damage with -1 flat and -100% means 4 effective damage.
-# - Signal on_fully_regenerated or on_max_health_reached.
-# - Get remaining time until full regen.
-# - Add interrupted signal which does not emit if length is 0.
-# - Don't set interruption time if length is 0.
+# - Signals: is_regenerating_changed, fully_regenerated or max_health_reached.
+# - Add paused signal which does not emit if regen_pause_for == 0.
 
 ## @experimental: This class is immature.
 ## Regeneration for [Health].
 ##
-##[br][br][b]Note:[/b] This overwrites [method Node._process]. Use [code]super()[/code] if you want to extend the same method.
+##[br][br][b]Note:[/b] This overwrites [method Node._process] and [method Node._get_configuration_warnings]. Use [code]super()[/code] if you want to extend the same methods.
 ##[br][br][b]Note:[/b] This assumes that the [Convert] and [Health] classes exist.
 
 @tool
+@icon("health.svg")
 class_name HealthRegen extends Node
 
 
@@ -46,8 +36,11 @@ class_name HealthRegen extends Node
 ## Pause regeneration for this many seconds.
 @export var regen_pause_for := 0.0
 
+## Toggles if regen pauses when [member health] is damaged.
+@export var regen_pause_when_damaged := true
+
 ## Timestamp of when regen was paused, using [method Time.get_ticks_msec].
-var regen_paused_at := 0
+var regen_paused_at := -1_000_000_000_000_000
 #endregion variables
 
 
@@ -58,6 +51,7 @@ func set_health(value: Health):
 	elif health:
 		health.health_changed.disconnect(_on_health_changed)
 	health = value
+	update_configuration_warnings()
 #endregion setters
 
 
@@ -80,6 +74,7 @@ func get_time_since_pause() -> float:
 #region methods
 ## Pause regeneration.
 func pause_regen() -> void:
+	if regen_pause_for == 0.0: return
 	regen_paused_at = Time.get_ticks_msec()
 
 ## Is time since pause more than [member regen_pause_for]?
@@ -95,10 +90,16 @@ func simulate_regen(delta: float) -> void:
 
 
 #region internal
+func _on_health_changed(difference: float) -> void:
+	if regen_pause_when_damaged and difference < 0.0: pause_regen()
+
 func _process(delta: float) -> void:
 	if !regen_in__process or (Engine.is_editor_hint() and !regen_in_editor): return
 	simulate_regen(delta)
 
-func _on_health_changed(difference: float) -> void:
-	if difference < 0.0: pause_regen()
+func _get_configuration_warnings() -> PackedStringArray:
+	var warnings: PackedStringArray
+	if !health:
+		warnings.append("Choose a Health.")
+	return warnings
 #endregion internal

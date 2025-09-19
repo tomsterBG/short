@@ -11,6 +11,7 @@
 # BAD IDEAS:
 # - Heal() can recursively heal shields.
 # - More signals: damaged(DamageResult), healed(HealResult).
+# - free_owner_on_death: might be useless and more complex than needed.
 
 ## @experimental: This class is immature.
 ## Health for anything that can live and die.
