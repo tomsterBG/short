@@ -11,7 +11,7 @@
 # BAD IDEAS:
 # - Heal() can recursively heal shields.
 # - More signals: damaged(DamageResult), healed(HealResult).
-# - free_owner_on_death: might be useless and more complex than needed.
+# - free_owner_on_death: might be useless.
 
 ## @experimental: This class is immature.
 ## Health for anything that can live and die.
@@ -157,7 +157,7 @@ func get_health_percent() -> float:
 
 ## Represents the fullness of [member health] in [member max_health] as a unit from [code]0[/code] to [code]1[/code].
 func get_health_ratio() -> float:
-	if max_health == 0: return 0.0
+	if max_health == 0.0: return 0.0
 	return health / max_health
 
 ## Returns unapplied damage after flat and percent resistances in the order of [member resistance_order]. Respects [member resistance_enabled]. Used by [method damage].

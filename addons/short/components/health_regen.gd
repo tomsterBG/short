@@ -51,7 +51,7 @@ func set_health(value: Health):
 	elif health:
 		health.health_changed.disconnect(_on_health_changed)
 	health = value
-	update_configuration_warnings()
+	if Engine.is_editor_hint(): update_configuration_warnings()
 #endregion setters
 
 
@@ -100,6 +100,6 @@ func _process(delta: float) -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
 	if !health:
-		warnings.append("Choose a Health.")
+		warnings.append("Health is null.")
 	return warnings
 #endregion internal
