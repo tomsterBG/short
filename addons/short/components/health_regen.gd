@@ -1,7 +1,7 @@
 # TODO:
 # IDEAS:
 # BAD IDEAS:
-# - Signals: is_regenerating_changed, fully_regenerated or max_health_reached.
+# - Signals: is_regenerating_changed.
 # - Add paused signal which does not emit if regen_pause_for == 0.
 
 ## @experimental: This class is immature.

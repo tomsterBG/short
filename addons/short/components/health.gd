@@ -35,6 +35,9 @@ signal health_changed(difference: float)
 
 ## Emitted when [member max_health] changes. Positive [param difference] means increased, negative means decreased.
 signal max_health_changed(difference: float)
+
+## Emitted when [member health] reaches [member max_health].
+signal health_reached_max()
 #endregion signals
 
 
@@ -114,6 +117,7 @@ func set_health(value: float) -> void:
 	value = clamp(value, 0.0, max_health)
 	if health != value:
 		health_changed.emit(value - health)
+		if value == max_health: health_reached_max.emit()
 	health = value
 	if health <= 0: kill()
 
@@ -125,7 +129,7 @@ func set_max_health(value: float) -> void:
 	set_health(health)
 
 func set_is_dead(value: bool) -> void:
-	if not can_die: is_dead = false; return
+	if !can_die: is_dead = false; return
 	if is_dead == false and value == true:
 		died.emit()
 	is_dead = value

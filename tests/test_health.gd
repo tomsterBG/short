@@ -53,9 +53,10 @@ func test_value_clamping():
 	assert_eq(health.resistance_percent, 0.0, "Percent resistance can't be negative.")
 
 func test_signal_not_emitted():
-	assert_signal_not_emitted(health, "died", "Don't emit died.")
-	assert_signal_not_emitted(health, "health_changed", "Don't emit health_changed.")
-	assert_signal_not_emitted(health, "max_health_changed", "Don't emit max_health_changed.")
+	assert_signal_not_emitted(health, "died")
+	assert_signal_not_emitted(health, "health_changed")
+	assert_signal_not_emitted(health, "max_health_changed")
+	assert_signal_not_emitted(health, "health_reached_max")
 
 func test_health_ratio_and_percent():
 	health.max_health = 50.0
@@ -132,6 +133,14 @@ func test_max_health_changed():
 	assert_signal_emitted_with_parameters(health, "max_health_changed", [-60.0])
 	health.max_health = 200.0
 	assert_signal_emitted_with_parameters(health, "max_health_changed", [200.0])
+
+func test_health_reached_max():
+	health.health = 50.0
+	assert_signal_emit_count(health, "health_reached_max", 0)
+	health.health = 75.0
+	assert_signal_emit_count(health, "health_reached_max", 0)
+	health.health = health.max_health
+	assert_signal_emit_count(health, "health_reached_max", 1)
 
 func test_is_dead():
 	health.health = 0.0
