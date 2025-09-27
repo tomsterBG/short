@@ -22,6 +22,8 @@ func test_distance():
 	assert_eq(Convert.mm_to_meter(10.0), 0.01)
 	assert_eq(Convert.mm_to_inch(25.4), 1.0)
 	assert_eq(Convert.inch_to_mm(2.0), 50.8)
+	assert_eq(Convert.meter_to_inch(50.8), 2000.0)
+	assert_eq(Convert.inch_to_meter(291.0), 7.3914)
 
 func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
@@ -46,6 +48,8 @@ func test_power():
 	assert_eq(Convert.mw_to_kw(0.13), 130.0)
 	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, 0.000_001)
 	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, 0.000_001)
+	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, 0.000_001)
+	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, 0.000_001)
 
 func test_temperature():
 	assert_eq(Convert.c_to_k(50.0), 323.15)
@@ -65,8 +69,9 @@ func test_convert_and_back():
 	# proportion
 	assert_eq(Convert.unit_to_percent(Convert.percent_to_unit(23.4)), 23.4)
 	# distance
-	assert_eq(Convert.meter_to_mm(Convert.mm_to_meter(23.4)), 23.4)
+	assert_eq(Convert.meter_to_mm(Convert.mm_to_meter(52.9)), 52.9)
 	assert_eq(Convert.mm_to_inch(Convert.inch_to_mm(23.4)), 23.4)
+	assert_eq(Convert.meter_to_inch(Convert.inch_to_meter(68.1)), 68.1)
 	# speed
 	assert_eq(Convert.ms_to_kmh(Convert.kmh_to_ms(23.4)), 23.4)
 	assert_eq(Convert.kmh_to_mph(Convert.mph_to_kmh(100.0)), 100.0)
@@ -77,8 +82,9 @@ func test_convert_and_back():
 	assert_eq(Convert.nm_to_lbft(Convert.lbft_to_nm(40.8)), 40.8)
 	# power
 	assert_eq(Convert.w_to_kw(Convert.kw_to_w(23.4)), 23.4)
-	assert_eq(Convert.kw_to_mw(Convert.mw_to_kw(23.4)), 23.4)
-	assert_eq(Convert.hp_to_kw(Convert.kw_to_hp(23.4)), 23.4)
+	assert_eq(Convert.kw_to_mw(Convert.mw_to_kw(72.1)), 72.1)
+	assert_eq(Convert.hp_to_kw(Convert.kw_to_hp(28.2)), 28.2)
+	assert_eq(Convert.hp_to_w(Convert.w_to_hp(99.9)), 99.9)
 	# temperature
 	assert_eq(Convert.c_to_k(Convert.k_to_c(23.0)), 23.0)
 	assert_eq(Convert.c_to_f(Convert.f_to_c(94.2)), 94.2)

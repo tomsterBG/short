@@ -10,8 +10,7 @@
 # - https://www.omnicalculator.com
 # 	- Mechanical hp l aka imperial, the default.
 # TODO:
-# - other
-# 	- 
+# - 
 # IDEAS:
 # - data size: bytes_to_mib
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
@@ -81,6 +80,14 @@ static func mm_to_inch(mm: float) -> float:
 ## Converts a distance from inches to millimeters.
 static func inch_to_mm(inch: float) -> float:
 	return inch * 25.4
+
+## Converts a distance from meters to inches.
+static func meter_to_inch(meter: float) -> float:
+	return mm_to_inch(meter_to_mm(meter))
+
+## Converts a distance from inches to meters.
+static func inch_to_meter(inch: float) -> float:
+	return mm_to_meter(inch_to_mm(inch))
 	#endregion distance
 
 	#region speed
@@ -146,13 +153,21 @@ static func kw_to_mw(kw: float) -> float:
 static func mw_to_kw(mw: float) -> float:
 	return mw * 1_000
 
-## Converts a power from [code]hp[/code] to [code]kw[/code].
-static func hp_to_kw(hp: float) -> float:
-	return hp * 0.7456998716
+## Converts a power from [code]hp[/code] to [code]watt[/code].
+static func w_to_hp(watt: float) -> float:
+	return kw_to_hp(w_to_kw(watt))
+
+## Converts a power from [code]watt[/code] to [code]hp[/code].
+static func hp_to_w(hp: float) -> float:
+	return kw_to_w(hp_to_kw(hp))
 
 ## Converts a power from [code]kw[/code] to [code]hp[/code].
 static func kw_to_hp(kw: float) -> float:
 	return kw / 0.7456998716
+
+## Converts a power from [code]hp[/code] to [code]kw[/code].
+static func hp_to_kw(hp: float) -> float:
+	return hp * 0.7456998716
 	#endregion power
 
 	#region temperature
@@ -178,7 +193,7 @@ static func f_to_c(fahrenheit: float) -> float:
 static func lbft_rpm_to_hp(tq_lbft: float, rpm: float) -> float:
 	return (tq_lbft * rpm) / 5252.0
 
-## Converts from [code]Torque (nm)[/code] and [code]rpm[/code] to [code]Power (w)[/code].
+## Converts from [code]Torque (nm)[/code] and [code]rpm[/code] to [code]Power (watt)[/code].
 static func nm_rpm_to_w(tq_nm: float, rpm: float) -> float:
 	return (tq_nm * rpm) / 9.5488
 	#endregion multiple units
