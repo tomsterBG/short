@@ -5,6 +5,7 @@
 # - Improve performance of the find_child family of methods.
 # - Make tire size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TireSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).
 # - Get air pressure at height (Earth).
+# - save_dict_as_json(data: Dictionary, path: String) -> Error, load_dict_from_json(path: String) -> Dictionary, vec3_to_str(vec: Vector3, precision: int = 2) -> String, radians_to_compass_direction(angle: float) -> String, change_scene, format_memory(bytes: int) -> String, create_timer(wait_time: float, callable: Callable, owner_node: Node)
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.

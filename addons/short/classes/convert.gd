@@ -1,3 +1,5 @@
+# INFO:
+# - Hz and rps are the same thing, but one represents frequency, the other represents angular speed. Frequency is wave per second, angular speed is rotation per second.
 # SOURCES:
 # - https://www.youtube.com/watch?v=lt7iUBE3_AE
 # 	- Torque = Force * Radius, Force = Torque / Radius
@@ -9,7 +11,10 @@
 # 	- Mechanical hp l aka imperial, the default.
 # TODO:
 # - other
-# 	- nm_rpm_to_kw
+# 	- 
+# IDEAS:
+# - data size: bytes_to_mib
+# - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
 # BAD IDEAS:
 # - Move Helper.EARTH_GRAVITY here? Not really, it's not a conversion.
 # - Add angular speed rads_to_degs and rads_to_degs? No, you can just use rad_to_deg and deg_to_rad.
@@ -40,6 +45,14 @@ static func sec_to_usec(sec: float) -> float:
 ## Converts a time from microseconds to seconds.
 static func usec_to_sec(usec: float) -> float:
 	return usec / 1_000_000.0
+
+## Converts a time from seconds to minutes.
+static func sec_to_min(sec: float) -> float:
+	return sec / 60.0
+
+## Converts a time from minutes to seconds.
+static func min_to_sec(min: float) -> float:
+	return min * 60.0
 	#endregion time
 
 	#region proportion
@@ -96,6 +109,16 @@ static func rads_to_rpm(rads: float) -> float:
 ## Converts an angular speed from [code]rpm[/code] to [code]radians/s[/code].
 static func rpm_to_rads(rpm: float) -> float:
 	return rpm * (TAU / 60.0)
+
+# hz is a frequency, not an angular speed.
+## Converts an angular speed from [code]hz[/code] to [code]rpm[/code].
+static func hz_to_rpm(hz: float) -> float:
+	return hz * 60.0
+
+# hz is a frequency, not an angular speed.
+## Converts an angular speed from [code]rpm[/code] to [code]hz[/code].
+static func rpm_to_hz(rpm: float) -> float:
+	return rpm / 60.0
 	#endregion angular speed
 
 	#region torque
@@ -156,5 +179,9 @@ static func f_to_c(fahrenheit: float) -> float:
 ## Converts from [code]Torque (lb-ft)[/code] and [code]rpm[/code] to [code]Power (hp mechanical)[/code].
 static func lbft_rpm_to_hp(tq_lbft: float, rpm: float) -> float:
 	return (tq_lbft * rpm) / 5252.0
+
+## Converts from [code]Torque (nm)[/code] and [code]rpm[/code] to [code]Power (w)[/code].
+static func nm_rpm_to_w(tq_nm: float, rpm: float) -> float:
+	return (tq_nm * rpm) / 9.5488
 	#endregion multiple units
 #endregion methods

@@ -10,6 +10,8 @@ func test_time():
 	assert_eq(Convert.sec_to_usec(999.0), 999_000_000.0)
 	assert_eq(Convert.msec_to_sec(999.0), 0.999)
 	assert_eq(Convert.usec_to_sec(80_200.0), 0.080_2)
+	assert_eq(Convert.sec_to_min(90.0), 1.5)
+	assert_eq(Convert.min_to_sec(60.0), 3600.0)
 
 func test_proportion():
 	assert_eq(Convert.unit_to_percent(1.75), 175.0)
@@ -30,6 +32,8 @@ func test_speed():
 func test_angular_speed():
 	assert_eq(Convert.rads_to_rpm(TAU), 60.0)
 	assert_eq(Convert.rpm_to_rads(30.0), PI)
+	assert_eq(Convert.hz_to_rpm(90.0), 5400.0)
+	assert_eq(Convert.rpm_to_hz(720.0), 12.0)
 
 func test_torque():
 	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, 0.000_001)
@@ -51,11 +55,13 @@ func test_temperature():
 
 func test_multiple_units():
 	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, 0.000_001)
+	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_252, 0.000_001)
 
 func test_convert_and_back():
 	# time
 	assert_eq(Convert.sec_to_msec(Convert.msec_to_sec(23.4)), 23.4)
 	assert_eq(Convert.sec_to_usec(Convert.usec_to_sec(23.4)), 23.4)
+	assert_eq(Convert.sec_to_min(Convert.min_to_sec(41.5)), 41.5)
 	# proportion
 	assert_eq(Convert.unit_to_percent(Convert.percent_to_unit(23.4)), 23.4)
 	# distance
@@ -66,6 +72,7 @@ func test_convert_and_back():
 	assert_eq(Convert.kmh_to_mph(Convert.mph_to_kmh(100.0)), 100.0)
 	# angular_speed
 	assert_eq(Convert.rads_to_rpm(Convert.rpm_to_rads(3.12)), 3.12)
+	assert_eq(Convert.rpm_to_hz(Convert.hz_to_rpm(8.31)), 8.31)
 	# torque
 	assert_eq(Convert.nm_to_lbft(Convert.lbft_to_nm(40.8)), 40.8)
 	# power
