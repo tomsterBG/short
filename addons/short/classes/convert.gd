@@ -110,13 +110,11 @@ static func rads_to_rpm(rads: float) -> float:
 static func rpm_to_rads(rpm: float) -> float:
 	return rpm * (TAU / 60.0)
 
-# hz is a frequency, not an angular speed.
-## Converts an angular speed from [code]hz[/code] to [code]rpm[/code].
+## Converts a frequency from [code]hz[/code] to an angular speed of [code]rpm[/code].
 static func hz_to_rpm(hz: float) -> float:
 	return hz * 60.0
 
-# hz is a frequency, not an angular speed.
-## Converts an angular speed from [code]rpm[/code] to [code]hz[/code].
+## Converts an angular speed from [code]rpm[/code] to a frequency of [code]hz[/code].
 static func rpm_to_hz(rpm: float) -> float:
 	return rpm / 60.0
 	#endregion angular speed
