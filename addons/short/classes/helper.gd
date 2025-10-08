@@ -1,6 +1,13 @@
 # INFO:
 # This works standalone and is publicly accessible.
 # TODO:
+# - geometry
+# 	- get_sphere_volume(radius)
+# 	- get_sphere_area(radius)
+# 	- get_circle_area(radius)
+# 	- get_circle_circumference(radius)
+# - kinematics
+# 	- speed_for_time_to_distance(meters_second, seconds)
 # IDEAS:
 # - Improve performance of the find_child family of methods.
 # - Make tire size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TireSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).

@@ -10,7 +10,15 @@
 # - https://www.omnicalculator.com
 # 	- Mechanical hp l aka imperial, the default.
 # TODO:
-# - 
+# - volume
+# 	- l_to_lm
+# 	- ml_to_l
+# - area
+# 	- sqm_to_sqkm
+# 	- sqkm_to_sqm
+# - distance
+# 	- radius_to_diameter
+# 	- diameter_to_radius
 # IDEAS:
 # - data size: bytes_to_mib
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
@@ -117,11 +125,11 @@ static func rads_to_rpm(rads: float) -> float:
 static func rpm_to_rads(rpm: float) -> float:
 	return rpm * (TAU / 60.0)
 
-## Converts a frequency from [code]hz[/code] to an angular speed of [code]rpm[/code].
+## Converts from [code]Frequency (hz)[/code] to [code]Angular speed (rpm)[/code].
 static func hz_to_rpm(hz: float) -> float:
 	return hz * 60.0
 
-## Converts an angular speed from [code]rpm[/code] to a frequency of [code]hz[/code].
+## Converts from [code]Angular speed (rpm)[/code] to [code]Frequency (hz)[/code].
 static func rpm_to_hz(rpm: float) -> float:
 	return rpm / 60.0
 	#endregion angular speed
