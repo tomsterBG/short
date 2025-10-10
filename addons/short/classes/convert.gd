@@ -1,10 +1,14 @@
 # INFO:
 # - Hz and rps are the same thing, but one represents frequency, the other represents angular speed. Frequency is wave per second, angular speed is rotation per second.
 # SOURCES:
+# - TU Sofia
+# 	- Velocity = Distance / Time
+# 	- Acceleration = Velocity / Time
+# 	- Force = Mass * Acceleration
 # - https://www.youtube.com/watch?v=lt7iUBE3_AE
-# 	- Torque = Force * Radius, Force = Torque / Radius
-# 	- Velocity = Distance * Time
-# 	- Power = Force * Velocity
+# - https://www.youtube.com/watch?v=jkCXdDmP618
+# 	- Torque = Force * Radius, Torque = Force * Distance
+# 	- Power = Force * Velocity, Power = Torque / Time, Power = Torque * RPM
 # - https://whycalculator.com
 # - https://www.unitconverters.net
 # - https://www.omnicalculator.com
@@ -16,6 +20,8 @@
 # - area
 # 	- sqm_to_sqkm
 # 	- sqkm_to_sqm
+# - distance
+# 	- radius_to_circumference, circumference_to_radius
 # IDEAS:
 # - data size: mb_to_kb, kb_to_mb, mb_to_gb, gb_to_mb, mb_to_tb, tb_to_mb
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
