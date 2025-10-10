@@ -28,6 +28,8 @@ func test_distance():
 	assert_eq(Convert.inch_to_mm(2.0), 50.8)
 	assert_eq(Convert.meter_to_inch(50.8), 2000.0)
 	assert_eq(Convert.inch_to_meter(291.0), 7.3914)
+	assert_eq(Convert.radius_to_diameter(68.0), 136.0)
+	assert_eq(Convert.diameter_to_radius(54.0), 27.0)
 
 func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
@@ -89,6 +91,7 @@ func test_convert_and_back():
 	assert_eq(Convert.meter_to_mm(Convert.mm_to_meter(52.9)), 52.9)
 	assert_eq(Convert.mm_to_inch(Convert.inch_to_mm(23.4)), 23.4)
 	assert_eq(Convert.meter_to_inch(Convert.inch_to_meter(68.1)), 68.1)
+	assert_eq(Convert.radius_to_diameter(Convert.diameter_to_radius(49.1)), 49.1)
 	# speed
 	assert_eq(Convert.ms_to_kmh(Convert.kmh_to_ms(23.4)), 23.4)
 	assert_eq(Convert.kmh_to_mph(Convert.mph_to_kmh(100.0)), 100.0)

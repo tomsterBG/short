@@ -16,11 +16,8 @@
 # - area
 # 	- sqm_to_sqkm
 # 	- sqkm_to_sqm
-# - distance
-# 	- radius_to_diameter
-# 	- diameter_to_radius
 # IDEAS:
-# - data size: bytes_to_mib
+# - data size: mb_to_kb, kb_to_mb, mb_to_gb, gb_to_mb, mb_to_tb, tb_to_mb
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
 # BAD IDEAS:
 # - Move Helper.EARTH_GRAVITY here? Not really, it's not a conversion.
@@ -39,19 +36,19 @@
 	#region time
 ## Converts a time from seconds to milliseconds.
 static func sec_to_msec(sec: float) -> float:
-	return sec * 1_000.0
+	return sec * 1000.0
 
 ## Converts a time from milliseconds to seconds.
 static func msec_to_sec(msec: float) -> float:
-	return msec / 1_000.0
+	return msec / 1000.0
 
 ## Converts a time from seconds to microseconds.
 static func sec_to_usec(sec: float) -> float:
-	return sec * 1_000_000.0
+	return sec * 1000_000.0
 
 ## Converts a time from microseconds to seconds.
 static func usec_to_sec(usec: float) -> float:
-	return usec / 1_000_000.0
+	return usec / 1000_000.0
 
 ## Converts a time from seconds to minutes.
 static func sec_to_min(sec: float) -> float:
@@ -112,6 +109,14 @@ static func meter_to_inch(meter: float) -> float:
 ## Converts a distance from inches to meters.
 static func inch_to_meter(inch: float) -> float:
 	return mm_to_meter(inch_to_mm(inch))
+
+## Converts a distance from radius to diameter.
+static func radius_to_diameter(radius: float) -> float:
+	return radius * 2.0
+
+## Converts a distance from diameter to radius.
+static func diameter_to_radius(diameter: float) -> float:
+	return diameter / 2.0
 	#endregion distance
 
 	#region speed
@@ -163,19 +168,19 @@ static func lbft_to_nm(lbft: float) -> float:
 	#region power
 ## Converts a power from [code]watt[/code] to [code]kw[/code].
 static func w_to_kw(watt: float) -> float:
-	return watt / 1_000
+	return watt / 1000.0
 
 ## Converts a power from [code]kw[/code] to [code]watt[/code].
 static func kw_to_w(kw: float) -> float:
-	return kw * 1_000
+	return kw * 1000.0
 
 ## Converts a power from [code]kw[/code] to [code]mw[/code].
 static func kw_to_mw(kw: float) -> float:
-	return kw / 1_000
+	return kw / 1000.0
 
 ## Converts a power from [code]mw[/code] to [code]kw[/code].
 static func mw_to_kw(mw: float) -> float:
-	return mw * 1_000
+	return mw * 1000.0
 
 ## Converts a power from [code]hp[/code] to [code]watt[/code].
 static func w_to_hp(watt: float) -> float:
@@ -225,19 +230,19 @@ static func f_to_c(fahrenheit: float) -> float:
 	#region mass
 ## Converts a mass from [code]kilograms[/code] to [code]tons[/code].
 static func kg_to_t(kilogram: float) -> float:
-	return kilogram / 1000
+	return kilogram / 1000.0
 
 ## Converts a mass from [code]tons[/code] to [code]kilograms[/code].
 static func t_to_kg(ton: float) -> float:
-	return ton * 1000
+	return ton * 1000.0
 
 ## Converts a mass from [code]kilograms[/code] to [code]grams[/code].
 static func kg_to_g(kilogram: float) -> float:
-	return kilogram * 1000
+	return kilogram * 1000.0
 
 ## Converts a mass from [code]grams[/code] to [code]kilograms[/code].
 static func g_to_kg(gram: float) -> float:
-	return gram / 1000
+	return gram / 1000.0
 	#endregion mass
 
 	#region multiple units
