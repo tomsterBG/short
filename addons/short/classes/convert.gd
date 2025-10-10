@@ -60,6 +60,22 @@ static func sec_to_min(sec: float) -> float:
 ## Converts a time from minutes to seconds.
 static func min_to_sec(min: float) -> float:
 	return min * 60.0
+
+## Converts a time from minutes to hours.
+static func min_to_h(min: float) -> float:
+	return min / 60.0
+
+## Converts a time from hours to minutes.
+static func h_to_min(hour: float) -> float:
+	return hour * 60.0
+
+## Converts a time from seconds to hours.
+static func sec_to_h(sec: float) -> float:
+	return Convert.min_to_h(Convert.sec_to_min(sec))
+
+## Converts a time from hours to seconds.
+static func h_to_sec(hour: float) -> float:
+	return Convert.min_to_sec(Convert.h_to_min(hour))
 	#endregion time
 
 	#region proportion
@@ -178,6 +194,16 @@ static func hp_to_kw(hp: float) -> float:
 	return hp * 0.7456998716
 	#endregion power
 
+	#region energy
+## Converts an energy from [code]joules[/code] to [code]kw*hours[/code].
+static func j_to_kwh(joule: float) -> float:
+	return Convert.sec_to_h(Convert.w_to_kw(joule))
+
+## Converts an energy from [code]kw*hours[/code] to [code]joules[/code].
+static func kwh_to_j(kwh: float) -> float:
+	return Convert.h_to_sec(Convert.kw_to_w(kwh))
+	#endregion energy
+
 	#region temperature
 ## Converts a temperature from [code]celsius[/code] to [code]kelvin[/code].
 static func c_to_k(celsius: float) -> float:
@@ -196,6 +222,24 @@ static func f_to_c(fahrenheit: float) -> float:
 	return (5.0/9.0) * (fahrenheit - 32.0)
 	#endregion temperature
 
+	#region mass
+## Converts a mass from [code]kilograms[/code] to [code]tons[/code].
+static func kg_to_t(kilogram: float) -> float:
+	return kilogram / 1000
+
+## Converts a mass from [code]tons[/code] to [code]kilograms[/code].
+static func t_to_kg(ton: float) -> float:
+	return ton * 1000
+
+## Converts a mass from [code]kilograms[/code] to [code]grams[/code].
+static func kg_to_g(kilogram: float) -> float:
+	return kilogram * 1000
+
+## Converts a mass from [code]grams[/code] to [code]kilograms[/code].
+static func g_to_kg(gram: float) -> float:
+	return gram / 1000
+	#endregion mass
+
 	#region multiple units
 ## Converts from [code]Torque (lb-ft)[/code] and [code]rpm[/code] to [code]Power (hp mechanical)[/code].
 static func lbft_rpm_to_hp(tq_lbft: float, rpm: float) -> float:
@@ -204,5 +248,9 @@ static func lbft_rpm_to_hp(tq_lbft: float, rpm: float) -> float:
 ## Converts from [code]Torque (nm)[/code] and [code]rpm[/code] to [code]Power (watt)[/code].
 static func nm_rpm_to_w(tq_nm: float, rpm: float) -> float:
 	return (tq_nm * rpm) / 9.5488
+
+## Converts from [code]Power (watt)[/code] and [code]Time (sec)[/code] to [code]Energy (joule)[/code].
+static func w_sec_to_j(watt: float, sec: float) -> float:
+	return watt * sec
 	#endregion multiple units
 #endregion methods

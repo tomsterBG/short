@@ -43,9 +43,14 @@ class DirChildrenResult:
 
 
 #region constants
-## Represents the acceleration of the Earth on its surface. For true realism, according to Wikipedia, gravity varies by 0.7% depending on your location.
-## Gravity (Earth) = 9.80665 (m/s^2)
+## Earth's surface gravity in [code]meters/second^2[/code]. According to Wikipedia, gravity varies by 0.7% depending on your location.
 const EARTH_GRAVITY = 9.80665
+
+## Earth's radius in meters. According to Wikipedia, the radius varies by 0.3% depending on your distance from the equator.
+const EARTH_RADIUS = 6_371_000
+
+## Earth's mass in kg.
+const EARTH_MASS = 5.972 * pow(10, 24)
 #endregion constants
 
 

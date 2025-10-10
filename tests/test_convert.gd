@@ -12,6 +12,10 @@ func test_time():
 	assert_eq(Convert.usec_to_sec(80_200.0), 0.080_2)
 	assert_eq(Convert.sec_to_min(90.0), 1.5)
 	assert_eq(Convert.min_to_sec(60.0), 3600.0)
+	assert_eq(Convert.min_to_h(45.0), 0.75)
+	assert_eq(Convert.h_to_min(2.2), 132.0)
+	assert_eq(Convert.sec_to_h(1800.0), 0.5)
+	assert_eq(Convert.h_to_sec(0.25), 900.0)
 
 func test_proportion():
 	assert_eq(Convert.unit_to_percent(1.75), 175.0)
@@ -51,21 +55,34 @@ func test_power():
 	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, 0.000_001)
 	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, 0.000_001)
 
+func test_energy():
+	assert_eq(Convert.j_to_kwh(63459.0), 0.0176275)
+	assert_eq(Convert.kwh_to_j(0.041), 147600.0)
+
 func test_temperature():
 	assert_eq(Convert.c_to_k(50.0), 323.15)
 	assert_eq(Convert.k_to_c(303.15), 30.0)
 	assert_eq(Convert.c_to_f(10.0), 50.0)
 	assert_eq(Convert.f_to_c(122.0), 50.0)
 
+func test_mass():
+	assert_eq(Convert.kg_to_t(43.0), 0.043)
+	assert_eq(Convert.t_to_kg(2.41), 2410.0)
+	assert_eq(Convert.kg_to_g(0.2), 200.0)
+	assert_eq(Convert.g_to_kg(184.0), 0.184)
+
 func test_multiple_units():
 	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, 0.000_001)
 	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_252, 0.000_001)
+	assert_eq(Convert.w_sec_to_j(6.0, 3.0), 18.0)
 
 func test_convert_and_back():
 	# time
 	assert_eq(Convert.sec_to_msec(Convert.msec_to_sec(23.4)), 23.4)
 	assert_eq(Convert.sec_to_usec(Convert.usec_to_sec(23.4)), 23.4)
 	assert_eq(Convert.sec_to_min(Convert.min_to_sec(41.5)), 41.5)
+	assert_eq(Convert.min_to_h(Convert.h_to_min(17.4)), 17.4)
+	assert_eq(Convert.sec_to_h(Convert.h_to_sec(17.4)), 17.4)
 	# proportion
 	assert_eq(Convert.unit_to_percent(Convert.percent_to_unit(23.4)), 23.4)
 	# distance
@@ -85,7 +102,12 @@ func test_convert_and_back():
 	assert_eq(Convert.kw_to_mw(Convert.mw_to_kw(72.1)), 72.1)
 	assert_eq(Convert.hp_to_kw(Convert.kw_to_hp(28.2)), 28.2)
 	assert_eq(Convert.hp_to_w(Convert.w_to_hp(99.9)), 99.9)
+	# energy
+	assert_eq(Convert.j_to_kwh(Convert.kwh_to_j(742.1)), 742.1)
 	# temperature
 	assert_eq(Convert.c_to_k(Convert.k_to_c(23.0)), 23.0)
 	assert_eq(Convert.c_to_f(Convert.f_to_c(94.2)), 94.2)
+	# mass
+	assert_eq(Convert.kg_to_t(Convert.t_to_kg(831.14)), 831.14)
+	assert_eq(Convert.kg_to_g(Convert.g_to_kg(74.12)), 74.12)
 #endregion tests

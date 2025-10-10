@@ -68,6 +68,8 @@ func test_collision_shape_3d():
 
 func test_constants():
 	assert_eq(Helper.EARTH_GRAVITY, 9.80665, "Gravity (Earth) = 9.80665 (m/s^2)")
+	assert_eq(Helper.EARTH_RADIUS, 6_371_000, "Radius (Earth) = 6_371_000 (m)")
+	assert_eq(Helper.EARTH_MASS, 5.972 * pow(10, 24), "Mass (Earth) = 5.972 * pow(10, 24) (kg)")
 
 func test_find_children_with_method():
 	var characters = Helper.find_children_with_method(test_scene, "is_on_floor")
