@@ -136,6 +136,23 @@ func test_get_lines_in_file():
 	lines = Helper.get_lines_in_file("res://tests/files/79 line text.md")
 	assert_eq(lines, 79, "Lines are 79.")
 
+func test_is_character():
+	assert_eq(Helper.is_character("923"), false, "Not a character.")
+	assert_eq(Helper.is_character("chap"), false, "Not a character.")
+	assert_eq(Helper.is_character("7"), true, "A character.")
+	assert_eq(Helper.is_character("A"), true, "A character.")
+	assert_eq(Helper.is_character("*"), true, "A character.")
+
+func test_is_digit():
+	assert_eq(Helper.is_digit("a"), false, "Not a digit.")
+	assert_eq(Helper.is_digit("2"), true, "A digit.")
+	assert_eq(Helper.is_digit("69"), false, "Not a character.")
+
+func test_is_letter():
+	assert_eq(Helper.is_letter("8"), false, "Not a letter.")
+	assert_eq(Helper.is_letter("t"), true, "A letter.")
+	assert_eq(Helper.is_letter("zag"), false, "Not a character.")
+
 	#region performance
 func test_performance_of_find():
 	var start_time = Time.get_ticks_usec()

@@ -139,4 +139,18 @@ static func get_lines_in_file(path: String) -> int:
 		lines += 1
 	file.close()
 	return lines
+
+## Returns [code]true[/code] if the given string is a character.
+static func is_character(character: String) -> bool:
+	return character.length() == 1
+
+## Returns [code]true[/code] if the given character is a digit.
+static func is_digit(character: String) -> bool:
+	if !is_character(character): return false
+	return character >= "0" and character <= "9"
+
+## Returns [code]true[/code] if the given character is a letter.
+static func is_letter(character: String) -> bool:
+	if !is_character(character): return false
+	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
 #endregion methods
