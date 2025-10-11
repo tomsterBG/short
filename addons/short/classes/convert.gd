@@ -75,11 +75,11 @@ static func h_to_min(hour: float) -> float:
 
 ## Converts a time from seconds to hours.
 static func sec_to_h(sec: float) -> float:
-	return min_to_h(sec_to_min(sec))
+	return sec / 3600.0
 
 ## Converts a time from hours to seconds.
 static func h_to_sec(hour: float) -> float:
-	return min_to_sec(h_to_min(hour))
+	return hour * 3600.0
 	#endregion time
 
 	#region proportion
@@ -191,11 +191,11 @@ static func mw_to_kw(mw: float) -> float:
 
 ## Converts a power from [code]hp[/code] to [code]watt[/code].
 static func w_to_hp(watt: float) -> float:
-	return kw_to_hp(w_to_kw(watt))
+	return watt / 745.6998716
 
 ## Converts a power from [code]watt[/code] to [code]hp[/code].
 static func hp_to_w(hp: float) -> float:
-	return kw_to_w(hp_to_kw(hp))
+	return hp * 745.6998716
 
 ## Converts a power from [code]kw[/code] to [code]hp[/code].
 static func kw_to_hp(kw: float) -> float:
@@ -207,13 +207,13 @@ static func hp_to_kw(hp: float) -> float:
 	#endregion power
 
 	#region energy
-## Converts an energy from [code]joules[/code] to [code]kw*hours[/code].
+## Converts an energy from [code]joules (watt*sec)[/code] to [code]kw*hours[/code].
 static func j_to_kwh(joule: float) -> float:
-	return sec_to_h(w_to_kw(joule))
+	return joule / 3600_000.0
 
-## Converts an energy from [code]kw*hours[/code] to [code]joules[/code].
+## Converts an energy from [code]kw*hours[/code] to [code]joules (watt*sec)[/code].
 static func kwh_to_j(kwh: float) -> float:
-	return h_to_sec(kw_to_w(kwh))
+	return kwh * 3600_000.0
 	#endregion energy
 
 	#region temperature
