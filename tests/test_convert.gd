@@ -40,6 +40,10 @@ func test_angular_speed():
 	assert_eq(Convert.hz_to_rpm(90.0), 5400.0)
 	assert_eq(Convert.rpm_to_hz(720.0), 12.0)
 
+func test_acceleration():
+	assert_eq(Convert.ms2_to_kms2(98.0), 0.098)
+	assert_eq(Convert.kms2_to_ms2(0.21), 210.0)
+
 func test_torque():
 	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, 0.000_001)
 	assert_almost_eq(Convert.lbft_to_nm(3.0), 4.067_453, 0.000_001)
@@ -95,6 +99,8 @@ func test_convert_and_back():
 	# angular_speed
 	assert_eq(Convert.rads_to_rpm(Convert.rpm_to_rads(3.12)), 3.12)
 	assert_eq(Convert.rpm_to_hz(Convert.hz_to_rpm(8.31)), 8.31)
+	# acceleration
+	assert_eq(Convert.ms2_to_kms2(Convert.kms2_to_ms2(17.3)), 17.3)
 	# torque
 	assert_eq(Convert.nm_to_lbft(Convert.lbft_to_nm(40.8)), 40.8)
 	# power

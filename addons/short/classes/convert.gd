@@ -162,6 +162,16 @@ static func rpm_to_hz(rpm: float) -> float:
 	return rpm / 60.0
 	#endregion angular speed
 
+	#region acceleration
+## Converts an acceleration from [code]meters/second^2[/code] to [code]km/second^2[/code].
+static func ms2_to_kms2(ms2: float) -> float:
+	return ms2 / 1000.0
+
+## Converts an acceleration from [code]km/second^2[/code] to [code]meters/second^2[/code].
+static func kms2_to_ms2(kms2: float) -> float:
+	return kms2 * 1000.0
+	#endregion acceleration
+
 	#region torque
 ## Converts a torque from [code]n*m[/code] to [code]lb-ft[/code].
 static func nm_to_lbft(nm: float) -> float:
