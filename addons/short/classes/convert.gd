@@ -74,11 +74,11 @@ static func h_to_min(hour: float) -> float:
 
 ## Converts a time from seconds to hours.
 static func sec_to_h(sec: float) -> float:
-	return Convert.min_to_h(Convert.sec_to_min(sec))
+	return min_to_h(sec_to_min(sec))
 
 ## Converts a time from hours to seconds.
 static func h_to_sec(hour: float) -> float:
-	return Convert.min_to_sec(Convert.h_to_min(hour))
+	return min_to_sec(h_to_min(hour))
 	#endregion time
 
 	#region proportion
@@ -208,11 +208,11 @@ static func hp_to_kw(hp: float) -> float:
 	#region energy
 ## Converts an energy from [code]joules[/code] to [code]kw*hours[/code].
 static func j_to_kwh(joule: float) -> float:
-	return Convert.sec_to_h(Convert.w_to_kw(joule))
+	return sec_to_h(w_to_kw(joule))
 
 ## Converts an energy from [code]kw*hours[/code] to [code]joules[/code].
 static func kwh_to_j(kwh: float) -> float:
-	return Convert.h_to_sec(Convert.kw_to_w(kwh))
+	return h_to_sec(kw_to_w(kwh))
 	#endregion energy
 
 	#region temperature
