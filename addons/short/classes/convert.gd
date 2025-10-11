@@ -25,6 +25,7 @@
 # IDEAS:
 # - data size: mb_to_kb, kb_to_mb, mb_to_gb, gb_to_mb, mb_to_tb, tb_to_mb
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
+# - deg_to_dot_product
 # BAD IDEAS:
 # - Move Helper.EARTH_GRAVITY here? Not really, it's not a conversion.
 # - Add angular speed rads_to_degs and rads_to_degs? No, you can just use rad_to_deg and deg_to_rad.

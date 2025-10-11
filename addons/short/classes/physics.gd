@@ -1,3 +1,6 @@
+# TODO:
+# - kinematics
+# 	- speed_for_time_to_distance(meters_second, seconds)
 # IDEAS:
 # - get_earth_radius_at(degrees_from_pole) - returns an idealized stretched sphere
 # - get_earth_gravity_at(height)
