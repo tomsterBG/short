@@ -1,5 +1,6 @@
 # INFO:
 # - Hz and rps are the same thing, but one represents frequency, the other represents angular speed. Frequency is wave per second, angular speed is rotation per second.
+# - Torque (N*m) is the same unit as Energy (J).
 # SOURCES:
 # - TU Sofia
 # 	- Velocity = Distance / Time
@@ -22,6 +23,9 @@
 # 	- sqkm_to_sqm
 # - distance
 # 	- radius_to_circumference, circumference_to_radius
+# - other
+# 	- ms_sec_to_m
+# - Change torque to energy and multiple units to correspond to their own unit because unit incompatibility makes conversions inaccurate.
 # IDEAS:
 # - data size: mb_to_kb, kb_to_mb, mb_to_gb, gb_to_mb, mb_to_tb, tb_to_mb
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
