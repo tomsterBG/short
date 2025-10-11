@@ -22,6 +22,7 @@ var test_scripts: Dictionary[StringName, Array] = {
 	# classes:
 	convert = [],
 	helper = [],
+	math = [],
 	physics = [],
 	# components:
 	health = [&"convert"],

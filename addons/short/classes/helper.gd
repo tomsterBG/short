@@ -95,6 +95,7 @@ static func find_children_with_signal(node: Node, signal_name: StringName, recur
 	return array
 	#endregion find_
 
+	#region get_
 ## Returns [param node]'s nth ancestor node [code]n[/code] [param levels] up, or [code]null[/code] if the node doesn't have such ancestor. Calls [method Node.get_parent] [code]n[/code] times.
 ##[br][br][b]Note:[/b] Bad code practice. Nodes should be unaware of their parents.
 static func get_ancestor(node: Node, levels: int) -> Node:
@@ -132,7 +133,9 @@ static func get_lines_in_file(path: String) -> int:
 		lines += 1
 	file.close()
 	return lines
+	#endregion get_
 
+	#region is_
 ## Returns [code]true[/code] if the given string is a character.
 static func is_character(character: String) -> bool:
 	return character.length() == 1
@@ -146,4 +149,5 @@ static func is_digit(character: String) -> bool:
 static func is_letter(character: String) -> bool:
 	if !is_character(character): return false
 	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
+	#endregion is_
 #endregion methods

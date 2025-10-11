@@ -1,8 +1,12 @@
 # IDEAS:
 # - get_earth_radius_at(degrees_from_pole) - returns an idealized stretched sphere
 # - get_earth_gravity_at(height)
+# - get_earth_air_density_at(height) - ignores wind speed
+# - EARTH_AIR_DENSITY - at sea level
 # - get_gravity_between(mass_1, mass_2, distance) - assume point passes
 # - mars, moon, sun, jupiter, saturn - gravity, radius, mass
+# - get_air_drag(speed, air_density, ...)
+# - get_water_drag(speed, water_density, ...)
 
 ## @experimental: This class is immature.
 ## Work with physics.
