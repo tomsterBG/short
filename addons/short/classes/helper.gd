@@ -24,10 +24,10 @@
 # - mouse axis input with deadzones: Must first check how to do that without helper.
 
 ## @experimental: This class is immature.
-## Public helper methods to shorten your code.
+## Shorten your code.
 ##
 ## Available in all scripts without any setup.
-##[br][br]An abstract script full of methods and constants to reduce the amount of code you need to write, and to improve readability.
+##[br][br]An abstract script to help you achieve more behavior with less code.
 
 @abstract class_name Helper extends Node
 
@@ -40,18 +40,6 @@ class DirChildrenResult:
 	## The folders found at [param path].
 	var folders: Array = []
 #endregion classes
-
-
-#region constants
-## Earth's surface gravity in [code]meters/second^2[/code]. According to Wikipedia, gravity varies by 0.7% depending on your location.
-const EARTH_GRAVITY = 9.80665
-
-## Earth's radius in meters. According to Wikipedia, the radius varies by 0.3% depending on your distance from the equator.
-const EARTH_RADIUS = 6_371_000
-
-## Earth's mass in kg.
-const EARTH_MASS = 5.972 * pow(10, 24)
-#endregion constants
 
 
 #region methods

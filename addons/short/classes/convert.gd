@@ -30,10 +30,10 @@
 # - Add angular speed rads_to_degs and rads_to_degs? No, you can just use rad_to_deg and deg_to_rad.
 
 ## @experimental: This class is immature.
-## Value conversion methods.
+## Convert between units.
 ##
 ## Available in all scripts without any setup.
-##[br][br]A conversion script full of methods to make value conversions easy, and to improve readability.
+##[br][br]Easily convert between units while having more readable code.
 
 @abstract class_name Convert extends Node
 

@@ -1,6 +1,3 @@
-# TODO:
-# - Test equality when you convert forward and back.
-
 extends GutTest
 
 
