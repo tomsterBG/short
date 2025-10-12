@@ -40,7 +40,7 @@
 
 #region constants
 ## The newtonian gravity constant in [code](N * m^2)/(kg^2)[/code]. See [url=https://en.wikipedia.org/wiki/Gravitational_constant]Gravitational constant[/url].
-const GRAVITY_CONSTANT := 6.674 * pow(10, -11)
+const GRAVITY_CONSTANT := 6.6743e-11
 
 ## Earth's surface gravity in [code]meters/second^2[/code]. According to Wikipedia, gravity varies by 0.7% depending on your location.
 const EARTH_GRAVITY := 9.80665
@@ -49,7 +49,13 @@ const EARTH_GRAVITY := 9.80665
 const EARTH_RADIUS := 6_371_000.0
 
 ## Earth's mass in kg.
-const EARTH_MASS := 5.972 * pow(10, 24)
+const EARTH_MASS := 5.972e24
+
+## Mars' surface gravity in [code]meters/second^2[/code].
+const MARS_GRAVITY := 3.728
+
+## Mars' mass in kg.
+const MARS_MASS := 6.41693e23
 #endregion constants
 
 
