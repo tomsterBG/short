@@ -3,7 +3,7 @@ extends GutTest
 
 #region tests
 func test_constants():
-	assert_eq(Physics.GRAVITY_CONSTANT, 6.6743e-11, "6.674 * 10^-11 ((N * m^2)/(kg^2))")
+	assert_eq(Physics.GRAVITY_CONSTANT, 6.6743e-11, "6.6743e-11 ((N * m^2)/(kg^2))")
 	assert_eq(Physics.EARTH_GRAVITY, 9.80665, "Gravity (Earth) = 9.80665 (m/s^2)")
 	assert_eq(Physics.EARTH_RADIUS, 6371_000.0, "Radius (Earth) = 6371_000 (m)")
 	assert_eq(Physics.EARTH_MASS, 5.972e24, "Mass (Earth) = 5.972e24 (kg)")
