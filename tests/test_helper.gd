@@ -133,6 +133,10 @@ func test_get_lines_in_file():
 	lines = Helper.get_lines_in_file("res://tests/files/79 line text.md")
 	assert_eq(lines, 79, "Lines are 79.")
 
+func test_is_binary():
+	assert_eq(Helper.is_binary("100111011101100"), true, "A number in binary.")
+	assert_eq(Helper.is_binary("100O1101O101100"), false, "Not a number in binary.")
+
 func test_is_character():
 	assert_eq(Helper.is_character("923"), false, "Not a character.")
 	assert_eq(Helper.is_character("chap"), false, "Not a character.")

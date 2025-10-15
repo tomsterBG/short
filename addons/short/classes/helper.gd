@@ -131,7 +131,14 @@ static func get_lines_in_file(path: String) -> int:
 	#endregion get_
 
 	#region is_
-## Returns [code]true[/code] if the given string is a character.
+## Returns [code]true[/code] if the given string is a number in binary.
+static func is_binary(binary: String) -> bool:
+	for character in binary:
+		if character == "0" or character == "1": continue
+		else: return false
+	return true
+
+## Returns [code]true[/code] if the given string is a single character.
 static func is_character(character: String) -> bool:
 	return character.length() == 1
 

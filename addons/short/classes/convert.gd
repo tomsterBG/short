@@ -31,7 +31,6 @@
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
 # - deg_to_dot_product
 # BAD IDEAS:
-# - Move Helper.EARTH_GRAVITY here? Not really, it's not a conversion.
 # - Add angular speed rads_to_degs and rads_to_degs? No, you can just use rad_to_deg and deg_to_rad.
 
 ## @experimental: This class is immature.
@@ -95,6 +94,16 @@ static func unit_to_percent(unit: float) -> float:
 static func percent_to_unit(percent: float) -> float:
 	return percent / 100.0
 	#endregion proportion
+
+	#region number base
+## @experimental: The output may change to float and the input to something else.
+static func bin_to_dec(binary: String) -> int:
+	binary = binary.reverse()
+	var decimal := 0
+	for idx in range(binary.length()):
+		decimal += int(binary[idx]) * pow(2, idx)
+	return decimal
+	#endregion number base
 
 	#region distance
 ## Converts a distance from meters to millimeters.
