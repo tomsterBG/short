@@ -21,10 +21,12 @@
 # - area
 # 	- sqm_to_sqkm
 # 	- sqkm_to_sqm
+# 	- sqm_to_sqcm
+# 	- sqcm_to_sqm
 # - distance
 # 	- radius_to_circumference, circumference_to_radius
 # - other
-# 	- ms_sec_to_m
+# 	- ms_sec_to_m - meters/sec in t seconds to meters
 # - Change torque to energy and multiple units to correspond to their own unit because unit incompatibility makes conversions inaccurate.
 # IDEAS:
 # - data size: mb_to_kb, kb_to_mb, mb_to_gb, gb_to_mb, mb_to_tb, tb_to_mb

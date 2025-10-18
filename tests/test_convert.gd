@@ -1,6 +1,11 @@
 extends GutTest
 
 
+#region constants
+const ERROR_INTERVAL := 0.000_001
+#endregion constants
+
+
 #region tests
 func test_time():
 	assert_eq(Convert.sec_to_msec(25.0), 25_000.0)
@@ -34,8 +39,8 @@ func test_distance():
 func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
 	assert_eq(Convert.kmh_to_ms(360.0), 100.0)
-	assert_almost_eq(Convert.kmh_to_mph(100.0), 62.137_119, 0.000_001)
-	assert_almost_eq(Convert.mph_to_kmh(20.0), 32.186_88, 0.000_001)
+	assert_almost_eq(Convert.kmh_to_mph(100.0), 62.137_119, ERROR_INTERVAL)
+	assert_almost_eq(Convert.mph_to_kmh(20.0), 32.186_88, ERROR_INTERVAL)
 
 func test_angular_speed():
 	assert_eq(Convert.rads_to_rpm(TAU), 60.0)
@@ -48,18 +53,18 @@ func test_acceleration():
 	assert_eq(Convert.kms2_to_ms2(0.21), 210.0)
 
 func test_torque():
-	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, 0.000_001)
-	assert_almost_eq(Convert.lbft_to_nm(3.0), 4.067_453, 0.000_001)
+	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, ERROR_INTERVAL)
+	assert_almost_eq(Convert.lbft_to_nm(3.0), 4.067_453, ERROR_INTERVAL)
 
 func test_power():
 	assert_eq(Convert.w_to_kw(995.0), 0.995)
 	assert_eq(Convert.kw_to_w(0.69), 690.0)
 	assert_eq(Convert.kw_to_mw(41.0), 0.041)
 	assert_eq(Convert.mw_to_kw(0.13), 130.0)
-	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, 0.000_001)
-	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, 0.000_001)
-	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, 0.000_001)
-	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, 0.000_001)
+	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, ERROR_INTERVAL)
+	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, ERROR_INTERVAL)
+	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, ERROR_INTERVAL)
 
 func test_energy():
 	assert_eq(Convert.j_to_kwh(63459.0), 0.0176275)
@@ -78,8 +83,8 @@ func test_mass():
 	assert_eq(Convert.g_to_kg(184.0), 0.184)
 
 func test_multiple_units():
-	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, 0.000_001)
-	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_252, 0.000_001)
+	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, ERROR_INTERVAL)
+	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_252, ERROR_INTERVAL)
 	assert_eq(Convert.w_sec_to_j(6.0, 3.0), 18.0)
 
 func test_convert_and_back():

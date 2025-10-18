@@ -7,6 +7,10 @@
 # - Get air pressure at height (Earth).
 # - save_dict_as_json(data: Dictionary, path: String) -> Error, load_dict_from_json(path: String) -> Dictionary, vec3_to_str(vec: Vector3, precision: int = 2) -> String, radians_to_compass_direction(angle: float) -> String, change_scene, format_memory(bytes: int) -> String, create_timer(wait_time: float, callable: Callable, owner_node: Node)
 # - is_position_inside(position, volume)
+# - flatten_array(array: Array) - converts nested arrays to elements of the parent array
+# 	- a matrixify() counterpart to turn a flat array into a matrix or something complex
+# - remove_duplicates(array: Array) - removes duplicate array values
+# - wrap_text(text: String, line_length: int)
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.

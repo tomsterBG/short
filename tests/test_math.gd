@@ -1,7 +1,18 @@
 extends GutTest
 
 
+#region constants
+const ERROR_INTERVAL := 0.000_001
+#endregion constants
+
+
 #region tests
+func test_get_circle_area():
+	assert_almost_eq(Math.get_circle_area(6.0), 113.097_335, ERROR_INTERVAL)
+
+func test_get_circle_circumference():
+	assert_almost_eq(Math.get_circle_circumference(7.0), 43.982_297, ERROR_INTERVAL)
+
 func test_get_projected_vector():
 	assert_eq(Math.get_projected_vector(Vector2(3, 0), Vector2(3, 0)), Vector2(3, 0), "No change.")
 	assert_eq(Math.get_projected_vector(Vector3(3, 2, 0), Vector3(3, 0, 0)), Vector3(3, 0, 0), "Flatten.")
