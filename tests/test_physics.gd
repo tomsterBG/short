@@ -12,7 +12,7 @@ func test_constants():
 
 func test_get_earth_gravity():
 	assert_eq(Physics.get_earth_gravity(0.0), Physics.EARTH_GRAVITY, "Gravity at sea level.")
-	assert_almost_eq(Physics.get_earth_gravity(1000_000.0), 7.326272, 0.000_001, "Gravity at 1000 km.")
+	assert_almost_eq(Physics.get_earth_gravity(1000_000.0), 7.326_272, 0.000_001, "Gravity at 1000 km.")
 
 func test_get_gravity_between():
 	assert_almost_eq(Physics.get_gravity_between(50.0, 80.0, 2.0), 6.6743e-8, 1.0e-20, "Force between 2 point masses.")

@@ -48,7 +48,7 @@ func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
 	assert_eq(Convert.kmh_to_ms(360.0), 100.0)
 	assert_almost_eq(Convert.kmh_to_mph(100.0), 62.137_119, ERROR_INTERVAL)
-	assert_almost_eq(Convert.mph_to_kmh(20.0), 32.186_88, ERROR_INTERVAL)
+	assert_almost_eq(Convert.mph_to_kmh(20.0), 32.186_880, ERROR_INTERVAL)
 
 func test_angular_speed():
 	assert_eq(Convert.rads_to_rpm(TAU), 60.0)

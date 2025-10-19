@@ -40,6 +40,38 @@ static func circle_circumference(radius: float) -> float:
 static func cylinder_volume(radius: float, height: float) -> float:
 	return circle_area(radius) * height
 
+## Returns the surface of a sphere.
+static func sphere_surface(radius: float) -> float:
+	return 4.0 * PI * pow(radius, 2)
+
+## Returns the volume of a sphere.
+static func sphere_volume(radius: float) -> float:
+	return (4.0/3.0) * PI * pow(radius, 3)
+
+## Returns the area of a rectangle.
+static func rectangle_area(side_x: float, side_y: float) -> float:
+	return side_x * side_y
+
+## Returns the diagonal of a rectangle.
+static func rectangle_diagonal(side_x: float, side_y: float) -> float:
+	return sqrt(pow(side_x, 2) + pow(side_y, 2))
+
+## Returns the perimeter of a rectangle.
+static func rectangle_perimeter(side_x: float, side_y: float) -> float:
+	return 2.0 * (side_x + side_y)
+
+## Returns the area of a square.
+static func square_area(side: float) -> float:
+	return pow(side, 2)
+
+## Returns the diagonal of a square.
+static func square_diagonal(side: float) -> float:
+	return side * sqrt(2)
+
+## Returns the perimeter of a square.
+static func square_perimeter(side: float) -> float:
+	return side * 4.0
+
 ## Returns the area of a triangle, given base and height.
 static func triangle_area_from_base_and_height(base: float, height: float) -> float:
 	return 0.5 * base * height
