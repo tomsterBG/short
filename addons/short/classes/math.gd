@@ -1,15 +1,12 @@
 # SOURCES:
 # - https://www.omnicalculator.com
 # TODO:
+# - SQRT_2 = sqrt(2)
 # - geometry
-# 	- rectangle_area(side_x, side_y)
-# 	- rectangle_perimeter(side_x, side_y)
-# 	- rectangle_diagonal(side_x, side_y)
+# 	- cone_surface(radius, height)
+# 	- cone_volume(radius, height)
 # 	- right_triangle_area(side_x, side_y)
 # 	- triangle_perimeter(a, b, c)
-# 	- square_area(side_length)
-# 	- square_perimeter(side_length)
-# 	- square_diagonal(side_length)
 # IDEAS:
 # - class or class_name Matrix to more easily define what a matrix is
 # - add_matrix(matrix_a, matrix_b)
@@ -21,6 +18,12 @@
 ## Available in all scripts without any setup.
 
 @abstract class_name Math extends Node
+
+
+#region constants
+## The golden ratio.
+const PHI = (1.0 + sqrt(5)) / 2.0
+#endregion constants
 
 
 #region methods

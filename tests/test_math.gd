@@ -7,6 +7,9 @@ const ERROR_INTERVAL := 0.000_001
 
 
 #region tests
+func test_constants():
+	assert_almost_eq(Math.PHI, 1.618_033, ERROR_INTERVAL)
+
 func test_circle_area():
 	assert_almost_eq(Math.circle_area(6.0), 113.097_335, ERROR_INTERVAL)
 
