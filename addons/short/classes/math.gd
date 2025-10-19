@@ -35,6 +35,22 @@ static func get_circle_circumference(radius: float) -> float:
 ## Returns the volume of a cylinder.
 static func get_cylinder_volume(radius: float, height: float) -> float:
 	return get_circle_area(radius) * height
+
+## Returns the area of a triangle, given base and height.
+static func get_triangle_area_from_base_and_height(base: float, height: float) -> float:
+	return 0.5 * base * height
+
+## Returns the area of a triangle, given three sides.
+static func get_triangle_area_from_three_sides(a: float, b: float, c: float) -> float:
+	return 0.25 * sqrt( (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c) )
+
+## Returns the area of a triangle, given two sides and [param angle_between_rad] them in [code]radians[/code].
+static func get_triangle_area_from_two_sides_and_angle_between(a: float, b: float, angle_between_rad: float) -> float:
+	return 0.5 * a * b * sin(angle_between_rad)
+
+## Returns the area of a triangle, given a side and two adjacent angles in [code]radians[/code].
+static func get_triangle_area_from_side_and_adjacent_angles(side_between: float, angle_a_rad: float, angle_b_rad: float) -> float:
+	return pow(side_between, 2) * sin(angle_a_rad) * sin(angle_b_rad) / (2.0 * sin(angle_a_rad + angle_b_rad))
 	#endregion geometry
 
 ## Returns [param vector_a] projected on [param vector_b].

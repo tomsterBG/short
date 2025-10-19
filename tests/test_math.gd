@@ -16,6 +16,12 @@ func test_get_circle_circumference():
 func test_get_cylinder_volume():
 	assert_almost_eq(Math.get_cylinder_volume(4.0, 7.0), 351.858_377, ERROR_INTERVAL)
 
+func test_get_triangle_area():
+	assert_eq(Math.get_triangle_area_from_base_and_height(5.0, 5.0), 12.5)
+	assert_almost_eq(Math.get_triangle_area_from_three_sides(5.0, 7.0, 11.090_076), 12.500_002, ERROR_INTERVAL)
+	assert_almost_eq(Math.get_triangle_area_from_two_sides_and_angle_between(5.0, 7.0, deg_to_rad(45.585)), 12.500_066, ERROR_INTERVAL)
+	assert_almost_eq(Math.get_triangle_area_from_side_and_adjacent_angles(5.0, deg_to_rad(51.0), deg_to_rad(63.0)), 9.474_653, ERROR_INTERVAL)
+
 func test_get_projected_vector():
 	assert_eq(Math.get_projected_vector(Vector2(3, 0), Vector2(3, 0)), Vector2(3, 0), "No change.")
 	assert_eq(Math.get_projected_vector(Vector3(3, 2, 0), Vector3(3, 0, 0)), Vector3(3, 0, 0), "Flatten.")
