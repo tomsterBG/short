@@ -1,7 +1,13 @@
 # TODO:
 # - geometry
+# 	- get_cylinder_volume(radius, height)
 # 	- get_sphere_volume(radius)
-# 	- get_sphere_area(radius)
+# 	- get_square_area(side_length)
+# 	- get_square_perimeter(side_length)
+# 	- get_square_diagonal(side_length)
+# 	- get_rectangle_area(side_x, side_y)
+# 	- get_rectangle_perimeter(side_x, side_y)
+# 	- get_rectangle_diagonal(side_x, side_y)
 # IDEAS:
 # - class or class_name Matrix to more easily define what a matrix is
 # - add_matrix(matrix_a, matrix_b)

@@ -18,6 +18,14 @@ func test_time():
 	assert_eq(Convert.h_to_min(2.2), 132.0)
 	assert_eq(Convert.sec_to_h(1800.0), 0.5)
 	assert_eq(Convert.h_to_sec(0.25), 900.0)
+	assert_eq(Convert.sec_to_day(21600.0), 0.25)
+	assert_eq(Convert.day_to_sec(0.5), 43200.0)
+	assert_eq(Convert.sec_to_week(756000.0), 1.25)
+	assert_eq(Convert.week_to_sec(0.7), 423360.0)
+	assert_eq(Convert.day_to_week(21.0), 3.0)
+	assert_eq(Convert.week_to_day(4.0), 28.0)
+	assert_eq(Convert.day_to_year(730.5), 2.0)
+	assert_eq(Convert.year_to_day(0.5), 182.625)
 
 func test_proportion():
 	assert_eq(Convert.unit_to_percent(1.75), 175.0)
@@ -93,7 +101,11 @@ func test_convert_and_back():
 	assert_eq(Convert.sec_to_usec(Convert.usec_to_sec(23.4)), 23.4)
 	assert_eq(Convert.sec_to_min(Convert.min_to_sec(41.5)), 41.5)
 	assert_eq(Convert.min_to_h(Convert.h_to_min(17.4)), 17.4)
-	assert_eq(Convert.sec_to_h(Convert.h_to_sec(17.4)), 17.4)
+	assert_eq(Convert.sec_to_h(Convert.h_to_sec(741.2)), 741.2)
+	assert_eq(Convert.sec_to_day(Convert.day_to_sec(8241.0)), 8241.0)
+	assert_eq(Convert.sec_to_week(Convert.week_to_sec(941.0)), 941.0)
+	assert_eq(Convert.day_to_week(Convert.week_to_day(284.0)), 284.0)
+	assert_eq(Convert.day_to_year(Convert.year_to_day(718.0)), 718.0)
 	# proportion
 	assert_eq(Convert.unit_to_percent(Convert.percent_to_unit(23.4)), 23.4)
 	# distance

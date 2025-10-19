@@ -48,19 +48,19 @@
 	#region time
 ## Converts a time from seconds to milliseconds.
 static func sec_to_msec(sec: float) -> float:
-	return sec * 1000.0
+	return sec * 1.0e3
 
 ## Converts a time from milliseconds to seconds.
 static func msec_to_sec(msec: float) -> float:
-	return msec / 1000.0
+	return msec / 1.0e3
 
 ## Converts a time from seconds to microseconds.
 static func sec_to_usec(sec: float) -> float:
-	return sec * 1000_000.0
+	return sec * 1.0e6
 
 ## Converts a time from microseconds to seconds.
 static func usec_to_sec(usec: float) -> float:
-	return usec / 1000_000.0
+	return usec / 1.0e6
 
 ## Converts a time from seconds to minutes.
 static func sec_to_min(sec: float) -> float:
@@ -85,6 +85,38 @@ static func sec_to_h(sec: float) -> float:
 ## Converts a time from hours to seconds.
 static func h_to_sec(hour: float) -> float:
 	return hour * 3600.0
+
+## Converts a time from seconds to days.
+static func sec_to_day(sec: float) -> float:
+	return sec / 86_400.0
+
+## Converts a time from days to seconds.
+static func day_to_sec(day: float) -> float:
+	return day * 86_400.0
+
+## Converts a time from seconds to weeks.
+static func sec_to_week(sec: float) -> float:
+	return sec / 604_800.0
+
+## Converts a time from weeks to seconds.
+static func week_to_sec(week: float) -> float:
+	return week * 604_800.0
+
+## Converts a time from days to weeks.
+static func day_to_week(day: float) -> float:
+	return day / 7.0
+
+## Converts a time from weeks to days.
+static func week_to_day(week: float) -> float:
+	return week * 7.0
+
+## Converts a time from days to years.
+static func day_to_year(day: float) -> float:
+	return day / 365.25
+
+## Converts a time from years to days.
+static func year_to_day(year: float) -> float:
+	return year * 365.25
 	#endregion time
 
 	#region proportion
