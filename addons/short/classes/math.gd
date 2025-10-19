@@ -1,13 +1,14 @@
+# SOURCES:
+# - https://www.omnicalculator.com
 # TODO:
 # - geometry
-# 	- get_cylinder_volume(radius, height)
+# 	- get_rectangle_area(side_x, side_y)
+# 	- get_rectangle_perimeter(side_x, side_y)
+# 	- get_rectangle_diagonal(side_x, side_y)
 # 	- get_sphere_volume(radius)
 # 	- get_square_area(side_length)
 # 	- get_square_perimeter(side_length)
 # 	- get_square_diagonal(side_length)
-# 	- get_rectangle_area(side_x, side_y)
-# 	- get_rectangle_perimeter(side_x, side_y)
-# 	- get_rectangle_diagonal(side_x, side_y)
 # IDEAS:
 # - class or class_name Matrix to more easily define what a matrix is
 # - add_matrix(matrix_a, matrix_b)
@@ -30,6 +31,10 @@ static func get_circle_area(radius: float) -> float:
 ## Returns the circumference of a circle.
 static func get_circle_circumference(radius: float) -> float:
 	return TAU * radius
+
+## Returns the volume of a cylinder.
+static func get_cylinder_volume(radius: float, height: float) -> float:
+	return get_circle_area(radius) * height
 	#endregion geometry
 
 ## Returns [param vector_a] projected on [param vector_b].
