@@ -11,6 +11,7 @@
 # - class or class_name Matrix to more easily define what a matrix is
 # - add_matrix(matrix_a, matrix_b)
 # - multiply_matrix(matrix_a, matrix_b)
+# - Instead of get_shape_something, we can make classes of each shape and they can have methods such as Square.perimeter() and Triangle.area().
 
 ## @experimental: This class is immature.
 ## Work with math.

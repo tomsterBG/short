@@ -143,8 +143,8 @@ static func is_binary(binary: String) -> bool:
 	return true
 
 ## Returns [code]true[/code] if the given string is a single character.
-static func is_character(character: String) -> bool:
-	return character.length() == 1
+static func is_character(string: String) -> bool:
+	return string.length() == 1
 
 ## Returns [code]true[/code] if the given character is a digit.
 static func is_digit(character: String) -> bool:
