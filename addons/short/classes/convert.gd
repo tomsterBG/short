@@ -46,75 +46,75 @@
 
 #region methods
 	#region time
-## Converts a time from seconds to milliseconds.
+## Converts a time from [code]seconds[/code] to [code]milliseconds[/code].
 static func sec_to_msec(sec: float) -> float:
 	return sec * 1.0e3
 
-## Converts a time from milliseconds to seconds.
+## Converts a time from [code]milliseconds[/code] to [code]seconds[/code].
 static func msec_to_sec(msec: float) -> float:
 	return msec / 1.0e3
 
-## Converts a time from seconds to microseconds.
+## Converts a time from [code]seconds[/code] to [code]microseconds[/code].
 static func sec_to_usec(sec: float) -> float:
 	return sec * 1.0e6
 
-## Converts a time from microseconds to seconds.
+## Converts a time from [code]microseconds[/code] to [code]seconds[/code].
 static func usec_to_sec(usec: float) -> float:
 	return usec / 1.0e6
 
-## Converts a time from seconds to minutes.
+## Converts a time from [code]seconds[/code] to [code]minutes[/code].
 static func sec_to_min(sec: float) -> float:
 	return sec / 60.0
 
-## Converts a time from minutes to seconds.
+## Converts a time from [code]minutes[/code] to [code]seconds[/code].
 static func min_to_sec(min: float) -> float:
 	return min * 60.0
 
-## Converts a time from minutes to hours.
+## Converts a time from [code]minutes[/code] to [code]hours[/code].
 static func min_to_h(min: float) -> float:
 	return min / 60.0
 
-## Converts a time from hours to minutes.
+## Converts a time from [code]hours[/code] to [code]minutes[/code].
 static func h_to_min(hour: float) -> float:
 	return hour * 60.0
 
-## Converts a time from seconds to hours.
+## Converts a time from [code]seconds[/code] to [code]hours[/code].
 static func sec_to_h(sec: float) -> float:
 	return sec / 3600.0
 
-## Converts a time from hours to seconds.
+## Converts a time from [code]hours[/code] to [code]seconds[/code].
 static func h_to_sec(hour: float) -> float:
 	return hour * 3600.0
 
-## Converts a time from seconds to days.
+## Converts a time from [code]seconds[/code] to [code]days[/code].
 static func sec_to_day(sec: float) -> float:
 	return sec / 86_400.0
 
-## Converts a time from days to seconds.
+## Converts a time from [code]days[/code] to [code]seconds[/code].
 static func day_to_sec(day: float) -> float:
 	return day * 86_400.0
 
-## Converts a time from seconds to weeks.
+## Converts a time from [code]seconds[/code] to [code]weeks[/code].
 static func sec_to_week(sec: float) -> float:
 	return sec / 604_800.0
 
-## Converts a time from weeks to seconds.
+## Converts a time from [code]weeks[/code] to [code]seconds[/code].
 static func week_to_sec(week: float) -> float:
 	return week * 604_800.0
 
-## Converts a time from days to weeks.
+## Converts a time from [code]days[/code] to [code]weeks[/code].
 static func day_to_week(day: float) -> float:
 	return day / 7.0
 
-## Converts a time from weeks to days.
+## Converts a time from [code]weeks[/code] to [code]days[/code].
 static func week_to_day(week: float) -> float:
 	return week * 7.0
 
-## Converts a time from days to years.
+## Converts a time from [code]days[/code] to [code]years[/code].
 static func day_to_year(day: float) -> float:
 	return day / 365.25
 
-## Converts a time from years to days.
+## Converts a time from [code]years[/code] to [code]days[/code].
 static func year_to_day(year: float) -> float:
 	return year * 365.25
 	#endregion time
@@ -140,27 +140,27 @@ static func bin_to_dec(binary: String) -> int:
 	#endregion number base
 
 	#region distance
-## Converts a distance from meters to millimeters.
+## Converts a distance from [code]meters[code] to [code]millimeters[/code].
 static func meter_to_mm(meter: float) -> float:
 	return meter * 1000.0
 
-## Converts a distance from millimeters to meters.
+## Converts a distance from [code]millimeters[code] to [code]meters[/code].
 static func mm_to_meter(mm: float) -> float:
 	return mm / 1000.0
 
-## Converts a distance from millimeters to inches.
+## Converts a distance from [code]millimeters[/code] to [code]inches[/code].
 static func mm_to_inch(mm: float) -> float:
 	return mm / 25.4
 
-## Converts a distance from inches to millimeters.
+## Converts a distance from [code]inches[/code] to [code]millimeters[/code].
 static func inch_to_mm(inch: float) -> float:
 	return inch * 25.4
 
-## Converts a distance from meters to inches.
+## Converts a distance from [code]meters[/code] to [code]inches[/code].
 static func meter_to_inch(meter: float) -> float:
 	return mm_to_inch(meter_to_mm(meter))
 
-## Converts a distance from inches to meters.
+## Converts a distance from [code]inches[/code] to [code]meters[/code].
 static func inch_to_meter(inch: float) -> float:
 	return mm_to_meter(inch_to_mm(inch))
 
