@@ -164,6 +164,30 @@ static func meter_to_inch(meter: float) -> float:
 static func inch_to_meter(inch: float) -> float:
 	return mm_to_meter(inch_to_mm(inch))
 
+## Converts a distance from [code]meters[/code] to [code]kilometers[/code].
+static func meter_to_km(meter: float) -> float:
+	return meter / 1000.0
+
+## Converts a distance from [code]kilometers[/code] to [code]meters[/code].
+static func km_to_meter(km: float) -> float:
+	return km * 1000.0
+
+## Converts a distance from [code]kilometers[/code] to [code]megameters[/code].
+static func km_to_megameter(km: float) -> float:
+	return km / 1000.0
+
+## Converts a distance from [code]megameters[/code] to [code]kilometers[/code].
+static func megameter_to_km(megameter: float) -> float:
+	return megameter * 1000.0
+
+## Converts a distance from [code]kilometers[/code] to [code]astronomical units[/code].
+static func km_to_au(km: float) -> float:
+	return km / 1.495979e8
+
+## Converts a distance from [code]astronomical units[/code] to [code]kilometers[/code].
+static func au_to_km(au: float) -> float:
+	return au * 1.495979e8
+
 ## Converts a distance from radius to diameter.
 static func radius_to_diameter(radius: float) -> float:
 	return radius * 2.0
