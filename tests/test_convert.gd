@@ -35,20 +35,44 @@ func test_number_base():
 	assert_eq(Convert.bin_to_dec("11001"), 25)
 
 func test_distance():
+	assert_eq(Convert.meter_to_dm(31.2), 312.0)
+	assert_eq(Convert.dm_to_meter(731.0), 73.1)
+	assert_eq(Convert.meter_to_cm(83.2), 8320.0)
+	assert_eq(Convert.cm_to_meter(199.2), 1.992)
 	assert_eq(Convert.meter_to_mm(0.5), 500.0)
 	assert_eq(Convert.mm_to_meter(10.0), 0.01)
+	assert_eq(Convert.meter_to_km(941.0), 0.941)
+	assert_eq(Convert.km_to_meter(1.32), 1320.0)
 	assert_eq(Convert.mm_to_inch(25.4), 1.0)
 	assert_eq(Convert.inch_to_mm(2.0), 50.8)
 	assert_eq(Convert.meter_to_inch(50.8), 2000.0)
 	assert_eq(Convert.inch_to_meter(291.0), 7.3914)
-	assert_eq(Convert.meter_to_km(941.0), 0.941)
-	assert_eq(Convert.km_to_meter(1.32), 1320.0)
 	assert_eq(Convert.km_to_megameter(274.0), 0.274)
 	assert_eq(Convert.megameter_to_km(8.1), 8100.0)
 	assert_almost_eq(Convert.km_to_au(84721753.0), 0.566_329, ERROR_INTERVAL)
 	assert_eq(Convert.au_to_km(0.0047), 703110.13)
 	assert_eq(Convert.radius_to_diameter(68.0), 136.0)
 	assert_eq(Convert.diameter_to_radius(54.0), 27.0)
+
+func test_area():
+	assert_eq(Convert.meter2_to_dm2(6.0), 600.0)
+	assert_eq(Convert.dm2_to_meter2(580.0), 5.8)
+	assert_eq(Convert.meter2_to_cm2(2.1), 21000.0)
+	assert_eq(Convert.cm2_to_meter2(18300.0), 1.83)
+	assert_eq(Convert.meter2_to_mm2(0.91), 910000.0)
+	assert_eq(Convert.mm2_to_meter2(1450000.0), 1.45)
+	assert_eq(Convert.meter2_to_km2(9410.0), 0.00941)
+	assert_eq(Convert.km2_to_meter2(1.6), 1600000.0)
+
+func test_volume():
+	assert_eq(Convert.meter3_to_dm3(8.0), 8000.0)
+	assert_eq(Convert.dm3_to_meter3(2900.0), 2.9)
+	assert_eq(Convert.meter3_to_cm3(2.1), 2100000.0)
+	assert_eq(Convert.cm3_to_meter3(1830000.0), 1.83)
+	assert_eq(Convert.meter3_to_mm3(0.91), 910000000.0)
+	assert_eq(Convert.mm3_to_meter3(1450000000.0), 1.45)
+	assert_eq(Convert.meter3_to_km3(9410.0), 0.00000941)
+	assert_eq(Convert.km3_to_meter3(1.6), 1600000000.0)
 
 func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
@@ -98,7 +122,7 @@ func test_mass():
 
 func test_multiple_units():
 	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, ERROR_INTERVAL)
-	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_252, ERROR_INTERVAL)
+	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_197, ERROR_INTERVAL)
 	assert_eq(Convert.w_sec_to_j(6.0, 3.0), 18.0)
 
 func test_convert_and_back():
@@ -115,13 +139,25 @@ func test_convert_and_back():
 	# proportion
 	assert_eq(Convert.unit_to_percent(Convert.percent_to_unit(23.4)), 23.4)
 	# distance
+	assert_eq(Convert.meter_to_dm(Convert.dm_to_meter(914.2)), 914.2)
+	assert_eq(Convert.meter_to_cm(Convert.cm_to_meter(67.9)), 67.9)
 	assert_eq(Convert.meter_to_mm(Convert.mm_to_meter(52.9)), 52.9)
+	assert_eq(Convert.meter_to_km(Convert.km_to_meter(84.9)), 84.9)
 	assert_eq(Convert.mm_to_inch(Convert.inch_to_mm(23.4)), 23.4)
 	assert_eq(Convert.meter_to_inch(Convert.inch_to_meter(68.1)), 68.1)
-	assert_eq(Convert.meter_to_km(Convert.km_to_meter(84.9)), 84.9)
 	assert_eq(Convert.km_to_megameter(Convert.megameter_to_km(33.9)), 33.9)
 	assert_eq(Convert.km_to_au(Convert.au_to_km(0.071)), 0.071)
 	assert_eq(Convert.radius_to_diameter(Convert.diameter_to_radius(49.1)), 49.1)
+	# area
+	assert_eq(Convert.meter2_to_dm2(Convert.dm2_to_meter2(95.1)), 95.1)
+	assert_eq(Convert.meter2_to_cm2(Convert.cm2_to_meter2(920.0)), 920.0)
+	assert_eq(Convert.meter2_to_mm2(Convert.mm2_to_meter2(254.0)), 254.0)
+	assert_eq(Convert.meter2_to_km2(Convert.km2_to_meter2(3.1488)), 3.1488)
+	# volume
+	assert_eq(Convert.meter3_to_dm3(Convert.dm3_to_meter3(95.1)), 95.1)
+	assert_eq(Convert.meter3_to_cm3(Convert.cm3_to_meter3(920.0)), 920.0)
+	assert_eq(Convert.meter3_to_mm3(Convert.mm3_to_meter3(2.45)), 2.45)
+	assert_eq(Convert.meter3_to_km3(Convert.km3_to_meter3(3.1488)), 3.1488)
 	# speed
 	assert_eq(Convert.ms_to_kmh(Convert.kmh_to_ms(23.4)), 23.4)
 	assert_eq(Convert.kmh_to_mph(Convert.mph_to_kmh(100.0)), 100.0)

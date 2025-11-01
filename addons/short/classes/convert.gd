@@ -1,6 +1,15 @@
 # INFO:
 # - Hz and rps are the same thing, but one represents frequency, the other represents angular speed. Frequency is wave per second, angular speed is rotation per second.
 # - Torque (N*m) is the same unit as Energy (J).
+# - 1.0e2 = 100.0
+# - t - tera
+# - g - giga
+# - M - mega
+# - k - kilo
+# - d - deci
+# - c - centi
+# - m - milli
+# - u - micro
 # SOURCES:
 # - TU Sofia
 # 	- Velocity = Distance / Time
@@ -15,20 +24,34 @@
 # - https://www.omnicalculator.com
 # 	- Mechanical hp l aka imperial, the default.
 # TODO:
-# - volume
-# 	- l_to_lm
-# 	- ml_to_l
-# - area
-# 	- sqm_to_sqkm
-# 	- sqkm_to_sqm
-# 	- sqm_to_sqcm
-# 	- sqcm_to_sqm
 # - distance
+# 	- meter_to_um
+# 	- um_to_meter
 # 	- radius_to_circumference, circumference_to_radius
+# - area
+# 	- meter2_to_um2
+# 	- um2_to_meter2
+# 	- km2_to_megam2
+# 	- megam2_to_km2
+# - volume
+# 	- meter3_to_um3
+# 	- um3_to_meter3
+# 	- km3_to_megam3
+# 	- megam3_to_km3
+# 	- l_to_ml
+# 	- ml_to_l
+# 	- l_to_dl
+# 	- dl_to_l
+# 	- l_to_cl
+# 	- cl_to_l
+# - power
+# 	- w_to_milliwatt
+# 	- milliwatt_to_w
 # - other
 # 	- ms_sec_to_m - meters/sec in t seconds to meters
 # - Change torque to energy and multiple units to correspond to their own unit because unit incompatibility makes conversions inaccurate.
 # IDEAS:
+# - follow a consistent convention where there is no confusion between the prefix m for mega or for milli
 # - data size: mb_to_kb, kb_to_mb, mb_to_gb, gb_to_mb, mb_to_tb, tb_to_mb
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
 # - deg_to_dot_product
@@ -140,13 +163,37 @@ static func bin_to_dec(binary: String) -> int:
 	#endregion number base
 
 	#region distance
-## Converts a distance from [code]meters[code] to [code]millimeters[/code].
-static func meter_to_mm(meter: float) -> float:
-	return meter * 1000.0
+## Converts a distance from [code]meters[/code] to [code]decimeters[/code].
+static func meter_to_dm(meter: float) -> float:
+	return meter * 1.0e1
 
-## Converts a distance from [code]millimeters[code] to [code]meters[/code].
+## Converts a distance from [code]decimeters[/code] to [code]meters[/code].
+static func dm_to_meter(dm: float) -> float:
+	return dm / 1.0e1
+
+## Converts a distance from [code]meters[/code] to [code]centimeters[/code].
+static func meter_to_cm(meter: float) -> float:
+	return meter * 1.0e2
+
+## Converts a distance from [code]centimeters[/code] to [code]meters[/code].
+static func cm_to_meter(cm: float) -> float:
+	return cm / 1.0e2
+
+## Converts a distance from [code]meters[/code] to [code]millimeters[/code].
+static func meter_to_mm(meter: float) -> float:
+	return meter * 1.0e3
+
+## Converts a distance from [code]millimeters[/code] to [code]meters[/code].
 static func mm_to_meter(mm: float) -> float:
-	return mm / 1000.0
+	return mm / 1.0e3
+
+## Converts a distance from [code]meters[/code] to [code]kilometers[/code].
+static func meter_to_km(meter: float) -> float:
+	return meter / 1.0e3
+
+## Converts a distance from [code]kilometers[/code] to [code]meters[/code].
+static func km_to_meter(km: float) -> float:
+	return km * 1.0e3
 
 ## Converts a distance from [code]millimeters[/code] to [code]inches[/code].
 static func mm_to_inch(mm: float) -> float:
@@ -164,21 +211,13 @@ static func meter_to_inch(meter: float) -> float:
 static func inch_to_meter(inch: float) -> float:
 	return mm_to_meter(inch_to_mm(inch))
 
-## Converts a distance from [code]meters[/code] to [code]kilometers[/code].
-static func meter_to_km(meter: float) -> float:
-	return meter / 1000.0
-
-## Converts a distance from [code]kilometers[/code] to [code]meters[/code].
-static func km_to_meter(km: float) -> float:
-	return km * 1000.0
-
 ## Converts a distance from [code]kilometers[/code] to [code]megameters[/code].
 static func km_to_megameter(km: float) -> float:
-	return km / 1000.0
+	return km / 1.0e3
 
 ## Converts a distance from [code]megameters[/code] to [code]kilometers[/code].
 static func megameter_to_km(megameter: float) -> float:
-	return megameter * 1000.0
+	return megameter * 1.0e3
 
 ## Converts a distance from [code]kilometers[/code] to [code]astronomical units[/code].
 static func km_to_au(km: float) -> float:
@@ -196,6 +235,74 @@ static func radius_to_diameter(radius: float) -> float:
 static func diameter_to_radius(diameter: float) -> float:
 	return diameter / 2.0
 	#endregion distance
+
+	#region area
+## Converts an area from [code]meters^2[/code] to [code]decimeters^2[/code].
+static func meter2_to_dm2(meter2: float) -> float:
+	return meter2 * 1.0e2
+
+## Converts an area from [code]decimeters^2[/code] to [code]meters^2[/code].
+static func dm2_to_meter2(dm2: float) -> float:
+	return dm2 / 1.0e2
+
+## Converts an area from [code]meters^2[/code] to [code]centimeters^2[/code].
+static func meter2_to_cm2(meter2: float) -> float:
+	return meter2 * 1.0e4
+
+## Converts an area from [code]centimeters^2[/code] to [code]meters^2[/code].
+static func cm2_to_meter2(cm2: float) -> float:
+	return cm2 / 1.0e4
+
+## Converts an area from [code]meters^2[/code] to [code]millimeters^2[/code].
+static func meter2_to_mm2(meter2: float) -> float:
+	return meter2 * 1.0e6
+
+## Converts an area from [code]millimeters^2[/code] to [code]meters^2[/code].
+static func mm2_to_meter2(mm2: float) -> float:
+	return mm2 / 1.0e6
+
+## Converts an area from [code]meters^2[/code] to [code]kilometers^2[/code].
+static func meter2_to_km2(meter2: float) -> float:
+	return meter2 / 1.0e6
+
+## Converts an area from [code]kilometers^2[/code] to [code]meters^2[/code].
+static func km2_to_meter2(km2: float) -> float:
+	return km2 * 1.0e6
+	#endregion area
+
+	#region volume
+## Converts a volume from [code]meters^3[/code] to [code]decimeters^3[/code].
+static func meter3_to_dm3(meter3: float) -> float:
+	return meter3 * 1.0e3
+
+## Converts a volume from [code]decimeters^3[/code] to [code]meters^3[/code].
+static func dm3_to_meter3(dm3: float) -> float:
+	return dm3 / 1.0e3
+
+## Converts a volume from [code]meters^3[/code] to [code]centimeters^3[/code].
+static func meter3_to_cm3(meter3: float) -> float:
+	return meter3 * 1.0e6
+
+## Converts a volume from [code]centimeters^3[/code] to [code]meters^3[/code].
+static func cm3_to_meter3(cm3: float) -> float:
+	return cm3 / 1.0e6
+
+## Converts a volume from [code]meters^3[/code] to [code]millimeters^3[/code].
+static func meter3_to_mm3(meter3: float) -> float:
+	return meter3 * 1.0e9
+
+## Converts a volume from [code]millimeters^3[/code] to [code]meters^3[/code].
+static func mm3_to_meter3(mm3: float) -> float:
+	return mm3 / 1.0e9
+
+## Converts a volume from [code]meters^3[/code] to [code]kilometers^3[/code].
+static func meter3_to_km3(meter3: float) -> float:
+	return meter3 / 1.0e9
+
+## Converts a volume from [code]kilometers^3[/code] to [code]meters^3[/code].
+static func km3_to_meter3(km3: float) -> float:
+	return km3 * 1.0e9
+	#endregion volume
 
 	#region speed
 ## Converts a speed from [code]meters/second[/code] to [code]km/h[/code]. See also [url=https://www.youtube.com/watch?v=wFV3ycTIfn0]Converting m/s to km/h[/url].
@@ -270,11 +377,11 @@ static func kw_to_mw(kw: float) -> float:
 static func mw_to_kw(mw: float) -> float:
 	return mw * 1000.0
 
-## Converts a power from [code]hp[/code] to [code]watt[/code].
+## Converts a power from [code]watt[/code] to [code]hp[/code].
 static func w_to_hp(watt: float) -> float:
 	return watt / 745.6998716
 
-## Converts a power from [code]watt[/code] to [code]hp[/code].
+## Converts a power from [code]hp[/code] to [code]watt[/code].
 static func hp_to_w(hp: float) -> float:
 	return hp * 745.6998716
 
@@ -340,7 +447,7 @@ static func lbft_rpm_to_hp(tq_lbft: float, rpm: float) -> float:
 
 ## Converts from [code]Torque (nm)[/code] and [code]rpm[/code] to [code]Power (watt)[/code].
 static func nm_rpm_to_w(tq_nm: float, rpm: float) -> float:
-	return (tq_nm * rpm) / 9.5488
+	return (tq_nm * rpm) * 0.10471975511966
 
 ## Converts from [code]Power (watt)[/code] and [code]Time (sec)[/code] to [code]Energy (joule)[/code].
 static func w_sec_to_j(watt: float, sec: float) -> float:

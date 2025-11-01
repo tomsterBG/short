@@ -1,6 +1,8 @@
 # INFO:
 # - Distance (m) = Velocity (m/s) * Time (s)
 # - Distance (m) = Initial distance (m) + Initial velocity (m/s) * Time (s) + ((Acceleration (m/s^2) * Time^2 (s^2)) / (2))
+# - Distance (m) = Area (m^2) / Distance (m)
+# - Area (m^2) = Distance (m) * Distance (m)
 # - Velocity (m/s) = Distance (m) / Time (s)
 # - Velocity (m/s) = Initial velocity (m/s) + Acceleration (m/s^2) * Time (s)
 # 	- For constant acceleration.
@@ -17,7 +19,9 @@
 # - Energy (J) = Power (W) * Time (s)
 # - Kinetic energy (J = kg * m^2/s^2) = (1/2) * Mass (kg) * Velocity^2 ((m/s)^2)
 # - Potential energy (J) = Mass (kg) * Gravity (g) * Height (m)
-# - Power (W = J/s =  kg * m^2/s^3) = Work (J) / Time (s)
+# - Power (W = J/s = kg * m^2/s^3) = Work (J) / Time (s)
+# - Power (W) = Potential (V) * Current (A)
+# - Potential (V) = Current (A) * Resistance (ohm)
 # TODO:
 # - kinematics
 # 	- speed_for_time_to_distance(meters_second, seconds)
