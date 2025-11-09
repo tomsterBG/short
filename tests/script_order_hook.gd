@@ -21,6 +21,7 @@ var test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
 	# classes:
 	convert = [],
+	date_time = [],
 	helper = [],
 	math = [],
 	physics = [],
