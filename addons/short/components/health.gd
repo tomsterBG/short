@@ -242,6 +242,10 @@ func make_shield(shield_health := max_health) -> Health:
 
 
 #region internal
+func _init(p_max_health: float = max_health) -> void:
+	max_health = p_max_health
+	health = p_max_health
+
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
 	if are_shields_cyclic():

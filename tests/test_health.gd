@@ -59,6 +59,20 @@ func test_signal_not_emitted():
 	assert_signal_not_emitted(health, "max_health_changed")
 	assert_signal_not_emitted(health, "health_reached_max")
 
+func test_init():
+	var new_health := Health.new(150.0)
+	assert_eq(new_health.health, 150.0, "Health is 150.")
+	assert_eq(new_health.max_health, 150.0, "Max_health is 150.")
+	new_health.free()
+	new_health = Health.new(50.0)
+	assert_eq(new_health.health, 50.0, "Health is 50.")
+	assert_eq(new_health.max_health, 50.0, "Max_health is 50.")
+	new_health.free()
+	new_health = Health.new(-50.0)
+	assert_eq(new_health.health, 0.0, "Health is 0.")
+	assert_eq(new_health.max_health, 0.0, "Max_health is 0.")
+	new_health.free()
+
 func test_health_ratio_and_percent():
 	health.max_health = 50.0
 	assert_eq(health.get_health_ratio(), 1.0, "Full health.")
