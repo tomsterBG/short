@@ -106,6 +106,9 @@ class HealResult:
 ## If this is [code]true[/code], it emits [signal died], but only if it was [code]false[/code]. See [method kill] and [method revive].
 var is_dead := false: set = set_is_dead
 
+## Syntax sugar for ![member is_dead].
+var is_alive: bool: get = get_is_alive
+
 ## Optional. If there's a shield, all [method damage] first goes through it. Useful for games with shields that guard your [member health]. See [method make_shield].
 ##[br][br][b]Note:[/b] The shield can have its own shield! ([code]caution[/code]: don't make circular dependencies)
 @export var shield: Health: set = set_shield
@@ -159,6 +162,9 @@ func get_health_percent() -> float:
 func get_health_ratio() -> float:
 	if max_health == 0.0: return 0.0
 	return health / max_health
+
+func get_is_alive() -> bool:
+	return !is_dead
 
 ## Returns unapplied damage after flat and percent resistances in the order of [member resistance_order]. Respects [member resistance_enabled]. Used by [method damage].
 func get_damage_after_resistance(value: float) -> float:

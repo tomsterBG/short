@@ -25,6 +25,7 @@ func test_initial_values():
 	assert_eq(health.max_health, 100.0, "Max_health is 100.")
 	assert_eq(health.can_die, true, "Can_die is true.")
 	assert_eq(health.is_dead, false, "Is_dead is false.")
+	assert_eq(health.is_alive, true, "Is_alive is true.")
 	assert_eq(health.resistance_enabled, false, "Resistance is off.")
 	assert_eq(health.resistance_flat, 0.0, "Flat resistance is 0.")
 	assert_eq(health.resistance_percent, 0.0, "Percent resistance is 0.")
@@ -144,7 +145,11 @@ func test_health_reached_max():
 
 func test_is_dead():
 	health.health = 0.0
-	assert_eq(health.is_dead, true, "Health is dead.")
+	assert_true(health.is_dead, "Health is dead.")
+
+func test_is_alive():
+	health.health = 0.0
+	assert_false(health.is_alive, "Health isn't alive.")
 
 func test_died():
 	health.health = 0.0
@@ -156,10 +161,12 @@ func test_died():
 func test_kill():
 	health.kill()
 	assert_true(health.is_dead, "Health is dead.")
+	assert_false(health.is_alive, "Health isn't alive.")
 	assert_eq(health.health, health.max_health, "Health is full.")
 	assert_signal_emit_count(health, "died", 1, "Health died.")
 	health.kill(true)
 	assert_true(health.is_dead, "Health was already dead.")
+	assert_false(health.is_alive, "Health was already not alive.")
 	assert_eq(health.health, 0.0, "Health is empty.")
 	assert_signal_emit_count(health, "died", 1, "Health did not die.")
 
@@ -167,6 +174,7 @@ func test_revive():
 	health.kill()
 	health.revive()
 	assert_false(health.is_dead, "Health isn't dead.")
+	assert_true(health.is_alive, "Health is alive.")
 	assert_eq(health.health, health.max_health, "Health is full.")
 	health.kill(true)
 	assert_eq(health.health, 0.0, "Health is empty.")
@@ -178,16 +186,19 @@ func test_kill_revive_kill():
 	health.revive()
 	health.kill()
 	assert_true(health.is_dead, "Health is dead.")
+	assert_false(health.is_alive, "Health isn't alive.")
 	assert_signal_emit_count(health, "died", 2, "Health died twice.")
 
 func test_can_die():
 	health.can_die = false
 	health.kill()
 	assert_false(health.is_dead, "Health can't die.")
+	assert_true(health.is_alive, "Health is alive.")
 	assert_eq(health.health, health.max_health, "Health is full.")
 	assert_signal_emit_count(health, "died", 0, "Health did not die.")
 	health.kill(true)
 	assert_false(health.is_dead, "Health can't die.")
+	assert_true(health.is_alive, "Health is alive.")
 	assert_eq(health.health, 0.0, "Health is empty.")
 	assert_signal_emit_count(health, "died", 0, "Health did not die.")
 
