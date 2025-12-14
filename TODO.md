@@ -53,3 +53,11 @@ Specific scripts that are game-specific and aren't suitable for this because you
 It must be well distinct that these scripts are supposed to be edited by you per-game and aren't just black boxes.
 
 They support good coding practices.
+
+# Ideas
+
+## CameraZoom
+
+Holds a simple variable that can increase or decrease when you call zoom_in() and zoom_out().
+The idea is that the camera would hold a reference to this zoom component and use its variable in its own calculations.
+This may just be useless because the component is too narrow and of low use.

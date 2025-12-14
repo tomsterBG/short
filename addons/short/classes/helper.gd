@@ -11,6 +11,7 @@
 # 	- a matrixify() counterpart to turn a flat array into a matrix or something complex
 # - remove_duplicates(array: Array) - removes duplicate array values
 # - wrap_text(text: String, line_length: int)
+# - Random.get_total_weight() or sum_array()
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.
@@ -135,6 +136,14 @@ static func get_lines_in_file(path: String) -> int:
 	#endregion get_
 
 	#region is_
+## Returns [code]true[/code] if the given string is affirmative.
+static func is_affirmative(string: String) -> bool:
+	return ["yes", "y", "true", "1"].has(string)
+
+## Returns [code]true[/code] if the given string is negative.
+static func is_negative(string: String) -> bool:
+	return ["no", "n", "false", "0"].has(string)
+
 ## Returns [code]true[/code] if the given string is a number in binary.
 static func is_binary(binary: String) -> bool:
 	for character in binary:

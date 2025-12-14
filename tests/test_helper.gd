@@ -133,6 +133,26 @@ func test_get_lines_in_file():
 	lines = Helper.get_lines_in_file("res://tests/files/79 line text.md")
 	assert_eq(lines, 79, "Lines are 79.")
 
+func test_is_affirmative():
+	assert_eq(Helper.is_affirmative("yes"), true, "Affirmative.")
+	assert_eq(Helper.is_affirmative("no"), false, "Not affirmative.")
+	assert_eq(Helper.is_affirmative("y"), true, "Affirmative.")
+	assert_eq(Helper.is_affirmative("n"), false, "Not affirmative.")
+	assert_eq(Helper.is_affirmative("true"), true, "Affirmative.")
+	assert_eq(Helper.is_affirmative("false"), false, "Not affirmative.")
+	assert_eq(Helper.is_affirmative("1"), true, "Affirmative.")
+	assert_eq(Helper.is_affirmative("0"), false, "Not affirmative.")
+
+func test_is_negative():
+	assert_eq(Helper.is_negative("no"), true, "Negative.")
+	assert_eq(Helper.is_negative("yes"), false, "Not negative.")
+	assert_eq(Helper.is_negative("n"), true, "Negative.")
+	assert_eq(Helper.is_negative("y"), false, "Not negative.")
+	assert_eq(Helper.is_negative("false"), true, "Negative.")
+	assert_eq(Helper.is_negative("true"), false, "Not negative.")
+	assert_eq(Helper.is_negative("0"), true, "Negative.")
+	assert_eq(Helper.is_negative("1"), false, "Not negative.")
+
 func test_is_binary():
 	assert_eq(Helper.is_binary("100111011101100"), true, "A number in binary.")
 	assert_eq(Helper.is_binary("100O1101O101100"), false, "Not a number in binary.")
