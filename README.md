@@ -28,21 +28,27 @@ Before even stepping forward, you should know why you're using this.
 
 ## Shorter code
 
+Use the library if it has what you need.
+This delegates code from your project to the library, speeding up the iterative process and freeing up your time to focus on other things.
+One problem: Your skills may diminish 
+
+**Note:** If you're new to programming, this might be too much of a power tool for you. Consider using it later.
+
 Personally i don't find writing to be a problem. Autocompletion exists.
-However when reading code, i would do everything i can to help my brain see less, because that lets me focus on what's truly important.
+However, when reading non-library code, i would do everything i can to help my brain see less, because that lets me focus on what's truly important.
 I don't want to figure out...
-...a math formula and every time i read it again, ask myself "What does this do here?".
+...a math formula, and every time i read it again, ask myself "What does this do here?".
 ...how to access files every time i need file access.
 All that slows me down.
 
 Long story *short*, hehe, figuring things out once is faster than dealing with them multiple times.
-- **Note:** If you're new to programming, this might be too much of a power tool for you. Consider using it later.
+I say this from the frame of being this library's creator. If you want these benefits, you have to extend my code or write your own.
 
 # How to use?
 
 Download the project and delete anything you don't need.
-- Everything you need is in two folders: classes and components. Everything else is just helping me develop this project.
-- Careful with deleting things in the two folders. Some scripts depend on each other. You can see which script depends on which by looking at `script_order_hook.gd`.
+- Everything you need is `addons/short/`. Everything else is just helping me develop this project.
+- Careful with deleting things in the two folders. Some scripts depend on each other. You can see which script depends on which by looking at `tests/script_order_hook.gd`.
 
 # License
 
@@ -64,17 +70,19 @@ Each script must follow rules that make it extendable, simple and understandable
 
 **Regions:**
 - Strict order of regions, wrapped by region comments and separated by 2 lines.
-	- Order: signals, enums, classes, constants, variables, setters, getters, methods, virtual methods, tests, internal.
+	- Order: signals, enums, classes, constants, variables, setters, getters, methods, virtual, tests, internal.
 - Everything within a region, with some exceptions, is to be separated by 1 line.
 - Each nested region comment must be indented correctly.
 
 **Other:**
 - Full in-engine documentation with doc comments.
+	- If documentation contains code examples, they must be asserted in tests.
 - Strict order of comments at the beginning of a script.
 	- Order: IMPORTANT, INFO, NOTE, SOURCES, TODO, IDEAS, BAD IDEAS.
-- Getter functions usually don't need a variable associated with them.
+- Getter functions:
 	- This getter is useless: `get_health() -> float: return health`.
-	- This doesn't need a health_ratio var: `get_health_ratio() -> float: return health / max_health`.
+	- This getter is syntax sugar: `get_is_alive() -> bool: return !is_dead`.
+	- This getter is syntax sugar: `get_health_ratio() -> float: return health / max_health`.
 - If a func returns void, it mutates state. If it returns non-void, it doesn't mutate state, with some exceptions.
 	- Exceptions are recognized by their name.
 	- If the func returns self or a class inside self, it mutates state. Like `Health.damage()`.
@@ -92,4 +100,14 @@ Each script must follow rules that make it extendable, simple and understandable
 	- If a test makes an assumption, that wasn't asserted earlier, put a WARNING comment.
 - If something is untested, add "@experimental: Untested." where it is defined, not where it is tested.
 
-If in doubt, just write code however you want. Then look at how i've done it in other scripts and refactor your code. The health script is by far the best representative of how it should be done.
+If in doubt, just write code however you want. Then look at how i've done it in other scripts and refactor your code. The `health` script is by far the best representative of how it should be done.
+
+# Principles and wisdom
+
+A library is used, not read.
+Thus it is optimized for easier usage from the outside, containing documentation and syntax sugar.
+
+Make as few assumptions as possible about a class' usage context.
+If `Health` expects to be a child of, or work with a `Character`, this is very bad design.
+This is why all references are `@export` variables.
+And why `Health` is so generic, that it doesn't care what you use it for.

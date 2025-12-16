@@ -61,3 +61,7 @@ They support good coding practices.
 Holds a simple variable that can increase or decrease when you call zoom_in() and zoom_out().
 The idea is that the camera would hold a reference to this zoom component and use its variable in its own calculations.
 This may just be useless because the component is too narrow and of low use.
+
+## LogicGate
+
+Choose type and number of inputs, evaluate output.
