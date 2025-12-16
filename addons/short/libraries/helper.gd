@@ -81,8 +81,9 @@ static func get_lines_in_file(path: String) -> int:
 	file.close()
 	return lines
 
-## Returns the [Resource]'s file name, excluding the [code].tres[/code] extension.
-static func get_resource_filename(resource: Resource) -> String:
+## Returns a [Resource]'s file system name. If [param include_extension] is [code]true[/code], includes the file extension.
+static func get_resource_filename(resource: Resource, include_extension := false) -> String:
+	if include_extension: return resource.resource_path.get_file()
 	return resource.resource_path.get_basename().get_file()
 #endregion getters
 

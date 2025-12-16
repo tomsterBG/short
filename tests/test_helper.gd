@@ -136,6 +136,7 @@ func test_get_lines_in_file():
 func test_get_resource_filename():
 	var resource := ResourceLoader.load("res://tests/files/my capsule shape.tres")
 	assert_eq(Helper.get_resource_filename(resource), "my capsule shape", 'Name is "my capsule shape".')
+	assert_eq(Helper.get_resource_filename(resource, true), "my capsule shape.tres", 'Name is "my capsule shape.tres".')
 
 func test_is_affirmative():
 	assert_true(Helper.is_affirmative("yes"), "Affirmative.")
