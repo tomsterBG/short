@@ -13,7 +13,7 @@ var test_scene: Node
 #endregion variables
 
 
-#region virtual methods
+#region virtual
 func before_all():
 	test_scene = preload("res://tests/scenes/test_scene.tscn").instantiate()
 	add_child(test_scene, IS_NAME_READABLE)
@@ -21,7 +21,7 @@ func before_all():
 
 func after_all():
 	test_scene.free()
-#endregion virtual methods
+#endregion virtual
 
 
 #region tests
@@ -134,24 +134,26 @@ func test_get_lines_in_file():
 	assert_eq(lines, 79, "Lines are 79.")
 
 func test_is_affirmative():
-	assert_eq(Helper.is_affirmative("yes"), true, "Affirmative.")
-	assert_eq(Helper.is_affirmative("no"), false, "Not affirmative.")
-	assert_eq(Helper.is_affirmative("y"), true, "Affirmative.")
-	assert_eq(Helper.is_affirmative("n"), false, "Not affirmative.")
-	assert_eq(Helper.is_affirmative("true"), true, "Affirmative.")
-	assert_eq(Helper.is_affirmative("false"), false, "Not affirmative.")
-	assert_eq(Helper.is_affirmative("1"), true, "Affirmative.")
-	assert_eq(Helper.is_affirmative("0"), false, "Not affirmative.")
+	assert_true(Helper.is_affirmative("yes"), "Affirmative.")
+	assert_true(Helper.is_affirmative("y"), "Affirmative.")
+	assert_true(Helper.is_affirmative("true"), "Affirmative.")
+	assert_true(Helper.is_affirmative("1"), "Affirmative.")
+	
+	assert_false(Helper.is_affirmative("no"), "Not affirmative.")
+	assert_false(Helper.is_affirmative("n"), "Not affirmative.")
+	assert_false(Helper.is_affirmative("false"), "Not affirmative.")
+	assert_false(Helper.is_affirmative("0"), "Not affirmative.")
 
 func test_is_negative():
-	assert_eq(Helper.is_negative("no"), true, "Negative.")
-	assert_eq(Helper.is_negative("yes"), false, "Not negative.")
-	assert_eq(Helper.is_negative("n"), true, "Negative.")
-	assert_eq(Helper.is_negative("y"), false, "Not negative.")
-	assert_eq(Helper.is_negative("false"), true, "Negative.")
-	assert_eq(Helper.is_negative("true"), false, "Not negative.")
-	assert_eq(Helper.is_negative("0"), true, "Negative.")
-	assert_eq(Helper.is_negative("1"), false, "Not negative.")
+	assert_true(Helper.is_negative("n"), "Negative.")
+	assert_true(Helper.is_negative("false"), "Negative.")
+	assert_true(Helper.is_negative("0"), "Negative.")
+	assert_true(Helper.is_negative("no"), "Negative.")
+	
+	assert_false(Helper.is_negative("yes"), "Not negative.")
+	assert_false(Helper.is_negative("y"), "Not negative.")
+	assert_false(Helper.is_negative("true"), "Not negative.")
+	assert_false(Helper.is_negative("1"), "Not negative.")
 
 func test_is_binary():
 	assert_eq(Helper.is_binary("100111011101100"), true, "A number in binary.")

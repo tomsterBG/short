@@ -89,7 +89,7 @@ func simulate_regen(delta: float) -> void:
 #endregion methods
 
 
-#region internal
+#region virtual
 func _on_health_changed(difference: float) -> void:
 	if regen_pause_when_damaged and difference < 0.0: pause_regen()
 
@@ -102,4 +102,4 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if !health:
 		warnings.append("Health is null.")
 	return warnings
-#endregion internal
+#endregion virtual

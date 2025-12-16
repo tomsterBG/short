@@ -10,7 +10,7 @@ extends GutHookScript
 
 #region constants
 const IS_DEEP = true
-#region constants
+#endregion constants
 
 
 #region variables
@@ -19,20 +19,20 @@ var path_suffix = ".gd"
 
 var test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
-	# classes:
-	convert = [],
+	# components:
+	health = [&"convert"],
+	health_regen = [&"health", &"convert"],
+	# libraries:
+	convert = [&"helper"],
 	date_time = [],
 	helper = [],
 	math = [],
 	physics = [],
-	# components:
-	health = [&"convert"],
-	health_regen = [&"health", &"convert"],
 }
 #endregion variables
 
 
-#region methods
+#region getters
 func get_ordered_tests() -> Array[StringName]:
 	var ordered_tests: Array[StringName]
 	
@@ -51,6 +51,14 @@ func get_ordered_tests() -> Array[StringName]:
 	print("ordered_tests = ", ordered_tests)
 	return ordered_tests
 
+func get_test_paths(tests: Array[StringName]) -> Array[StringName]:
+	for idx in range(tests.size()):
+		tests[idx] = path_prefix + tests[idx] + path_suffix
+	return tests
+#endregion getters
+
+
+#region methods
 func are_tests_ordered_correctly(ordered_tests: Array[StringName]) -> bool:
 	var tests := ordered_tests.duplicate(IS_DEEP)
 	tests.reverse()
@@ -63,15 +71,10 @@ func are_tests_ordered_correctly(ordered_tests: Array[StringName]) -> bool:
 			if dependency_idx < idx:
 				return false
 	return true
-
-func get_test_paths(tests: Array[StringName]) -> Array[StringName]:
-	for idx in range(tests.size()):
-		tests[idx] = path_prefix + tests[idx] + path_suffix
-	return tests
 #endregion methods
 
 
-#region virtual methods
+#region virtual
 func run():
 	var ordered_tests := get_ordered_tests()
 	if are_tests_ordered_correctly(ordered_tests):
@@ -88,4 +91,4 @@ func run():
 	gut.get_test_collector().clear()
 	for test in ordered_tests:
 		gut.add_script(test)
-#endregion virtual methods
+#endregion virtual

@@ -63,7 +63,7 @@ const MARS_MASS := 6.41693e23
 #endregion constants
 
 
-#region methods
+#region getters
 ## Returns gravity in [code]meters/second^2[/code] at [param height] from sea level in [code]meters[/code]. Ignores spin.
 static func get_earth_gravity(height_m: float) -> float:
 	return EARTH_GRAVITY * pow((EARTH_RADIUS) / (EARTH_RADIUS + height_m), 2)
@@ -79,4 +79,4 @@ static func get_distance_at_constant_speed(speed_ms: float, time_sec: float) -> 
 ## Returns velocity in [code]meters/sec[/code] after some time under constant acceleration.
 static func get_velocity_at_constant_acceleration(initial_velocity_ms: float, acceleration_ms2: float, time_sec: float) -> float:
 	return initial_velocity_ms + acceleration_ms2 * time_sec
-#endregion methods
+#endregion getters

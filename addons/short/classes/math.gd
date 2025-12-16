@@ -27,6 +27,13 @@ const PHI = (1.0 + sqrt(5)) / 2.0
 #endregion constants
 
 
+#region getters
+## Returns [param vector_a] projected on [param vector_b].
+static func get_projected_vector(vector_a, vector_b):
+	return vector_b.normalized() * vector_a.dot(vector_b.normalized())
+#endregion getters
+
+
 #region methods
 	#region geometry
 ## Returns the area of a circle.
@@ -89,10 +96,6 @@ static func triangle_area_from_two_sides_and_angle_between(a: float, b: float, a
 static func triangle_area_from_side_and_adjacent_angles(side_between: float, angle_a_rad: float, angle_b_rad: float) -> float:
 	return pow(side_between, 2) * sin(angle_a_rad) * sin(angle_b_rad) / (2.0 * sin(angle_a_rad + angle_b_rad))
 	#endregion geometry
-
-## Returns [param vector_a] projected on [param vector_b].
-static func get_projected_vector(vector_a, vector_b):
-	return vector_b.normalized() * vector_a.dot(vector_b.normalized())
 
 ## Returns [code]true[/code] if [param vector_a]'s direction relative to [param vector_b] is within [param max_angle_rad] radians.
 static func is_vector2_within_angle(vector_a: Vector2, vector_b: Vector2, max_angle_rad: float) -> bool:

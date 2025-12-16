@@ -63,6 +63,7 @@
 ##
 ## Available in all scripts without any setup.
 ##[br][br]Easily convert between units while having more readable code.
+##[br][br][b]Note:[/b] This assumes that the [Helper] class exists.
 
 @abstract class_name Convert extends Node
 
@@ -153,8 +154,9 @@ static func percent_to_unit(percent: float) -> float:
 	#endregion proportion
 
 	#region number base
-## @experimental: The output may change to float and the input to something else.
+## Converts an [code]unsigned binary integer[/code] to an [code]unsigned decimal integer[/code]. Returns [code]-1[/code] if the input is not binary. See [method Helper.is_binary].
 static func bin_to_dec(binary: String) -> int:
+	if !Helper.is_binary(binary): return -1
 	binary = binary.reverse()
 	var decimal := 0
 	for idx in range(binary.length()):

@@ -137,10 +137,12 @@ static func get_lines_in_file(path: String) -> int:
 
 	#region is_
 ## Returns [code]true[/code] if the given string is affirmative.
+##[br][br][b]Note:[/b] An affirmative string is [code]"yes", "y", "true", "1"[/code].
 static func is_affirmative(string: String) -> bool:
 	return ["yes", "y", "true", "1"].has(string)
 
 ## Returns [code]true[/code] if the given string is negative.
+##[br][br][b]Note:[/b] A negative string is [code]"no", "n", "false", "0"[/code].
 static func is_negative(string: String) -> bool:
 	return ["no", "n", "false", "0"].has(string)
 

@@ -2,6 +2,8 @@
 # Make it performant and useful in many places.
 # Type all variables, parameters and returns.
 # Keep complete documentation.
+# NOTE:
+# A long chain of shields may cause a stack overflow. Fixing this may not be worth it in benefit/complexity.
 # TODO:
 # IDEAS:
 # - More signals: shield_changed(is_cyclic: bool).
@@ -199,10 +201,10 @@ func heal(value: float) -> HealResult:
 	var old_health = health
 	health += heal_after_clamp
 	
-	var heal_result := HealResult.new()
-	heal_result.healed_health = health - old_health
-	heal_result.remaining_heal = heal_after_clamp - heal_result.healed_health
-	return heal_result
+	var result := HealResult.new()
+	result.healed_health = health - old_health
+	result.remaining_heal = heal_after_clamp - result.healed_health
+	return result
 
 ## Kills this [Health]. If [param should_health_be_zero] is [code]true[/code], [member health] will be set to [code]0[/code]. If [param recursive] is [code]true[/code], each [member shield] will also call [method kill].
 func kill(should_health_be_zero := false, recursive := false) -> void:
@@ -229,20 +231,18 @@ func are_shields_cyclic() -> bool:
 		current_shield = current_shield.shield
 	return false
 
-## Makes a new [member shield] as child of [Health]. Sets its [member can_die] to [code]false[/code] because shields are supposed to lose health and not die. The parameter sets [member max_health] and [member health].
+## Makes a new [member shield] as child of [Health] and returns it. Sets its [member can_die] to [code]false[/code] because shields are supposed to lose health and not die. The parameter sets [member max_health] and [member health].
 func make_shield(shield_health := max_health) -> Health:
-	var new_shield := Health.new()
+	var new_shield := Health.new(shield_health)
 	shield = new_shield
 	add_child(new_shield)
 	new_shield.can_die = false
-	new_shield.max_health = shield_health
-	new_shield.health = new_shield.max_health
 	return new_shield
 #endregion methods
 
 
-#region internal
-func _init(p_max_health: float = max_health) -> void:
+#region virtual
+func _init(p_max_health := max_health) -> void:
 	max_health = p_max_health
 	health = p_max_health
 
@@ -251,4 +251,4 @@ func _get_configuration_warnings() -> PackedStringArray:
 	if are_shields_cyclic():
 		warnings.append("Cyclic shields.")
 	return warnings
-#endregion internal
+#endregion virtual

@@ -7,11 +7,14 @@
 
 extends GutTest
 
+
+#region variables
 var health: Health
 var health_regen: HealthRegen
+#endregion variables
 
 
-#region virtual methods
+#region virtual
 func before_each():
 	health = Health.new()
 	health_regen = HealthRegen.new()
@@ -21,7 +24,7 @@ func before_each():
 	watch_signals(health_regen)
 	
 	health_regen.health = health
-#endregion virtual methods
+#endregion virtual
 
 
 #region tests
@@ -107,4 +110,14 @@ func test_regen_pause_when_damaged():
 	assert_eq(health_regen.get_pause_time_left(), 0.0, "Regen is not paused.")
 	health_regen.simulate_regen(1.0)
 	assert_eq(health.health, health.max_health, "Fully regenerated.")
+
+func test_health_goes_null():
+	health_regen.regen_per_second = 10.0
+	var disposable_health = Health.new()
+	health_regen.health = disposable_health
+	disposable_health.free()
+	assert_false(is_instance_valid(disposable_health), 'Health is "previously freed".')
+	var result := health_regen.simulate_regen(1.0)
+	assert_false(result.success, "Failed, health is freed.")
+	assert_null(result.heal_result, "No healing occurred.")
 #endregion tests

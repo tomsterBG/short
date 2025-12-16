@@ -8,15 +8,23 @@
 
 extends GutTest
 
+
+#region constants
+const IS_RECURSIVE = true
+#endregion constants
+
+
+#region variables
 var health: Health
+#endregion variables
 
 
-#region virtual methods
+#region virtual
 func before_each():
 	health = Health.new()
 	add_child_autofree(health)
 	watch_signals(health)
-#endregion virtual methods
+#endregion virtual
 
 
 #region tests
@@ -331,12 +339,12 @@ func _test_shield(shield: Health):
 	health.resistance_percent = 25.0
 	assert_eq(shield.health, 50.0, "Clamp health down to max_health to stay within limits.")
 	assert_false(health.are_shields_cyclic(), "Shields are not cyclic.")
-	var result := health.damage(20.0, true)
+	var result := health.damage(20.0, IS_RECURSIVE)
 	assert_eq(shield.health, 40.0, "Absorb 10 damage, take 10.")
 	assert_eq(health.health, 100.0, "Don't take damage if the shield can absorb it.")
 	assert_eq(result.shield_result.taken_damage, 10.0, "Shield took 10 damage.")
 	assert_eq(result.shield_result.remaining_damage, 0.0, "No remaining damage past the shield.")
-	result = health.damage(80.0, true)
+	result = health.damage(80.0, IS_RECURSIVE)
 	assert_eq(shield.health, 0.0, "Absorb 10 damage, take 40, 30 remains.")
 	assert_eq(health.health, 100.0 - 12.5, "Absorb 7.5 percent and 10 flat damage, take 12.5 damage.")
 	assert_eq(result.shield_result.taken_damage, 40.0, "Shield took 40 damage.")
@@ -356,14 +364,14 @@ func test_shielded_shield():
 	shield2.max_health = 20.0
 	shield1.max_health = 50.0
 	assert_false(health.are_shields_cyclic(), "Shields are not cyclic.")
-	health.damage(30.0, true)
+	health.damage(30.0, IS_RECURSIVE)
 	assert_true(shield2.is_dead, "Last shield died.")
 	assert_eq(shield1.health, shield1.max_health - 10.0, "First shield took 10 damage.")
 	assert_eq(health.health, health.max_health, "Health is untouched.")
 	shield2.revive()
 	shield2.heal(shield2.max_health)
 	shield1.heal(shield1.max_health)
-	health.damage(80.0, true)
+	health.damage(80.0, IS_RECURSIVE)
 	assert_true(shield2.is_dead, "Last shield died.")
 	assert_true(shield1.is_dead, "First shield died.")
 	assert_eq(health.health, health.max_health - 10.0, "Health took 10 damage.")
@@ -378,8 +386,10 @@ func test_cyclic_shields():
 	watch_signals(shield2)
 	shield1.shield = shield2
 	shield2.shield = health
-	assert_true(health.are_shields_cyclic(), "Shields are cyclic.")
-	health.damage(1.0)
+	assert_false(health.are_shields_cyclic(), "Shields aren't cyclic.")
+	health.damage(1.0, IS_RECURSIVE)
+	health.kill(false, IS_RECURSIVE)
+	health.revive(false, IS_RECURSIVE)
 	pass_test("The stack didn't overflow.")
 
 func test_kill_recursive():
@@ -390,7 +400,7 @@ func test_kill_recursive():
 	assert_false(health.is_dead, "Health isn't dead.")
 	assert_false(shield1.is_dead, "Shield1 isn't dead.")
 	assert_false(shield2.is_dead, "Shield2 isn't dead.")
-	shield1.kill(false, true)
+	shield1.kill(false, IS_RECURSIVE)
 	assert_false(health.is_dead, "Health isn't dead.")
 	assert_true(shield1.is_dead, "Shield1 is dead.")
 	assert_true(shield2.is_dead, "Shield2 is dead.")
@@ -400,12 +410,20 @@ func test_revive_recursive():
 	shield1.can_die = true
 	var shield2 := shield1.make_shield()
 	shield2.can_die = true
-	health.kill(false, true)
+	health.kill(false, IS_RECURSIVE)
 	assert_true(health.is_dead, "Health is dead.")
 	assert_true(shield1.is_dead, "Shield1 is dead.")
 	assert_true(shield2.is_dead, "Shield2 is dead.")
-	shield1.revive(false, true)
+	shield1.revive(false, IS_RECURSIVE)
 	assert_true(health.is_dead, "Health is dead.")
 	assert_false(shield1.is_dead, "Shield1 isn't dead.")
 	assert_false(shield2.is_dead, "Shield2 isn't dead.")
+
+func test_many_shields():
+	var start_time := Time.get_ticks_usec()
+	var current_shield := health.make_shield()
+	for i in 1016:
+		current_shield = current_shield.make_shield()
+	health.damage(10.0, IS_RECURSIVE)
+	assert_lt(Time.get_ticks_usec() - start_time, 20_000, "Performance didn't explode.")
 #endregion tests
