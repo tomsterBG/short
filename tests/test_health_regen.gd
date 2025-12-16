@@ -76,16 +76,21 @@ func test_regen_per_second():
 	health_regen.regen_in__process = false
 	health_regen.regen_per_second = 90.0
 	health.damage(90)
-	health_regen.simulate_regen(0.5)
+	var result := health_regen.simulate_regen(0.5)
+	assert_true(result.success, "Regenerated.")
+	assert_eq(result.heal_result.healed_health, 45.0, "Regenerated 45.")
 	assert_eq(health.health, 55.0, "Half regenerated.")
-	health_regen.simulate_regen(0.5)
+	result = health_regen.simulate_regen(0.5)
+	assert_eq(result.heal_result.healed_health, 45.0, "Regenerated 45.")
 	assert_eq(health.health, health.max_health, "Fully regenerated.")
 
 func test_regen_enabled():
 	health_regen.regen_enabled = false
 	health_regen.regen_per_second = 80.0
 	health.damage(80)
-	health_regen.simulate_regen(100.0)
+	var result := health_regen.simulate_regen(100.0)
+	assert_false(result.success, "Didn't regenerate.")
+	assert_null(result.heal_result, "No heal result.")
 	assert_eq(health.health, 20.0, "Health didn't change.")
 
 func test_regen_pause_for():

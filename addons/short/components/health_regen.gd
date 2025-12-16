@@ -15,6 +15,16 @@
 class_name HealthRegen extends Node
 
 
+#region classes
+## The result returned by [method HealthRegen.simulate_regen].
+class SimulateRegenResult:
+	## The success or failure of the simulation.
+	var success: bool
+	## The result from calling [method Health.heal].
+	var heal_result: Health.HealResult
+#endregion classes
+
+
 #region variables
 ## The [Health] this regeneration will work with.
 @export var health: Health: set = set_health
@@ -82,10 +92,16 @@ func is_regen_paused() -> bool:
 	return get_time_since_pause() < Convert.sec_to_msec(regen_pause_for)
 
 ## Simulate regen for [param delta] seconds.
-func simulate_regen(delta: float) -> void:
-	if !health or !regen_enabled or regen_per_second == 0.0: return
-	health.heal(regen_per_second * (delta - get_pause_time_left()))
+func simulate_regen(delta: float) -> SimulateRegenResult:
+	var result := SimulateRegenResult.new()
+	if !health or !regen_enabled or regen_per_second == 0.0:
+		result.success = false
+		return result
+	
+	result.success = true
+	result.heal_result = health.heal(regen_per_second * (delta - get_pause_time_left()))
 	regen_paused_at -= int(Convert.sec_to_msec(delta))
+	return result
 #endregion methods
 
 

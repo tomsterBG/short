@@ -133,6 +133,10 @@ func test_get_lines_in_file():
 	lines = Helper.get_lines_in_file("res://tests/files/79 line text.md")
 	assert_eq(lines, 79, "Lines are 79.")
 
+func test_get_resource_filename():
+	var resource := ResourceLoader.load("res://tests/files/my capsule shape.tres")
+	assert_eq(Helper.get_resource_filename(resource), "my capsule shape", 'Name is "my capsule shape".')
+
 func test_is_affirmative():
 	assert_true(Helper.is_affirmative("yes"), "Affirmative.")
 	assert_true(Helper.is_affirmative("y"), "Affirmative.")

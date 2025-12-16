@@ -150,7 +150,11 @@ func set_resistance_percent(value: float) -> void:
 	resistance_percent = clamp(value, 0.0, 100.0)
 
 func set_shield(value: Health) -> void:
+	var old_shield := shield
 	shield = value
+	if are_shields_cyclic():
+		# Prevent cyclic chain from forming in the first place.
+		shield = old_shield
 	if Engine.is_editor_hint(): update_configuration_warnings()
 #endregion setters
 
@@ -182,7 +186,7 @@ func get_damage_after_resistance(value: float) -> float:
 ## Damages this [Health]. Can't apply negative damage. Applies resistances with [method get_damage_after_resistance]. If [param recursive] is [code]true[/code], each [member shield] will absorb damage before damaging this [Health].
 func damage(value: float, recursive := false) -> DamageResult:
 	var shield_result := DamageResult.new()
-	if recursive and shield and shield.health > 0.0 and not are_shields_cyclic():
+	if recursive and shield and shield.health > 0.0:
 		shield_result = shield.damage(value, recursive)
 		value = shield_result.remaining_damage
 	var damage_after_resistance := get_damage_after_resistance(value)
@@ -210,18 +214,19 @@ func heal(value: float) -> HealResult:
 func kill(should_health_be_zero := false, recursive := false) -> void:
 	is_dead = true
 	if should_health_be_zero: health = 0.0
-	if recursive and shield and not are_shields_cyclic():
+	if recursive and shield:
 		shield.kill(should_health_be_zero, recursive)
 
 ## Revives this [Health]. If [param should_health_be_max] is [code]true[/code], [member health] will be set to [member max_health]. If [param recursive] is [code]true[/code], each [member shield] will also call [method revive].
 func revive(should_health_be_max := false, recursive := false) -> void:
 	is_dead = false
 	if should_health_be_max: health = max_health
-	if recursive and shield and not are_shields_cyclic():
+	if recursive and shield:
 		shield.revive(should_health_be_max, recursive)
 
-## Returns true if you managed to make cyclic [member shield] dependencies.
+## Returns [code]true[/code] if you managed to make cyclic [member shield] dependencies.
 ##[br][br][b]Note:[/b] The scene tree will show a warning.
+##[br][br][b]Note:[/b] [member shield] will revert itself if this returns [code]true[/code], but you never know.
 func are_shields_cyclic() -> bool:
 	var shields := [self]
 	var current_shield := shield

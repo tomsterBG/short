@@ -8,8 +8,8 @@ Everything should be well documented so open the in-engine documentation for eac
 
 # Content
 
-- Classes - Used without instances. Abstract, standalone, foundational.
 - Components - Used like nodes in a scene.
+- Libraries - Used without instances. Abstract, standalone, foundational.
 - Specific feature implementations.
 	- These are not used as widely, or have multiple implementations.
 	- Feel free to comment out the `class_name`s of unuseful classes.

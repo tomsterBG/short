@@ -101,4 +101,16 @@ static func triangle_area_from_side_and_adjacent_angles(side_between: float, ang
 static func is_vector2_within_angle(vector_a: Vector2, vector_b: Vector2, max_angle_rad: float) -> bool:
 	var angle_to = absf(vector_a.angle_to(vector_b))
 	return angle_to <= max_angle_rad
+
+# BAD: This generates a random angle and then a random distance. Perimeter around a shorter distance is shorter, thus making the random points denser.
+## @experimental: Untested.
+## Returns a random point inside a circle between [param min_radius] and [param radius].
+static func rand_point_in_circle(radius: float, min_radius := 0.0) -> Vector2:
+	return Vector2.RIGHT.rotated(randf_range(-PI, PI)) * randf_range(min_radius, radius)
+
+# BAD: This generates a random angle and then a random distance. Perimeter around a shorter distance is shorter, thus making the random points denser.
+## @experimental: Untested.
+## Returns a random point inside an fov. Workls like [method rand_point_in_circle], but also has a [param direction] and [param angle] (in radians) which represents the total fov width.
+static func rand_point_in_fov(direction: Vector2, angle: float, radius: float, min_radius := 0.0) -> Vector2:
+	return direction.normalized().rotated(randf_range(-angle / 2.0, angle / 2.0)) * randf_range(min_radius, radius)
 #endregion methods

@@ -387,9 +387,13 @@ func test_cyclic_shields():
 	shield1.shield = shield2
 	shield2.shield = health
 	assert_false(health.are_shields_cyclic(), "Shields aren't cyclic.")
+	assert_eq(shield2.shield, null, "The shield reverted itself.")
 	health.damage(1.0, IS_RECURSIVE)
 	health.kill(false, IS_RECURSIVE)
 	health.revive(false, IS_RECURSIVE)
+	# Test shield reverting itself:
+	shield1.shield = shield1
+	assert_eq(shield1.shield, shield2, "The shield reverted itself.")
 	pass_test("The stack didn't overflow.")
 
 func test_kill_recursive():

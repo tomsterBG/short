@@ -42,6 +42,51 @@ class DirChildrenResult:
 #endregion classes
 
 
+#region getters
+## Returns [param node]'s nth ancestor node [code]n[/code] [param levels] up, or [code]null[/code] if the node doesn't have such ancestor. Calls [method Node.get_parent] [code]n[/code] times.
+##[br][br][b]Note:[/b] Bad code practice. Nodes should be unaware of their parents.
+static func get_ancestor(node: Node, levels: int) -> Node:
+	var ancestor := node
+	while levels > 0:
+		levels -= 1
+		ancestor = ancestor.get_parent()
+		if ancestor == null: return null
+	return ancestor
+
+## Returns a [Helper.DirChildrenResult] containing paths to files and folders, at the given [param path]. Uses [method DirAccess.get_files_at], [method DirAccess.get_directories_at].
+##[br][br]Each path starts from [param path] and ends with the file or folder name. For example if [param path] is [code]"res://"[/code] and you only have an [code]addons[/code] folder, the string for it would look like [code]"res://addons"[/code].
+static func get_dir_children(path: String, recursive: bool = false) -> DirChildrenResult:
+	var result := DirChildrenResult.new()
+	
+	var files: Array = DirAccess.get_files_at(path)
+	result.files.assign(files.map(func(f): return path+f))
+	
+	var folders = DirAccess.get_directories_at(path)
+	for folder in folders:
+		result.folders.append(path+folder)
+		if !recursive: continue
+		var this_result = get_dir_children(path+folder+"/", recursive)
+		result.files.append_array(this_result.files)
+		result.folders.append_array(this_result.folders)
+	
+	return result
+
+## Returns the amount of lines in a file.
+static func get_lines_in_file(path: String) -> int:
+	var lines := 0
+	var file := FileAccess.open(path, FileAccess.READ)
+	while !file.eof_reached():
+		file.get_line()
+		lines += 1
+	file.close()
+	return lines
+
+## Returns the [Resource]'s file name, excluding the [code].tres[/code] extension.
+static func get_resource_filename(resource: Resource) -> String:
+	return resource.resource_path.get_basename().get_file()
+#endregion getters
+
+
 #region methods
 	#region find_
 ## Finds the first descendant of a [param node] that has [param method]. Works similarly to [method Node.find_child]. See [method Object.has_method].
@@ -95,46 +140,6 @@ static func find_children_with_signal(node: Node, signal_name: StringName, recur
 	return array
 	#endregion find_
 
-	#region get_
-## Returns [param node]'s nth ancestor node [code]n[/code] [param levels] up, or [code]null[/code] if the node doesn't have such ancestor. Calls [method Node.get_parent] [code]n[/code] times.
-##[br][br][b]Note:[/b] Bad code practice. Nodes should be unaware of their parents.
-static func get_ancestor(node: Node, levels: int) -> Node:
-	var ancestor := node
-	while levels > 0:
-		levels -= 1
-		ancestor = ancestor.get_parent()
-		if ancestor == null: return null
-	return ancestor
-
-## Returns a [Helper.DirChildrenResult] containing paths to files and folders, at the given [param path]. Uses [method DirAccess.get_files_at], [method DirAccess.get_directories_at].
-##[br][br]Each path starts from [param path] and ends with the file or folder name. For example if [param path] is [code]"res://"[/code] and you only have an [code]addons[/code] folder, the string for it would look like [code]"res://addons"[/code].
-static func get_dir_children(path: String, recursive: bool = false) -> DirChildrenResult:
-	var result := DirChildrenResult.new()
-	
-	var files: Array = DirAccess.get_files_at(path)
-	result.files.assign(files.map(func(f): return path+f))
-	
-	var folders = DirAccess.get_directories_at(path)
-	for folder in folders:
-		result.folders.append(path+folder)
-		if !recursive: continue
-		var this_result = get_dir_children(path+folder+"/", recursive)
-		result.files.append_array(this_result.files)
-		result.folders.append_array(this_result.folders)
-	
-	return result
-
-## Returns the amount of lines in a file.
-static func get_lines_in_file(path: String) -> int:
-	var lines := 0
-	var file := FileAccess.open(path, FileAccess.READ)
-	while !file.eof_reached():
-		file.get_line()
-		lines += 1
-	file.close()
-	return lines
-	#endregion get_
-
 	#region is_
 ## Returns [code]true[/code] if the given string is affirmative.
 ##[br][br][b]Note:[/b] An affirmative string is [code]"yes", "y", "true", "1"[/code].
@@ -167,4 +172,12 @@ static func is_letter(character: String) -> bool:
 	if !is_character(character): return false
 	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
 	#endregion is_
+
+## @experimental: Untested.
+## Instantiates a [param scene] at [param position] inside [param parent] and returns it.
+static func instantiate_at(scene: PackedScene, parent: Node, position) -> Node:
+	var instance := scene.instantiate()
+	parent.add_child(instance)
+	instance.position = position
+	return instance
 #endregion methods
