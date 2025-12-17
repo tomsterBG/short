@@ -1,11 +1,10 @@
-# Godot short - Code shortening scripts for Godot 4.
+# Godot short - Code shortening library for Godot 4.
 
 # About
 
-Various scripts designed to make your code shorter and more elegant.
-
-These scripts are like black boxes. No need to worry about what's inside. Everything is documented. They are also tested, so no need to worry about bugs.
-- Using this allows you to write less code, yet focus on more complex features.
+A library designed to make your code shorter and more elegant.
+Everything is documented and tested.
+Using this allows you to write less code, yet focus on more complex features.
 
 This project is designed to...
 ...be high quality (as much as i can, but nobody is perfect).
@@ -104,10 +103,39 @@ If in doubt, just write code however you want. Then look at how i've done it in 
 
 # Principles and wisdom
 
-A library is used, not read.
-Thus it is optimized for easier usage from the outside, containing documentation and syntax sugar.
+If you can't make it perfect, make it adjustable.
+- What if you wanted the behavior of `get_resource_filename()` to also return the file extension?
+  What if someone else doesn't want that?
+  Solution: An optional parameter to let you decide.
+
+A library is used.
+Thus it is optimized for easier usage from the outside, containing documentation, syntax sugar, adjustability and editor integration.
+- Patterns that incentivize bad usage and anti-patterns are to be avoided. Such as:
+	- Many boolean parameters.
+	  This may sound like a conflict to a previous point i made about optional parameters, but there's a fine balance between the two. Too few parameters: rigid code that is useless half the time. Too many parameters: madness of magic `true` and `false` everywhere.
+	  I can't force you to use a variable and remove these "magic booleans", but it's a good principle.
+	- Coupled hierarchy: `find_child_with_method` or `get_ancestor`.
+	  This incentivizes usage of coupled hierarchies.
 
 Make as few assumptions as possible about a class' usage context.
-If `Health` expects to be a child of, or work with a `Character`, this is very bad design.
-This is why all references are `@export` variables.
-And why `Health` is so generic, that it doesn't care what you use it for.
+- If `Health` expects to be a child of, or work with a `Character`, this is very bad design.
+  This is why all references are `@export` variables.
+  And why `Health` is so generic, that it doesn't care what you use it for.
+
+A library must be clean. Its users (games, projects), not so much.
+- I should ask myself these questions every so often:
+  Have i accumulated technical debt somewhere in this code?
+  Have i made something in the fast, ugly and easily breakable way? If so, what do i do to break it?
+  Have i made something too restrictive, ignoring a potential usecase where different behavior is needed?
+
+No abstraction for the sake of abstraction.
+- If it's useful, abstract it, if it's not, why?
+- Math.sec_to_msec() - everyone knows that 1 second is 1000 milliseconds. If you don't, you will learn it.
+
+This is called Godot short, not Godot long.
+- If a method's name is longer than the code it abstracts, it must be gome.
+  Exception: Methods that are very frequently used.
+
+Careful with untestable features.
+- It is impossible to unit test random and very hard to test `_process(delta)`. They need a different technology, maybe integration tests?
+- If a feature's success cannot be guaranteed 100% of the time, it should be separated from the main unit test suite.

@@ -14,10 +14,10 @@ const IS_DEEP = true
 
 
 #region variables
-var path_prefix = "res://tests/test_"
+var accurate_path_prefix = "res://tests/accurate/test_"
 var path_suffix = ".gd"
 
-var test_scripts: Dictionary[StringName, Array] = {
+var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
 	# components:
 	health = [&"convert"],
@@ -36,8 +36,8 @@ var test_scripts: Dictionary[StringName, Array] = {
 func get_ordered_tests() -> Array[StringName]:
 	var ordered_tests: Array[StringName]
 	
-	for test: StringName in test_scripts.keys():
-		var dependencies := test_scripts[test]
+	for test: StringName in accurate_test_scripts.keys():
+		var dependencies := accurate_test_scripts[test]
 		if dependencies.size() == 0:
 			ordered_tests.push_front(test)
 			continue
@@ -53,7 +53,7 @@ func get_ordered_tests() -> Array[StringName]:
 
 func get_test_paths(tests: Array[StringName]) -> Array[StringName]:
 	for idx in range(tests.size()):
-		tests[idx] = path_prefix + tests[idx] + path_suffix
+		tests[idx] = accurate_path_prefix + tests[idx] + path_suffix
 	return tests
 #endregion getters
 
@@ -65,7 +65,7 @@ func are_tests_ordered_correctly(ordered_tests: Array[StringName]) -> bool:
 	
 	for idx in range(tests.size()):
 		var test_name: StringName = tests[idx]
-		var dependencies: Array = test_scripts[test_name]
+		var dependencies: Array = accurate_test_scripts[test_name]
 		for dependency in dependencies:
 			var dependency_idx: int = tests.find(dependency)
 			if dependency_idx < idx:
@@ -88,7 +88,11 @@ func run():
 		ordered_tests.append(test_script.path)
 		push_error(str(test_script.path) + " is not added to pre-run order.")
 	
-	gut.get_test_collector().clear()
-	for test in ordered_tests:
-		gut.add_script(test)
+	gut.get_test_collector().scripts.sort_custom(func(a, b):
+		return ordered_tests.find(a.path) < ordered_tests.find(b.path)
+	)
+	
+	#gut.get_test_collector().clear()
+	#for test in ordered_tests:
+		#gut.add_script(test)
 #endregion virtual

@@ -422,12 +422,4 @@ func test_revive_recursive():
 	assert_true(health.is_dead, "Health is dead.")
 	assert_false(shield1.is_dead, "Shield1 isn't dead.")
 	assert_false(shield2.is_dead, "Shield2 isn't dead.")
-
-func test_many_shields():
-	var start_time := Time.get_ticks_usec()
-	var current_shield := health.make_shield()
-	for i in 1016:
-		current_shield = current_shield.make_shield()
-	health.damage(10.0, IS_RECURSIVE)
-	assert_lt(Time.get_ticks_usec() - start_time, 20_000, "Performance didn't explode.")
 #endregion tests

@@ -1,5 +1,9 @@
 # INFO:
 # This works standalone and is publicly accessible.
+#
+# Some methods that were promoting anti-patterns, were simply removed or not implemented. That was abstraction for the sake of abstraction. Such as:
+# - get_ancestor
+# - find_child_with_method, find_child_with_signal, find_children_with_method, find_children_with_signal
 # TODO:
 # IDEAS:
 # - Improve performance of the find_child family of methods.
@@ -10,8 +14,9 @@
 # - flatten_array(array: Array) - converts nested arrays to elements of the parent array
 # 	- a matrixify() counterpart to turn a flat array into a matrix or something complex
 # - remove_duplicates(array: Array) - removes duplicate array values
-# - wrap_text(text: String, line_length: int)
+# - wrap_text(text: String, line_length: int) - adds \n every line_length symbols from the start of a line
 # - Random.get_total_weight() or sum_array()
+# - instantiate_at - PackedScene as child of and at position.
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.
@@ -43,16 +48,6 @@ class DirChildrenResult:
 
 
 #region getters
-## Returns [param node]'s nth ancestor node [code]n[/code] [param levels] up, or [code]null[/code] if the node doesn't have such ancestor. Calls [method Node.get_parent] [code]n[/code] times.
-##[br][br][b]Note:[/b] Bad code practice. Nodes should be unaware of their parents.
-static func get_ancestor(node: Node, levels: int) -> Node:
-	var ancestor := node
-	while levels > 0:
-		levels -= 1
-		ancestor = ancestor.get_parent()
-		if ancestor == null: return null
-	return ancestor
-
 ## Returns a [Helper.DirChildrenResult] containing paths to files and folders, at the given [param path]. Uses [method DirAccess.get_files_at], [method DirAccess.get_directories_at].
 ##[br][br]Each path starts from [param path] and ends with the file or folder name. For example if [param path] is [code]"res://"[/code] and you only have an [code]addons[/code] folder, the string for it would look like [code]"res://addons"[/code].
 static func get_dir_children(path: String, recursive: bool = false) -> DirChildrenResult:
@@ -89,58 +84,6 @@ static func get_resource_filename(resource: Resource, include_extension := false
 
 
 #region methods
-	#region find_
-## Finds the first descendant of a [param node] that has [param method]. Works similarly to [method Node.find_child]. See [method Object.has_method].
-##[br][br][b]Note:[/b] This method can be slow.
-static func find_child_with_method(node: Node, method: StringName, recursive := true, owned := true) -> Node:
-	var children_cache = node.get_children()
-	for child: Node in children_cache:
-		if (owned and !child.owner) or (!owned and child.owner): continue
-		if child.has_method(method):
-			return child
-		if recursive:
-			children_cache.append_array(child.get_children())
-	return null
-
-## Finds the first descendant of a [param node] that has [param signal_name]. Works similarly to [method Node.find_child]. See [method Object.has_signal].
-##[br][br][b]Note:[/b] This method can be slow.
-static func find_child_with_signal(node: Node, signal_name: StringName, recursive := true, owned := true) -> Node:
-	var children_cache = node.get_children()
-	for child: Node in children_cache:
-		if (owned and !child.owner) or (!owned and child.owner): continue
-		if child.has_signal(signal_name):
-			return child
-		if recursive:
-			children_cache.append_array(child.get_children())
-	return null
-
-## Finds all descendants of a [param node] that have [param method]. Works similarly to [method Node.find_children]. See [method Object.has_method].
-##[br][br][b]Note:[/b] This method can be slow.
-static func find_children_with_method(node: Node, method: StringName, recursive := true, owned := true) -> Array[Node]:
-	var array: Array[Node] = []
-	var children_cache = node.get_children()
-	for child: Node in children_cache:
-		if (owned and !child.owner) or (!owned and child.owner): continue
-		if child.has_method(method):
-			array.append(child)
-		if recursive:
-			children_cache.append_array(child.get_children())
-	return array
-
-## Finds all descendants of a [param node] that have [param signal_name]. Works similarly to [method Node.find_children]. See [method Object.has_signal].
-##[br][br][b]Note:[/b] This method can be slow.
-static func find_children_with_signal(node: Node, signal_name: StringName, recursive := true, owned := true) -> Array[Node]:
-	var array: Array[Node] = []
-	var children_cache = node.get_children()
-	for child: Node in children_cache:
-		if (owned and !child.owner) or (!owned and child.owner): continue
-		if child.has_signal(signal_name):
-			array.append(child)
-		if recursive:
-			children_cache.append_array(child.get_children())
-	return array
-	#endregion find_
-
 	#region is_
 ## Returns [code]true[/code] if the given string is affirmative.
 ##[br][br][b]Note:[/b] An affirmative string is [code]"yes", "y", "true", "1"[/code].
@@ -173,12 +116,4 @@ static func is_letter(character: String) -> bool:
 	if !is_character(character): return false
 	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
 	#endregion is_
-
-## @experimental: Untested.
-## Instantiates a [param scene] at [param position] inside [param parent] and returns it.
-static func instantiate_at(scene: PackedScene, parent: Node, position) -> Node:
-	var instance := scene.instantiate()
-	parent.add_child(instance)
-	instance.position = position
-	return instance
 #endregion methods

@@ -16,10 +16,4 @@ func test_get_earth_gravity():
 
 func test_get_gravity_between():
 	assert_almost_eq(Physics.get_gravity_between(50.0, 80.0, 2.0), 6.6743e-8, 1.0e-20, "Force between 2 point masses.")
-
-func test_get_distance_at_constant_speed():
-	assert_eq(Physics.get_distance_at_constant_speed(2.0, 3.0), 6.0, "Travel 6 meters.")
-
-func test_get_velocity_at_constant_acceleration():
-	assert_eq(Physics.get_velocity_at_constant_acceleration(2.0, 9.0, 3.0), 29.0, "Accelerate to 29 m/s.")
 #endregion tests

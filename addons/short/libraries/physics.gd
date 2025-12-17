@@ -22,6 +22,9 @@
 # - Power (W = J/s = kg * m^2/s^3) = Work (J) / Time (s)
 # - Power (W) = Potential (V) * Current (A)
 # - Potential (V) = Current (A) * Resistance (ohm)
+#
+# Some methods that were useless, were simply removed or not implemented. That was abstraction for the sake of abstraction. Such as:
+# - get_distance_at_constant_speed, get_velocity_at_constant_acceleration
 # TODO:
 # - kinematics
 # 	- speed_for_time_to_distance(meters_second, seconds)
@@ -71,12 +74,4 @@ static func get_earth_gravity(height_m: float) -> float:
 ## Returns force in [code]newtons[/code] between two point masses. See also [url=https://www.omnicalculator.com/physics/gravitational-force]Gravitational force calculator[/url].
 static func get_gravity_between(mass_1_kg: float, mass_2_kg: float, distance_m: float) -> float:
 	return GRAVITY_CONSTANT * ((mass_1_kg * mass_2_kg) / pow(distance_m, 2))
-
-## Returns distance in [code]meters[/code] after some time under constant speed.
-static func get_distance_at_constant_speed(speed_ms: float, time_sec: float) -> float:
-	return speed_ms * time_sec
-
-## Returns velocity in [code]meters/sec[/code] after some time under constant acceleration.
-static func get_velocity_at_constant_acceleration(initial_velocity_ms: float, acceleration_ms2: float, time_sec: float) -> float:
-	return initial_velocity_ms + acceleration_ms2 * time_sec
 #endregion getters
