@@ -62,7 +62,7 @@
 ## Convert between units.
 ##
 ## Available in all scripts without any setup.
-##[br][br]Easily convert between units while having more readable code.
+##[br][br]Convert between units while having more readable code.
 ##[br][br][b]Note:[/b] This assumes that the [Helper] class exists.
 
 @abstract class_name Convert extends Node

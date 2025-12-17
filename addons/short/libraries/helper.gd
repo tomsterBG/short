@@ -32,7 +32,7 @@
 ## Shorten your code.
 ##
 ## Available in all scripts without any setup.
-##[br][br]An abstract script to help you achieve more behavior with less code.
+##[br][br]A generic library to help you achieve more behavior with less code.
 
 @abstract class_name Helper extends Node
 
