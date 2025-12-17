@@ -55,6 +55,7 @@ func test_get_seconds_for_full_regen():
 	assert_eq(health_regen.get_seconds_for_full_regen(), INF, "Won't regen.")
 
 func test_get_time_since_pause():
+	health_regen.regen_in__process = false
 	health_regen.regen_pause_for = 1.0
 	health_regen.pause_regen()
 	assert_eq(health_regen.get_time_since_pause(), 0.0, "No time since pause.")
