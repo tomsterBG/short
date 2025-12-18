@@ -54,6 +54,7 @@ static func sphere_volume(radius: float) -> float:
 
 ## Returns the area of a triangle, given three sides.
 static func triangle_area_from_three_sides(a: float, b: float, c: float) -> float:
+	assert(a + b > c and b + c > a and c + a > b, "Triangle inequality theorem failed: The sum of any 2 sides must be > than the 3rd.")
 	return 0.25 * sqrt( (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c) )
 	#endregion geometry
 
