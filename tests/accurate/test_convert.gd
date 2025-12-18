@@ -33,8 +33,6 @@ func test_proportion():
 
 func test_number_base():
 	assert_eq(Convert.bin_to_dec("11001"), 25)
-	assert_eq(Convert.bin_to_dec("2"), -1, "Invalid binary.")
-	assert_eq(Convert.bin_to_dec("A"), -1, "Invalid binary.")
 
 func test_distance():
 	assert_eq(Convert.meter_to_dm(31.2), 312.0)

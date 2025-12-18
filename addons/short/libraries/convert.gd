@@ -154,9 +154,9 @@ static func percent_to_unit(percent: float) -> float:
 	#endregion proportion
 
 	#region number base
-## Converts an [code]unsigned binary integer[/code] to an [code]unsigned decimal integer[/code]. Returns [code]-1[/code] if the input is not binary. See [method Helper.is_binary].
+## Converts an [code]unsigned binary integer[/code] to an [code]unsigned decimal integer[/code]. Asserts [method Helper.is_binary] in debug builds.
 static func bin_to_dec(binary: String) -> int:
-	if !Helper.is_binary(binary): return -1
+	assert(Helper.is_binary(binary), "Parameter binary is not a binary string.")
 	binary = binary.reverse()
 	var decimal := 0
 	for idx in range(binary.length()):
