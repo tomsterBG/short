@@ -139,3 +139,10 @@ This is called Godot short, not Godot long.
 Careful with untestable features.
 - It is impossible to unit test random and very hard to test `_process(delta)`. They need a different technology, maybe integration tests?
 - If a feature's success cannot be guaranteed 100% of the time, it should be separated from the main unit test suite.
+
+Little to no idiot-proofing, assert instead.
+- A library is not used by idiots, it is used by developers.
+  If there's a silent problem, make it loud and clear. For example: `bin_to_dec(binary: String)` may return wrong numbers for non-binary strings. Instead, it should assert if the string is binary and say "String is not binary.".
+  Input edge cases are caused by users, and programmers know better when they're met with an error message.
+  Covering edge cases in a library makes it slower.
+  Edge cases differ from program to program.

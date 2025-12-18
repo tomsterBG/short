@@ -370,7 +370,7 @@ metadata/_custom_type_script = "uid://jrf8kxsondmi"
 script = ExtResource("2_r0f7j")
 health = NodePath("..")
 regen_per_second = 10.0
-regen_pause_for = 1.0
+regen_pause_length = 1.0
 metadata/_custom_type_script = "uid://dj3aadubv4gi"
 
 [node name="control" type="Control" parent="."]
