@@ -108,6 +108,9 @@ If you can't make it perfect, make it adjustable.
   What if someone else doesn't want that?
   Solution: An optional parameter to let you decide.
 
+Good architecture provides options without having to rewrite the core.
+- It is extensible. You can use things and swap them out for other things.
+
 A library is used.
 Thus it is optimized for easier usage from the outside, containing documentation, syntax sugar, adjustability and editor integration.
 - Patterns that incentivize bad usage and anti-patterns are to be avoided. Such as:
