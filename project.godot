@@ -13,7 +13,7 @@ config_version=5
 config/name="short"
 config/tags=PackedStringArray("git_project", "gut")
 config/features=PackedStringArray("4.5", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="uid://3rye0sjdukfg"
 
 [editor_plugins]
 
