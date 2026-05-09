@@ -91,12 +91,12 @@ static func sec_to_min(sec: float) -> float:
 	return sec / 60.0
 
 ## Converts a time from [code]minutes[/code] to [code]seconds[/code].
-static func min_to_sec(min: float) -> float:
-	return min * 60.0
+static func min_to_sec(_min: float) -> float:
+	return _min * 60.0
 
 ## Converts a time from [code]minutes[/code] to [code]hours[/code].
-static func min_to_h(min: float) -> float:
-	return min / 60.0
+static func min_to_h(_min: float) -> float:
+	return _min / 60.0
 
 ## Converts a time from [code]hours[/code] to [code]minutes[/code].
 static func h_to_min(hour: float) -> float:
@@ -160,7 +160,7 @@ static func bin_to_dec(binary: String) -> int:
 	binary = binary.reverse()
 	var decimal := 0
 	for idx in range(binary.length()):
-		decimal += int(binary[idx]) * pow(2, idx)
+		decimal += int(binary[idx]) * int(pow(2, idx))
 	return decimal
 	#endregion number base
 

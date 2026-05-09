@@ -201,8 +201,8 @@ func damage(value: float, recursive := false) -> DamageResult:
 
 ## Heals this [Health]. Can't apply negative heal.
 func heal(value: float) -> HealResult:
-	var heal_after_clamp = max(value, 0.0)
-	var old_health = health
+	var heal_after_clamp := maxf(value, 0.0)
+	var old_health := health
 	health += heal_after_clamp
 	
 	var result := HealResult.new()

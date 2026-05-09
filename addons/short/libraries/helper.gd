@@ -54,13 +54,13 @@ static func get_dir_children(path: String, recursive: bool = false) -> DirChildr
 	var result := DirChildrenResult.new()
 	
 	var files: Array = DirAccess.get_files_at(path)
-	result.files.assign(files.map(func(f): return path+f))
+	result.files.assign(files.map(func(f: String) -> String: return path+f))
 	
-	var folders = DirAccess.get_directories_at(path)
+	var folders := DirAccess.get_directories_at(path)
 	for folder in folders:
 		result.folders.append(path+folder)
 		if !recursive: continue
-		var this_result = get_dir_children(path+folder+"/", recursive)
+		var this_result := get_dir_children(path+folder+"/", recursive)
 		result.files.append_array(this_result.files)
 		result.folders.append_array(this_result.folders)
 	

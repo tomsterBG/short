@@ -20,6 +20,7 @@ var path_suffix = ".gd"
 var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
 	# components:
+	fold_button = [],
 	health = [&"convert"],
 	health_regen = [&"health", &"convert"],
 	# libraries:

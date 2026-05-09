@@ -9,23 +9,6 @@
 
 
 #region enums
-## All months according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
-##[br][br][b]Note:[/b] In the real standard the index must have two digits. For example [code]02[/code], [code]09[/code].
-enum Month {
-	JANUARY = 1,
-	FEBRUARY = 2,
-	MARCH = 3,
-	APRIL = 4,
-	MAY = 5,
-	JUNE = 6,
-	JULY = 7,
-	AUGUST = 8,
-	SEPTEMBER = 9,
-	OCTOBER = 10,
-	NOVEMBER = 11,
-	DECEMBER = 12,
-}
-
 ## All weekdays according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
 enum Weekday {
 	MONDAY = 1,
@@ -41,11 +24,11 @@ enum Weekday {
 
 #region getters
 ## Returns the number of days in a given [param month]. Also depends on the [param year] because of [method is_leap_year].
-static func get_days_in_month(month: Month, year := 0) -> int:
+static func get_days_in_month(month: Time.Month, year := 0) -> int:
 	match month:
-		Month.APRIL, Month.JUNE, Month.SEPTEMBER, Month.NOVEMBER:
+		Time.MONTH_APRIL, Time.MONTH_JUNE, Time.MONTH_SEPTEMBER, Time.MONTH_NOVEMBER:
 			return 30
-		Month.FEBRUARY:
+		Time.MONTH_FEBRUARY:
 			return 29 if is_leap_year(year) else 28
 		_:
 			return 31
@@ -56,14 +39,14 @@ static func get_days_in_year(year: int) -> int:
 
 ## Returns the number of weeks in a given [param year] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
 static func get_iso_weeks_in_year(year: int) -> int:
-	var weekday_of_1st_jan := get_iso_weekday_of_date(1, Month.JANUARY, year)
-	var weekday_of_31st_dec := get_iso_weekday_of_date(31, Month.DECEMBER, year)
+	var weekday_of_1st_jan := get_iso_weekday_of_date(1, Time.MONTH_JANUARY, year)
+	var weekday_of_31st_dec := get_iso_weekday_of_date(31, Time.MONTH_DECEMBER, year)
 	if weekday_of_1st_jan == Weekday.THURSDAY or weekday_of_31st_dec == Weekday.THURSDAY:
 		return 53
 	return 52
 
 ## Returns the day in the [param year] from [code]1[/code] to [code]366[/code].
-static func get_day_of_year(day: int, month: Month, year: int) -> int:
+static func get_day_of_year(day: int, month: Time.Month, year: int) -> int:
 	var day_of_year := 0
 	var month_idx := 1
 	while month_idx < month:
@@ -72,30 +55,30 @@ static func get_day_of_year(day: int, month: Month, year: int) -> int:
 	return day_of_year + day
 
 ## Returns the day in the [param year] since the first monday from [code]1[/code] to [code]371[/code].
-static func get_day_since_first_monday(day: int, month: Month, year: int) -> int:
+static func get_day_since_first_monday(day: int, month: Time.Month, year: int) -> int:
 	var week_number := get_iso_week_number(day, month, year)
 	var weekday := get_iso_weekday_of_date(day, month, year)
 	return ((week_number - 1) * 7) + weekday
 
 ## Returns the weekday of the current date in the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard from [code]1[/code] to [code]7[/code].
-static func get_iso_weekday_of_date(day: int, month: Month, year: int) -> Weekday:
+static func get_iso_weekday_of_date(day: int, month: Time.Month, year: int) -> Weekday:
 	var datetime_dict := Time.get_datetime_dict_from_datetime_string("%d-%d-%d" % [year, month, day], true)
-	return weekday_godot_to_iso(datetime_dict.weekday)
+	return weekday_godot_to_iso(datetime_dict.weekday) as Weekday
 
 ## Returns the [code]day[/code] and [code]month[/code] of the first monday in the [param year]. Must be from [code]29 Dec[/code] to [code]4 Jan[/code] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
 static func get_iso_first_monday_of_year(year: int) -> Dictionary:
-	var weekday_of_4th_jan := get_iso_weekday_of_date(4, Month.JANUARY, year)
+	var weekday_of_4th_jan := get_iso_weekday_of_date(4, Time.MONTH_JANUARY, year)
 	var first_monday: Dictionary = {
 		day = 4 - (weekday_of_4th_jan - 1),
-		month = Month.JANUARY,
+		month = Time.MONTH_JANUARY,
 	}
 	if !is_valid_day_in_month(first_monday.day):
 		first_monday.day = 31 + first_monday.day
-		first_monday.month = Month.DECEMBER
+		first_monday.month = Time.MONTH_DECEMBER
 	return first_monday
 
 ## Returns week number in the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard from [code]1[/code] to [code]53[/code].
-static func get_iso_week_number(day: int, month: Month, year: int) -> int:
+static func get_iso_week_number(day: int, month: Time.Month, year: int) -> int:
 	var day_of_year := get_day_of_year(day, month, year)
 	var weekday := get_iso_weekday_of_date(day, month, year)
 	var week := floori((day_of_year - weekday + 10) / 7.0)
@@ -113,8 +96,8 @@ static func is_leap_year(year: int) -> bool:
 	return (year % 4 == 0 and year % 100 != 0) or year % 400 == 0
 
 ## Returns [code]true[/code] if the [param month] is valid.
-static func is_valid_month(month: int) -> bool:
-	return Month.values().has(month)
+static func is_valid_month(month: Time.Month) -> bool:
+	return month >= 1 and month <= 12
 
 ## Returns [code]true[/code] if the [param weekday] is valid.
 static func is_valid_weekday(weekday: int) -> bool:

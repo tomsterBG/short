@@ -8,12 +8,25 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
 config/name="short"
 config/tags=PackedStringArray("git_project", "gut")
-config/features=PackedStringArray("4.5", "Forward Plus")
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="uid://3rye0sjdukfg"
+
+[debug]
+
+gdscript/warnings/directory_rules={
+"res://addons": 0,
+"res://addons/short": 1,
+"res://tests": 0
+}
+gdscript/warnings/untyped_declaration=1
 
 [editor_plugins]
 
@@ -24,6 +37,7 @@ enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/short/plu
 folder_colors={
 "res://addons/gut/": "blue",
 "res://addons/short/": "orange",
+"res://notes/": "purple",
 "res://other/": "gray",
 "res://tests/": "teal"
 }
