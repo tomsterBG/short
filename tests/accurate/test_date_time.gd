@@ -2,9 +2,6 @@ extends GutTest
 
 
 #region tests
-func test_enums():
-	assert_eq(DateTime.Weekday, {MONDAY = 1, TUESDAY = 2, WEDNESDAY = 3, THURSDAY = 4, FRIDAY = 5, SATURDAY = 6, SUNDAY = 7})
-
 func test_is_leap_year():
 	assert_eq(DateTime.is_leap_year(4), true)
 	assert_eq(DateTime.is_leap_year(2016), true)
@@ -37,15 +34,15 @@ func test_is_valid_month():
 	assert_eq(DateTime.is_valid_month(13), false)
 
 func test_is_valid_weekday():
-	assert_eq(DateTime.is_valid_weekday(0), false)
-	assert_eq(DateTime.is_valid_weekday(DateTime.Weekday.MONDAY), true)
-	assert_eq(DateTime.is_valid_weekday(DateTime.Weekday.TUESDAY), true)
-	assert_eq(DateTime.is_valid_weekday(DateTime.Weekday.WEDNESDAY), true)
-	assert_eq(DateTime.is_valid_weekday(DateTime.Weekday.THURSDAY), true)
-	assert_eq(DateTime.is_valid_weekday(DateTime.Weekday.FRIDAY), true)
-	assert_eq(DateTime.is_valid_weekday(DateTime.Weekday.SATURDAY), true)
-	assert_eq(DateTime.is_valid_weekday(DateTime.Weekday.SUNDAY), true)
-	assert_eq(DateTime.is_valid_weekday(8), false)
+	assert_eq(DateTime.is_valid_weekday(-1), false)
+	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_SUNDAY), true)
+	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_MONDAY), true)
+	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_TUESDAY), true)
+	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_WEDNESDAY), true)
+	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_THURSDAY), true)
+	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_FRIDAY), true)
+	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_SATURDAY), true)
+	assert_eq(DateTime.is_valid_weekday(7), false)
 
 func test_is_valid_day_in_month():
 	assert_eq(DateTime.is_valid_day_in_month(0), false)
@@ -114,9 +111,18 @@ func test_get_day_since_first_monday():
 	assert_eq(DateTime.get_day_since_first_monday(31, Time.MONTH_DECEMBER, 2024), 2)
 	assert_eq(DateTime.get_day_since_first_monday(1, Time.MONTH_JANUARY, 2025), 3)
 
+func test_weekday_godot_to_iso():
+	assert_eq(DateTime.weekday_godot_to_iso(Time.WEEKDAY_MONDAY), 1)
+	assert_eq(DateTime.weekday_godot_to_iso(Time.WEEKDAY_TUESDAY), 2)
+	assert_eq(DateTime.weekday_godot_to_iso(Time.WEEKDAY_WEDNESDAY), 3)
+	assert_eq(DateTime.weekday_godot_to_iso(Time.WEEKDAY_THURSDAY), 4)
+	assert_eq(DateTime.weekday_godot_to_iso(Time.WEEKDAY_FRIDAY), 5)
+	assert_eq(DateTime.weekday_godot_to_iso(Time.WEEKDAY_SATURDAY), 6)
+	assert_eq(DateTime.weekday_godot_to_iso(Time.WEEKDAY_SUNDAY), 7)
+
 func test_get_iso_weekday_of_date():
-	assert_eq(DateTime.get_iso_weekday_of_date(1, Time.MONTH_JANUARY, 2025), DateTime.Weekday.WEDNESDAY)
-	assert_eq(DateTime.get_iso_weekday_of_date(5, Time.MONTH_JANUARY, 2025), DateTime.Weekday.SUNDAY)
+	assert_eq(DateTime.get_iso_weekday_of_date(1, Time.MONTH_JANUARY, 2025), DateTime.weekday_godot_to_iso(Time.WEEKDAY_WEDNESDAY))
+	assert_eq(DateTime.get_iso_weekday_of_date(5, Time.MONTH_JANUARY, 2025), DateTime.weekday_godot_to_iso(Time.WEEKDAY_SUNDAY))
 
 func test_get_iso_first_monday_of_year():
 	assert_eq(DateTime.get_iso_first_monday_of_year(1999), {day = 4, month = Time.MONTH_JANUARY})
@@ -140,13 +146,4 @@ func test_get_iso_week_number():
 	assert_eq(DateTime.get_iso_week_number(3, Time.MONTH_SEPTEMBER, 2023), 35)
 	assert_eq(DateTime.get_iso_week_number(4, Time.MONTH_SEPTEMBER, 2023), 36)
 	assert_eq(DateTime.get_iso_week_number(1, Time.MONTH_JANUARY, 2025), 1)
-
-func test_weekday_godot_to_iso():
-	assert_eq(DateTime.weekday_godot_to_iso(1), DateTime.Weekday.MONDAY)
-	assert_eq(DateTime.weekday_godot_to_iso(2), DateTime.Weekday.TUESDAY)
-	assert_eq(DateTime.weekday_godot_to_iso(3), DateTime.Weekday.WEDNESDAY)
-	assert_eq(DateTime.weekday_godot_to_iso(4), DateTime.Weekday.THURSDAY)
-	assert_eq(DateTime.weekday_godot_to_iso(5), DateTime.Weekday.FRIDAY)
-	assert_eq(DateTime.weekday_godot_to_iso(6), DateTime.Weekday.SATURDAY)
-	assert_eq(DateTime.weekday_godot_to_iso(0), DateTime.Weekday.SUNDAY)
 #endregion tests
