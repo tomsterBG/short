@@ -44,12 +44,6 @@ func test_is_valid_weekday():
 	assert_eq(DateTime.is_valid_weekday(Time.WEEKDAY_SATURDAY), true)
 	assert_eq(DateTime.is_valid_weekday(7), false)
 
-func test_is_valid_day_in_month():
-	assert_eq(DateTime.is_valid_day_in_month(0), false)
-	assert_eq(DateTime.is_valid_day_in_month(1), true)
-	assert_eq(DateTime.is_valid_day_in_month(31), true)
-	assert_eq(DateTime.is_valid_day_in_month(32), false)
-
 func test_does_year_start_on_monday():
 	assert_eq(DateTime.does_year_start_on_monday(2001), true)
 	assert_eq(DateTime.does_year_start_on_monday(2024), true)
@@ -73,6 +67,18 @@ func test_get_days_in_month():
 	assert_eq(DateTime.get_days_in_month(Time.MONTH_NOVEMBER), 30)
 	assert_eq(DateTime.get_days_in_month(Time.MONTH_DECEMBER), 31)
 
+func test_is_valid_day_in_month():
+	assert_eq(DateTime.is_valid_day_in_month(0), false)
+	assert_eq(DateTime.is_valid_day_in_month(1), true)
+	assert_eq(DateTime.is_valid_day_in_month(31), true)
+	assert_eq(DateTime.is_valid_day_in_month(32), false)
+	assert_eq(DateTime.is_valid_day_in_month(29, Time.MONTH_FEBRUARY, 2024), true)
+	assert_eq(DateTime.is_valid_day_in_month(30, Time.MONTH_FEBRUARY, 2024), false)
+	assert_eq(DateTime.is_valid_day_in_month(28, Time.MONTH_FEBRUARY, 2025), true)
+	assert_eq(DateTime.is_valid_day_in_month(29, Time.MONTH_FEBRUARY, 2025), false)
+	assert_eq(DateTime.is_valid_day_in_month(30, Time.MONTH_APRIL), true)
+	assert_eq(DateTime.is_valid_day_in_month(31, Time.MONTH_APRIL), false)
+
 func test_get_days_in_year():
 	assert_eq(DateTime.get_days_in_year(1999), 365)
 	assert_eq(DateTime.get_days_in_year(2000), 366)
@@ -88,12 +94,12 @@ func test_get_iso_weeks_in_year():
 	assert_eq(DateTime.get_iso_weeks_in_year(2019), 52)
 	assert_eq(DateTime.get_iso_weeks_in_year(2020), 53)
 
-func test_get_day_of_year():
-	assert_eq(DateTime.get_day_of_year(1, Time.MONTH_JANUARY, 1999), 1)
-	assert_eq(DateTime.get_day_of_year(3, Time.MONTH_MARCH, 1999), 62)
-	assert_eq(DateTime.get_day_of_year(31, Time.MONTH_DECEMBER, 1999), 365)
-	assert_eq(DateTime.get_day_of_year(31, Time.MONTH_DECEMBER, 2000), 366)
-	assert_eq(DateTime.get_day_of_year(11, Time.MONTH_SEPTEMBER, 2001), 254)
+func test_get_day_in_year():
+	assert_eq(DateTime.get_day_in_year(1, Time.MONTH_JANUARY, 1999), 1)
+	assert_eq(DateTime.get_day_in_year(3, Time.MONTH_MARCH, 1999), 62)
+	assert_eq(DateTime.get_day_in_year(31, Time.MONTH_DECEMBER, 1999), 365)
+	assert_eq(DateTime.get_day_in_year(31, Time.MONTH_DECEMBER, 2000), 366)
+	assert_eq(DateTime.get_day_in_year(11, Time.MONTH_SEPTEMBER, 2001), 254)
 
 func test_get_day_since_first_monday():
 	assert_eq(DateTime.get_day_since_first_monday(11, Time.MONTH_SEPTEMBER, 1999), 251)
@@ -146,4 +152,7 @@ func test_get_iso_week_number():
 	assert_eq(DateTime.get_iso_week_number(3, Time.MONTH_SEPTEMBER, 2023), 35)
 	assert_eq(DateTime.get_iso_week_number(4, Time.MONTH_SEPTEMBER, 2023), 36)
 	assert_eq(DateTime.get_iso_week_number(1, Time.MONTH_JANUARY, 2025), 1)
+
+func test_get_timezone_offset():
+	assert_eq(DateTime.get_timezone_offset(), Time.get_time_zone_from_system().bias * 60)
 #endregion tests

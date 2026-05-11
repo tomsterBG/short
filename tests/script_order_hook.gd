@@ -26,7 +26,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# libraries:
 	console = [],
 	convert = [&"helper"],
-	date_time = [],
+	date_time = [&"convert"],
 	helper = [],
 	math = [],
 	physics = [],

@@ -4,6 +4,7 @@
 ## Work with date and time.
 ##
 ## Available in all scripts without any setup.
+##[br][br][b]Note:[/b] This assumes that the [Convert] class exists.
 
 @abstract class_name DateTime extends Object
 
@@ -23,16 +24,8 @@ static func get_days_in_month(month: Time.Month, year := 0) -> int:
 static func get_days_in_year(year: int) -> int:
 	return 366 if is_leap_year(year) else 365
 
-## Returns the number of weeks in a given [param year] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
-static func get_iso_weeks_in_year(year: int) -> int:
-	var weekday_of_1st_jan := get_iso_weekday_of_date(1, Time.MONTH_JANUARY, year)
-	var weekday_of_31st_dec := get_iso_weekday_of_date(31, Time.MONTH_DECEMBER, year)
-	if weekday_of_1st_jan == Time.WEEKDAY_THURSDAY or weekday_of_31st_dec == Time.WEEKDAY_THURSDAY:
-		return 53
-	return 52
-
 ## Returns the day in the [param year] from [code]1[/code] to [code]366[/code].
-static func get_day_of_year(day: int, month: Time.Month, year: int) -> int:
+static func get_day_in_year(day: int, month: Time.Month, year: int) -> int:
 	var day_of_year := 0
 	var month_idx := 1
 	while month_idx < month:
@@ -51,6 +44,14 @@ static func get_iso_weekday_of_date(day: int, month: Time.Month, year: int) -> T
 	var datetime_dict := Time.get_datetime_dict_from_datetime_string("%d-%d-%d" % [year, month, day], true)
 	return weekday_godot_to_iso(datetime_dict.weekday) as Time.Weekday
 
+## Returns the number of weeks in a given [param year] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
+static func get_iso_weeks_in_year(year: int) -> int:
+	var weekday_of_1st_jan := get_iso_weekday_of_date(1, Time.MONTH_JANUARY, year)
+	var weekday_of_31st_dec := get_iso_weekday_of_date(31, Time.MONTH_DECEMBER, year)
+	if weekday_of_1st_jan == Time.WEEKDAY_THURSDAY or weekday_of_31st_dec == Time.WEEKDAY_THURSDAY:
+		return 53
+	return 52
+
 ## Returns the [code]day[/code] and [code]month[/code] of the first monday in the [param year]. Must be from [code]29 Dec[/code] to [code]4 Jan[/code] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
 static func get_iso_first_monday_of_year(year: int) -> Dictionary:
 	var weekday_of_4th_jan := get_iso_weekday_of_date(4, Time.MONTH_JANUARY, year)
@@ -65,7 +66,7 @@ static func get_iso_first_monday_of_year(year: int) -> Dictionary:
 
 ## Returns week number in the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard from [code]1[/code] to [code]53[/code].
 static func get_iso_week_number(day: int, month: Time.Month, year: int) -> int:
-	var day_of_year := get_day_of_year(day, month, year)
+	var day_of_year := get_day_in_year(day, month, year)
 	var weekday := get_iso_weekday_of_date(day, month, year)
 	var week := floori((day_of_year - weekday + 10) / 7.0)
 	if week < 1:
@@ -73,6 +74,10 @@ static func get_iso_week_number(day: int, month: Time.Month, year: int) -> int:
 	if week == 53 and get_iso_weeks_in_year(year) == 52:
 		return 1
 	return week
+
+## Returns timezone offset from UTC in seconds.
+static func get_timezone_offset() -> int:
+	return int(Convert.min_to_sec(Time.get_time_zone_from_system().bias))
 #endregion getters
 
 
@@ -89,9 +94,9 @@ static func is_valid_month(month: Time.Month) -> bool:
 static func is_valid_weekday(weekday: Time.Weekday) -> bool:
 	return weekday >= 0 and weekday <= 6
 
-## Returns [code]true[/code] if the [param day] is between [code]1[/code] and [code]31[/code].
-static func is_valid_day_in_month(day: int) -> bool:
-	return day >= 1 and day <= 31
+## Returns [code]true[/code] if the [param day] is between [code]1[/code] and [method get_days_in_month].
+static func is_valid_day_in_month(day: int, month := Time.Month.MONTH_JANUARY, year := 0) -> bool:
+	return day >= 1 and day <= get_days_in_month(month, year)
 
 ## Returns [code]true[/code] if the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard says that the 1st of January in a [param year] is also a Monday.
 static func does_year_start_on_monday(year: int) -> bool:
@@ -99,7 +104,6 @@ static func does_year_start_on_monday(year: int) -> bool:
 	return datetime_dict.weekday == Time.WEEKDAY_MONDAY
 
 ## Converts from godot weekday indexing [code]0-6 Sun-Sat[/code] to iso weekday indexing [code]1-7 Mon-Sun[/code].
-static func weekday_godot_to_iso(weekday: int) -> int:
-	if weekday == 0: return 7
-	else: return weekday
+static func weekday_godot_to_iso(weekday: Time.Weekday) -> int:
+	return weekday if weekday != Time.WEEKDAY_SUNDAY else 7
 #endregion methods
