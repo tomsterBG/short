@@ -58,14 +58,14 @@
 # BAD IDEAS:
 # - Add angular speed rads_to_degs and rads_to_degs? No, you can just use rad_to_deg and deg_to_rad.
 
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## Convert between units.
 ##
 ## Available in all scripts without any setup.
 ##[br][br]Convert between units while having more readable code.
 ##[br][br][b]Note:[/b] This assumes that the [Helper] class exists.
 
-@abstract class_name Convert extends Node
+@abstract class_name Convert extends Object
 
 
 #region methods

@@ -21,12 +21,12 @@
 # - multiply_matrix(matrix_a, matrix_b)
 # - Instead of get_shape_something, we can make classes of each shape and they can have methods such as Square.perimeter() and Triangle.area().
 
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## Work with math.
 ##
 ## Available in all scripts without any setup.
 
-@abstract class_name Math extends Node
+@abstract class_name Math extends Object
 
 
 #region constants

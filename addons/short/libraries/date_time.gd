@@ -1,11 +1,11 @@
 # TODO:
 
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## Work with date and time.
 ##
 ## Available in all scripts without any setup.
 
-@abstract class_name DateTime extends Node
+@abstract class_name DateTime extends Object
 
 
 #region getters

@@ -28,13 +28,13 @@
 # - mouse axis input with deadzones: Must first check how to do that without helper.
 # - get_usec_since_event(event_at) - usec, Time.get_ticks_usec() - event_at. Hard to test.
 
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## Shorten your code.
 ##
 ## Available in all scripts without any setup.
 ##[br][br]A generic library to help you achieve more behavior with less code.
 
-@abstract class_name Helper extends Node
+@abstract class_name Helper extends Object
 
 
 #region classes

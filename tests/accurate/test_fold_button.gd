@@ -38,8 +38,11 @@ func test_set_node():
 	assert_eq(fold_button.icon, fold_button.icon_folded, "Icon is now folded.")
 
 func test_toggle():
+	fold_button.button_pressed = true
+	assert_eq(fold_button.button_pressed, false, "Button couldn't toggle.")
 	fold_button.toggle_mode = true
 	fold_button.button_pressed = true
+	assert_eq(fold_button.button_pressed, true, "Button is now pressed.")
 	assert_eq(fold_button.icon, fold_button.icon_unfolded, "Icon is now unfolded.")
 
 func test_toggle_node():

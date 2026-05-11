@@ -15,7 +15,7 @@
 # - More signals: damaged(DamageResult), healed(HealResult).
 # - free_owner_on_death: might be useless.
 
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## Health for anything that can live and die.
 ##
 ## Widely applicable for most health stuff. See also [HealthRegen].

@@ -37,12 +37,12 @@
 # - get_air_drag(speed, air_density, ...)
 # - get_water_drag(speed, water_density, ...)
 
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## Work with physics.
 ##
 ## Available in all scripts without any setup.
 
-@abstract class_name Physics extends Node
+@abstract class_name Physics extends Object
 
 
 #region constants

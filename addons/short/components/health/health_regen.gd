@@ -4,7 +4,7 @@
 # - Signals: is_regenerating_changed.
 # - Add paused signal which does not emit if regen_pause_length == 0.
 
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## Regeneration for [Health].
 ##
 ##[br][br][b]Note:[/b] This overwrites [method Node._process] and [method Node._get_configuration_warnings]. Use [code]super()[/code] if you want to extend the same methods.

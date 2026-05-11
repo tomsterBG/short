@@ -1,4 +1,4 @@
-## @experimental: This class is immature.
+## @experimental: This class could change.
 ## A generic fold button.
 ##
 ## When the button is pressed, the [member node] will be visible, otherwise it will be invisible.
