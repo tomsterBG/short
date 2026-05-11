@@ -41,3 +41,7 @@ folder_colors={
 "res://other/": "gray",
 "res://tests/": "teal"
 }
+
+[gui]
+
+theme/default_font_multichannel_signed_distance_field=true

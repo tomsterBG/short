@@ -24,6 +24,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	health = [&"convert"],
 	health_regen = [&"health", &"convert"],
 	# libraries:
+	console = [],
 	convert = [&"helper"],
 	date_time = [],
 	helper = [],
