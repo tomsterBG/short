@@ -37,8 +37,7 @@ const PHI = (1.0 + sqrt(5)) / 2.0
 
 #region getters
 ## Returns [param vector_a] projected on [param vector_b].
-@warning_ignore("untyped_declaration")
-static func get_projected_vector(vector_a, vector_b):
+static func get_projected_vector(vector_a: Variant, vector_b: Variant) -> Variant:
 	return vector_b.normalized() * vector_a.dot(vector_b.normalized())
 #endregion getters
 

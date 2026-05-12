@@ -116,4 +116,14 @@ static func is_letter(character: String) -> bool:
 	if !is_character(character): return false
 	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
 	#endregion is_
+
+## A more robust [method ResourceSaver.save].
+##[br][br]Makes sure the folder to [param path] exists.
+static func save_resource(resource: Resource, path: String, flags := 0 as ResourceSaver.SaverFlags) -> Error:
+	var folder := path.get_base_dir()
+	if !DirAccess.dir_exists_absolute(folder):
+		DirAccess.make_dir_recursive_absolute(folder)
+	
+	var result := ResourceSaver.save(resource, path, flags)
+	return result
 #endregion methods

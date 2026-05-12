@@ -9,13 +9,13 @@ extends GutHookScript
 
 
 #region constants
-const IS_DEEP = true
+const IS_DEEP := true
 #endregion constants
 
 
 #region variables
-var accurate_path_prefix = "res://tests/accurate/test_"
-var path_suffix = ".gd"
+var accurate_path_prefix := "res://tests/accurate/test_"
+var path_suffix := ".gd"
 
 var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
@@ -44,7 +44,7 @@ func get_ordered_tests() -> Array[StringName]:
 			ordered_tests.push_front(test)
 			continue
 		
-		var idx_of_last_dependency: int = -1
+		var idx_of_last_dependency := -1
 		for dependency in dependencies:
 			if ordered_tests.find(dependency) > idx_of_last_dependency:
 				idx_of_last_dependency = ordered_tests.find(dependency)
@@ -53,9 +53,9 @@ func get_ordered_tests() -> Array[StringName]:
 	print("ordered_tests = ", ordered_tests)
 	return ordered_tests
 
-func get_test_paths(tests: Array[StringName]) -> Array[StringName]:
+func get_test_paths(path_prefix, tests: Array[StringName]) -> Array[StringName]:
 	for idx in range(tests.size()):
-		tests[idx] = accurate_path_prefix + tests[idx] + path_suffix
+		tests[idx] = path_prefix + tests[idx] + path_suffix
 	return tests
 #endregion getters
 
@@ -83,7 +83,7 @@ func run():
 		print("Tests are in the correct order.\n")
 	else:
 		push_error("Tests are in the wrong order.")
-	ordered_tests = get_test_paths(ordered_tests)
+	ordered_tests = get_test_paths(accurate_path_prefix, ordered_tests)
 	
 	for test_script in gut.get_test_collector().scripts:
 		if ordered_tests.has(test_script.path): continue

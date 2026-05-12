@@ -26,12 +26,12 @@ static func get_days_in_year(year: int) -> int:
 
 ## Returns the day in the [param year] from [code]1[/code] to [code]366[/code].
 static func get_day_in_year(day: int, month: Time.Month, year: int) -> int:
-	var day_of_year := 0
+	var day_in_year := 0
 	var month_idx := 1
 	while month_idx < month:
-		day_of_year += get_days_in_month(month_idx, year)
+		day_in_year += get_days_in_month(month_idx, year)
 		month_idx += 1
-	return day_of_year + day
+	return day_in_year + day
 
 ## Returns the day in the [param year] since the first monday from [code]1[/code] to [code]371[/code].
 static func get_day_since_first_monday(day: int, month: Time.Month, year: int) -> int:
@@ -66,9 +66,9 @@ static func get_iso_first_monday_of_year(year: int) -> Dictionary:
 
 ## Returns week number in the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard from [code]1[/code] to [code]53[/code].
 static func get_iso_week_number(day: int, month: Time.Month, year: int) -> int:
-	var day_of_year := get_day_in_year(day, month, year)
+	var day_in_year := get_day_in_year(day, month, year)
 	var weekday := get_iso_weekday_of_date(day, month, year)
-	var week := floori((day_of_year - weekday + 10) / 7.0)
+	var week := floori((day_in_year - weekday + 10) / 7.0)
 	if week < 1:
 		return get_iso_weeks_in_year(year - 1)
 	if week == 53 and get_iso_weeks_in_year(year) == 52:
@@ -103,7 +103,7 @@ static func does_year_start_on_monday(year: int) -> bool:
 	var datetime_dict := Time.get_datetime_dict_from_datetime_string("%d-01-01" % year, true)
 	return datetime_dict.weekday == Time.WEEKDAY_MONDAY
 
-## Converts from godot weekday indexing [code]0-6 Sun-Sat[/code] to iso weekday indexing [code]1-7 Mon-Sun[/code].
+## Converts from godot weekday indexing [code]0-6 Sun-Sat[/code] to [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] weekday indexing [code]1-7 Mon-Sun[/code].
 static func weekday_godot_to_iso(weekday: Time.Weekday) -> int:
 	return weekday if weekday != Time.WEEKDAY_SUNDAY else 7
 #endregion methods

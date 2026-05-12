@@ -48,6 +48,6 @@ func _get_configuration_warnings() -> PackedStringArray:
 	elif node == self:
 		warnings.append("The button will fold itself.")
 	if !toggle_mode:
-		warnings.append("Set toggle_mode to true. The button won't unfold.")
+		warnings.append("The button won't unfold with toggle_mode false.")
 	return warnings
 #endregion virtual
