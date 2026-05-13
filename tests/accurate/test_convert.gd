@@ -12,6 +12,8 @@ func test_time():
 	assert_eq(Convert.sec_to_usec(999.0), 999_000_000.0)
 	assert_eq(Convert.msec_to_sec(999.0), 0.999)
 	assert_eq(Convert.usec_to_sec(80_200.0), 0.080_2)
+	assert_eq(Convert.msec_to_usec(271.72), 271_720.0)
+	assert_eq(Convert.usec_to_msec(3_682.0), 3.682)
 	assert_eq(Convert.sec_to_min(90.0), 1.5)
 	assert_eq(Convert.min_to_sec(60.0), 3600.0)
 	assert_eq(Convert.min_to_h(45.0), 0.75)
@@ -129,6 +131,7 @@ func test_convert_and_back():
 	# time
 	assert_eq(Convert.sec_to_msec(Convert.msec_to_sec(23.4)), 23.4)
 	assert_eq(Convert.sec_to_usec(Convert.usec_to_sec(23.4)), 23.4)
+	assert_eq(Convert.msec_to_usec(Convert.usec_to_msec(36.8)), 36.8)
 	assert_eq(Convert.sec_to_min(Convert.min_to_sec(41.5)), 41.5)
 	assert_eq(Convert.min_to_h(Convert.h_to_min(17.4)), 17.4)
 	assert_eq(Convert.sec_to_h(Convert.h_to_sec(741.2)), 741.2)

@@ -1,6 +1,8 @@
 # IDEAS:
-# - Constructors: now_utc(), now_local().
+# - Constructors: from_datetime_dict().
 # - Converters: to_timestamp().
+# BAD IDEAS:
+# - Use now_utc(), now_local() only in TimestampData to incentivize correct class usage.
 
 ## @experimental: This class could change.
 ## Some datetime that can be passed as function argument and returned as function result.

@@ -20,4 +20,11 @@ func test_from_ymd():
 	assert_eq(date.month, Time.MONTH_OCTOBER, "Month is October")
 	assert_eq(date.weekday, Time.WEEKDAY_SUNDAY, "Weekday is Sunday.")
 	assert_eq(date.day, 19, "Day is 19.")
+
+func test_from_ymwd():
+	var date := DateData.from_ymwd(2025, Time.MONTH_AUGUST, Time.WEEKDAY_FRIDAY, 29)
+	assert_eq(date.year, 2025, "Year is 2025.")
+	assert_eq(date.month, Time.MONTH_AUGUST, "Month is August")
+	assert_eq(date.weekday, Time.WEEKDAY_FRIDAY, "Weekday is Friday.")
+	assert_eq(date.day, 29, "Day is 29.")
 #endregion tests

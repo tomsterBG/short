@@ -28,7 +28,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	date_data = [&"date_time_lib"],
 	date_time_data = [&"date_data", &"time_data"],
 	time_data = [],
-	timestamp_data = [],
+	timestamp_data = [&"convert", &"date_data", &"time_data"],
 	# libraries:
 	console = [],
 	convert = [&"helper"],

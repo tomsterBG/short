@@ -86,6 +86,14 @@ static func sec_to_usec(sec: float) -> float:
 static func usec_to_sec(usec: float) -> float:
 	return usec / 1.0e6
 
+## Converts a time from [code]milliseconds[/code] to [code]microseconds[/code].
+static func msec_to_usec(msec: float) -> float:
+	return msec * 1.0e3
+
+## Converts a time from [code]microseconds[/code] to [code]milliseconds[/code].
+static func usec_to_msec(usec: float) -> float:
+	return usec / 1.0e3
+
 ## Converts a time from [code]seconds[/code] to [code]minutes[/code].
 static func sec_to_min(sec: float) -> float:
 	return sec / 60.0
