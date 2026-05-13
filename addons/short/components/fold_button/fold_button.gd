@@ -1,3 +1,5 @@
+# TODO:
+
 ## @experimental: This class could change.
 ## A generic fold button.
 ##
@@ -34,10 +36,18 @@ func set_node(value: CanvasItem) -> void:
 func refresh() -> void:
 	if node: node.visible = button_pressed
 	icon = icon_unfolded if button_pressed else icon_folded
+
+## Toggles this button.
+func toggle() -> void:
+	button_pressed = !button_pressed
 #endregion methods
 
 
 #region virtual
+func _enter_tree() -> void:
+	toggle_mode = true
+	refresh()
+
 func _toggled(_toggled_on: bool) -> void:
 	refresh()
 

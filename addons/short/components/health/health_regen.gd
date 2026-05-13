@@ -1,3 +1,5 @@
+# IMPORTANT:
+# NOTE:
 # TODO:
 # IDEAS:
 # BAD IDEAS:

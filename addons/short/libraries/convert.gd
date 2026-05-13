@@ -22,7 +22,7 @@
 # - https://whycalculator.com
 # - https://www.unitconverters.net
 # - https://www.omnicalculator.com
-# 	- Mechanical hp l aka imperial, the default.
+# 	- Mechanical hp l aka hp imperial, the default.
 # TODO:
 # - distance
 # 	- meter_to_um

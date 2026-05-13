@@ -214,19 +214,19 @@ func heal(value: float) -> HealResult:
 	result.remaining_heal = heal_after_clamp - result.healed_health
 	return result
 
-## Kills this [Health]. If [param should_health_be_zero] is [code]true[/code], [member health] will be set to [code]0[/code]. If [param recursive] is [code]true[/code], each [member shield] will also call [method kill].
-func kill(should_health_be_zero := false, recursive := false) -> void:
+## Kills this [Health]. If [param set_health_0] is [code]true[/code], [member health] will be set to [code]0[/code]. If [param recursive] is [code]true[/code], each [member shield] will also call [method kill].
+func kill(set_health_0 := false, recursive := false) -> void:
 	is_dead = true
-	if should_health_be_zero: health = 0.0
+	if set_health_0: health = 0.0
 	if recursive and shield:
-		shield.kill(should_health_be_zero, recursive)
+		shield.kill(set_health_0, recursive)
 
-## Revives this [Health]. If [param should_health_be_max] is [code]true[/code], [member health] will be set to [member max_health]. If [param recursive] is [code]true[/code], each [member shield] will also call [method revive].
-func revive(should_health_be_max := false, recursive := false) -> void:
+## Revives this [Health]. If [param set_health_max] is [code]true[/code], [member health] will be set to [member max_health]. If [param recursive] is [code]true[/code], each [member shield] will also call [method revive].
+func revive(set_health_max := false, recursive := false) -> void:
 	is_dead = false
-	if should_health_be_max: health = max_health
+	if set_health_max: health = max_health
 	if recursive and shield:
-		shield.revive(should_health_be_max, recursive)
+		shield.revive(set_health_max, recursive)
 
 ## Returns [code]true[/code] if you managed to make cyclic [member shield] dependencies.
 ##[br][br][b]Note:[/b] The scene tree will show a warning.

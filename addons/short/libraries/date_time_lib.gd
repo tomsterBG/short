@@ -1,6 +1,6 @@
 # TODO:
 # IDEAS:
-# - Rename to CalendarLib.
+# - Helpers: get_week(), get_month(), get_month_full_weeks() -> Array[DateData].
 
 ## @experimental: This class could change.
 ## Work with date and time.

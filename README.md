@@ -63,41 +63,77 @@ GUT has its own MIT license, respect it. I recommend just deleting my copy of GU
 
 I try to be as consistent as possible.
 
-Each script must follow rules that make it extendable, simple and understandable.
+Each script must follow rules that make it simple, extendable, browsable and understandable.
 
 ## These rules include, but are not limited to
 
 **Regions:**
-- Strict order of regions, wrapped by region comments and separated by 2 lines.
+- Strict order of existing regions, wrapped by region comments and separated by 2 lines.
 	- Order: signals, enums, classes, constants, variables, setters, getters, methods, virtual, tests, internal.
 - Everything within a region, with some exceptions, is to be separated by 1 line.
 - Each nested region comment must be indented correctly.
+
+**Indentation:**
+- Tabs only.
+- Use guard clauses where possible.
+- Lines after a function ends must be empty.
+- Empty lines must have indentation equal to the next non-empty line.
+	- No trailing tabs. No tab islands.
+	- Example:
+```gdscript
+func my_func(i) -> int:
+	if i >= 10:
+		if i == 20: return -1
+		# <- This line is empty and has 2 tabs, the same as the next if.
+		if i == 30: return -1
+	# <- This line is empty and has 1 tab, same as the next return.
+	return i
+# <- This line is empty because the function ended.
+```
+
+**Getter functions:**
+- This getter is useless: `get_health() -> float: return health`.
+- This getter is syntax sugar: `get_is_alive() -> bool: return !is_dead`.
+- This getter is syntax sugar: `get_health_ratio() -> float: return health / max_health`.
+- If an instance variable can be inferred, it must be replaced with getter.
+	- `DateData.weekday` can be inferred from `year, month, day`.
+		- Adding `get_weekday()` alongside `var weekday` causes unneeded complexity.
+		  In this context, there was `DateData.from_ymwd()` and `DateData.from_ymd()`.
+		  Switching from `var weekday` to `get_weekday()` let me delete `from_ymwd()`.
+		  Deleting `from_ymwd()` removed confusion. Like does `DateTime.to_timestamp()` care if i have `weekday`?
+		  This answer wasn't obvious, but removing `var weekday` made it obvious, i don't need `weekday`.
+		  Also if i set the date without updating `weekday`, it would be outdated.
 
 **Other:**
 - Full in-engine documentation with doc comments.
 	- If documentation contains code examples, they must be asserted in tests.
 - Strict order of comments at the beginning of a script.
 	- Order: IMPORTANT, INFO, NOTE, SOURCES, TODO, IDEAS, BAD IDEAS.
-- Getter functions:
-	- This getter is useless: `get_health() -> float: return health`.
-	- This getter is syntax sugar: `get_is_alive() -> bool: return !is_dead`.
-	- This getter is syntax sugar: `get_health_ratio() -> float: return health / max_health`.
 - If a func returns void, it mutates state. If it returns non-void, it doesn't mutate state, with some exceptions.
 	- Exceptions are recognized by their name.
-	- If the func returns self or a class inside self, it mutates state. Like `Health.damage()`.
-- If it starts with is_ or has_, it returns a bool.
+	- If a func returns a result class, it mutates state. Like `Health.damage() -> DamageResult`.
+	- If a func returns `Error`, it mutates state. Like `Helper.save_resource(...) -> Error`.
+- If a func returns self or some class, it can be chained. Like `DateData.new().to_timestamp().to_time()`.
+- If it starts with is_ or has_, or should_, it's a bool.
 - If an inherited method is overwritten, ensure to note that in the description of the class.
+- If a class needs another class, ensure to note that in the description of the class.
 
 ## Rules for test scripts
 
-- Each unit test should build on top of the ones before it, for easier troubleshooting.
+**Test order:**
+- Each unit test builds on top of the ones before it, for easier troubleshooting.
 	- Order each testcase in each script.
 	- Order each test script.
 	- As the Factorio devs have found, first run the tests that cover less dependent code. This way the first error will lead you closer to where the real problem is.
-		- If Health has a bug, the error will also show up in HealthPlus. If you don't have a strict order for the tests, how do you determine which error to fix?
-- Tests should only assume already asserted facts.
-	- If a test makes an assumption, that wasn't asserted earlier, put a WARNING comment.
-- If something is untested, add "@experimental: Untested." where it is defined, not where it is tested.
+	- If `Health` has a bug, the error will also show up in `HealthPlus`. If you don't know which class depends on which, how do you determine which error to fix?
+- Tests must only assume already asserted facts.
+	- If a test makes an assumption, that wasn't asserted earlier, fix it or put a WARNING comment.
+
+**Other:**
+- If a method is untested, test it.
+	- Otherwise add "@experimental: Untested." where it is defined, not where it is tested.
+- To ensure all methods are tested, create the test before creating the method.
+	- This is called red, green, refactor.
 
 If in doubt, just write code however you want. Then look at how i've done it in other scripts and refactor your code. The `health` script is by far the best representative of how it should be done.
 

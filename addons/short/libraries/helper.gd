@@ -54,13 +54,13 @@ static func get_dir_children(path: String, recursive: bool = false) -> DirChildr
 	var result := DirChildrenResult.new()
 	
 	var files: Array = DirAccess.get_files_at(path)
-	result.files.assign(files.map(func(f: String) -> String: return path+f))
+	result.files.assign(files.map(func(f: String) -> String: return path.path_join(f)))
 	
 	var folders := DirAccess.get_directories_at(path)
 	for folder in folders:
-		result.folders.append(path+folder)
+		result.folders.append(path.path_join(folder))
 		if !recursive: continue
-		var this_result := get_dir_children(path+folder+"/", recursive)
+		var this_result := get_dir_children(path.path_join(folder), recursive)
 		result.files.append_array(this_result.files)
 		result.folders.append_array(this_result.folders)
 	
@@ -69,6 +69,7 @@ static func get_dir_children(path: String, recursive: bool = false) -> DirChildr
 ## Returns the amount of lines in a file.
 static func get_lines_in_file(path: String) -> int:
 	var lines := 0
+	if FileAccess.get_size(path) <= 0: return lines
 	var file := FileAccess.open(path, FileAccess.READ)
 	while !file.eof_reached():
 		file.get_line()
@@ -97,6 +98,7 @@ static func is_negative(string: String) -> bool:
 
 ## Returns [code]true[/code] if the given string is a number in binary.
 static func is_binary(binary: String) -> bool:
+	if binary.is_empty(): return false
 	for character in binary:
 		if character == "0" or character == "1": continue
 		else: return false

@@ -26,12 +26,12 @@ func test_to_date():
 	var date := TimestampData.new().to_date()
 	assert_eq(date.year, 1970, "Unix epoch year.")
 	assert_eq(date.month, Time.MONTH_JANUARY, "Unix epoch month.")
-	assert_eq(date.weekday, Time.WEEKDAY_THURSDAY, "Unix epoch weekday.")
+	assert_eq(date.get_weekday(), Time.WEEKDAY_THURSDAY, "Unix epoch weekday.")
 	assert_eq(date.day, 1, "Unix epoch day.")
 	date = TimestampData.new(1778685141.454071).to_date()
 	assert_eq(date.year, 2026, "Development year.")
 	assert_eq(date.month, Time.MONTH_MAY, "Development month.")
-	assert_eq(date.weekday, Time.WEEKDAY_WEDNESDAY, "Development weekday.")
+	assert_eq(date.get_weekday(), Time.WEEKDAY_WEDNESDAY, "Development weekday.")
 	assert_eq(date.day, 13, "Development day.")
 
 func test_to_time():

@@ -1,3 +1,7 @@
+# TODO:
+# - Write in notes something about moving from var weekday to get_weekday().
+# 	- Part of it is, the weekday can be inferred from year, month, day.
+# 	- Having var weekday and get_weekday() hides the fact that weekday runs get_weekday().
 # IDEAS:
 # - Constructors: from_date_dict().
 # - Converters: to_date_dict().
@@ -15,11 +19,16 @@ class_name DateData extends Resource
 
 
 #region variables
-@export var year := 0
+@export var year := 1
 @export var month := Time.MONTH_JANUARY
-@export var weekday := Time.WEEKDAY_SUNDAY
-@export var day := 0
+@export var day := 1
 #endregion variables
+
+
+#region getters
+func get_weekday() -> Time.Weekday:
+	return DateTimeLib.get_weekday_of_date(self)
+#endregion getters
 
 
 #region methods
@@ -28,19 +37,10 @@ static func from_ymd(p_year: int, p_month: Time.Month, p_day: int) -> DateData:
 	new_date.year = p_year
 	new_date.month = p_month
 	new_date.day = p_day
-	new_date.weekday = DateTimeLib.get_weekday_of_date(new_date)
-	return new_date
-
-static func from_ymwd(p_year: int, p_month: Time.Month, p_weekday: Time.Weekday, p_day: int) -> DateData:
-	var new_date := DateData.new()
-	new_date.year = p_year
-	new_date.month = p_month
-	new_date.weekday = p_weekday
-	new_date.day = p_day
 	return new_date
 
 func to_timestamp() -> TimestampData:
-	var datetime_dict := {year = year, month = month, weekday = weekday, day = day}
+	var datetime_dict := {year = year, month = month, day = day}
 	var new_timestamp := TimestampData.new(Time.get_unix_time_from_datetime_dict(datetime_dict))
 	return new_timestamp
 #endregion methods

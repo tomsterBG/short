@@ -1,34 +1,40 @@
 extends GutTest
 
 
+#region variables
+var date: DateData
+#endregion variables
+
+
+#region virtual
+func before_each():
+	date = DateData.new()
+#endregion virtual
+
+
 #region tests
 func test_initial_values():
-	var date := DateData.new()
-	assert_eq(date.year, 0, "Year is 0.")
+	assert_eq(date.year, 1, "Year is 1 AD.")
 	assert_eq(date.month, Time.MONTH_JANUARY, "Month is January.")
-	assert_eq(date.weekday, Time.WEEKDAY_SUNDAY, "Weekday is Sunday.")
-	assert_eq(date.day, 0, "Day is 0.")
+	assert_eq(date.day, 1, "Day is 1.")
+
+func test_initial_method_values():
+	assert_eq(date.get_weekday(), Time.WEEKDAY_MONDAY, "Weekday is Monday.")
 
 func test_from_ymd():
-	var date := DateData.from_ymd(2026, Time.MONTH_MARCH, 4)
+	date = DateData.from_ymd(2026, Time.MONTH_MARCH, 4)
 	assert_eq(date.year, 2026, "Year is 2026.")
 	assert_eq(date.month, Time.MONTH_MARCH, "Month is March")
-	assert_eq(date.weekday, Time.WEEKDAY_WEDNESDAY, "Weekday is Wednesday.")
 	assert_eq(date.day, 4, "Day is 4.")
+	assert_eq(date.get_weekday(), Time.WEEKDAY_WEDNESDAY, "Weekday is Wednesday.")
+	
 	date = DateData.from_ymd(2025, Time.MONTH_OCTOBER, 19)
 	assert_eq(date.year, 2025, "Year is 2025.")
 	assert_eq(date.month, Time.MONTH_OCTOBER, "Month is October")
-	assert_eq(date.weekday, Time.WEEKDAY_SUNDAY, "Weekday is Sunday.")
 	assert_eq(date.day, 19, "Day is 19.")
-
-func test_from_ymwd():
-	var date := DateData.from_ymwd(2025, Time.MONTH_AUGUST, Time.WEEKDAY_FRIDAY, 29)
-	assert_eq(date.year, 2025, "Year is 2025.")
-	assert_eq(date.month, Time.MONTH_AUGUST, "Month is August")
-	assert_eq(date.weekday, Time.WEEKDAY_FRIDAY, "Weekday is Friday.")
-	assert_eq(date.day, 29, "Day is 29.")
+	assert_eq(date.get_weekday(), Time.WEEKDAY_SUNDAY, "Weekday is Sunday.")
 
 func test_to_timestamp():
-	var time := DateData.from_ymwd(2025, Time.MONTH_AUGUST, Time.WEEKDAY_FRIDAY, 29).to_timestamp()
+	var time := DateData.from_ymd(2025, Time.MONTH_AUGUST, 29).to_timestamp()
 	assert_eq(time.timestamp, TimestampData.new(1756425600).timestamp, "Timestamps match.")
 #endregion tests

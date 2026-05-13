@@ -33,7 +33,7 @@ static func now_local() -> TimestampData:
 ## Converts this timestamp to a [DateData] object.
 func to_date() -> DateData:
 	var date_dict := Time.get_date_dict_from_unix_time(int(timestamp))
-	var new_date := DateData.from_ymwd(date_dict.year, date_dict.month, date_dict.weekday, date_dict.day)
+	var new_date := DateData.from_ymd(date_dict.year, date_dict.month, date_dict.day)
 	return new_date
 
 ## Converts this timestamp to a [TimeData] object.
@@ -50,4 +50,4 @@ func to_time() -> TimeData:
 #region virtual
 func _init(p_timestamp := 0.0) -> void:
 	timestamp = p_timestamp
-#region virtual
+#endregion virtual

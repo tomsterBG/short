@@ -10,6 +10,8 @@ extends GutTest
 
 
 #region constants
+const SET_HEALTH_0 = true
+const SET_HEALTH_MAX = true
 const IS_RECURSIVE = true
 #endregion constants
 
@@ -75,6 +77,10 @@ func test_init():
 	new_health = Health.new(50.0)
 	assert_eq(new_health.health, 50.0, "Health is 50.")
 	assert_eq(new_health.max_health, 50.0, "Max_health is 50.")
+	new_health.free()
+	new_health = Health.new(0.0)
+	assert_eq(new_health.health, 0.0, "Health is 0.")
+	assert_eq(new_health.max_health, 0.0, "Max_health is 0.")
 	new_health.free()
 	new_health = Health.new(-50.0)
 	assert_eq(new_health.health, 0.0, "Health is 0.")
@@ -159,11 +165,17 @@ func test_max_health_changed():
 
 func test_health_reached_max():
 	health.health = 50.0
-	assert_signal_emit_count(health, "health_reached_max", 0)
+	assert_signal_emit_count(health, "health_reached_max", 0, "Lower health, didn't emit.")
 	health.health = 75.0
-	assert_signal_emit_count(health, "health_reached_max", 0)
+	assert_signal_emit_count(health, "health_reached_max", 0, "Higher health, didn't emit.")
+	health.max_health = 75.0
+	assert_signal_emit_count(health, "health_reached_max", 0, "Lower max, didn't emit.")
 	health.health = health.max_health
-	assert_signal_emit_count(health, "health_reached_max", 1)
+	assert_signal_emit_count(health, "health_reached_max", 0, "Already at max, didn't emit.")
+	health.max_health = 100.0
+	assert_signal_emit_count(health, "health_reached_max", 0, "Higher max, didn't emit.")
+	health.health = health.max_health
+	assert_signal_emit_count(health, "health_reached_max", 1, "Health at max, did emit.")
 
 func test_is_dead():
 	health.health = 0.0
@@ -198,9 +210,9 @@ func test_revive():
 	assert_false(health.is_dead, "Health isn't dead.")
 	assert_true(health.is_alive, "Health is alive.")
 	assert_eq(health.health, health.max_health, "Health is full.")
-	health.kill(true)
+	health.kill(SET_HEALTH_0)
 	assert_eq(health.health, 0.0, "Health is empty.")
-	health.revive(true)
+	health.revive(SET_HEALTH_MAX)
 	assert_eq(health.health, health.max_health, "Health is full.")
 
 func test_kill_revive_kill():
@@ -313,6 +325,7 @@ func test_inverted_resistances():
 	assert_eq(health.health, health.max_health - 50.0 - 20.0, "Don't take negative damage.")
 	assert_eq(result.taken_damage, 0.0, "Don't take negative damage.")
 
+#region shield
 func test_make_shield_without_method():
 	var shield := Health.new()
 	add_child_autofree(shield)
@@ -389,8 +402,8 @@ func test_cyclic_shields():
 	assert_false(health.are_shields_cyclic(), "Shields aren't cyclic.")
 	assert_eq(shield2.shield, null, "The shield reverted itself.")
 	health.damage(1.0, IS_RECURSIVE)
-	health.kill(false, IS_RECURSIVE)
-	health.revive(false, IS_RECURSIVE)
+	health.kill(!SET_HEALTH_0, IS_RECURSIVE)
+	health.revive(!SET_HEALTH_MAX, IS_RECURSIVE)
 	# Test shield reverting itself:
 	shield1.shield = shield1
 	assert_eq(shield1.shield, shield2, "The shield reverted itself.")
@@ -398,13 +411,17 @@ func test_cyclic_shields():
 
 func test_kill_recursive():
 	var shield1 := health.make_shield()
-	shield1.can_die = true
 	var shield2 := shield1.make_shield()
+	shield1.kill(SET_HEALTH_0, IS_RECURSIVE)
+	assert_false(health.is_dead, "Health isn't dead.")
+	assert_false(shield1.is_dead, "Shield1 isn't dead.")
+	assert_false(shield2.is_dead, "Shield2 isn't dead.")
+	shield1.can_die = true
 	shield2.can_die = true
 	assert_false(health.is_dead, "Health isn't dead.")
 	assert_false(shield1.is_dead, "Shield1 isn't dead.")
 	assert_false(shield2.is_dead, "Shield2 isn't dead.")
-	shield1.kill(false, IS_RECURSIVE)
+	shield1.kill(!SET_HEALTH_0, IS_RECURSIVE)
 	assert_false(health.is_dead, "Health isn't dead.")
 	assert_true(shield1.is_dead, "Shield1 is dead.")
 	assert_true(shield2.is_dead, "Shield2 is dead.")
@@ -414,12 +431,13 @@ func test_revive_recursive():
 	shield1.can_die = true
 	var shield2 := shield1.make_shield()
 	shield2.can_die = true
-	health.kill(false, IS_RECURSIVE)
+	health.kill(!SET_HEALTH_0, IS_RECURSIVE)
 	assert_true(health.is_dead, "Health is dead.")
 	assert_true(shield1.is_dead, "Shield1 is dead.")
 	assert_true(shield2.is_dead, "Shield2 is dead.")
-	shield1.revive(false, IS_RECURSIVE)
+	shield1.revive(!SET_HEALTH_MAX, IS_RECURSIVE)
 	assert_true(health.is_dead, "Health is dead.")
 	assert_false(shield1.is_dead, "Shield1 isn't dead.")
 	assert_false(shield2.is_dead, "Shield2 isn't dead.")
+#endregion shield
 #endregion tests
