@@ -1,7 +1,11 @@
+# IDEAS:
+# - Constructors: now_utc(), now_local().
+# - Converters: to_timestamp().
+
 ## @experimental: This class could change.
 ## Some time that can be passed as function argument and returned as function result.
 ##
-##[br][br][b]Note:[/b] It is recommended to use this for functions that require time data. If you want to save this data, timestamps are much more efficient.
+##[br][br][b]Note:[/b] It is recommended to use this for functions that require time data. If you want to save this data, [TimestampData] is much more efficient.
 
 class_name TimeData extends Resource
 

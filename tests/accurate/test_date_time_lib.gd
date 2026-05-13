@@ -126,6 +126,10 @@ func test_weekday_godot_to_iso():
 	assert_eq(DateTimeLib.weekday_godot_to_iso(Time.WEEKDAY_SATURDAY), 6)
 	assert_eq(DateTimeLib.weekday_godot_to_iso(Time.WEEKDAY_SUNDAY), 7)
 
+func test_get_weekday_of_date():
+	assert_eq(DateTimeLib.get_weekday_of_date(DateData.from_ymd(2025, Time.MONTH_JANUARY, 1)), Time.WEEKDAY_WEDNESDAY)
+	assert_eq(DateTimeLib.get_weekday_of_date(DateData.from_ymd(2025, Time.MONTH_JANUARY, 5)), Time.WEEKDAY_SUNDAY)
+
 func test_get_iso_weekday_of_date():
 	assert_eq(DateTimeLib.get_iso_weekday_of_date(DateData.from_ymd(2025, Time.MONTH_JANUARY, 1)), DateTimeLib.weekday_godot_to_iso(Time.WEEKDAY_WEDNESDAY))
 	assert_eq(DateTimeLib.get_iso_weekday_of_date(DateData.from_ymd(2025, Time.MONTH_JANUARY, 5)), DateTimeLib.weekday_godot_to_iso(Time.WEEKDAY_SUNDAY))

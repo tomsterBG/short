@@ -1,4 +1,6 @@
 # TODO:
+# IDEAS:
+# - Rename to CalendarLib.
 
 ## @experimental: This class could change.
 ## Work with date and time.
@@ -39,8 +41,13 @@ static func get_day_since_first_monday(date: DateData) -> int:
 	var weekday := get_iso_weekday_of_date(date)
 	return ((week_number - 1) * 7) + weekday
 
+## Returns the weekday of the current date in the [enum Time.Weekday] standard from [code]0[/code] to [code]6[/code].
+static func get_weekday_of_date(date: DateData) -> Time.Weekday:
+	var datetime_dict := Time.get_datetime_dict_from_datetime_string("%d-%d-%d" % [date.year, date.month, date.day], true)
+	return datetime_dict.weekday
+
 ## Returns the weekday of the current date in the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard from [code]1[/code] to [code]7[/code].
-static func get_iso_weekday_of_date(date: DateData) -> Time.Weekday:
+static func get_iso_weekday_of_date(date: DateData) -> int:
 	var datetime_dict := Time.get_datetime_dict_from_datetime_string("%d-%d-%d" % [date.year, date.month, date.day], true)
 	return weekday_godot_to_iso(datetime_dict.weekday) as Time.Weekday
 
