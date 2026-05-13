@@ -4,9 +4,9 @@
 ## Work with date and time.
 ##
 ## Available in all scripts without any setup.
-##[br][br][b]Note:[/b] This assumes that the [Convert] class exists.
+##[br][br][b]Note:[/b] This assumes that the [Convert] and [DateData] classes exist.
 
-@abstract class_name DateTime extends Object
+@abstract class_name DateTimeLib extends Object
 
 
 #region getters
@@ -25,36 +25,39 @@ static func get_days_in_year(year: int) -> int:
 	return 366 if is_leap_year(year) else 365
 
 ## Returns the day in the [param year] from [code]1[/code] to [code]366[/code].
-static func get_day_in_year(day: int, month: Time.Month, year: int) -> int:
+static func get_day_in_year(date: DateData) -> int:
 	var day_in_year := 0
 	var month_idx := 1
-	while month_idx < month:
-		day_in_year += get_days_in_month(month_idx, year)
+	while month_idx < date.month:
+		day_in_year += get_days_in_month(month_idx, date.year)
 		month_idx += 1
-	return day_in_year + day
+	return day_in_year + date.day
 
 ## Returns the day in the [param year] since the first monday from [code]1[/code] to [code]371[/code].
-static func get_day_since_first_monday(day: int, month: Time.Month, year: int) -> int:
-	var week_number := get_iso_week_number(day, month, year)
-	var weekday := get_iso_weekday_of_date(day, month, year)
+static func get_day_since_first_monday(date: DateData) -> int:
+	var week_number := get_iso_week_number(date)
+	var weekday := get_iso_weekday_of_date(date)
 	return ((week_number - 1) * 7) + weekday
 
 ## Returns the weekday of the current date in the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard from [code]1[/code] to [code]7[/code].
-static func get_iso_weekday_of_date(day: int, month: Time.Month, year: int) -> Time.Weekday:
-	var datetime_dict := Time.get_datetime_dict_from_datetime_string("%d-%d-%d" % [year, month, day], true)
+static func get_iso_weekday_of_date(date: DateData) -> Time.Weekday:
+	var datetime_dict := Time.get_datetime_dict_from_datetime_string("%d-%d-%d" % [date.year, date.month, date.day], true)
 	return weekday_godot_to_iso(datetime_dict.weekday) as Time.Weekday
 
 ## Returns the number of weeks in a given [param year] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
 static func get_iso_weeks_in_year(year: int) -> int:
-	var weekday_of_1st_jan := get_iso_weekday_of_date(1, Time.MONTH_JANUARY, year)
-	var weekday_of_31st_dec := get_iso_weekday_of_date(31, Time.MONTH_DECEMBER, year)
+	var jan_1st := DateData.from_ymd(year, Time.MONTH_JANUARY, 1)
+	var dec_31st := DateData.from_ymd(year, Time.MONTH_DECEMBER, 31)
+	var weekday_of_1st_jan := get_iso_weekday_of_date(jan_1st)
+	var weekday_of_31st_dec := get_iso_weekday_of_date(dec_31st)
 	if weekday_of_1st_jan == Time.WEEKDAY_THURSDAY or weekday_of_31st_dec == Time.WEEKDAY_THURSDAY:
 		return 53
 	return 52
 
 ## Returns the [code]day[/code] and [code]month[/code] of the first monday in the [param year]. Must be from [code]29 Dec[/code] to [code]4 Jan[/code] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
 static func get_iso_first_monday_of_year(year: int) -> Dictionary:
-	var weekday_of_4th_jan := get_iso_weekday_of_date(4, Time.MONTH_JANUARY, year)
+	var jan_4th := DateData.from_ymd(year, Time.MONTH_JANUARY, 4)
+	var weekday_of_4th_jan := get_iso_weekday_of_date(jan_4th)
 	var first_monday: Dictionary = {
 		day = 4 - (weekday_of_4th_jan - 1),
 		month = Time.MONTH_JANUARY,
@@ -65,13 +68,13 @@ static func get_iso_first_monday_of_year(year: int) -> Dictionary:
 	return first_monday
 
 ## Returns week number in the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard from [code]1[/code] to [code]53[/code].
-static func get_iso_week_number(day: int, month: Time.Month, year: int) -> int:
-	var day_in_year := get_day_in_year(day, month, year)
-	var weekday := get_iso_weekday_of_date(day, month, year)
+static func get_iso_week_number(date: DateData) -> int:
+	var day_in_year := get_day_in_year(date)
+	var weekday := get_iso_weekday_of_date(date)
 	var week := floori((day_in_year - weekday + 10) / 7.0)
 	if week < 1:
-		return get_iso_weeks_in_year(year - 1)
-	if week == 53 and get_iso_weeks_in_year(year) == 52:
+		return get_iso_weeks_in_year(date.year - 1)
+	if week == 53 and get_iso_weeks_in_year(date.year) == 52:
 		return 1
 	return week
 

@@ -76,6 +76,7 @@ class HealResult:
 
 
 #region variables
+	#region health
 @export_group("Health")
 
 ## Clamped between [code]0[/code] and [member max_health]. If this reaches [code]0[/code], [method kill] is called.
@@ -83,6 +84,7 @@ class HealResult:
 
 ## Can't be less than [code]0[/code] because of [member health]. If this reaches [code]0[/code], [member health] will also reach [code]0[/code].
 @export var max_health := 100.0: set = set_max_health
+	#endregion health
 
 	#region resistances
 @export_group("Resistance", "resistance_")
@@ -100,6 +102,7 @@ class HealResult:
 @export var resistance_order := ResistanceOrder.PERCENT_FLAT
 	#endregion resistances
 
+	#region other
 @export_group("Other")
 
 ## If this is [code]false[/code], [member is_dead] can't become [code]true[/code]. Useful for a constantly depleted [member shield].
@@ -114,6 +117,7 @@ var is_alive: bool: get = get_is_alive
 ## Optional. If there's a shield, all [method damage] first goes through it. Useful for games with shields that guard your [member health]. See [method make_shield].
 ##[br][br][b]Note:[/b] The shield can have its own shield! ([code]caution[/code]: don't make circular dependencies)
 @export var shield: Health: set = set_shield
+	#endregion other
 #endregion variables
 
 

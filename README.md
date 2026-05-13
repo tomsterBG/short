@@ -136,7 +136,7 @@ No abstraction for the sake of abstraction.
 - Math.sec_to_msec() - everyone knows that 1 second is 1000 milliseconds. If you don't, you will learn it.
 
 This is called Godot short, not Godot long.
-- If a method's name is longer than the code it abstracts, it must be gome.
+- If a method's name is longer than the code it abstracts, it must be gone.
   Exception: Methods that are very frequently used.
 
 Careful with untestable features.

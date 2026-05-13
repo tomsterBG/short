@@ -8,7 +8,7 @@
 ## Regeneration for [Health].
 ##
 ##[br][br][b]Note:[/b] This overwrites [method Node._process] and [method Node._get_configuration_warnings]. Use [code]super()[/code] if you want to extend the same methods.
-##[br][br][b]Note:[/b] This assumes that the [Convert] and [Health] classes exist.
+##[br][br][b]Note:[/b] This assumes that the [Health] class exists.
 
 @tool
 @icon("health.svg")
