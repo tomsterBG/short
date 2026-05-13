@@ -135,13 +135,13 @@ func test_get_iso_weekday_of_date():
 	assert_eq(DateTimeLib.get_iso_weekday_of_date(DateData.from_ymd(2025, Time.MONTH_JANUARY, 5)), DateTimeLib.weekday_godot_to_iso(Time.WEEKDAY_SUNDAY))
 
 func test_get_iso_first_monday_of_year():
-	assert_eq(DateTimeLib.get_iso_first_monday_of_year(1999), {day = 4, month = Time.MONTH_JANUARY})
-	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2000), {day = 3, month = Time.MONTH_JANUARY})
-	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2006), {day = 2, month = Time.MONTH_JANUARY})
-	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2007), {day = 1, month = Time.MONTH_JANUARY})
-	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2008), {day = 31, month = Time.MONTH_DECEMBER})
-	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2014), {day = 30, month = Time.MONTH_DECEMBER})
-	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2015), {day = 29, month = Time.MONTH_DECEMBER})
+	assert_eq(DateTimeLib.get_iso_first_monday_of_year(1999).to_timestamp().timestamp, DateData.from_ymd(1999, Time.MONTH_JANUARY, 4).to_timestamp().timestamp)
+	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2000).to_timestamp().timestamp, DateData.from_ymd(2000, Time.MONTH_JANUARY, 3).to_timestamp().timestamp)
+	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2006).to_timestamp().timestamp, DateData.from_ymd(2006, Time.MONTH_JANUARY, 2).to_timestamp().timestamp)
+	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2007).to_timestamp().timestamp, DateData.from_ymd(2007, Time.MONTH_JANUARY, 1).to_timestamp().timestamp)
+	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2008).to_timestamp().timestamp, DateData.from_ymd(2008, Time.MONTH_DECEMBER, 31).to_timestamp().timestamp)
+	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2014).to_timestamp().timestamp, DateData.from_ymd(2014, Time.MONTH_DECEMBER, 30).to_timestamp().timestamp)
+	assert_eq(DateTimeLib.get_iso_first_monday_of_year(2015).to_timestamp().timestamp, DateData.from_ymd(2015, Time.MONTH_DECEMBER, 29).to_timestamp().timestamp)
 
 func test_get_iso_week_number():
 	assert_eq(DateTimeLib.get_iso_week_number(DateData.from_ymd(2015, Time.MONTH_OCTOBER, 26)), 44)

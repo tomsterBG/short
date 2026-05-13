@@ -27,4 +27,8 @@ func test_from_ymwd():
 	assert_eq(date.month, Time.MONTH_AUGUST, "Month is August")
 	assert_eq(date.weekday, Time.WEEKDAY_FRIDAY, "Weekday is Friday.")
 	assert_eq(date.day, 29, "Day is 29.")
+
+func test_to_timestamp():
+	var time := DateData.from_ymwd(2025, Time.MONTH_AUGUST, Time.WEEKDAY_FRIDAY, 29).to_timestamp()
+	assert_eq(time.timestamp, TimestampData.new(1756425600).timestamp, "Timestamps match.")
 #endregion tests

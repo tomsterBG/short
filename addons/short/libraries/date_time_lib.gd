@@ -62,13 +62,13 @@ static func get_iso_weeks_in_year(year: int) -> int:
 	return 52
 
 ## Returns the [code]day[/code] and [code]month[/code] of the first monday in the [param year]. Must be from [code]29 Dec[/code] to [code]4 Jan[/code] according to the [url=https://en.wikipedia.org/wiki/ISO_8601]ISO 8601[/url] standard.
-static func get_iso_first_monday_of_year(year: int) -> Dictionary:
+static func get_iso_first_monday_of_year(year: int) -> DateData:
 	var jan_4th := DateData.from_ymd(year, Time.MONTH_JANUARY, 4)
-	var weekday_of_4th_jan := get_iso_weekday_of_date(jan_4th)
-	var first_monday: Dictionary = {
-		day = 4 - (weekday_of_4th_jan - 1),
-		month = Time.MONTH_JANUARY,
-	}
+	var first_monday := DateData.from_ymd(
+		year,
+		Time.MONTH_JANUARY,
+		4 - (get_iso_weekday_of_date(jan_4th) - 1))
+	
 	if !is_valid_day_in_month(first_monday.day):
 		first_monday.day = 31 + first_monday.day
 		first_monday.month = Time.MONTH_DECEMBER

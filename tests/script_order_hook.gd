@@ -25,10 +25,10 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	health = [&"convert"],
 	health_regen = [&"health"],
 	# data:
-	date_data = [&"date_time_lib"],
+	date_data = [&"date_time_lib", &"timestamp_data"],
 	date_time_data = [&"date_data", &"time_data"],
 	time_data = [],
-	timestamp_data = [&"convert", &"date_data", &"time_data"],
+	timestamp_data = [&"convert", &"time_data"], # NOTE: &"date_data" circular dependency
 	# libraries:
 	console = [],
 	convert = [&"helper"],

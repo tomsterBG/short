@@ -18,13 +18,13 @@ class_name TimestampData extends Resource
 
 
 #region methods
-## Creates a timestamp now in UTC.
+## Creates a Unix timestamp now in UTC.
 static func now_utc() -> TimestampData:
 	var new_timestamp := TimestampData.new()
 	new_timestamp.timestamp = Time.get_unix_time_from_system()
 	return new_timestamp
 
-## Creates a timestamp now in local time.
+## Creates a Unix timestamp now in local time.
 static func now_local() -> TimestampData:
 	var new_timestamp := TimestampData.new()
 	new_timestamp.timestamp = Time.get_unix_time_from_system() + Time.get_time_zone_from_system().bias * 60

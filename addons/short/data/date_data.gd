@@ -1,6 +1,6 @@
 # IDEAS:
 # - Constructors: from_date_dict().
-# - Converters: to_timestamp().
+# - Converters: to_date_dict().
 # - Helpers: is_valid().
 # BAD IDEAS:
 # - Use now_utc(), now_local() only in TimestampData to incentivize correct class usage.
@@ -9,7 +9,7 @@
 ## Some date that can be passed as function argument and returned as function result.
 ##
 ##[br][br][b]Note:[/b] It is recommended to use this for functions that require date data. If you want to save this data, [TimestampData] is much more efficient.
-##[br][br][b]Note:[/b] This assumes that the [DateTimeLib] class exists.
+##[br][br][b]Note:[/b] This assumes that the [DateTimeLib] and [TimestampData] classes exist.
 
 class_name DateData extends Resource
 
@@ -38,4 +38,9 @@ static func from_ymwd(p_year: int, p_month: Time.Month, p_weekday: Time.Weekday,
 	new_date.weekday = p_weekday
 	new_date.day = p_day
 	return new_date
+
+func to_timestamp() -> TimestampData:
+	var datetime_dict := {year = year, month = month, weekday = weekday, day = day}
+	var new_timestamp := TimestampData.new(Time.get_unix_time_from_datetime_dict(datetime_dict))
+	return new_timestamp
 #endregion methods
