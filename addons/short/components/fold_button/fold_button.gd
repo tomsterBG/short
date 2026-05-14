@@ -34,8 +34,8 @@ func set_node(value: CanvasItem) -> void:
 #region methods
 ## Refreshes the visuals.
 func refresh() -> void:
-	if node: node.visible = button_pressed
-	icon = icon_unfolded if button_pressed else icon_folded
+	if node: node.visible = !button_pressed
+	icon = icon_unfolded if !button_pressed else icon_folded
 
 ## Toggles this button.
 func toggle() -> void:

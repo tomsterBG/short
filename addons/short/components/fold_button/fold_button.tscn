@@ -7,6 +7,5 @@
 offset_right = 8.0
 offset_bottom = 8.0
 toggle_mode = true
-button_pressed = true
 icon = ExtResource("3_riiwf")
 script = ExtResource("1_6gogb")
