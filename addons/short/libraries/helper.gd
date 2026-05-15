@@ -27,6 +27,7 @@
 # - toggle fullscreen: Maybe? Ensure it doesn't need me to remember state.
 # - mouse axis input with deadzones: Must first check how to do that without helper.
 # - get_usec_since_event(event_at) - usec, Time.get_ticks_usec() - event_at. Hard to test.
+# - trash_dir(path) - Just use OS.move_to_trash(ProjectSettings.globalize_path(path)).
 
 ## @experimental: This class could change.
 ## Shorten your code.
