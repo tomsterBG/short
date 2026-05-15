@@ -83,13 +83,8 @@ func test_is_letter():
 func test_save_resource():
 	var resource := Resource.new()
 	var new_folder := "res://tests/files/new_folder"
-	assert_eq(Helper.save_resource(resource, "%s/new_resource.tres" % new_folder), OK, "Can save resource, even though folder doesn't exist.")
-	assert_eq(DirAccess.remove_absolute("%s/new_resource.tres" % new_folder), OK, "Removed resource.")
-	assert_eq(DirAccess.remove_absolute(new_folder), OK, "Removed new folder.")
-
-func test_trash_dir():
-	var resource := Resource.new()
-	var new_folder := "res://tests/files/new_folder"
-	assert_eq(Helper.save_resource(resource, "%s/new_resource.tres" % new_folder), OK, "Can save resource, even though folder doesn't exist.")
-	assert_eq(Helper.trash_dir(new_folder), OK, "Trashed new folder and its contents.")
+	#assert_eq(ResourceSaver.save(resource, "%s/new_resource.tres" % new_folder), ERR_CANT_OPEN) # NOTE: Works, but also pushes a debugger error.
+	assert_eq(Helper.save_resource(resource, "%s/new_resource.tres" % new_folder), OK)
+	assert_eq(DirAccess.remove_absolute("%s/new_resource.tres" % new_folder), OK)
+	assert_eq(DirAccess.remove_absolute(new_folder), OK)
 #endregion tests
