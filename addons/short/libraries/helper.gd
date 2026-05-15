@@ -128,4 +128,9 @@ static func save_resource(resource: Resource, path: String, flags := 0 as Resour
 	
 	var result := ResourceSaver.save(resource, path, flags)
 	return result
+
+## A shortcut for [method OS.move_to_trash]. Uses Godot absolute paths instead of OS absolute paths.
+##[br][br]For example, [param path] can start with [code]"user://"[/code].
+static func trash_dir(path: String) -> Error:
+	return OS.move_to_trash(ProjectSettings.globalize_path(path))
 #endregion methods
