@@ -114,6 +114,13 @@ static func is_letter(character: String) -> bool:
 	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
 	#endregion is_
 
+## Returns [code]true[/code] if the given string is a GDScript function definition. 
+static func is_func_definition(string: String) -> bool:
+	var stripped := string.strip_edges()
+	if (stripped.begins_with("func") or stripped.begins_with("static func")
+	or stripped.begins_with("@abstract func")): return true
+	return false
+
 ## A more robust [method ResourceSaver.save].
 ##[br][br]Makes sure the folder to [param path] exists.
 static func save_resource(resource: Resource, path: String, flags := 0 as ResourceSaver.SaverFlags) -> Error:

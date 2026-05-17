@@ -80,6 +80,15 @@ func test_is_letter():
 	assert_false(Helper.is_letter("8"), "Not a letter.")
 	assert_false(Helper.is_letter(""), "Not a letter.")
 
+func test_is_func_definition():
+	assert_true(Helper.is_func_definition("func"), "A function.")
+	assert_true(Helper.is_func_definition(" func "), "A function.")
+	assert_true(Helper.is_func_definition("func my_problem"), "A function.")
+	assert_true(Helper.is_func_definition("static func my_problem"), "A function.")
+	assert_true(Helper.is_func_definition("@abstract func my_problem"), "A function.")
+	assert_false(Helper.is_func_definition("static var"), "Not a function.")
+	assert_false(Helper.is_func_definition(""), "Not a function.")
+
 func test_save_resource():
 	var resource := Resource.new()
 	var new_folder := "res://tests/files/new_folder"
