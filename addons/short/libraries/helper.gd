@@ -6,12 +6,29 @@
 # - find_child_with_method, find_child_with_signal, find_children_with_method, find_children_with_signal
 # TODO:
 # - Add an optional PackedStringArray to is_affirmative and is_negative to control what is considered as such.
-# - get_class_name(source_code)
 # - diff_arrays(old, new) -> added, removed, stayed
+# - diff_properties(obj_a: Object, obj_b: Object) -> PackedStringArray
 # - get_deep_value(object, value) -> Variant
-# - get_indent_level(line) -> int
-# - strip_code_comments(string) -> String
+# - set_deep_value(object: Object, path: String, value: Variant) -> void
+# - assign_properties(target: Object, data: Dictionary) -> void: powerful when combined with get_deep_value
 # - get_dir_file_extensions() -> PackedStringArray: like get_dir_children, but returns a list of file extensions
+# - get_descendants(node: Node, type_hint := &"Node") -> Array[Node]
+# - free_children(node: Node) -> void
+# - safe_connect():
+# - safe_disconnect(source: Object, signal_name: StringName, target: Callable) -> void
+# - get_uid_path(resource: Resource) -> String
+# - is_uid_string(string: String) -> bool: maybe for StringLib?
+# - array_to_dict(key: StringName, value: Array) -> Dictionary
+# - filter_by_method(array: Array, method_name: StringName) -> Array
+# - try_call(target: Object, method: StringName, args := []) -> Variant
+# 	- alternative to if target.has_method(...): target.call(...)
+# - is_scene_root(node: Node) -> bool: does node own itself
+# - batch_connect(source: Object, connections: Dictionary) -> void: connections = { "signal_name": callable }
+# - split_array(array: Array, is_worthy: Callable) -> Array[Array]: [ [worthy], [unworthy] ]
+# - remove_duplicates(array: Array) - removes duplicate array values
+# - flatten_array(array: Array) - converts nested arrays to elements of the parent array
+# 	- a matrixify(array, size) counterpart to turn a flat array into a matrix or something complex
+# - 
 # - 
 # IDEAS:
 # - Improve performance of the find_child family of methods.
@@ -19,13 +36,8 @@
 # - Get air pressure at height (Earth).
 # - save_dict_as_json(data: Dictionary, path: String) -> Error, load_dict_from_json(path: String) -> Dictionary, vec3_to_str(vec: Vector3, precision: int = 2) -> String, radians_to_compass_direction(angle: float) -> String, change_scene, format_memory(bytes: int) -> String, create_timer(wait_time: float, callable: Callable, owner_node: Node)
 # - is_position_inside(position, volume)
-# - flatten_array(array: Array) - converts nested arrays to elements of the parent array
-# 	- a matrixify() counterpart to turn a flat array into a matrix or something complex
-# - remove_duplicates(array: Array) - removes duplicate array values
-# - wrap_text(text: String, line_length: int) - adds \n every line_length symbols from the start of a line
 # - Random.get_total_weight() or sum_array()
 # - instantiate_at - PackedScene as child of and at position.
-# - rebase_path(path, old_base, new_base) - res://docs/README.md -> user://data/README.md
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.

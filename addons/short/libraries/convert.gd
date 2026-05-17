@@ -63,7 +63,7 @@
 ##
 ## Available in all scripts without any setup.
 ##[br][br]Convert between units while having more readable code.
-##[br][br][b]Note:[/b] This assumes that the [Helper] class exists.
+##[br][br][b]Note:[/b] This assumes that the [StringLib] class exists.
 
 @abstract class_name Convert extends Object
 
@@ -162,9 +162,9 @@ static func percent_to_unit(percent: float) -> float:
 	#endregion proportion
 
 	#region number base
-## Converts an [code]unsigned binary integer[/code] to an [code]unsigned decimal integer[/code]. Asserts [method Helper.is_binary] in debug builds.
+## Converts an [code]unsigned binary integer[/code] to an [code]unsigned decimal integer[/code]. Asserts [method StringLib.is_binary] in debug builds.
 static func bin_to_dec(binary: String) -> int:
-	assert(Helper.is_binary(binary), "Parameter binary is not a binary string.")
+	assert(StringLib.is_binary(binary), "Parameter is not a binary string.")
 	binary = binary.reverse()
 	var decimal := 0
 	for idx in range(binary.length()):

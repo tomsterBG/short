@@ -2,6 +2,7 @@
 # When adding new test scripts, add them here.
 # First are global scripts. If a script has a dependency, its dependency must be tested first.
 # TODO:
+# - Update with improvements from my TODO app DevOps.
 # IDEAS:
 # - Make the ordering function recursive. add_script_to_order(name, order), if a dependency isn't found, call the function recursively until the dependency is found or doesn't exist. Protect from circular dependencies.
 
@@ -31,11 +32,12 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	timestamp_data = [&"convert", &"time_data"], # NOTE: &"date_data" circular dependency
 	# libraries:
 	console = [],
-	convert = [&"helper"],
+	convert = [&"string_lib"],
 	date_time_lib = [&"convert"], # NOTE: &"date_data" circular dependency
 	helper = [],
 	math = [],
 	physics = [],
+	string_lib = [],
 }
 
 var inaccurate_test_scripts: Dictionary[StringName, Array] = {
@@ -111,8 +113,4 @@ func run() -> void:
 	gut.get_test_collector().scripts.sort_custom(func(a, b) -> bool:
 		return ordered_tests.find(a.path) < ordered_tests.find(b.path)
 	)
-	
-	#gut.get_test_collector().clear()
-	#for test in ordered_tests:
-		#gut.add_script(test)
 #endregion virtual

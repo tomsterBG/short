@@ -1,4 +1,34 @@
 # TODO:
+# - get_class_name(source: String) -> StringName
+# - get_base_class(source: String) -> StringName
+# - get_indent_level(line: String) -> int
+# - strip_comments(line: String) -> String
+#
+# - is_var_definition(line: String) -> bool
+# - is_onready_var(line: String) -> bool
+# - is_signal_definition(line: String) -> bool
+# - is_inner_class_definition(line: String) -> bool: the class inside a class_name
+#
+# - is_region_start(line: String) -> bool
+# - is_region_end(line: String) -> bool
+# - get_region_name(line: String) -> String
+#
+# - is_tool_script(source: String) -> bool
+# - get_todo_info(line: String) -> String
+# - is_inside_string(source: String, index: int) -> bool: is index inside a string definition?
+#
+# - get_function_params(source: String) -> PackedStringArray
+# - has_annotation(line: String, annotation: String) -> bool: check for @tool, @experimental, @abstract
+# - get_export_var_type(line: String) -> String
+# - get_line_at_offset(source: String, offset: int) -> int
+# - is_script_skeleton(source: String) -> bool: does this script have logic/data?
+#
+# - get_project_relative_path(path: String) -> String: C:/Users/.../project/res://ui/view.gd to res://ui/view.gd
+# - rebase_path(path, old_base, new_base) - res://docs/README.md -> user://data/README.md
+# - wrap_text(text: String, line_length: int) - adds \n every line_length symbols from the start of a line
+# - is_valid_res_path(path: String) -> bool
+# IDEAS:
+# - get_script_meat_ratio(source: String) -> float: how much of the source code is actual logic?
 
 ## @experimental: This class could change.
 ## Work with strings.
