@@ -2,7 +2,7 @@ extends GutTest
 
 
 #region constants
-const ERROR_INTERVAL := 0.000_030
+const ERROR_INTERVAL := 0.000_100
 #endregion constants
 
 

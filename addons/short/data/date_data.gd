@@ -2,6 +2,11 @@
 # - Write in notes something about moving from var weekday to get_weekday().
 # 	- Part of it is, the weekday can be inferred from year, month, day.
 # 	- Having var weekday and get_weekday() hides the fact that weekday runs get_weekday().
+# - Change DateData to DateContext, TimeData to TimeContext, DateTimeData to DateTimeContext.
+# 	- Rename and move them to a different folder before any changes to preserve Git history.
+# 	- Rename their scripts and test scripts and entries in script_order_hook.
+# 	- Change them to RefCounted to ensure no ability to be saved to disk. This is for TimestampData.
+# 	- Ensure full compatibility with TimestampData for proper work within needed context.
 # IDEAS:
 # - Constructors: from_date_dict().
 # - Converters: to_date_dict().

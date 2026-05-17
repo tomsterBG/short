@@ -20,6 +20,7 @@ This project is designed to...
 - The short addon by me.
 - Tests for the short addon.
 - Other things. Either unused or specific to this project.
+- Notes.
 
 # Why use this?
 
@@ -40,14 +41,14 @@ I don't want to figure out...
 ...how to access files every time i need file access.
 All that slows me down.
 
-Long story *short*, hehe, figuring things out once is faster than dealing with them multiple times.
+Long story *short*, hehe, figuring things out once is more scalable than dealing with them multiple times.
 I say this from the frame of being this library's creator. If you want these benefits, you have to extend my code or write your own.
 
 # How to use?
 
 Download the project and delete anything you don't need.
 - Everything you need is `addons/short/`. Everything else is just helping me develop this project.
-- Careful with deleting things in the two folders. Some scripts depend on each other. You can see which script depends on which by looking at `tests/script_order_hook.gd`.
+- Careful with deleting things inside my addon's folders. Some scripts depend on each other. You can see which script depends on which by looking at `tests/script_order_hook.gd`.
 
 # License
 
@@ -57,7 +58,7 @@ My goal is not to limit people which is why i changed it from my original choice
 
 If you want to use this and the license is incompatible, feel free to contact me. Though what are you doing if MIT is incompatible?
 
-GUT has its own MIT license, respect it. I recommend just deleting my copy of GUT and using one from the asset library.
+GUT has its own MIT license, respect it. I recommend just deleting my copy of GUT and using one from the asset library. Moreover, my copy of GUT is outdated.
 
 # Convention
 

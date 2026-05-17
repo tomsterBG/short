@@ -5,6 +5,9 @@
 # - get_ancestor
 # - find_child_with_method, find_child_with_signal, find_children_with_method, find_children_with_signal
 # TODO:
+# - Add an optional parameter to is_affirmative and is_negative to control what is considered as such.
+# - get_class_name(source_code)
+# - diff_arrays(old, new) -> added, removed, stayed
 # IDEAS:
 # - Improve performance of the find_child family of methods.
 # - Make tire size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TireSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).
@@ -17,6 +20,7 @@
 # - wrap_text(text: String, line_length: int) - adds \n every line_length symbols from the start of a line
 # - Random.get_total_weight() or sum_array()
 # - instantiate_at - PackedScene as child of and at position.
+# - rebase_path(path, old_base, new_base) - res://docs/README.md -> user://data/README.md
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
 # 	- As stated there: find_parent_with_method, find_parent_with_signal.
