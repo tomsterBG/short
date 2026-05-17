@@ -95,7 +95,7 @@ static func get_project_relative_path(path: String) -> String:
 	return path
 
 ## Returns the line number corresponding to a character offset in a string.
-##[br][br]The [code]"\n"[\code] character is considered to be on the same line.
+##[br][br]The "\n" character is considered to be on the same line.
 static func get_line_at_offset(string: String, offset: int) -> int:
 	var count := 1
 	for i in range(min(offset, string.length())):
@@ -138,6 +138,7 @@ static func is_letter(character: String) -> bool:
 	if !is_character(character): return false
 	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
 
+		#region definition
 ## Returns [code]true[/code] if the given line is a GDScript function definition. 
 static func is_func_definition(line: String) -> bool:
 	var stripped := line.strip_edges()
@@ -155,7 +156,9 @@ static func is_var_definition(line: String) -> bool:
 ## Returns [code]true[/code] if the line is a GDScript signal definition.
 static func is_signal_definition(line: String) -> bool:
 	return line.strip_edges().begins_with("signal ")
+		#endregion definition
 
+		#region region
 ## Returns [code]true[/code] if the line starts a GDScript region.
 static func is_region_start(line: String) -> bool:
 	return line.strip_edges().begins_with("#region")
@@ -163,6 +166,7 @@ static func is_region_start(line: String) -> bool:
 ## Returns [code]true[/code] if the line ends a GDScript region.
 static func is_region_end(line: String) -> bool:
 	return line.strip_edges().begins_with("#endregion")
+		#endregion region
 
 ## Returns [code]true[/code] if the [param index] in [param source] is currently inside a GDScript string literal.
 static func is_inside_string(source: String, index: int) -> bool:
@@ -175,7 +179,7 @@ static func is_inside_string(source: String, index: int) -> bool:
 	return inside_double or inside_single
 	#endregion is_
 
-## Returns the line with GDScript comments removed. Handles comments inside strings.
+## Returns the line with GDScript comments removed. Knows to ignore comments inside strings.
 static func strip_comments(line: String) -> String:
 	var hash_pos := line.find("#")
 	while hash_pos != -1:
