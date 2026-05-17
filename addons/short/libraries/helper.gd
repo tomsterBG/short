@@ -5,9 +5,14 @@
 # - get_ancestor
 # - find_child_with_method, find_child_with_signal, find_children_with_method, find_children_with_signal
 # TODO:
-# - Add an optional parameter to is_affirmative and is_negative to control what is considered as such.
+# - Add an optional PackedStringArray to is_affirmative and is_negative to control what is considered as such.
 # - get_class_name(source_code)
 # - diff_arrays(old, new) -> added, removed, stayed
+# - get_deep_value(object, value) -> Variant
+# - get_indent_level(line) -> int
+# - strip_code_comments(string) -> String
+# - get_dir_file_extensions() -> PackedStringArray: like get_dir_children, but returns a list of file extensions
+# - 
 # IDEAS:
 # - Improve performance of the find_child family of methods.
 # - Make tire size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TireSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).
@@ -84,47 +89,6 @@ static func get_resource_filename(resource: Resource, include_extension := false
 
 
 #region methods
-	#region is_
-## Returns [code]true[/code] if the given string is affirmative.
-##[br][br][b]Note:[/b] An affirmative string is [code]"yes", "y", "true", "1"[/code].
-static func is_affirmative(string: String) -> bool:
-	return ["yes", "y", "true", "1"].has(string)
-
-## Returns [code]true[/code] if the given string is negative.
-##[br][br][b]Note:[/b] A negative string is [code]"no", "n", "false", "0"[/code].
-static func is_negative(string: String) -> bool:
-	return ["no", "n", "false", "0"].has(string)
-
-## Returns [code]true[/code] if the given string is a number in binary.
-static func is_binary(binary: String) -> bool:
-	if binary.is_empty(): return false
-	for character in binary:
-		if character == "0" or character == "1": continue
-		else: return false
-	return true
-
-## Returns [code]true[/code] if the given string is a single character.
-static func is_character(string: String) -> bool:
-	return string.length() == 1
-
-## Returns [code]true[/code] if the given character is a digit.
-static func is_digit(character: String) -> bool:
-	if !is_character(character): return false
-	return character >= "0" and character <= "9"
-
-## Returns [code]true[/code] if the given character is a letter.
-static func is_letter(character: String) -> bool:
-	if !is_character(character): return false
-	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
-	#endregion is_
-
-## Returns [code]true[/code] if the given string is a GDScript function definition. 
-static func is_func_definition(string: String) -> bool:
-	var stripped := string.strip_edges()
-	if (stripped.begins_with("func") or stripped.begins_with("static func")
-	or stripped.begins_with("@abstract func")): return true
-	return false
-
 ## A more robust [method ResourceSaver.save].
 ##[br][br]Makes sure the folder to [param path] exists.
 static func save_resource(resource: Resource, path: String, flags := 0 as ResourceSaver.SaverFlags) -> Error:
