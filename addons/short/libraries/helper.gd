@@ -69,14 +69,8 @@ static func get_dir_children(path: String, recursive: bool = false) -> DirChildr
 
 ## Returns the amount of lines in a file.
 static func get_lines_in_file(path: String) -> int:
-	var lines := 0
-	if FileAccess.get_size(path) <= 0: return lines
-	var file := FileAccess.open(path, FileAccess.READ)
-	while !file.eof_reached():
-		file.get_line()
-		lines += 1
-	file.close()
-	return lines
+	if FileAccess.get_size(path) <= 0: return 0
+	return FileAccess.get_file_as_string(path).split("\n").size()
 
 ## Returns a [Resource]'s file system name. If [param include_extension] is [code]true[/code], includes the file extension.
 static func get_resource_filename(resource: Resource, include_extension := false) -> String:
