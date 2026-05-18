@@ -18,14 +18,6 @@ func test_get_dir_children():
 	dir_children = Helper.get_dir_children("res://tests")
 	assert_has(dir_children.folders, "res://tests/files")
 
-func test_get_lines_in_file():
-	var lines := Helper.get_lines_in_file("res://tests/files/123 line script.gd")
-	assert_eq(lines, 123, "Lines are 123.")
-	lines = Helper.get_lines_in_file("res://tests/files/79 line text.md")
-	assert_eq(lines, 79, "Lines are 79.")
-	lines = Helper.get_lines_in_file("res://tests/files/empty file.txt")
-	assert_eq(lines, 0, "Lines are 0.")
-
 func test_get_resource_filename():
 	var resource := ResourceLoader.load("res://tests/files/my capsule shape.tres")
 	assert_eq(Helper.get_resource_filename(resource), "my capsule shape", 'Name is "my capsule shape".')

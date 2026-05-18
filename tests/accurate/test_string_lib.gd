@@ -11,18 +11,26 @@ func test_get_class_name():
 	assert_eq(StringLib.get_class_name("const my_var\nclass_name StringLib"), "")
 	assert_eq(StringLib.get_class_name("signal my_var\nclass_name StringLib"), "")
 	assert_eq(StringLib.get_class_name("class_name StringLib extends Object"), "StringLib")
+	assert_eq(StringLib.get_class_name("\n\t\nclass_name StringLib extends Object"), "StringLib")
 	assert_eq(StringLib.get_class_name("@abstract class_name StringLib extends Object"), "StringLib")
+	assert_eq(StringLib.get_class_name("\n@abstract class_name StringLib extends Object"), "StringLib")
+	assert_eq(StringLib.get_class_name("\n\t@abstract class_name StringLib extends Object"), "StringLib")
+	assert_eq(StringLib.get_class_name("@tool\n@icon(\"my_icon\")\n@abstract class_name StringLib extends Object"), "StringLib")
 
 func test_get_base_class():
 	assert_eq(StringLib.get_base_class(""), "")
 	assert_eq(StringLib.get_base_class("extends Object"), "Object")
-	assert_eq(StringLib.get_class_name("var my_var\nextends Object"), "")
-	assert_eq(StringLib.get_class_name("func my_var\nextends Object"), "")
-	assert_eq(StringLib.get_class_name("class my_var\nextends Object"), "")
-	assert_eq(StringLib.get_class_name("const my_var\nextends Object"), "")
-	assert_eq(StringLib.get_class_name("signal my_var\nextends Object"), "")
+	assert_eq(StringLib.get_base_class("var my_var\nextends Object"), "")
+	assert_eq(StringLib.get_base_class("func my_var\nextends Object"), "")
+	assert_eq(StringLib.get_base_class("class my_var\nextends Object"), "")
+	assert_eq(StringLib.get_base_class("const my_var\nextends Object"), "")
+	assert_eq(StringLib.get_base_class("signal my_var\nextends Object"), "")
 	assert_eq(StringLib.get_base_class("class_name StringLib extends Object"), "Object")
+	assert_eq(StringLib.get_base_class("\n\t\nclass_name StringLib extends Object"), "Object")
 	assert_eq(StringLib.get_base_class("@abstract class_name StringLib extends Object"), "Object")
+	assert_eq(StringLib.get_base_class("\n@abstract class_name StringLib extends Object"), "Object")
+	assert_eq(StringLib.get_base_class("\n\t@abstract class_name StringLib extends Object"), "Object")
+	assert_eq(StringLib.get_base_class("@tool\n@icon(\"my_icon\")\n@abstract class_name StringLib extends Object"), "Object")
 
 func test_get_indent_level():
 	assert_eq(StringLib.get_indent_level(""), 0)
@@ -57,6 +65,11 @@ func test_get_project_relative_path():
 	assert_eq(StringLib.get_project_relative_path(""), "")
 	assert_eq(StringLib.get_project_relative_path(ProjectSettings.globalize_path("res://tests/files")), "res://tests/files")
 
+func test_get_lines_in_file():
+	assert_eq(StringLib.get_lines_in_file("res://tests/files/empty file.txt"), 0, "Lines are 0.")
+	assert_eq(StringLib.get_lines_in_file("res://tests/files/79 line text.md"), 79, "Lines are 79.")
+	assert_eq(StringLib.get_lines_in_file("res://tests/files/123 line script.gd"), 123, "Lines are 123.")
+
 func test_get_line_at_offset():
 	assert_eq(StringLib.get_line_at_offset("", 0), 1)
 	assert_eq(StringLib.get_line_at_offset("string", 999), 1)
@@ -68,28 +81,34 @@ func test_get_line_at_offset():
 
 	#region is_
 func test_is_affirmative():
-	assert_true(StringLib.is_affirmative("yes"), "Affirmative.")
-	assert_true(StringLib.is_affirmative("y"), "Affirmative.")
-	assert_true(StringLib.is_affirmative("true"), "Affirmative.")
 	assert_true(StringLib.is_affirmative("1"), "Affirmative.")
+	assert_true(StringLib.is_affirmative("y"), "Affirmative.")
+	assert_true(StringLib.is_affirmative("yes"), "Affirmative.")
+	assert_true(StringLib.is_affirmative("true"), "Affirmative.")
 	
-	assert_false(StringLib.is_affirmative(""), "Not affirmative.")
+	assert_false(StringLib.is_affirmative("false"), "Not affirmative.")
 	assert_false(StringLib.is_affirmative("no"), "Not affirmative.")
 	assert_false(StringLib.is_affirmative("n"), "Not affirmative.")
-	assert_false(StringLib.is_affirmative("false"), "Not affirmative.")
 	assert_false(StringLib.is_affirmative("0"), "Not affirmative.")
+	assert_false(StringLib.is_affirmative(""), "Not affirmative.")
+	
+	assert_true(StringLib.is_affirmative("да", ["да", "ok"]), "Affirmative.")
+	assert_false(StringLib.is_affirmative("yes", ["да", "ok"]), "Not affirmative.")
 
 func test_is_negative():
-	assert_true(StringLib.is_negative("n"), "Negative.")
-	assert_true(StringLib.is_negative("false"), "Negative.")
 	assert_true(StringLib.is_negative("0"), "Negative.")
+	assert_true(StringLib.is_negative("n"), "Negative.")
 	assert_true(StringLib.is_negative("no"), "Negative.")
+	assert_true(StringLib.is_negative("false"), "Negative.")
 	
-	assert_false(StringLib.is_negative(""), "Not negative.")
+	assert_false(StringLib.is_negative("true"), "Not negative.")
 	assert_false(StringLib.is_negative("yes"), "Not negative.")
 	assert_false(StringLib.is_negative("y"), "Not negative.")
-	assert_false(StringLib.is_negative("true"), "Not negative.")
 	assert_false(StringLib.is_negative("1"), "Not negative.")
+	assert_false(StringLib.is_negative(""), "Not negative.")
+	
+	assert_true(StringLib.is_negative("не", ["не", "ew"]), "Negative.")
+	assert_false(StringLib.is_negative("no", ["не", "ew"]), "Not negative.")
 
 func test_is_binary():
 	assert_true(StringLib.is_binary("100111011101100"), "A number in binary.")

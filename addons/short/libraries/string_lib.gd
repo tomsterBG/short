@@ -94,6 +94,11 @@ static func get_project_relative_path(path: String) -> String:
 		return path.replace(res_path, "res://").replace("\\", "/")
 	return path
 
+## Returns the amount of lines in a file.
+static func get_lines_in_file(path: String) -> int:
+	if FileAccess.get_size(path) <= 0: return 0
+	return FileAccess.get_file_as_string(path).split("\n").size()
+
 ## Returns the line number corresponding to a character offset in a string.
 ##[br][br]The "\n" character is considered to be on the same line.
 static func get_line_at_offset(string: String, offset: int) -> int:
@@ -106,14 +111,16 @@ static func get_line_at_offset(string: String, offset: int) -> int:
 
 #region methods
 	#region is_
-## Returns [code]true[/code] if the given string is affirmative.
+## Returns [code]true[/code] if the given string is affirmative. Can customize what is considered affirmative with [param keywords].
 ##[br][br][b]Note:[/b] An affirmative string is [code]"yes", "y", "true", "1"[/code].
-static func is_affirmative(string: String) -> bool:
+static func is_affirmative(string: String, keywords: Array[String] = []) -> bool:
+	if !keywords.is_empty(): return keywords.has(string)
 	return ["yes", "y", "true", "1"].has(string)
 
-## Returns [code]true[/code] if the given string is negative.
+## Returns [code]true[/code] if the given string is negative. Can customize what is considered negative with [param keywords].
 ##[br][br][b]Note:[/b] A negative string is [code]"no", "n", "false", "0"[/code].
-static func is_negative(string: String) -> bool:
+static func is_negative(string: String, keywords: Array[String] = []) -> bool:
+	if !keywords.is_empty(): return keywords.has(string)
 	return ["no", "n", "false", "0"].has(string)
 
 ## Returns [code]true[/code] if the given string is a number in binary.

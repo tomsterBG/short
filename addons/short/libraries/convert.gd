@@ -161,17 +161,6 @@ static func percent_to_unit(percent: float) -> float:
 	return percent / 100.0
 	#endregion proportion
 
-	#region number base
-## Converts an [code]unsigned binary integer[/code] to an [code]unsigned decimal integer[/code]. Asserts [method StringLib.is_binary] in debug builds.
-static func bin_to_dec(binary: String) -> int:
-	assert(StringLib.is_binary(binary), "Parameter is not a binary string.")
-	binary = binary.reverse()
-	var decimal := 0
-	for idx in range(binary.length()):
-		decimal += int(binary[idx]) * int(pow(2, idx))
-	return decimal
-	#endregion number base
-
 	#region distance
 ## Converts a distance from [code]meters[/code] to [code]decimeters[/code].
 static func meter_to_dm(meter: float) -> float:

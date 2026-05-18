@@ -33,9 +33,6 @@ func test_proportion():
 	assert_eq(Convert.unit_to_percent(1.75), 175.0)
 	assert_eq(Convert.percent_to_unit(0.5), 0.005)
 
-func test_number_base():
-	assert_eq(Convert.bin_to_dec("11001"), 25)
-
 func test_distance():
 	assert_eq(Convert.meter_to_dm(31.2), 312.0)
 	assert_eq(Convert.dm_to_meter(731.0), 73.1)

@@ -5,7 +5,7 @@
 # - get_ancestor
 # - find_child_with_method, find_child_with_signal, find_children_with_method, find_children_with_signal
 # TODO:
-# - Add an optional PackedStringArray to is_affirmative and is_negative to control what is considered as such.
+# - Create FileLib or DirLib because many helpers here already are file-related.
 # - diff_arrays(old, new) -> added, removed, stayed
 # - diff_properties(obj_a: Object, obj_b: Object) -> PackedStringArray
 # - get_deep_value(object, value) -> Variant
@@ -87,11 +87,6 @@ static func get_dir_children(path: String, recursive: bool = false) -> DirChildr
 		result.folders.append_array(this_result.folders)
 	
 	return result
-
-## Returns the amount of lines in a file.
-static func get_lines_in_file(path: String) -> int:
-	if FileAccess.get_size(path) <= 0: return 0
-	return FileAccess.get_file_as_string(path).split("\n").size()
 
 ## Returns a [Resource]'s file system name. If [param include_extension] is [code]true[/code], includes the file extension.
 static func get_resource_filename(resource: Resource, include_extension := false) -> String:

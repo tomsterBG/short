@@ -3,12 +3,11 @@ class_name ProjectLines extends EditorScript
 
 
 var whitelist: Array[String] = [ ## Include these filepaths.
-	#"res://addons/calendar_library/",
-	#"res://addons/vitavehicle_ui/",
+	#"res://addons/short",
 ]
 var blacklist: Array[String] = [ ## Ignore these filepaths.
-	"res://addons/",
-	"res://other/",
+	"res://addons/gut",
+	#"res://other/",
 ]
 
 
@@ -22,9 +21,9 @@ func get_all_script_lines() -> int:
 	for path: String in Helper.get_dir_children("res://", true).files:
 		if is_blacklisted(path) and !is_whitelisted(path): continue
 		if path.get_extension() != "gd": continue
-		lines += Helper.get_lines_in_file(path)
+		lines += StringLib.get_lines_in_file(path)
 		scripts += 1
-		print(path + " has " + str(Helper.get_lines_in_file(path)) + " lines")
+		print(path + " has " + str(StringLib.get_lines_in_file(path)) + " lines")
 	print(scripts, " scripts")
 	return lines
 
