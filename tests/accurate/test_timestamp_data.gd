@@ -15,12 +15,12 @@ func test_init():
 	var time := TimestampData.new(1778685141)
 	assert_eq(time.timestamp, 1778685141.0, "Timestamp is 1778685141.0.")
 
-func test_now_utc():
-	assert_almost_eq(TimestampData.now_utc().timestamp, Time.get_unix_time_from_system(), ERROR_INTERVAL)
+func test_now():
+	assert_almost_eq(TimestampData.now().timestamp, Time.get_unix_time_from_system(), ERROR_INTERVAL)
 
-func test_now_local():
+func test_get_local():
 	var local_time: float = Time.get_unix_time_from_system() + Time.get_time_zone_from_system().bias * 60.0
-	assert_almost_eq(TimestampData.now_local().timestamp, local_time, ERROR_INTERVAL)
+	assert_almost_eq(TimestampData.now().get_local().timestamp, local_time, ERROR_INTERVAL)
 
 func test_to_date():
 	var date := TimestampData.new().to_date()

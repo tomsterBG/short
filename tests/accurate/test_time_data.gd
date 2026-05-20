@@ -17,4 +17,10 @@ func test_from_hms():
 	assert_eq(time.second, 59, "Second is 59.")
 	assert_eq(time.millisecond, 0, "Millisecond is 0.")
 	assert_eq(time.microsecond, 0, "Microsecond is 0.")
+
+func test_to_timestamp():
+	var time := TimeData.from_hms(10, 30, 15)
+	time.millisecond = 942
+	time.microsecond = 836
+	assert_eq(time.to_timestamp().timestamp, TimestampData.new(37815.942_836).timestamp, "Timestamps match.")
 #endregion tests

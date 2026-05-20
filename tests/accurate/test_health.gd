@@ -98,6 +98,18 @@ func test_health_ratio_and_percent():
 	assert_eq(health.get_health_ratio(), 0.0, "No health.")
 	assert_eq(health.get_health_percent(), 0.0, "No health.")
 
+func test_get_missing_health():
+	assert_eq(health.get_missing_health(), 0.0, "Full health.")
+	health.max_health = 50.0
+	assert_eq(health.get_missing_health(), 0.0, "Full health.")
+	health.max_health = 100.0
+	assert_eq(health.get_missing_health(), 50.0, "Half health.")
+	health.max_health = 0.0
+	assert_eq(health.get_missing_health(), 0.0, "No health.")
+	health.max_health = 20.0
+	health.health -= 10.0
+	assert_eq(health.get_missing_health(), 20.0, "No health.")
+
 func test_get_damage_after_resistance():
 	assert_eq(health.get_damage_after_resistance(50.0), 50.0, "No resistance.")
 	health.resistance_flat = 10.0
@@ -436,6 +448,14 @@ func test_revive_recursive():
 	assert_true(shield1.is_dead, "Shield1 is dead.")
 	assert_true(shield2.is_dead, "Shield2 is dead.")
 	shield1.revive(!SET_HEALTH_MAX, IS_RECURSIVE)
+	assert_true(health.is_dead, "Health is dead.")
+	assert_false(shield1.is_dead, "Shield1 isn't dead.")
+	assert_false(shield2.is_dead, "Shield2 isn't dead.")
+
+func test_thats_a_lot_of_damage():
+	var shield1 := health.make_shield()
+	var shield2 := shield1.make_shield()
+	health.damage(350.0, IS_RECURSIVE)
 	assert_true(health.is_dead, "Health is dead.")
 	assert_false(shield1.is_dead, "Shield1 isn't dead.")
 	assert_false(shield2.is_dead, "Shield2 isn't dead.")

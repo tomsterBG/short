@@ -70,7 +70,7 @@ Each script must follow rules that make it simple, extendable, browsable and und
 
 **Regions:**
 - Strict order of existing regions, wrapped by region comments and separated by 2 lines.
-	- Order: signals, enums, classes, constants, variables, setters, getters, methods, virtual, tests, internal.
+	- Order: signals, enums, constants, variables, setters, getters, virtual, methods, tests, internal, classes.
 - Everything within a region, with some exceptions, is to be separated by 1 line.
 - Each nested region comment must be indented correctly.
 

@@ -1,3 +1,6 @@
+# TODO:
+# - Test 0/INF.
+
 extends GutTest
 
 

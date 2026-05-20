@@ -7,6 +7,7 @@
 # - get_annotation(line: String) -> String
 # - has_annotation(line: String, annotation: String) -> bool: check for @tool, @experimental, @abstract
 #
+# - get_func_name
 # - is_inside_comment(source: String, index: int) -> bool:
 #
 # - get_function_params(source: String) -> PackedStringArray
@@ -25,6 +26,7 @@
 ## Work with strings.
 ##
 ## Available in all scripts without any setup.
+##[br][br][b]Note:[/b] For conversion from binary or hex use [method String.bin_to_int] or [method String.hex_to_int].
 
 @abstract class_name StringLib extends Object
 
@@ -35,28 +37,38 @@ const ALLOW_EMPTY := true
 
 
 #region getters
-## Returns the name of the class defined in this GDScript source.
+## Returns the name of the class defined in this GDScript source. Ignores comments and strings.
 static func get_class_name(source: String) -> StringName:
 	for line in source.split("\n"):
-		if line.contains("class_name "):
-			var tokens := line.split(" ", !ALLOW_EMPTY)
-			var idx := tokens.find("class_name")
-			return tokens[idx + 1]
-		elif (line.contains("var") or line.contains("func")
-		or line.contains("signal") or line.contains("const") or line.contains("class ")):
+		var stripped := strip_comment(line).strip_edges()
+		if stripped.is_empty(): continue
+		
+		# NOTE: class_name isn't allowed after these keywords.
+		if is_func_definition(line) or is_var_definition(line) or is_signal_definition(line) or stripped.begins_with("const ") or stripped.begins_with("class "):
 			return &""
+		
+		if stripped.contains("class_name ") and !is_inside_string(stripped, stripped.find("extends ")):
+			var tokens := stripped.split(" ", false)
+			var idx := tokens.find("class_name")
+			if idx != -1 and idx + 1 < tokens.size():
+				return StringName(tokens[idx + 1])
 	return &""
 
-## Returns the name of the base class this GDScript extends.
+## Returns the name of the base class this GDScript extends. Ignores comments and strings.
 static func get_base_class(source: String) -> StringName:
 	for line in source.split("\n"):
-		if line.contains("extends "):
-			var tokens := line.split(" ", !ALLOW_EMPTY)
-			var idx := tokens.find("extends")
-			return tokens[idx + 1]
-		elif (line.contains("var") or line.contains("func")
-		or line.contains("signal") or line.contains("const") or line.contains("class ")):
+		var stripped := strip_comment(line).strip_edges()
+		if stripped.is_empty(): continue
+		
+		# NOTE: extends isn't allowed after these keywords.
+		if is_func_definition(line) or is_var_definition(line) or is_signal_definition(line) or stripped.begins_with("const ") or stripped.begins_with("class "):
 			return &""
+		
+		if stripped.contains("extends ") and !is_inside_string(stripped, stripped.find("extends ")):
+			var tokens := stripped.split(" ", false)
+			var idx := tokens.find("extends")
+			if idx != -1 and idx + 1 < tokens.size():
+				return StringName(tokens[idx + 1])
 	return &""
 
 ## Returns the number of leading tabs in a line.
@@ -67,6 +79,15 @@ static func get_indent_level(line: String) -> int:
 		else: break
 	return count
 
+static func get_comment(line: String) -> String:
+	var hash_pos := line.find("#")
+	while hash_pos != -1:
+		if is_inside_string(line, hash_pos):
+			hash_pos = line.find("#", hash_pos + 1)
+			continue
+		return line.substr(hash_pos)
+	return ""
+
 ## Returns the name of a GDScript region from a region start line.
 static func get_region_name(line: String) -> String:
 	if is_region_start(line):
@@ -75,14 +96,13 @@ static func get_region_name(line: String) -> String:
 		return line.strip_edges().trim_prefix("#endregion").strip_edges()
 	return ""
 
-# TODO: Make this more parametrized for customizability.
+# TODO: Make this more parametrized for customizability. Let me choose what is considered a TODO comment prefix.
 ## Extracts info from a TODO comment.
-static func get_todo_info(line: String) -> String:
-	var stripped_comments := strip_comments(line)
-	if line == stripped_comments: return ""
+static func get_todo_info(line: String, prefixes: Array[String] = ["# TODO:", "# TODO"]) -> String:
+	var comment := get_comment(line)
+	if comment.is_empty(): return ""
 	
-	var comment := line.trim_prefix(stripped_comments)
-	for prefix: String in ["# TODO:", "# TODO"]:
+	for prefix: String in prefixes:
 		if comment.begins_with(prefix):
 			return comment.trim_prefix(prefix).strip_edges()
 	return ""
@@ -175,24 +195,74 @@ static func is_region_end(line: String) -> bool:
 	return line.strip_edges().begins_with("#endregion")
 		#endregion region
 
-## Returns [code]true[/code] if the [param index] in [param source] is currently inside a GDScript string literal.
+## Returns [code]true[/code] if the [param index] in [param source] is currently inside a GDScript string.
 static func is_inside_string(source: String, index: int) -> bool:
-	var inside_double := false
-	var inside_single := false
-	for i in range(min(index, source.length())):
+	if index < 0 or index >= source.length(): return false
+	
+	var quote_type: String = ""
+	var escaped := false
+	
+	for i in range(index + 1):
 		var c := source[i]
-		if c == '"' and !inside_single: inside_double = !inside_double
-		elif c == "'" and !inside_double: inside_single = !inside_single
-	return inside_double or inside_single
+		if escaped: escaped = false; continue
+		if c == "\\": escaped = true; continue
+		
+		if quote_type != "":
+			if c == quote_type:
+				if i == index: return true # NOTE: Still inside at the closing quote
+				quote_type = ""
+		elif c == '"' or c == "'":
+			quote_type = c
+		
+		if i == index:
+			return quote_type != ""
+	
+	return false
+
+## Returns [code]true[/code] if the [param index] in [param source] is currently inside a GDScript comment.
+static func is_inside_comment(source: String, index: int) -> bool:
+	if index < 0 or index >= source.length(): return false
+	
+	var hash_pos := source.find("#")
+	while hash_pos != -1:
+		if hash_pos > index: break
+		if !is_inside_string(source, hash_pos):
+			var line_end := source.find("\n", hash_pos)
+			if line_end == -1 or line_end >= index:
+				return true
+			hash_pos = source.find("#", line_end)
+		else:
+			hash_pos = source.find("#", hash_pos + 1)
+	return false
 	#endregion is_
 
-## Returns the line with GDScript comments removed. Knows to ignore comments inside strings.
-static func strip_comments(line: String) -> String:
+## Returns the line with GDScript comment removed. Ignores comment inside strings.
+static func strip_comment(line: String) -> String:
 	var hash_pos := line.find("#")
 	while hash_pos != -1:
-		if is_inside_string(line, hash_pos):
-			hash_pos = line.find("#", hash_pos + 1)
-			continue
-		return line.substr(0, hash_pos)
+		if !is_inside_string(line, hash_pos):
+			return line.substr(0, hash_pos)
+		hash_pos = line.find("#", hash_pos + 1)
 	return line
+
+## Returns the line with GDScript strings removed. Ignores strings inside comments.
+static func strip_strings(line: String) -> String:
+	var result := ""
+	var inside_quote := ""
+	var escaped := false
+	
+	for i in range(line.length()):
+		var c := line[i]
+		if escaped: escaped = false; continue
+		if c == "\\": escaped = true; result += c; continue
+			
+		if inside_quote != "":
+			if c == inside_quote:
+				inside_quote = ""
+		elif (c == '"' or c == "'") and !is_inside_comment(line, i):
+			inside_quote = c
+		elif inside_quote == "":
+			result += c
+			
+	return result
 #endregion methods

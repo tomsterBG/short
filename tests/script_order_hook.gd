@@ -31,6 +31,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	time_data = [],
 	timestamp_data = [&"convert", &"time_data"], # NOTE: &"date_data" circular dependency
 	# libraries:
+	array_lib = [],
 	console = [],
 	convert = [&"string_lib"],
 	date_time_lib = [&"convert"], # NOTE: &"date_data" circular dependency

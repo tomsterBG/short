@@ -10,6 +10,8 @@ func test_get_class_name():
 	assert_eq(StringLib.get_class_name("class my_var\nclass_name StringLib"), "")
 	assert_eq(StringLib.get_class_name("const my_var\nclass_name StringLib"), "")
 	assert_eq(StringLib.get_class_name("signal my_var\nclass_name StringLib"), "")
+	assert_eq(StringLib.get_class_name("#class_name StringLib extends Object"), "")
+	assert_eq(StringLib.get_class_name('"class_name StringLib extends Object"'), "")
 	assert_eq(StringLib.get_class_name("class_name StringLib extends Object"), "StringLib")
 	assert_eq(StringLib.get_class_name("\n\t\nclass_name StringLib extends Object"), "StringLib")
 	assert_eq(StringLib.get_class_name("@abstract class_name StringLib extends Object"), "StringLib")
@@ -25,6 +27,8 @@ func test_get_base_class():
 	assert_eq(StringLib.get_base_class("class my_var\nextends Object"), "")
 	assert_eq(StringLib.get_base_class("const my_var\nextends Object"), "")
 	assert_eq(StringLib.get_base_class("signal my_var\nextends Object"), "")
+	assert_eq(StringLib.get_base_class("#class_name StringLib extends Object"), "")
+	assert_eq(StringLib.get_base_class('"class_name StringLib extends Object"'), "")
 	assert_eq(StringLib.get_base_class("class_name StringLib extends Object"), "Object")
 	assert_eq(StringLib.get_base_class("\n\t\nclass_name StringLib extends Object"), "Object")
 	assert_eq(StringLib.get_base_class("@abstract class_name StringLib extends Object"), "Object")
@@ -40,6 +44,13 @@ func test_get_indent_level():
 	assert_eq(StringLib.get_indent_level("		"), 2)
 	assert_eq(StringLib.get_indent_level("	 	 	"), 1)
 	assert_eq(StringLib.get_indent_level("			"), 3)
+
+func test_get_comment():
+	assert_eq(StringLib.get_comment(""), "")
+	assert_eq(StringLib.get_comment("#"), "#")
+	assert_eq(StringLib.get_comment("'#' My comment."), "")
+	assert_eq(StringLib.get_comment('"#" My comment.'), "")
+	assert_eq(StringLib.get_comment("# My comment."), "# My comment.")
 
 func test_get_region_name():
 	assert_eq(StringLib.get_region_name(""), "")
@@ -60,6 +71,7 @@ func test_get_todo_info():
 	assert_eq(StringLib.get_todo_info("func my_func(): # TODO: rename this"), "rename this")
 	assert_eq(StringLib.get_todo_info(" 	 func my_func(): # TODO: rename this"), "rename this")
 	assert_eq(StringLib.get_todo_info("func my_func() -> void: # TODO: rename this"), "rename this")
+	assert_eq(StringLib.get_todo_info("#TODO Hello world!", ["#TODO"]), "Hello world!")
 
 func test_get_project_relative_path():
 	assert_eq(StringLib.get_project_relative_path(""), "")
@@ -179,16 +191,39 @@ func test_is_region_end():
 	assert_false(StringLib.is_region_end(""), "Not an #endregion.")
 
 func test_is_inside_string():
-	assert_true(StringLib.is_inside_string('var my := "Stringyyyyyy"', 11), "Inside a string.")
-	assert_false(StringLib.is_inside_string('var my := "Stringyyyyyy"', 10), "Not inside a string.")
+	assert_eq('var my := "Stringy" '[9], ' ', "Space.")
+	assert_false(StringLib.is_inside_string('var my := "Stringy" ', 9), "Not inside a string.")
+	assert_eq('var my := "Stringy" '[10], '"', "Double quotes.")
+	assert_true(StringLib.is_inside_string('var my := "Stringy" ', 10), "Inside a string.")
+	assert_eq('var my := "Stringy" '[18], '"', "Double quotes.")
+	assert_true(StringLib.is_inside_string('var my := "Stringy" ', 18), "Inside a string.")
+	assert_eq('var my := "Stringy" '[19], ' ', "Space.")
+	assert_false(StringLib.is_inside_string('var my := "Stringy" ', 19), "Not inside a string.")
 	assert_false(StringLib.is_inside_string(' ', 0), "Not inside a string.")
+
+func test_is_inside_comment():
+	assert_eq('# This is a comment.\n '[20], '\n', "New line.")
+	assert_true(StringLib.is_inside_comment('# This is a comment.\n ', 20), "Inside a comment.")
+	assert_eq('# This is a comment.\n '[21], ' ', "Space.")
+	assert_false(StringLib.is_inside_comment('# This is a comment.\n ', 21), "Not inside a comment.")
+	assert_false(StringLib.is_inside_comment('"# ', 2), "Not inside a comment.")
+	assert_false(StringLib.is_inside_comment(' ', 0), "Not inside a comment.")
 	#endregion is_
 
-func test_strip_comments():
-	assert_eq(StringLib.strip_comments("#var my_var"), "")
-	assert_eq(StringLib.strip_comments("var #my_var"), "var ")
-	assert_eq(StringLib.strip_comments("var my#_var"), "var my")
-	assert_eq(StringLib.strip_comments("var my_var"), "var my_var")
-	assert_eq(StringLib.strip_comments('var my_var = "#"'), 'var my_var = "#"')
-	assert_eq(StringLib.strip_comments("var my_var = '#'"), "var my_var = '#'")
+func test_strip_comment():
+	assert_eq(StringLib.strip_comment("#var my_var"), "")
+	assert_eq(StringLib.strip_comment("var #my_var"), "var ")
+	assert_eq(StringLib.strip_comment("var my#_var"), "var my")
+	assert_eq(StringLib.strip_comment("var my_var"), "var my_var")
+	assert_eq(StringLib.strip_comment('var my_var = "#"'), 'var my_var = "#"')
+	assert_eq(StringLib.strip_comment("var my_var = '#'"), "var my_var = '#'")
+
+func test_strip_strings():
+	assert_eq(StringLib.strip_strings("'var my_var'"), "")
+	assert_eq(StringLib.strip_strings('"var my_var"'), "")
+	assert_eq(StringLib.strip_strings('var "my_var"'), "var ")
+	assert_eq(StringLib.strip_strings('var my"_"var'), "var myvar")
+	assert_eq(StringLib.strip_strings('var my"#"var'), "var myvar")
+	assert_eq(StringLib.strip_strings('var my_var = #""'), 'var my_var = #""')
+	assert_eq(StringLib.strip_strings("var my_var = #''"), "var my_var = #''")
 #endregion tests

@@ -12,15 +12,15 @@
 # - Converters: to_date_dict().
 # - Helpers: is_valid().
 # BAD IDEAS:
-# - Use now_utc(), now_local() only in TimestampData to incentivize correct class usage.
+# - Use now() only in TimestampData to incentivize correct class usage.
 
 ## @experimental: This class could change.
 ## Some date that can be passed as function argument and returned as function result.
 ##
-##[br][br][b]Note:[/b] It is recommended to use this for functions that require date data. If you want to save this data, [TimestampData] is much more efficient.
+##[br][br][b]Note:[/b] It is recommended to use this for functions that require date data. If you want to save this data, use [TimestampData].
 ##[br][br][b]Note:[/b] This assumes that the [DateTimeLib] and [TimestampData] classes exist.
 
-class_name DateData extends Resource
+class_name DateData extends RefCounted
 
 
 #region variables

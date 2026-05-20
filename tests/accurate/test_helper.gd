@@ -17,6 +17,9 @@ func test_get_dir_children():
 	assert_has(dir_children.files, "res://addons/gut/gut.gd", "Found gut.gd file.")
 	dir_children = Helper.get_dir_children("res://tests")
 	assert_has(dir_children.folders, "res://tests/files")
+	dir_children = Helper.get_dir_children("")
+	assert_true(dir_children.folders.is_empty(), "Empty result.")
+	assert_true(dir_children.files.is_empty(), "Empty result.")
 
 func test_get_resource_filename():
 	var resource := ResourceLoader.load("res://tests/files/my capsule shape.tres")

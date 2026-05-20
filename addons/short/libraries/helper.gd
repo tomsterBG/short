@@ -36,7 +36,6 @@
 # - Get air pressure at height (Earth).
 # - save_dict_as_json(data: Dictionary, path: String) -> Error, load_dict_from_json(path: String) -> Dictionary, vec3_to_str(vec: Vector3, precision: int = 2) -> String, radians_to_compass_direction(angle: float) -> String, change_scene, format_memory(bytes: int) -> String, create_timer(wait_time: float, callable: Callable, owner_node: Node)
 # - is_position_inside(position, volume)
-# - Random.get_total_weight() or sum_array()
 # - instantiate_at - PackedScene as child of and at position.
 # BAD IDEAS:
 # - https://github.com/godotengine/godot-proposals/discussions/13011
@@ -74,6 +73,7 @@ class DirChildrenResult:
 ##[br][br]Each path starts from [param path] and ends with the file or folder name. For example if [param path] is [code]"res://"[/code] and you only have an [code]addons[/code] folder, the string for it would look like [code]"res://addons"[/code].
 static func get_dir_children(path: String, recursive: bool = false) -> DirChildrenResult:
 	var result := DirChildrenResult.new()
+	if !path.is_absolute_path(): return result
 	
 	var files: Array = DirAccess.get_files_at(path)
 	result.files.assign(files.map(func(f: String) -> String: return path.path_join(f)))
@@ -96,6 +96,7 @@ static func get_resource_filename(resource: Resource, include_extension := false
 
 
 #region methods
+# TODO: Make unique flag: adds a suffix (n) to avoid writing over existing data.
 ## A more robust [method ResourceSaver.save].
 ##[br][br]Makes sure the folder to [param path] exists.
 static func save_resource(resource: Resource, path: String, flags := 0 as ResourceSaver.SaverFlags) -> Error:

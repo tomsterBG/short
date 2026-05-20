@@ -173,6 +173,10 @@ func get_health_ratio() -> float:
 	if max_health == 0.0: return 0.0
 	return health / max_health
 
+## Returns missing [member health] from [member max_health].
+func get_missing_health() -> float:
+	return max_health - health
+
 func get_is_alive() -> bool:
 	return !is_dead
 
@@ -187,7 +191,7 @@ func get_damage_after_resistance(value: float) -> float:
 
 
 #region methods
-## Damages this [Health]. Can't apply negative damage. Applies resistances with [method get_damage_after_resistance]. If [param recursive] is [code]true[/code], each [member shield] will absorb damage before damaging this [Health].
+## Damages this [Health]. Prevents negative damage. Applies resistances with [method get_damage_after_resistance]. If [param recursive] is [code]true[/code], each [member shield] will absorb damage before damaging this [Health].
 func damage(value: float, recursive := false) -> DamageResult:
 	var shield_result := DamageResult.new()
 	if recursive and shield and shield.health > 0.0:
@@ -203,7 +207,7 @@ func damage(value: float, recursive := false) -> DamageResult:
 	damage_result.remaining_damage = damage_after_resistance - damage_result.taken_damage
 	return damage_result
 
-## Heals this [Health]. Can't apply negative heal.
+## Heals this [Health]. Prevents negative heal.
 func heal(value: float) -> HealResult:
 	var heal_after_clamp := maxf(value, 0.0)
 	var old_health := health

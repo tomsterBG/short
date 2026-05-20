@@ -12,29 +12,29 @@ class_name TimestampData extends Resource
 
 
 #region variables
-## Unix timestamp.
+## Unix timestamp in UTC.
+##[br][br][b]Note:[/b] It is recommended to always use UTC when storing or comparing timestamps. If you use local time, there's a problem. Imagine the user changes their timezone intentionally or by travelling somewhere. Now your timestamp is incorrect and you must convert it to the user's new timezone. This gets too complex too quickly.
+##[br]Best practice: Only store timestamps in UTC and convert them to local when you need to show them to the user.
 @export var timestamp := 0.0
 #endregion variables
 
 
+#region getters
+## Returns a copy of this [TimestampData] in local time. Please read [member timestamp] before using.
+func get_local() -> TimestampData:
+	return TimestampData.new(timestamp + Time.get_time_zone_from_system().bias * 60)
+#endregion getters
+
+
 #region methods
 ## Creates a Unix timestamp now in UTC.
-static func now_utc() -> TimestampData:
-	var new_timestamp := TimestampData.new()
-	new_timestamp.timestamp = Time.get_unix_time_from_system()
-	return new_timestamp
-
-## Creates a Unix timestamp now in local time.
-static func now_local() -> TimestampData:
-	var new_timestamp := TimestampData.new()
-	new_timestamp.timestamp = Time.get_unix_time_from_system() + Time.get_time_zone_from_system().bias * 60
-	return new_timestamp
+static func now() -> TimestampData:
+	return TimestampData.new(Time.get_unix_time_from_system())
 
 ## Converts this timestamp to a [DateData] object.
 func to_date() -> DateData:
 	var date_dict := Time.get_date_dict_from_unix_time(int(timestamp))
-	var new_date := DateData.from_ymd(date_dict.year, date_dict.month, date_dict.day)
-	return new_date
+	return DateData.from_ymd(date_dict.year, date_dict.month, date_dict.day)
 
 ## Converts this timestamp to a [TimeData] object.
 func to_time() -> TimeData:
