@@ -19,6 +19,14 @@ So in turn the script was shortened, but grew again.
 
 Code shortening and abstraction isn't as much about writing shorter code, as it is about letting you pack more functionality in the same amount of lines.
 
+# Parameters
+
+The more, the merrier.
+Some functions just can't work well without enough parameters.
+
+For example:
+
+
 # Performance
 
 But will abstraction cause issues with performance?

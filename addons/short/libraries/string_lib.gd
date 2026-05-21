@@ -18,6 +18,8 @@
 # - is_valid_res_path(path: String) -> bool
 #
 # - wrap_text(text: String, line_length: int) - adds \n every line_length symbols from the start of a line
+#
+# - fuzzy_score(string_a, string_b) -> float
 # IDEAS:
 # - get_script_meat_ratio(source: String) -> float: how much of the source code is actual logic?
 # - Optimize the ordering of (line.contains("var") or line.contains("func") or line.contains("signal") or line.contains("const")) with data. Run a script that says "Definitions: var - x, func - x, signal - x, const - x"

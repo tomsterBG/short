@@ -96,7 +96,7 @@ static func cleanup(array: Array) -> Array:
 	return array.filter(
 		func(item: Variant) -> bool:
 			if typeof(item) == TYPE_OBJECT:
-				if item is Node:
+				if item and item is Node:
 					return !item.is_queued_for_deletion()
 				return is_instance_valid(item)
 			return item != null

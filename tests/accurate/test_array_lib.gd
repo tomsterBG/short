@@ -55,7 +55,7 @@ func test_cleanup():
 	assert_eq(ArrayLib.cleanup([objects_read[0], marker, objects_read[1]]), [objects_read[0], objects_read[1]])
 	marker = Marker2D.new()
 	assert_eq(ArrayLib.cleanup([objects_read[0], marker, objects_read[1]]), [objects_read[0], marker, objects_read[1]])
-	marker.queue_free()
+	marker.free()
 	assert_eq(ArrayLib.cleanup([objects_read[0], marker, objects_read[1]]), [objects_read[0], objects_read[1]])
 
 func test_flatten():
