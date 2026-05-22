@@ -81,6 +81,7 @@ static func get_indent_level(line: String) -> int:
 		else: break
 	return count
 
+## Returns the comment on this line, including the "#". Returns "" if there is no comment.
 static func get_comment(line: String) -> String:
 	var hash_pos := line.find("#")
 	while hash_pos != -1:
