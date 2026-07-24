@@ -1,7 +1,7 @@
 # TODO:
 
 ## @experimental: This class could change.
-## A generic fold button.
+## A button that folds something.
 ##
 ## When the button is pressed, the [member node] will be visible, otherwise it will be invisible.
 
@@ -11,7 +11,7 @@ class_name FoldButton extends Button
 
 
 #region variables
-## Fold this object by changing its visibility.
+## Folds this [CanvasItem] by changing its visibility.
 @export var node: CanvasItem: set = set_node
 
 @export_group("Icons", "icon_")
