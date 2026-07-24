@@ -6,6 +6,10 @@ A library designed to make your code shorter and more elegant.
 Everything is documented and tested.
 Using this allows you to write less code, yet focus on more complex features.
 
+This project contains...
+...libraries that can be used in a wide variety of projects.
+...flexible components that serve frequently needed functionality.
+
 This project is designed to...
 ...be high quality (as much as i can, but nobody is perfect).
 ...seamlessly integrate with the engine.
@@ -19,23 +23,50 @@ This project is designed to...
 - The GUT addon by bitwes for unit testing.
 - The short addon by me.
 - Tests for the short addon.
-- Other things. Either unused or specific to this project.
+- Other things. Unused, specific to this project or devops.
 - Notes.
 
 # Why use this?
 
 Before even stepping forward, you should know why you're using this.
 
+Use the library if it has what you need or want.
+
+## Robust new possibilities
+
+Libraries and Nodes that are fully tested and commonly needed in projects.
+Regressions are very unlikely to occur.
+
+This expands the feature set readily available to you in a way that adheres to Godot standards and style guides.
+(I am a perfectionist, even if i fail to achieve it, and yeah, that's sometimes a bad thing, but here it keeps me striving for high quality)
+
+## Composability
+
+Every function and Node is designed to act as a building block.
+This gives you a good foundation to build from.
+
+## Learning
+
+You can read the source code and see how i've done things to learn more about my concept of good design.
+The addon should be approachable to anyone.
+Variables have clear names, everything is documented, test cases explain themselves (sometimes).
+
+**Note:**
+Reading this code teaches you how to make an addon, a library, something long-term useful across projects.
+If you want to instead learn how to actually make a project/game and not an addon, this is not the place.
+
 ## Shorter code
 
-Use the library if it has what you need.
-This delegates code from your project to the library, speeding up the iterative process and freeing up your time to focus on other things.
-One problem: Your skills may diminish 
+Delegate code from your project/game to the library, speeding up the iterative process and freeing up your time to focus on other things.
 
-**Note:** If you're new to programming, this might be too much of a power tool for you. Consider using it later.
+**Note for beginners:**
+If you're new to programming and Godot, and want to be good at it, i do not recommend using the addon just yet.
+Instead, you should make several projects and face the problems head on. This is going to teach you many valuable skills, including the skills i learned while making the addon.
+Only then would i recommend this addon to you.
+If your goal isn't to be good at programming, feel free to use this! I love the possibility of giving less techy people some more power.
 
 Personally i don't find writing to be a problem. Autocompletion exists.
-However, when reading non-library code, i would do everything i can to help my brain see less, because that lets me focus on what's truly important.
+However, when reading non-library code, i would do everything i can to help my brain see less, because that lets me understand the whole system easier and focus on what's truly important.
 I don't want to figure out...
 ...a math formula, and every time i read it again, ask myself "What does this do here?".
 ...how to access files every time i need file access.
@@ -144,6 +175,13 @@ If you can't make it perfect, make it adjustable.
 - What if you wanted the behavior of `get_resource_filename()` to also return the file extension?
   What if someone else doesn't want that?
   Solution: An optional parameter to let you decide.
+- What if you wanted a character that can walk, jump and run?
+  What if someone else doesn't want the jump, or has to disable it for a level?
+  Solution: A variable that lets you enable features at will.
+
+Make it adjustable.
+- The animation player is super powerful and it works best with exposed variables and simple method calls.
+  I should expose as many variables as possible.
 
 Good architecture provides options without having to rewrite the core.
 - It is extensible. You can use things and swap them out for other things.
