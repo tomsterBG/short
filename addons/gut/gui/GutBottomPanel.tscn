@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://b3bostcslstem"]
+[gd_scene format=3 uid="uid://b3bostcslstem"]
 
-[ext_resource type="Script" path="res://addons/gut/gui/GutBottomPanel.gd" id="1"]
+[ext_resource type="Script" uid="uid://do6ycnu5oou7c" path="res://addons/gut/gui/GutBottomPanel.gd" id="1"]
 [ext_resource type="PackedScene" uid="uid://bsk32dh41b4gs" path="res://addons/gut/gui/BottomPanelShortcuts.tscn" id="2"]
 [ext_resource type="PackedScene" uid="uid://0yunjxtaa8iw" path="res://addons/gut/gui/RunAtCursor.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://cr6tvdv0ve6cv" path="res://addons/gut/gui/play.png" id="4"]
@@ -9,19 +9,11 @@
 
 [sub_resource type="Shortcut" id="9"]
 
-[sub_resource type="Image" id="Image_4maas"]
-data = {
-"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 94, 94, 127, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 231, 255, 94, 94, 54, 255, 94, 94, 57, 255, 93, 93, 233, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 93, 93, 41, 255, 255, 255, 0, 255, 255, 255, 0, 255, 97, 97, 42, 255, 93, 93, 233, 255, 93, 93, 232, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 44, 255, 255, 255, 0, 255, 97, 97, 42, 255, 97, 97, 42, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 96, 96, 45, 255, 93, 93, 235, 255, 94, 94, 234, 255, 95, 95, 43, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 93, 93, 235, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 233, 255, 95, 95, 59, 255, 96, 96, 61, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 93, 93, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
+[sub_resource type="DPITexture" id="DPITexture_p7oqn"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"#ff5d5d\" d=\"M2 1v8.586l1.293-1.293a1 1 0 0 1 1.414 0L7 10.587l2.293-2.293a1 1 0 0 1 1.414 0L13 10.586l1-1V6H9V1H2zm8 0v4h4zm-6 9.414-2 2V15h12v-2.586l-.293.293a1 1 0 0 1-1.414 0L10 10.414l-2.293 2.293a1 1 0 0 1-1.414 0L4 10.414z\"/></svg>
+"
 
-[sub_resource type="ImageTexture" id="ImageTexture_umaha"]
-image = SubResource("Image_4maas")
-
-[node name="GutBottomPanel" type="Control"]
+[node name="GutBottomPanel" type="Control" unique_id=298656266]
 custom_minimum_size = Vector2(250, 250)
 layout_mode = 3
 anchor_left = -0.0025866
@@ -34,210 +26,209 @@ offset_right = 2.64862
 offset_bottom = 1.05945
 script = ExtResource("1")
 
-[node name="layout" type="VBoxContainer" parent="."]
+[node name="layout" type="VBoxContainer" parent="." unique_id=2135237789]
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="ControlBar" type="HBoxContainer" parent="layout"]
+[node name="ControlBar" type="HBoxContainer" parent="layout" unique_id=1298298953]
 layout_mode = 2
 
-[node name="RunAll" type="Button" parent="layout/ControlBar"]
+[node name="RunAll" type="Button" parent="layout/ControlBar" unique_id=1940230267]
 layout_mode = 2
 size_flags_vertical = 11
 shortcut = SubResource("9")
 text = "Run All"
 icon = ExtResource("4")
 
-[node name="Label" type="Label" parent="layout/ControlBar"]
+[node name="Label" type="Label" parent="layout/ControlBar" unique_id=551490941]
 layout_mode = 2
 mouse_filter = 1
 text = "Current:  "
 
-[node name="RunAtCursor" parent="layout/ControlBar" instance=ExtResource("3")]
+[node name="RunAtCursor" parent="layout/ControlBar" unique_id=1903126582 instance=ExtResource("3")]
 layout_mode = 2
 
-[node name="CenterContainer2" type="CenterContainer" parent="layout/ControlBar"]
+[node name="CenterContainer2" type="CenterContainer" parent="layout/ControlBar" unique_id=172914007]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Sep1" type="ColorRect" parent="layout/ControlBar"]
+[node name="Sep1" type="ColorRect" parent="layout/ControlBar" unique_id=2055088306]
 custom_minimum_size = Vector2(1, 2.08165e-12)
 layout_mode = 2
 
-[node name="RunResultsBtn" type="Button" parent="layout/ControlBar"]
+[node name="RunResultsBtn" type="Button" parent="layout/ControlBar" unique_id=464994273]
 layout_mode = 2
 toggle_mode = true
-icon = SubResource("ImageTexture_umaha")
+button_pressed = true
+icon = SubResource("DPITexture_p7oqn")
 
-[node name="OutputBtn" type="Button" parent="layout/ControlBar"]
+[node name="OutputBtn" type="Button" parent="layout/ControlBar" unique_id=2027144282]
 layout_mode = 2
 toggle_mode = true
-icon = SubResource("ImageTexture_umaha")
+button_pressed = true
+icon = SubResource("DPITexture_p7oqn")
 
-[node name="Settings" type="Button" parent="layout/ControlBar"]
+[node name="Settings" type="Button" parent="layout/ControlBar" unique_id=1009509529]
 layout_mode = 2
 toggle_mode = true
-icon = SubResource("ImageTexture_umaha")
+button_pressed = true
+icon = SubResource("DPITexture_p7oqn")
 
-[node name="Sep2" type="ColorRect" parent="layout/ControlBar"]
+[node name="Sep2" type="ColorRect" parent="layout/ControlBar" unique_id=1209044247]
 custom_minimum_size = Vector2(1, 2.08165e-12)
 layout_mode = 2
 
-[node name="Shortcuts" type="Button" parent="layout/ControlBar"]
+[node name="Shortcuts" type="Button" parent="layout/ControlBar" unique_id=682180497]
 layout_mode = 2
 size_flags_vertical = 11
-icon = SubResource("ImageTexture_umaha")
+icon = SubResource("DPITexture_p7oqn")
 
-[node name="RSplit" type="HSplitContainer" parent="layout"]
+[node name="RSplit" type="HSplitContainer" parent="layout" unique_id=1033078314]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-collapsed = true
 
-[node name="sc" type="ScrollContainer" parent="layout/RSplit"]
+[node name="CResults" type="VBoxContainer" parent="layout/RSplit" unique_id=2053385949]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ControlBar" type="HBoxContainer" parent="layout/RSplit/CResults" unique_id=468777922]
+layout_mode = 2
+
+[node name="Sep2" type="ColorRect" parent="layout/RSplit/CResults/ControlBar" unique_id=1202973930]
+custom_minimum_size = Vector2(1, 2.08165e-12)
+layout_mode = 2
+
+[node name="Light3D" type="Control" parent="layout/RSplit/CResults/ControlBar" unique_id=1092950449]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+
+[node name="Passing" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar" unique_id=71436992]
 visible = false
+layout_mode = 2
+
+[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Passing" unique_id=1380784460]
+custom_minimum_size = Vector2(1, 2.08165e-12)
+layout_mode = 2
+
+[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Passing" unique_id=1413794168]
+layout_mode = 2
+text = "Passing"
+
+[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Passing" unique_id=1867155371]
+layout_mode = 2
+text = "---"
+
+[node name="Failing" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar" unique_id=915380207]
+visible = false
+layout_mode = 2
+
+[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Failing" unique_id=1120804252]
+custom_minimum_size = Vector2(1, 2.08165e-12)
+layout_mode = 2
+
+[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Failing" unique_id=633054722]
+layout_mode = 2
+text = "Failing"
+
+[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Failing" unique_id=631089244]
+layout_mode = 2
+text = "---"
+
+[node name="Pending" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar" unique_id=1248467755]
+visible = false
+layout_mode = 2
+
+[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Pending" unique_id=835633940]
+custom_minimum_size = Vector2(1, 2.08165e-12)
+layout_mode = 2
+
+[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Pending" unique_id=1865018418]
+layout_mode = 2
+text = "Pending"
+
+[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Pending" unique_id=164563937]
+layout_mode = 2
+text = "---"
+
+[node name="Orphans" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar" unique_id=984788098]
+visible = false
+layout_mode = 2
+
+[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Orphans" unique_id=618813100]
+custom_minimum_size = Vector2(1, 2.08165e-12)
+layout_mode = 2
+
+[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Orphans" unique_id=1772507678]
+layout_mode = 2
+text = "Orphans"
+
+[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Orphans" unique_id=1357764326]
+layout_mode = 2
+text = "---"
+
+[node name="Errors" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar" unique_id=884729880]
+visible = false
+layout_mode = 2
+
+[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Errors" unique_id=2140974684]
+custom_minimum_size = Vector2(1, 2.08165e-12)
+layout_mode = 2
+
+[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Errors" unique_id=199710293]
+layout_mode = 2
+text = "Errors"
+
+[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Errors" unique_id=459441477]
+layout_mode = 2
+text = "---"
+
+[node name="Warnings" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar" unique_id=1550159649]
+visible = false
+layout_mode = 2
+
+[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Warnings" unique_id=252476956]
+custom_minimum_size = Vector2(1, 2.08165e-12)
+layout_mode = 2
+
+[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Warnings" unique_id=1454950640]
+layout_mode = 2
+text = "Warnings"
+
+[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Warnings" unique_id=424975735]
+layout_mode = 2
+text = "---"
+
+[node name="CenterContainer" type="CenterContainer" parent="layout/RSplit/CResults/ControlBar" unique_id=1835256050]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TabBar" type="HSplitContainer" parent="layout/RSplit/CResults" unique_id=1291224844]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="RunResults" parent="layout/RSplit/CResults/TabBar" unique_id=1634807648 instance=ExtResource("5")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="OutputText" parent="layout/RSplit/CResults/TabBar" unique_id=500962091 instance=ExtResource("6")]
+layout_mode = 2
+
+[node name="sc" type="ScrollContainer" parent="layout/RSplit" unique_id=1333854768]
 custom_minimum_size = Vector2(500, 2.08165e-12)
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="Settings" type="VBoxContainer" parent="layout/RSplit/sc"]
+[node name="Settings" type="VBoxContainer" parent="layout/RSplit/sc" unique_id=1562455998]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="CResults" type="VBoxContainer" parent="layout/RSplit"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="ControlBar" type="HBoxContainer" parent="layout/RSplit/CResults"]
-layout_mode = 2
-
-[node name="Sep2" type="ColorRect" parent="layout/RSplit/CResults/ControlBar"]
-custom_minimum_size = Vector2(1, 2.08165e-12)
-layout_mode = 2
-
-[node name="Light3D" type="Control" parent="layout/RSplit/CResults/ControlBar"]
-custom_minimum_size = Vector2(30, 30)
-layout_mode = 2
-
-[node name="Passing" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar"]
-visible = false
-layout_mode = 2
-
-[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Passing"]
-custom_minimum_size = Vector2(1, 2.08165e-12)
-layout_mode = 2
-
-[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Passing"]
-layout_mode = 2
-text = "Passing"
-
-[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Passing"]
-layout_mode = 2
-text = "---"
-
-[node name="Failing" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar"]
-visible = false
-layout_mode = 2
-
-[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Failing"]
-custom_minimum_size = Vector2(1, 2.08165e-12)
-layout_mode = 2
-
-[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Failing"]
-layout_mode = 2
-text = "Failing"
-
-[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Failing"]
-layout_mode = 2
-text = "---"
-
-[node name="Pending" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar"]
-visible = false
-layout_mode = 2
-
-[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Pending"]
-custom_minimum_size = Vector2(1, 2.08165e-12)
-layout_mode = 2
-
-[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Pending"]
-layout_mode = 2
-text = "Pending"
-
-[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Pending"]
-layout_mode = 2
-text = "---"
-
-[node name="Orphans" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar"]
-visible = false
-layout_mode = 2
-
-[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Orphans"]
-custom_minimum_size = Vector2(1, 2.08165e-12)
-layout_mode = 2
-
-[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Orphans"]
-layout_mode = 2
-text = "Orphans"
-
-[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Orphans"]
-layout_mode = 2
-text = "---"
-
-[node name="Errors" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar"]
-visible = false
-layout_mode = 2
-
-[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Errors"]
-custom_minimum_size = Vector2(1, 2.08165e-12)
-layout_mode = 2
-
-[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Errors"]
-layout_mode = 2
-text = "Errors"
-
-[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Errors"]
-layout_mode = 2
-text = "---"
-
-[node name="Warnings" type="HBoxContainer" parent="layout/RSplit/CResults/ControlBar"]
-visible = false
-layout_mode = 2
-
-[node name="Sep" type="ColorRect" parent="layout/RSplit/CResults/ControlBar/Warnings"]
-custom_minimum_size = Vector2(1, 2.08165e-12)
-layout_mode = 2
-
-[node name="label" type="Label" parent="layout/RSplit/CResults/ControlBar/Warnings"]
-layout_mode = 2
-text = "Warnings"
-
-[node name="value" type="Label" parent="layout/RSplit/CResults/ControlBar/Warnings"]
-layout_mode = 2
-text = "---"
-
-[node name="CenterContainer" type="CenterContainer" parent="layout/RSplit/CResults/ControlBar"]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="TabBar" type="HSplitContainer" parent="layout/RSplit/CResults"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="RunResults" parent="layout/RSplit/CResults/TabBar" instance=ExtResource("5")]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-
-[node name="OutputText" parent="layout/RSplit/CResults/TabBar" instance=ExtResource("6")]
-visible = false
-layout_mode = 2
-
-[node name="BottomPanelShortcuts" parent="." instance=ExtResource("2")]
+[node name="BottomPanelShortcuts" parent="." unique_id=442485890 instance=ExtResource("2")]
 visible = false
 
 [connection signal="pressed" from="layout/ControlBar/RunAll" to="." method="_on_RunAll_pressed"]
