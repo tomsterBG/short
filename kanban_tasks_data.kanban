@@ -20,7 +20,14 @@
 		{
 			"uuid": "9bcd8614-8858-420a-ae96-bf02ed1c34b6",
 			"title": "Ideas",
-			"tasks": []
+			"tasks": [
+				"4df30afc-6ef5-4adc-a5d0-85dae0c9d172",
+				"57742f5d-26d9-486f-afb3-d9b25359ecf0",
+				"4411ed32-9b46-46eb-a826-88f6d876f236",
+				"ee107dba-6384-4549-82fe-0231e87d903c",
+				"81f9867d-4c5d-461d-a9d4-9cb092f17360",
+				"826a5be9-0ec4-481d-a2f3-8ae5d449e9aa"
+			]
 		},
 		{
 			"uuid": "533ae354-999b-4e42-928c-18e1c18ac472",
@@ -40,11 +47,108 @@
 	],
 	"tasks": [
 		{
-			"uuid": "98fa112f-5ddc-4f90-ae1b-2d0ac14ac0c4",
-			"title": "New task",
+			"uuid": "4411ed32-9b46-46eb-a826-88f6d876f236",
+			"title": "ShortCamera3D",
 			"description": "",
-			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
-			"steps": []
+			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
+			"steps": [
+				{
+					"details": "fov_offset: float\nget_fov_offset()\nset_fov_offset()",
+					"done": false
+				},
+				{
+					"details": "quick_zoom_enabled: bool\nquick_zoom_input: StringName\nquick_zoom_mode: QuickZoomMode {FIXED, ANIMATION}\nquick_zoom_fixed_fov: float\nquick_zoom_animation_player: AnimationPlayer\nquick_zoom_animation_name: StringName",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "57742f5d-26d9-486f-afb3-d9b25359ecf0",
+			"title": "ShortCamera2D",
+			"description": "",
+			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
+			"steps": [
+				{
+					"details": "zoom_offset: float\nget_zoom_offset()\nset_zoom_offset()",
+					"done": false
+				},
+				{
+					"details": "quick_zoom_enabled: bool\nquick_zoom_input: StringName\nquick_zoom_mode: QuickZoomMode {FIXED, ANIMATION}\nquick_zoom_fixed_zoom: float\nquick_zoom_animation_player: AnimationPlayer\nquick_zoom_animation_name: StringName",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "ee107dba-6384-4549-82fe-0231e87d903c",
+			"title": "ShortCharacter2D",
+			"description": "",
+			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
+			"steps": [
+				{
+					"details": "jump_enabled: bool\njump_input: StringName\nsignal jump_pressed\nvirtual function jump_logic\nBut... jump_velocity, what if i don't want velocity, but height? And how does this compose with overwriting logic?",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "81f9867d-4c5d-461d-a9d4-9cb092f17360",
+			"title": "ShortCharacter3D",
+			"description": "",
+			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
+			"steps": [
+				{
+					"details": "jump_enabled: bool\njump_input: StringName\nsignal jump_pressed\nvirtual function jump_logic\nBut... jump_velocity, what if i don't want velocity, but height? And how does this compose with overwriting logic?",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "4df30afc-6ef5-4adc-a5d0-85dae0c9d172",
+			"title": "PolyLib",
+			"description": "Drawing polygons with points.",
+			"category": "8c81c050-2d8d-4630-bf54-dceecf445d90",
+			"steps": [
+				{
+					"details": "circle\n(radius, vertices, position)",
+					"done": false
+				},
+				{
+					"details": "arc\n(radius, vertices, from_angle, to_angle, position)",
+					"done": false
+				},
+				{
+					"details": "rounded_rect\n(size, corner_radius, corner_vertices, position)",
+					"done": false
+				},
+				{
+					"details": "rounded_circle\naka rounded_polygon\n(radius, vertices, corner_radius, corner_vertices, position)",
+					"done": false
+				},
+				{
+					"details": "remap_2d\n(value: Array[Vector2], from: Rect2, to: Rect2)",
+					"done": false
+				},
+				{
+					"details": "fish_2d",
+					"done": false
+				},
+				{
+					"details": "border_2d\nTakes any shape, assumes continuity and draws a border around it.",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "826a5be9-0ec4-481d-a2f3-8ae5d449e9aa",
+			"title": "MathLib",
+			"description": "",
+			"category": "8c81c050-2d8d-4630-bf54-dceecf445d90",
+			"steps": [
+				{
+					"details": "remap_vec2\nRemaps a Vector2 according to Rect2s.",
+					"done": false
+				}
+			]
 		}
 	],
 	"layout": {

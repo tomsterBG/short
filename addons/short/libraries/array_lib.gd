@@ -255,7 +255,8 @@ static func average_property(objects: Array[Object], property: StringName) -> fl
 
 ## Picks a random element from [param weighted_array] according to its [param weighted_array.weight]. All weights must be positive [float]s.
 ##[br]If [param shuffle] is [code]true[/code], [param weighted_array] will be shuffled.
-##[br][br][b]Note:[/b] Use [method Array.pick_random] if you just want to pick a random value.
+##[br][br][b]Note:[/b] See also [method Array.pick_random] which is more commonly used.
+##[br][br][b]Note:[/b] This is useful for music playlists, loot drops and more.
 static func pick_random(weighted_array: Array[WeightedValue], shuffle := true) -> WeightedValue:
 	assert(weighted_array.all(func(weighted_value: WeightedValue) -> bool: return weighted_value.weight >= 0.0), "All weights must be positive [float]s.")
 	var total_weight: float
