@@ -1,0 +1,66 @@
+{
+	"categories": [
+		{
+			"uuid": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
+			"title": "Task",
+			"color": "57ff62"
+		},
+		{
+			"uuid": "8c81c050-2d8d-4630-bf54-dceecf445d90",
+			"title": "Lib",
+			"color": "ffb357"
+		},
+		{
+			"uuid": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
+			"title": "Component",
+			"color": "f7ff57"
+		}
+	],
+	"stages": [
+		{
+			"uuid": "9bcd8614-8858-420a-ae96-bf02ed1c34b6",
+			"title": "Ideas",
+			"tasks": []
+		},
+		{
+			"uuid": "533ae354-999b-4e42-928c-18e1c18ac472",
+			"title": "Todo",
+			"tasks": []
+		},
+		{
+			"uuid": "a320e307-2f0d-4b11-9b0b-519b68d52f01",
+			"title": "Doing",
+			"tasks": []
+		},
+		{
+			"uuid": "97b0af4d-4c09-4e33-98c5-c00bbec62bba",
+			"title": "Done",
+			"tasks": []
+		}
+	],
+	"tasks": [
+		{
+			"uuid": "98fa112f-5ddc-4f90-ae1b-2d0ac14ac0c4",
+			"title": "New task",
+			"description": "",
+			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
+			"steps": []
+		}
+	],
+	"layout": {
+		"columns": [
+			[
+				"9bcd8614-8858-420a-ae96-bf02ed1c34b6"
+			],
+			[
+				"533ae354-999b-4e42-928c-18e1c18ac472"
+			],
+			[
+				"a320e307-2f0d-4b11-9b0b-519b68d52f01"
+			],
+			[
+				"97b0af4d-4c09-4e33-98c5-c00bbec62bba"
+			]
+		]
+	}
+}

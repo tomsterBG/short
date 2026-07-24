@@ -26,12 +26,13 @@ gdscript/warnings/untyped_declaration=1
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/short/plugin.cfg")
+enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg", "res://addons/short/plugin.cfg")
 
 [file_customization]
 
 folder_colors={
 "res://addons/gut/": "blue",
+"res://addons/kanban_tasks/": "blue",
 "res://addons/short/": "orange",
 "res://notes/": "purple",
 "res://other/": "gray",
