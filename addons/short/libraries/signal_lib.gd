@@ -4,6 +4,8 @@
 
 ## @experimental: This class could change.
 ## Utilities for flow control and signal management.
+##
+## Available in all scripts without any setup.
 
 @abstract class_name SignalLib extends Object
 

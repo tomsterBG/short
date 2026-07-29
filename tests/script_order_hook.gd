@@ -39,6 +39,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	helper = [],
 	math = [],
 	physics = [],
+	poly_lib = [],
 	signal_lib = [],
 	string_lib = [],
 }

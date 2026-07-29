@@ -4,6 +4,8 @@
 
 ## @experimental: This class could change.
 ## Bind objects' properties.
+##
+## Available in all scripts without any setup.
 
 @abstract class_name BindLib extends Object
 

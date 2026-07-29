@@ -4,7 +4,7 @@
 # IDEAS:
 # - make get_properties compatible with deep properties
 
-## @experimental: This class could change. Untested.
+## @experimental: This class could change.
 ## Work with arrays.
 ##
 ## Available in all scripts without any setup.

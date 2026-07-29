@@ -19,6 +19,13 @@
 	"stages": [
 		{
 			"uuid": "9bcd8614-8858-420a-ae96-bf02ed1c34b6",
+			"title": "Checklists",
+			"tasks": [
+				"e5515d91-f4d8-48dd-aa2e-a7fa348a5f4f"
+			]
+		},
+		{
+			"uuid": "533ae354-999b-4e42-928c-18e1c18ac472",
 			"title": "Ideas",
 			"tasks": [
 				"4df30afc-6ef5-4adc-a5d0-85dae0c9d172",
@@ -26,21 +33,23 @@
 				"4411ed32-9b46-46eb-a826-88f6d876f236",
 				"ee107dba-6384-4549-82fe-0231e87d903c",
 				"81f9867d-4c5d-461d-a9d4-9cb092f17360",
-				"826a5be9-0ec4-481d-a2f3-8ae5d449e9aa"
+				"826a5be9-0ec4-481d-a2f3-8ae5d449e9aa",
+				"60b91666-4274-4fcd-967e-93d7a64ae38f",
+				"3fd45060-3f16-49f6-a4ce-d04e83ecf570"
 			]
 		},
 		{
-			"uuid": "533ae354-999b-4e42-928c-18e1c18ac472",
+			"uuid": "a320e307-2f0d-4b11-9b0b-519b68d52f01",
 			"title": "Todo",
 			"tasks": []
 		},
 		{
-			"uuid": "a320e307-2f0d-4b11-9b0b-519b68d52f01",
+			"uuid": "97b0af4d-4c09-4e33-98c5-c00bbec62bba",
 			"title": "Doing",
 			"tasks": []
 		},
 		{
-			"uuid": "97b0af4d-4c09-4e33-98c5-c00bbec62bba",
+			"uuid": "7998b73f-5644-46f3-833a-c8f659864046",
 			"title": "Done",
 			"tasks": []
 		}
@@ -49,7 +58,7 @@
 		{
 			"uuid": "4411ed32-9b46-46eb-a826-88f6d876f236",
 			"title": "ShortCamera3D",
-			"description": "",
+			"description": "An extension to Camera3D with toggleable features.",
 			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
 			"steps": [
 				{
@@ -65,7 +74,7 @@
 		{
 			"uuid": "57742f5d-26d9-486f-afb3-d9b25359ecf0",
 			"title": "ShortCamera2D",
-			"description": "",
+			"description": "An extension to Camera2D with toggleable features.",
 			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
 			"steps": [
 				{
@@ -81,7 +90,7 @@
 		{
 			"uuid": "ee107dba-6384-4549-82fe-0231e87d903c",
 			"title": "ShortCharacter2D",
-			"description": "",
+			"description": "An extension to CharacterBody2D with toggleable features.",
 			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
 			"steps": [
 				{
@@ -93,7 +102,7 @@
 		{
 			"uuid": "81f9867d-4c5d-461d-a9d4-9cb092f17360",
 			"title": "ShortCharacter3D",
-			"description": "",
+			"description": "An extension to CharacterBody3D with toggleable features.",
 			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
 			"steps": [
 				{
@@ -110,19 +119,31 @@
 			"steps": [
 				{
 					"details": "circle\n(radius, vertices, position)",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "arc\n(radius, vertices, from_angle, to_angle, position)",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "rounded_rect\n(size, corner_radius, corner_vertices, position)",
-					"done": false
+					"done": true
 				},
 				{
 					"details": "rounded_circle\naka rounded_polygon\n(radius, vertices, corner_radius, corner_vertices, position)",
-					"done": false
+					"done": true
+				},
+				{
+					"details": "offset_2d\n(points, position)",
+					"done": true
+				},
+				{
+					"details": "rotate_2d\n(points, angle, pivot)",
+					"done": true
+				},
+				{
+					"details": "scale_2d",
+					"done": true
 				},
 				{
 					"details": "remap_2d\n(value: Array[Vector2], from: Rect2, to: Rect2)",
@@ -135,6 +156,10 @@
 				{
 					"details": "border_2d\nTakes any shape, assumes continuity and draws a border around it.",
 					"done": false
+				},
+				{
+					"details": "forward_kinematic\nTakes a spine of points and applies a forward kinematic to them at a fixed or curve-defined distance",
+					"done": false
 				}
 			]
 		},
@@ -146,6 +171,62 @@
 			"steps": [
 				{
 					"details": "remap_vec2\nRemaps a Vector2 according to Rect2s.",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "60b91666-4274-4fcd-967e-93d7a64ae38f",
+			"title": "Renames",
+			"description": "Sometimes name clashes occur and it isn't entirely obvious what class does what, which is why i believe it might be beneficial for the long-term to give everything its proper name.\nSure, suffixing all libraries with Lib isn't short, but it might be better? With some exceptions. Convert is definitely intended to be used in specific cases which occur very rarely, but when they occur, Convert is needed extensively, which means one-liners will become less one-liny.",
+			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
+			"steps": [
+				{
+					"details": "Math -> MathLib",
+					"done": false
+				},
+				{
+					"details": "Helper -> HelperLib",
+					"done": false
+				},
+				{
+					"details": "Convert -> ConvertLib",
+					"done": false
+				},
+				{
+					"details": "Console -> ConsoleLib",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "e5515d91-f4d8-48dd-aa2e-a7fa348a5f4f",
+			"title": "Class quality pass",
+			"description": "Be it library, component or anything",
+			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
+			"steps": [
+				{
+					"details": "ensure the test suite is registered in script_order_hook.gd\nUsually checked for automatically by the error in script_order_hook.gd",
+					"done": false
+				},
+				{
+					"details": "ensure full test coverage\nEvery property must be covered for initial values\nEvery method must have all of its parameters tested in different configurations and edge cases",
+					"done": false
+				},
+				{
+					"details": "ensure full documentation\nAlso ensure wording and formatting remains consistent with other documentation",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "3fd45060-3f16-49f6-a4ce-d04e83ecf570",
+			"title": "DateTimeLib",
+			"description": "",
+			"category": "8c81c050-2d8d-4630-bf54-dceecf445d90",
+			"steps": [
+				{
+					"details": "put Date, Time and DateTime in the same file as the Lib\nThey are not intended to be separate resources anyway, but are type-safe function parameters",
 					"done": false
 				}
 			]
@@ -163,7 +244,8 @@
 				"a320e307-2f0d-4b11-9b0b-519b68d52f01"
 			],
 			[
-				"97b0af4d-4c09-4e33-98c5-c00bbec62bba"
+				"97b0af4d-4c09-4e33-98c5-c00bbec62bba",
+				"7998b73f-5644-46f3-833a-c8f659864046"
 			]
 		]
 	}
