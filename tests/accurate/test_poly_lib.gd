@@ -23,26 +23,39 @@ func test_circle():
 	assert_almost_eq(PolyLib.circle(4, 4)[3].y, -4.0, ERROR_INTERVAL)
 
 func test_arc():
-	assert_eq(PolyLib.arc(0, 0, 0, 2).size(), 2)
-	assert_eq(PolyLib.arc(0, deg_to_rad(90), 3, 2)[0].length(), 3.0)
+	var arc_context := PolyLib.ArcContext.new()
+	arc_context.from_angle = 0
+	arc_context.to_angle = 0
+	arc_context.radius = 0
+	arc_context.vertices = 2
+	assert_eq(PolyLib.arc(arc_context).size(), 2)
+	arc_context.to_angle = deg_to_rad(90)
+	arc_context.radius = 3
+	assert_eq(PolyLib.arc(arc_context)[0].length(), 3.0)
 	# Bottom right 90° arc
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[0].x, 3.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[0].y, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[1].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[1].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[2].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[2].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[3].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(0, deg_to_rad(90), 3, 4)[3].y, 3.0, ERROR_INTERVAL)
-	# Bottom right 90° arc
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[0].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[0].y, 3.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[1].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[1].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[2].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[2].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[3].x, 3.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(deg_to_rad(90), 0, 3, 4)[3].y, 0.0, ERROR_INTERVAL)
+	arc_context.from_angle = 0
+	arc_context.to_angle = deg_to_rad(90)
+	arc_context.radius = 3
+	arc_context.vertices = 4
+	assert_almost_eq(PolyLib.arc(arc_context)[0].x, 3.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[0].y, 0.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].x, 0.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].y, 3.0, ERROR_INTERVAL)
+	# Bottom right 90° reverse arc
+	arc_context.from_angle = deg_to_rad(90)
+	arc_context.to_angle = 0
+	assert_almost_eq(PolyLib.arc(arc_context)[0].x, 0.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[0].y, 3.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].x, 3.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].y, 0.0, ERROR_INTERVAL)
 
 func test_rounded_rect():
 	assert_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4).size(), 16)

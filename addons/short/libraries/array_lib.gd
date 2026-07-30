@@ -314,17 +314,17 @@ static func diff(old_array: Array, new_array: Array) -> DiffResult:
 ## Synchronizes children nodes of [member ArrayLib.SyncContext.parent_node] to match the state of [member ArrayLib.SyncContext.data_array].
 ##[br][br][b]Note:[/b] [member ArrayLib.SyncContext.factory] must be a [Callable] that takes a data item and returns a new [Node].
 ##[br][br][b]Note:[/b] This method uses metadata [member ArrayLib.SyncContext.metadata_name] to track node ownership.
-static func sync_nodes(sync_context: SyncContext) -> void:
+static func sync_nodes(context: SyncContext) -> void:
 	var data_to_node_map: Dictionary = {}
 	
 	# NOTE: Populate data_to_node_map.
 	# BUG: What if multiple nodes have the same value for metadata_name? Overwrite?
-	for child in sync_context.parent_node.get_children():
-		if child.has_meta(sync_context.metadata_name):
-			data_to_node_map[child.get_meta(sync_context.metadata_name)] = child
+	for child in context.parent_node.get_children():
+		if child.has_meta(context.metadata_name):
+			data_to_node_map[child.get_meta(context.metadata_name)] = child
 	
-	for i in sync_context.data_array.size():
-		var data: Variant = sync_context.data_array[i]
+	for i in context.data_array.size():
+		var data: Variant = context.data_array[i]
 		var node: Node
 		
 		# NOTE: Find existing node.
@@ -332,13 +332,13 @@ static func sync_nodes(sync_context: SyncContext) -> void:
 			node = data_to_node_map[data]
 			data_to_node_map.erase(data)
 		else: # NOTE: Create new node.
-			node = sync_context.factory.call(data)
+			node = context.factory.call(data)
 			assert(node, "Factory failed to create node.")
-			node.set_meta(sync_context.metadata_name, data)
-			sync_context.parent_node.add_child(node)
+			node.set_meta(context.metadata_name, data)
+			context.parent_node.add_child(node)
 		
-		if sync_context.sync_position: # NOTE: Sync the position.
-			sync_context.parent_node.move_child(node, i)
+		if context.sync_position: # NOTE: Sync the position.
+			context.parent_node.move_child(node, i)
 	
 	# NOTE: Erase nodes with unfound data.
 	for data: Variant in data_to_node_map:
@@ -376,7 +376,7 @@ class FindObjectContext:
 		condition = p_condition
 		object_children = p_object_children
 
-## Context for [method sync_nodes].
+## Context for [method ArrayLib.sync_nodes].
 class SyncContext:
 	## Data corresponding to each node.
 	var data_array: Array
