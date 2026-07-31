@@ -1,9 +1,12 @@
 # TODO:
+# IDEAS:
+# - delete in favor of ShortCheckBox
 
 ## @experimental: This class could change.
 ## A button that folds something.
 ##
 ## When the button is pressed, the [member node] will be visible, otherwise it will be invisible.
+##[br][br][b]Note:[/b] For more generic buttons, see [ShortCheckBox].
 
 @tool
 @icon("unfolded.svg")

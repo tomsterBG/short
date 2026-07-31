@@ -51,7 +51,9 @@
 		{
 			"uuid": "7998b73f-5644-46f3-833a-c8f659864046",
 			"title": "Done",
-			"tasks": []
+			"tasks": [
+				"11700b5b-e154-49a5-af3e-39f906828a81"
+			]
 		}
 	],
 	"tasks": [
@@ -228,6 +230,22 @@
 				{
 					"details": "put Date, Time and DateTime in the same file as the Lib\nThey are not intended to be separate resources anyway, but are type-safe function parameters",
 					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "11700b5b-e154-49a5-af3e-39f906828a81",
+			"title": "ShortSlider",
+			"description": "An extension to V/HSlider with toggleable features.",
+			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
+			"steps": [
+				{
+					"details": "tooltip string",
+					"done": true
+				},
+				{
+					"details": "bind properties",
+					"done": true
 				}
 			]
 		}

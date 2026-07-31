@@ -46,7 +46,7 @@ enum ExcludeMode {
 
 #region getters
 ## Returns an [Array] of values extracted from the [param property] of each [Object] in [param objects].
-##[br][br]Fills each failed object with [code]null[/code]. This way input indices correspond to output indices.
+##[br][br]Fills each failed object with [code]null[/code], this way input indices correspond to output indices.
 static func get_properties(objects: Array[Object], property: StringName) -> Array:
 	var result := []
 	

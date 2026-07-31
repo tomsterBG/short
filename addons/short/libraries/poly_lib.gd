@@ -124,6 +124,7 @@ class ArcContext:
 		vertices = p_vertices
 		position = p_position
 	
+	## Constructor for [PolyLib.ArcContext], except it also takses [member radius_curve].
 	static func from_radius_curve(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_radius: float = 8.0, p_radius_curve: Curve = Curve.new(), p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> ArcContext:
 		var arc_context := ArcContext.new(p_from_angle, p_to_angle, p_radius, p_vertices, p_position)
 		arc_context.radius_curve = p_radius_curve
