@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0kuvxm3lm6ed"
-path="res://.godot/imported/folded.svg-df98a994955337a66de2bdccd0dfe1e1.ctex"
+uid="uid://diktvutgm43e6"
+path="res://.godot/imported/unfolded.svg-b82922c73c40b06f52b1482c78a1cb43.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/short/components/fold_button/folded.svg"
-dest_files=["res://.godot/imported/folded.svg-df98a994955337a66de2bdccd0dfe1e1.ctex"]
+source_file="res://addons/short/components/button/fold_button/unfolded.svg"
+dest_files=["res://.godot/imported/unfolded.svg-b82922c73c40b06f52b1482c78a1cb43.ctex"]
 
 [params]
 

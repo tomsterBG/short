@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://c788gcu07vxxq"]
+
+[ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="1_6gogb"]
+[ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="3_riiwf"]
+
+[node name="FoldButton" type="Button" unique_id=1776558899]
+offset_right = 8.0
+offset_bottom = 8.0
+toggle_mode = true
+icon = ExtResource("3_riiwf")
+script = ExtResource("1_6gogb")
