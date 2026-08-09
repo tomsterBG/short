@@ -25,6 +25,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	fold_button = [],
 	health = [&"convert"],
 	health_regen = [&"health"],
+	procedural_poly_2d = [],
 	# data:
 	timestamp_data = [&"convert", &"time_info"], # NOTE: &"date_info" circular dependency
 	# info:

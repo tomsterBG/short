@@ -26,14 +26,19 @@ func test_circle():
 	assert_almost_eq(PolyLib.circle(4, 4)[2].y, 0.0, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.circle(4, 4)[3].x, 0.0, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.circle(4, 4)[3].y, -4.0, ERROR_INTERVAL)
+	# Clockwise square, off to the right, rotated 90°
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[0].x, 1.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[0].y, 4.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[1].x, -3.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[1].y, 0.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[2].x, 1.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[2].y, -4.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[3].x, 5.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[3].y, 0.0, ERROR_INTERVAL)
 
 func test_arc():
-	var arc_context := PolyLib.ArcContext.new()
-	arc_context.from_angle = 0
-	arc_context.to_angle = 0
-	arc_context.radius = 0
-	arc_context.vertices = 2
-	assert_eq(PolyLib.arc(arc_context).size(), 2)
+	var arc_context := PolyLib.ArcContext.new(0, 0, 0, 2)
+	assert_eq(PolyLib.arc(arc_context).size(), 2, "Two vertices.")
 	arc_context.to_angle = deg_to_rad(90)
 	arc_context.radius = 3
 	assert_eq(PolyLib.arc(arc_context)[0].length(), 3.0, "Radius of 3.")
@@ -61,6 +66,15 @@ func test_arc():
 	assert_almost_eq(PolyLib.arc(arc_context)[2].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.arc(arc_context)[3].x, 3.0, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.arc(arc_context)[3].y, 0.0, ERROR_INTERVAL)
+
+func test_thick_arc():
+	var thick_arc_context := PolyLib.ThickArcContext.new(0, 0, 0, 0, 2)
+	assert_eq(PolyLib.thick_arc(thick_arc_context).size(), 4, "Four vertices.")
+	thick_arc_context.to_angle = deg_to_rad(90)
+	thick_arc_context.inner_radius = 3
+	thick_arc_context.outer_radius = 4
+	assert_eq(PolyLib.thick_arc(thick_arc_context)[0].length(), 4.0, "Outer radius of 4.")
+	assert_eq(PolyLib.thick_arc(thick_arc_context)[2].length(), 3.0, "Inner radius of 3.")
 
 func test_rounded_rect():
 	assert_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4).size(), 16)
@@ -115,4 +129,5 @@ func test_scale_2d():
 	var my_points := [Vector2(5, -3)]
 	assert_eq(PolyLib.scale_2d(my_points, Vector2(2, 2))[0], Vector2(10, -6))
 	assert_eq(PolyLib.scale_2d(my_points, Vector2(0, -1))[0], Vector2(0, 3))
+	assert_eq(my_points, [Vector2(5, -3)], "Preserves points input.")
 #endregion tests
