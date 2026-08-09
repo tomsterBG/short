@@ -72,6 +72,21 @@ static func get_base_class(source: String) -> StringName:
 				return StringName(tokens[idx + 1])
 	return &""
 
+## Returns all classes referenced in this GDScript with reference count. Ignores comments and strings.
+static func get_referenced_classes(source: String) -> Dictionary[StringName, int]:
+	var classes: Dictionary[StringName, int] = {}
+	var stripped := ""
+	for line in source.split("\n"):
+		stripped += strip_strings(strip_comment(line)).strip_edges()
+	# NOTE: A PascalCase word boundary regex.
+	var regex := RegEx.create_from_string("\\b[A-Z]\\w*\\b")
+	for regex_match in regex.search_all(stripped):
+		if !classes.has(regex_match.get_string()):
+			classes[regex_match.get_string()] = 1
+		else:
+			classes[regex_match.get_string()] += 1
+	return classes
+
 ## Returns the number of leading tabs in a line.
 static func get_indent_level(line: String) -> int:
 	var count := 0

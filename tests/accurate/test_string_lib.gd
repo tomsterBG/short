@@ -41,6 +41,10 @@ func test_get_base_class():
 	assert_eq(StringLib.get_base_class("\n\t@abstract class_name StringLib extends Object"), "Object")
 	assert_eq(StringLib.get_base_class("@tool\n@icon(\"my_icon\")\n@abstract class_name StringLib extends Object"), "Object")
 
+func test_get_referenced_classes():
+	assert_eq(StringLib.get_referenced_classes("Convert.meter_to_cm(9.0)"), {&"Convert": 1})
+	assert_eq(StringLib.get_referenced_classes("Vector2i(8, 2)"), {&"Vector2i": 1})
+
 func test_get_indent_level():
 	assert_eq(StringLib.get_indent_level(""), 0)
 	assert_eq(StringLib.get_indent_level(" "), 0)
