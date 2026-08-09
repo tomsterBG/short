@@ -21,7 +21,8 @@
 			"uuid": "9bcd8614-8858-420a-ae96-bf02ed1c34b6",
 			"title": "Checklists",
 			"tasks": [
-				"e5515d91-f4d8-48dd-aa2e-a7fa348a5f4f"
+				"e5515d91-f4d8-48dd-aa2e-a7fa348a5f4f",
+				"153c2296-5156-4772-82c7-d415ca282110"
 			]
 		},
 		{
@@ -34,14 +35,15 @@
 				"ee107dba-6384-4549-82fe-0231e87d903c",
 				"81f9867d-4c5d-461d-a9d4-9cb092f17360",
 				"826a5be9-0ec4-481d-a2f3-8ae5d449e9aa",
-				"60b91666-4274-4fcd-967e-93d7a64ae38f",
-				"3fd45060-3f16-49f6-a4ce-d04e83ecf570"
+				"60b91666-4274-4fcd-967e-93d7a64ae38f"
 			]
 		},
 		{
 			"uuid": "a320e307-2f0d-4b11-9b0b-519b68d52f01",
 			"title": "Todo",
-			"tasks": []
+			"tasks": [
+				"11700b5b-e154-49a5-af3e-39f906828a81"
+			]
 		},
 		{
 			"uuid": "97b0af4d-4c09-4e33-98c5-c00bbec62bba",
@@ -51,9 +53,7 @@
 		{
 			"uuid": "7998b73f-5644-46f3-833a-c8f659864046",
 			"title": "Done",
-			"tasks": [
-				"11700b5b-e154-49a5-af3e-39f906828a81"
-			]
+			"tasks": []
 		}
 	],
 	"tasks": [
@@ -212,11 +212,15 @@
 					"done": false
 				},
 				{
-					"details": "ensure full test coverage\nEvery property must be covered for initial values\nEvery method must have all of its parameters tested in different configurations and edge cases",
+					"details": "ensure full test coverage\nEvery property must be covered for initial values.\nEvery method value (data that is logically derived) must be covered for initial values.\nEvery method must have a corresponding test.\nEvery parameter of each method must be covered by tests.",
 					"done": false
 				},
 				{
-					"details": "ensure full documentation\nAlso ensure wording and formatting remains consistent with other documentation",
+					"details": "ensure full documentation\nAlso ensure wording and formatting remains consistent with other documentation.",
+					"done": false
+				},
+				{
+					"details": "ensure consistency",
 					"done": false
 				}
 			]
@@ -246,6 +250,30 @@
 				{
 					"details": "bind properties",
 					"done": true
+				},
+				{
+					"details": "full test coverage",
+					"done": false
+				}
+			]
+		},
+		{
+			"uuid": "153c2296-5156-4772-82c7-d415ca282110",
+			"title": "Script order hook quality pass",
+			"description": "",
+			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
+			"steps": [
+				{
+					"details": "ensure every test is in the hook",
+					"done": false
+				},
+				{
+					"details": "ensure correctly defined dependencies",
+					"done": false
+				},
+				{
+					"details": "ensure doc of each class aligns with dependencies\nThat sentence in the class description documentation must hold the same dependencies as the actual referenced classes in the script (ignoring built-ins).",
+					"done": false
 				}
 			]
 		}

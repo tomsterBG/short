@@ -7,7 +7,9 @@ var whitelist: Array[String] = [ ## Include these filepaths.
 ]
 var blacklist: Array[String] = [ ## Ignore these filepaths.
 	"res://addons/gut",
+	"res://addons/kanban_tasks",
 	#"res://other/",
+	#"res://tests/",
 ]
 
 

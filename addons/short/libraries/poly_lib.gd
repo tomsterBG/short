@@ -2,6 +2,8 @@
 # Not yet passed through class quality checklist.
 # IDEAS:
 # - bevel - like blender bevel for rounding corners in an alternative way
+# - chain/spine/rope - takes a list of points and a distance (optionally curve distance_curve), applies distance constraint/forward kinematic
+# - rename _curve to _profile or something
 
 ## @experimental: This class could change.
 ## Work with polygons of 2D and 3D points.
@@ -15,7 +17,7 @@
 ## Generates points that represent a circle. The first point is directly to the right by default, [constant Vector2.RIGHT], unless you use [param from_angle] (in radians).
 ##[br][br][b]Note:[/b] [param vertices] can't be negative.
 static func circle(radius: float, vertices := 24, position := Vector2.ZERO, from_angle := 0.0) -> PackedVector2Array:
-	assert(vertices >= 0)
+	assert(vertices >= 0, "Vertices can't be negative.")
 	var result: PackedVector2Array = []
 	for i in range(vertices):
 		result.append(position + Vector2.from_angle(from_angle + i / float(vertices) * TAU) * radius)
@@ -24,7 +26,7 @@ static func circle(radius: float, vertices := 24, position := Vector2.ZERO, from
 ## Generates points that represent a circular arc, starting from [member PolyLib.ArcContext.from_angle] and ending at [member PolyLib.ArcContext.to_angle], where [code]0[/code] represents [constant Vector2.RIGHT] (in radians).
 ##[br][br][b]Note:[/b] [member PolyLib.ArcContext.vertices] can't be negative.
 static func arc(context: ArcContext) -> PackedVector2Array:
-	assert(context.vertices >= 0)
+	assert(context.vertices >= 0, "Vertices can't be negative.")
 	var result: PackedVector2Array = []
 	for i in range(context.vertices):
 		var progress := float(i) / (context.vertices - 1)

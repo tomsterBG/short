@@ -25,7 +25,7 @@ The more, the merrier.
 Some functions just can't work well without enough parameters.
 
 For example:
-
+`PolyLib.arc`.
 
 # Performance
 

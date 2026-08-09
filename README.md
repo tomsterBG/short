@@ -3,6 +3,8 @@
 # About
 
 A library designed to make your code shorter and more elegant.
+Components designed to make your iterative process faster and more fun.
+
 Everything is documented and tested.
 Using this allows you to write less code, yet focus on more complex features.
 
@@ -128,9 +130,9 @@ func my_func(i) -> int:
 - This getter is syntax sugar: `get_is_alive() -> bool: return !is_dead`.
 - This getter is syntax sugar: `get_health_ratio() -> float: return health / max_health`.
 - If an instance variable can be inferred, it must be replaced with getter.
-	- `DateData.weekday` can be inferred from `year, month, day`.
+	- `DateTime.weekday` can be inferred from `year, month, day`.
 		- Adding `get_weekday()` alongside `var weekday` causes unneeded complexity.
-		  In this context, there was `DateData.from_ymwd()` and `DateData.from_ymd()`.
+		  In this context, there was `DateTime.from_ymwd()` and `DateTime.from_ymd()`.
 		  Switching from `var weekday` to `get_weekday()` let me delete `from_ymwd()`.
 		  Deleting `from_ymwd()` removed confusion. Like does `DateTime.to_timestamp()` care if i have `weekday`?
 		  This answer wasn't obvious, but removing `var weekday` made it obvious, i don't need `weekday`.
@@ -145,7 +147,7 @@ func my_func(i) -> int:
 	- Exceptions are recognized by their name.
 	- If a func returns a result class, it mutates state. Like `Health.damage() -> DamageResult`.
 	- If a func returns `Error`, it mutates state. Like `Helper.save_resource(...) -> Error`.
-- If a func returns self or some class, it can be chained. Like `DateData.new().to_timestamp().to_time()`.
+- If a func returns self or some class, it can be chained. Like `DateTime.new().to_timestamp().to_time()`.
 - If it starts with is_ or has_, or should_, it's a bool.
 - If an inherited method is overwritten, ensure to note that in the description of the class.
 - If a class needs another class, ensure to note that in the description of the class.

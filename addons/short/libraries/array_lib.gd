@@ -180,6 +180,7 @@ static func contains_all(large_array: Array, small_array: Array) -> bool:
 			return large_array.has(item)
 	)
 
+# IDEAS: Simplify by using NodePath and dropping call support.
 ## Searches through [param context.objects] for the first [Object] for which [param context.condition] returns true. See [ArrayLib.FindObjectContext] for more info.
 ##[br][br]If [param context.object_children] isn't an empty [StringName], this function becomes recursive and searches each object's children too. Supports dot syntax and methods. See [ArrayLib.FindObjectContext] for more info.
 static func find_object(context: FindObjectContext) -> Object:

@@ -1,3 +1,8 @@
+# TODO:
+# - test_rounded_circle position and from_angle
+# - test_arc radius_curve
+# - test_rounded_rect position
+
 extends GutTest
 
 
@@ -31,7 +36,7 @@ func test_arc():
 	assert_eq(PolyLib.arc(arc_context).size(), 2)
 	arc_context.to_angle = deg_to_rad(90)
 	arc_context.radius = 3
-	assert_eq(PolyLib.arc(arc_context)[0].length(), 3.0)
+	assert_eq(PolyLib.arc(arc_context)[0].length(), 3.0, "Radius of 3.")
 	# Bottom right 90° arc
 	arc_context.from_angle = 0
 	arc_context.to_angle = deg_to_rad(90)
@@ -88,7 +93,7 @@ func test_offset_2d():
 	var expected := [Vector2(-3, -1), Vector2(-1, 2)]
 	assert_eq(PolyLib.offset_2d(my_points, Vector2(-3, -1))[0], expected[0])
 	assert_eq(PolyLib.offset_2d(my_points, Vector2(-3, -1))[1], expected[1])
-	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 3)])
+	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 3)], "Preserves points input.")
 
 func test_rotate_2d():
 	var my_points := [Vector2(0, 0), Vector2(2, 4)]
@@ -97,14 +102,14 @@ func test_rotate_2d():
 	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[0].y, expected[0].y, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[1].x, expected[1].x, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[1].y, expected[1].y, ERROR_INTERVAL)
-	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 4)])
+	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 4)], "Preserves points input.")
 	
 	expected = [Vector2(2, -2), Vector2(-2, 0)]
 	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[0].x, expected[0].x, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[0].y, expected[0].y, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[1].x, expected[1].x, ERROR_INTERVAL)
 	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[1].y, expected[1].y, ERROR_INTERVAL)
-	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 4)])
+	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 4)], "Preserves points input.")
 
 func test_scale_2d():
 	var my_points := [Vector2(5, -3)]
