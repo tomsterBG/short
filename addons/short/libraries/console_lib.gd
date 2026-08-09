@@ -3,4 +3,4 @@
 ##
 ## Available in all scripts without any setup.
 
-@abstract class_name Console extends Object
+@abstract class_name ConsoleLib extends Object

@@ -34,7 +34,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# libraries:
 	array_lib = [],
 	bind_lib = [],
-	console = [],
+	console_lib = [],
 	convert = [&"string_lib"],
 	date_time_lib = [&"convert"], # NOTE: &"date_info" circular dependency
 	helper = [],
