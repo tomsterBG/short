@@ -26,10 +26,6 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	health = [&"convert"],
 	health_regen = [&"health"],
 	# data:
-	date_data = [&"date_time_lib", &"timestamp_data"],
-	date_time_data = [&"date_data", &"time_data"],
-	time_data = [],
-	timestamp_data = [&"convert", &"time_data"], # NOTE: &"date_data" circular dependency
 	timestamp_data = [&"convert", &"time_info"], # NOTE: &"date_info" circular dependency
 	# info:
 	date_info = [&"date_time_lib", &"timestamp_data"],
@@ -40,7 +36,6 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	bind_lib = [],
 	console = [],
 	convert = [&"string_lib"],
-	date_time_lib = [&"convert"], # NOTE: &"date_data" circular dependency
 	date_time_lib = [&"convert"], # NOTE: &"date_info" circular dependency
 	helper = [],
 	math = [],
