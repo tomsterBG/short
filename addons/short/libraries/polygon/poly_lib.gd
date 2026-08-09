@@ -34,6 +34,29 @@ static func arc(context: ArcContext) -> PackedVector2Array:
 		result.append(context.position + Vector2.from_angle(lerpf(context.from_angle, context.to_angle, progress)) * radius)
 	return result
 
+## Generates points that represent a circular arc with thickness, starting from [member PolyLib.ThickArcContext.from_angle] and ending at [member PolyLib.ThickArcContext.to_angle] on the outer arc and going back on the inner arc. An angle of [code]0[/code] represents [constant Vector2.RIGHT] (in radians).
+##[br][br][b]Note:[/b] [member PolyLib.ThickArcContext.vertices] can't be negative.
+static func thick_arc(context: ThickArcContext) -> PackedVector2Array:
+	assert(context.vertices >= 0, "Vertices can't be negative.")
+	var result: PackedVector2Array = []
+	result.append_array(arc(ArcContext.from_radius_curve(
+		context.from_angle,
+		context.to_angle,
+		context.outer_radius,
+		context.radius_curve,
+		context.vertices,
+		context.position,
+	)))
+	result.append_array(arc(ArcContext.from_radius_curve(
+		context.to_angle,
+		context.from_angle,
+		context.inner_radius,
+		context.radius_curve,
+		context.vertices,
+		context.position,
+	)))
+	return result
+
 ## Generates points that represent a rounded rectangle.
 ##[br][br][b]Note:[/b] [param corner_vertices] can't be negative.
 static func rounded_rect(size: Vector2, corner_radius: float, corner_vertices := 7, position := Vector2.ZERO) -> PackedVector2Array:
@@ -128,7 +151,71 @@ class ArcContext:
 	
 	## Constructor for [PolyLib.ArcContext], except it also takses [member radius_curve].
 	static func from_radius_curve(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_radius: float = 8.0, p_radius_curve: Curve = Curve.new(), p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> ArcContext:
-		var arc_context := ArcContext.new(p_from_angle, p_to_angle, p_radius, p_vertices, p_position)
-		arc_context.radius_curve = p_radius_curve
-		return arc_context
+		var context := ArcContext.new(p_from_angle, p_to_angle, p_radius, p_vertices, p_position)
+		context.radius_curve = p_radius_curve
+		return context
+
+## Context for [method PolyLib.thick_arc].
+class ThickArcContext:
+	## Starting arc angle (in radians).
+	var from_angle: float = 0.0
+	## Ending arc angle (in radians).
+	var to_angle: float = PI / 2.0
+	## Outer arc radius.
+	var outer_radius: float = 8.0
+	## Inner arc radius.
+	var inner_radius: float = 6.0
+	## Arc radius multiplier via [Curve]. Radius is sampled in the curve domain range of [code][0, 1][/code] and multiplied by [member outer_radius] or [member inner_radius].
+	var radius_curve: Curve
+	## Vertices per arc. There are 2 arcs, meaning you get double the vertices.
+	var vertices: int = 7
+	## Arc position.
+	var position: Vector2 = Vector2.ZERO
+	
+	
+	func _init(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_outer_radius: float = 8.0, p_inner_radius: float = 6.0, p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> void:
+		from_angle = p_from_angle
+		to_angle = p_to_angle
+		outer_radius = p_outer_radius
+		inner_radius = p_inner_radius
+		vertices = p_vertices
+		position = p_position
+	
+	## Constructor for [PolyLib.ThickArcContext], except it uses [member outer_radius] and [param thickness].
+	static func thickness_from_outer_radius(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_outer_radius: float = 6.0, p_thickness: float = 2.0, p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> ThickArcContext:
+		return ThickArcContext.new(p_from_angle, p_to_angle,
+			p_outer_radius,
+			p_outer_radius - p_thickness,
+		p_vertices, p_position)
+	
+	## Constructor for [PolyLib.ThickArcContext], except it uses [member inner_radius] and [param thickness].
+	static func thickness_from_inner_radius(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_inner_radius: float = 6.0, p_thickness: float = 2.0, p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> ThickArcContext:
+		return ThickArcContext.new(p_from_angle, p_to_angle,
+			p_inner_radius + p_thickness,
+			p_inner_radius,
+		p_vertices, p_position)
+	
+	## Constructor for [PolyLib.ThickArcContext], except it also takses [member radius_curve].
+	static func from_radius_curve(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_outer_radius: float = 8.0, p_inner_radius: float = 6.0, p_radius_curve: Curve = Curve.new(), p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> ThickArcContext:
+		var context := ThickArcContext.new(p_from_angle, p_to_angle, p_outer_radius, p_inner_radius, p_vertices, p_position)
+		context.radius_curve = p_radius_curve
+		return context
+	
+	## Constructor for [PolyLib.ThickArcContext], except it uses [member outer_radius] and [param thickness], and also takses [member radius_curve].
+	static func thickness_from_outer_radius_curve(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_outer_radius: float = 6.0, p_thickness: float = 2.0, p_radius_curve: Curve = Curve.new(), p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> ThickArcContext:
+		var context := ThickArcContext.new(p_from_angle, p_to_angle,
+			p_outer_radius,
+			p_outer_radius - p_thickness,
+		p_vertices, p_position)
+		context.radius_curve = p_radius_curve
+		return context
+	
+	## Constructor for [PolyLib.ThickArcContext], except it uses [member inner_radius] and [param thickness], and also takses [member radius_curve].
+	static func thickness_from_inner_radius_curve(p_from_angle: float = 0, p_to_angle: float = PI / 2.0, p_inner_radius: float = 6.0, p_thickness: float = 2.0, p_radius_curve: Curve = Curve.new(), p_vertices: int = 7, p_position: Vector2 = Vector2.ZERO) -> ThickArcContext:
+		var context := ThickArcContext.new(p_from_angle, p_to_angle,
+			p_inner_radius + p_thickness,
+			p_inner_radius,
+		p_vertices, p_position)
+		context.radius_curve = p_radius_curve
+		return context
 #endregion classes
