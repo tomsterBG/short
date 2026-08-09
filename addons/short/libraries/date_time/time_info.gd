@@ -10,7 +10,7 @@
 ##
 ##[br][br][b]Note:[/b] It is recommended to use this for functions that require time data. If you want to save this data, use [TimestampData].
 
-class_name TimeData extends RefCounted
+class_name TimeInfo extends RefCounted
 
 
 #region variables
@@ -23,8 +23,8 @@ var microsecond := 0
 
 
 #region methods
-static func from_hms(p_hour: int, p_minute: int, p_second: int) -> TimeData:
-	var new_time := TimeData.new()
+static func from_hms(p_hour: int, p_minute: int, p_second: int) -> TimeInfo:
+	var new_time := TimeInfo.new()
 	new_time.hour = p_hour
 	new_time.minute = p_minute
 	new_time.second = p_second

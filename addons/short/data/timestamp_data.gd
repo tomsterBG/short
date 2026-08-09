@@ -1,12 +1,12 @@
 # IDEAS:
 # - Constructors:
-# - Converters: to_datetime().
+# - Converters: to_datetime()
 
 ## @experimental: This class could change.
 ## A Unix timestamp that can be saved to disk, or passed as function argument and returned as function result.
 ##
 ##[br][br][b]Note:[/b] Excellent for being saved to disk and for doing date math.
-##[br][br][b]Note:[/b] This assumes that the [Convert], [DateData] and [TimeData] classes exist.
+##[br][br][b]Note:[/b] This assumes that the [Convert], [DateInfo] and [TimeInfo] classes exist.
 
 class_name TimestampData extends Resource
 
@@ -31,15 +31,15 @@ func get_local() -> TimestampData:
 static func now() -> TimestampData:
 	return TimestampData.new(Time.get_unix_time_from_system())
 
-## Converts this timestamp to a [DateData] object.
-func to_date() -> DateData:
+## Converts this timestamp to a [DateInfo] object.
+func to_date() -> DateInfo:
 	var date_dict := Time.get_date_dict_from_unix_time(int(timestamp))
-	return DateData.from_ymd(date_dict.year, date_dict.month, date_dict.day)
+	return DateInfo.from_ymd(date_dict.year, date_dict.month, date_dict.day)
 
-## Converts this timestamp to a [TimeData] object.
-func to_time() -> TimeData:
+## Converts this timestamp to a [TimeInfo] object.
+func to_time() -> TimeInfo:
 	var time_dict := Time.get_time_dict_from_unix_time(int(timestamp))
-	var new_time := TimeData.from_hms(time_dict.hour, time_dict.minute, time_dict.second)
+	var new_time := TimeInfo.from_hms(time_dict.hour, time_dict.minute, time_dict.second)
 	var milliseconds := Convert.sec_to_msec(timestamp - int(timestamp))
 	new_time.millisecond = int(milliseconds)
 	new_time.microsecond = int(Convert.msec_to_usec(milliseconds - new_time.millisecond))

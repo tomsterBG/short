@@ -2,15 +2,10 @@
 # - Write in notes something about moving from var weekday to get_weekday().
 # 	- Part of it is, the weekday can be inferred from year, month, day.
 # 	- Having var weekday and get_weekday() hides the fact that weekday runs get_weekday().
-# - Change DateData to DateContext, TimeData to TimeContext, DateTimeData to DateTimeContext.
-# 	- Rename and move them to a different folder before any changes to preserve Git history.
-# 	- Rename their scripts and test scripts and entries in script_order_hook.
-# 	- Change them to RefCounted to ensure no ability to be saved to disk. This is for TimestampData.
-# 	- Ensure full compatibility with TimestampData for proper work within needed context.
 # IDEAS:
-# - Constructors: from_date_dict().
-# - Converters: to_date_dict().
-# - Helpers: is_valid().
+# - Constructors: from_date_dict()
+# - Converters: to_date_dict()
+# - Helpers: is_valid()
 # BAD IDEAS:
 # - Use now() only in TimestampData to incentivize correct class usage.
 
@@ -20,7 +15,7 @@
 ##[br][br][b]Note:[/b] It is recommended to use this for functions that require date data. If you want to save this data, use [TimestampData].
 ##[br][br][b]Note:[/b] This assumes that the [DateTimeLib] and [TimestampData] classes exist.
 
-class_name DateData extends RefCounted
+class_name DateInfo extends RefCounted
 
 
 #region variables
@@ -37,8 +32,8 @@ func get_weekday() -> Time.Weekday:
 
 
 #region methods
-static func from_ymd(p_year: int, p_month: Time.Month, p_day: int) -> DateData:
-	var new_date := DateData.new()
+static func from_ymd(p_year: int, p_month: Time.Month, p_day: int) -> DateInfo:
+	var new_date := DateInfo.new()
 	new_date.year = p_year
 	new_date.month = p_month
 	new_date.day = p_day
