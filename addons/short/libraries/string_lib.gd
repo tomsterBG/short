@@ -8,7 +8,6 @@
 # - has_annotation(line: String, annotation: String) -> bool: check for @tool, @experimental, @abstract
 #
 # - get_func_name
-# - is_inside_comment(source: String, index: int) -> bool:
 #
 # - get_function_params(source: String) -> PackedStringArray
 #
@@ -21,7 +20,7 @@
 #
 # - fuzzy_score(string_a, string_b) -> float
 # IDEAS:
-# - get_script_meat_ratio(source: String) -> float: how much of the source code is actual logic?
+# - get_script_logic_ratio(source: String) -> float: how much of the source code is actual logic?
 # - Optimize the ordering of (line.contains("var") or line.contains("func") or line.contains("signal") or line.contains("const")) with data. Run a script that says "Definitions: var - x, func - x, signal - x, const - x"
 
 ## @experimental: This class could change.
