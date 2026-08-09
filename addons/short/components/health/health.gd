@@ -20,7 +20,7 @@
 ##
 ## Widely applicable for most health stuff. See also [HealthRegen].
 ##[br][br][b]Note:[/b] Can have a shield, and that shield can have its own shield!
-##[br][br][b]Note:[/b] This overwrites [method Node._get_configuration_warnings]. Use [code]super()[/code] if you want to extend the same method.
+##[br][br][b]Note:[/b] This overrides [method Node._get_configuration_warnings]. Use [code]super()[/code] if you want to extend the same method.
 ##[br][br][b]Note:[/b] This assumes that the [Convert] class exists.
 
 @tool
