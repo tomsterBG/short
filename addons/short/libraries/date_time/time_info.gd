@@ -14,15 +14,21 @@ class_name TimeInfo extends RefCounted
 
 
 #region variables
+## The hour of this [TimeInfo].
 var hour := 0
+## The minute of this [TimeInfo].
 var minute := 0
+## The second of this [TimeInfo].
 var second := 0
+## The millisecond of this [TimeInfo].
 var millisecond := 0
+## The microsecond of this [TimeInfo].
 var microsecond := 0
 #endregion variables
 
 
 #region methods
+## Constructor from hour, minute and second.
 static func from_hms(p_hour: int, p_minute: int, p_second: int) -> TimeInfo:
 	var new_time := TimeInfo.new()
 	new_time.hour = p_hour
@@ -30,6 +36,7 @@ static func from_hms(p_hour: int, p_minute: int, p_second: int) -> TimeInfo:
 	new_time.second = p_second
 	return new_time
 
+## Converts this instance to [TimestampData].
 func to_timestamp() -> TimestampData:
 	var datetime_dict := {hour = hour, minute = minute, second = second}
 	var new_timestamp := TimestampData.new(Time.get_unix_time_from_datetime_dict(datetime_dict)

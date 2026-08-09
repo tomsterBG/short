@@ -19,13 +19,17 @@ class_name DateInfo extends RefCounted
 
 
 #region variables
+## The year of this [DateInfo].
 @export var year := 1
+## The month of this [DateInfo].
 @export var month := Time.MONTH_JANUARY
+## The day of this [DateInfo].
 @export var day := 1
 #endregion variables
 
 
 #region getters
+## The weekday of this date.
 func get_weekday() -> Time.Weekday:
 	return DateTimeLib.get_weekday_of_date(self)
 #endregion getters
