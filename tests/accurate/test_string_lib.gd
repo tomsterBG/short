@@ -1,6 +1,11 @@
 extends GutTest
 
 
+#region constants
+const ALLOW_EMPTY := true
+#endregion constants
+
+
 #region tests
 	#region getters
 func test_get_class_name():
@@ -79,8 +84,11 @@ func test_get_project_relative_path():
 
 func test_get_lines_in_file():
 	assert_eq(StringLib.get_lines_in_file("res://tests/files/empty file.txt"), 0, "Lines are 0.")
+	assert_eq(StringLib.get_lines_in_file("res://tests/files/empty file.txt", !ALLOW_EMPTY), 0, "Lines are 0.")
 	assert_eq(StringLib.get_lines_in_file("res://tests/files/79 line text.md"), 79, "Lines are 79.")
+	assert_eq(StringLib.get_lines_in_file("res://tests/files/79 line text.md", !ALLOW_EMPTY), 1, "Only 1 non-empty line.")
 	assert_eq(StringLib.get_lines_in_file("res://tests/files/123 line script.gd"), 123, "Lines are 123.")
+	assert_eq(StringLib.get_lines_in_file("res://tests/files/123 line script.gd", !ALLOW_EMPTY), 2, "Only 2 non-empty lines.")
 
 func test_get_line_at_offset():
 	assert_eq(StringLib.get_line_at_offset("", 0), 1)
@@ -89,6 +97,8 @@ func test_get_line_at_offset():
 	assert_eq(StringLib.get_line_at_offset("string\n\nthree", 6), 1)
 	assert_eq(StringLib.get_line_at_offset("string\n\nthree", 7), 2)
 	assert_eq(StringLib.get_line_at_offset("string\n\nthree", 8), 3)
+	assert_eq(StringLib.get_line_at_offset("string\n\n\n", 8), 3)
+	assert_eq(StringLib.get_line_at_offset("string\n\n\n", 9), 3)
 	#endregion getters
 
 	#region is_

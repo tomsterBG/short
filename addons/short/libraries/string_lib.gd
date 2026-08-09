@@ -39,34 +39,34 @@ const ALLOW_EMPTY := true
 
 
 #region getters
-## Returns the name of the class defined in this GDScript source. Ignores comments and strings.
+## Returns the [code]class_name[/code] defined in this GDScript source. Ignores comments and strings.
 static func get_class_name(source: String) -> StringName:
 	for line in source.split("\n"):
-		var stripped := strip_comment(line).strip_edges()
+		var stripped := strip_strings(strip_comment(line)).strip_edges()
 		if stripped.is_empty(): continue
 		
 		# NOTE: class_name isn't allowed after these keywords.
 		if is_func_definition(line) or is_var_definition(line) or is_signal_definition(line) or stripped.begins_with("const ") or stripped.begins_with("class "):
 			return &""
 		
-		if stripped.contains("class_name ") and !is_inside_string(stripped, stripped.find("extends ")):
+		if stripped.contains("class_name "):
 			var tokens := stripped.split(" ", false)
 			var idx := tokens.find("class_name")
 			if idx != -1 and idx + 1 < tokens.size():
 				return StringName(tokens[idx + 1])
 	return &""
 
-## Returns the name of the base class this GDScript extends. Ignores comments and strings.
+## Returns the base class name this GDScript [code]extends[/code]. Ignores comments and strings.
 static func get_base_class(source: String) -> StringName:
 	for line in source.split("\n"):
-		var stripped := strip_comment(line).strip_edges()
+		var stripped := strip_strings(strip_comment(line)).strip_edges()
 		if stripped.is_empty(): continue
 		
 		# NOTE: extends isn't allowed after these keywords.
 		if is_func_definition(line) or is_var_definition(line) or is_signal_definition(line) or stripped.begins_with("const ") or stripped.begins_with("class "):
 			return &""
 		
-		if stripped.contains("extends ") and !is_inside_string(stripped, stripped.find("extends ")):
+		if stripped.contains("extends "):
 			var tokens := stripped.split(" ", false)
 			var idx := tokens.find("extends")
 			if idx != -1 and idx + 1 < tokens.size():
@@ -81,7 +81,7 @@ static func get_indent_level(line: String) -> int:
 		else: break
 	return count
 
-## Returns the comment on this line, including the "#". Returns "" if there is no comment.
+## Returns the GDScript comment on this line, including the "#". Returns "" if there is no comment.
 static func get_comment(line: String) -> String:
 	var hash_pos := line.find("#")
 	while hash_pos != -1:
@@ -99,7 +99,6 @@ static func get_region_name(line: String) -> String:
 		return line.strip_edges().trim_prefix("#endregion").strip_edges()
 	return ""
 
-# TODO: Make this more parametrized for customizability. Let me choose what is considered a TODO comment prefix.
 ## Extracts info from a TODO comment.
 static func get_todo_info(line: String, prefixes: Array[String] = ["# TODO:", "# TODO"]) -> String:
 	var comment := get_comment(line)
@@ -111,24 +110,30 @@ static func get_todo_info(line: String, prefixes: Array[String] = ["# TODO:", "#
 	return ""
 
 ## Converts an absolute system path to a project-relative "res://" path.
-static func get_project_relative_path(path: String) -> String:
+static func get_project_relative_path(absolute_path: String) -> String:
 	var res_path := ProjectSettings.globalize_path("res://")
-	if path.begins_with(res_path):
-		return path.replace(res_path, "res://").replace("\\", "/")
-	return path
+	if absolute_path.begins_with(res_path):
+		return absolute_path.replace(res_path, "res://").replace("\\", "/")
+	return absolute_path
 
 ## Returns the amount of lines in a file.
-static func get_lines_in_file(path: String) -> int:
+static func get_lines_in_file(path: String, allow_empty := true) -> int:
 	if FileAccess.get_size(path) <= 0: return 0
-	return FileAccess.get_file_as_string(path).split("\n").size()
+	return FileAccess.get_file_as_string(path).split("\n", allow_empty).size()
 
 ## Returns the line number corresponding to a character offset in a string.
 ##[br][br]The "\n" character is considered to be on the same line.
 static func get_line_at_offset(string: String, offset: int) -> int:
-	var count := 1
-	for i in range(min(offset, string.length())):
-		if string[i] == "\n": count += 1
-	return count
+	# NOTE: The + 1 comes from converting offset from an index starting at 0, to a length starting at 1.
+	offset = mini(len(string) - 1, offset) + 1
+	var lines := string.split("\n")
+	var line_num := 1
+	for line in lines:
+		# NOTE: The + 1 comes from String.split stripping the delimiter.
+		offset -= len(line) + 1
+		if offset <= 0: return line_num
+		line_num += 1
+	return line_num
 #endregion getters
 
 
@@ -136,15 +141,13 @@ static func get_line_at_offset(string: String, offset: int) -> int:
 	#region is_
 ## Returns [code]true[/code] if the given string is affirmative. Can customize what is considered affirmative with [param keywords].
 ##[br][br][b]Note:[/b] An affirmative string is [code]"yes", "y", "true", "1"[/code].
-static func is_affirmative(string: String, keywords: Array[String] = []) -> bool:
-	if !keywords.is_empty(): return keywords.has(string)
-	return ["yes", "y", "true", "1"].has(string)
+static func is_affirmative(string: String, keywords: Array[String] = ["yes", "y", "true", "1"]) -> bool:
+	return keywords.has(string)
 
 ## Returns [code]true[/code] if the given string is negative. Can customize what is considered negative with [param keywords].
 ##[br][br][b]Note:[/b] A negative string is [code]"no", "n", "false", "0"[/code].
-static func is_negative(string: String, keywords: Array[String] = []) -> bool:
-	if !keywords.is_empty(): return keywords.has(string)
-	return ["no", "n", "false", "0"].has(string)
+static func is_negative(string: String, keywords: Array[String] = ["no", "n", "false", "0"]) -> bool:
+	return keywords.has(string)
 
 ## Returns [code]true[/code] if the given string is a number in binary.
 static func is_binary(binary: String) -> bool:
