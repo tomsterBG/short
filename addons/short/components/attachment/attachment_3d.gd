@@ -22,4 +22,6 @@ func set_body(value: PhysicsBody3D) -> void:
 	body = value
 	if value is RigidBody3D:
 		rigid_body = value
+	else:
+		rigid_body = null
 #endregion setters

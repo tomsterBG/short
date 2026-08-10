@@ -24,8 +24,13 @@ func test_set_body():
 	attachment.body = char_body
 	assert_eq(attachment.body, char_body, "Body is set properly.")
 	assert_eq(attachment.rigid_body, null, "Body is not rigid.")
+	
 	var rigid_body := RigidBody2D.new()
 	attachment.body = rigid_body
 	assert_eq(attachment.body, rigid_body, "Body is set properly.")
 	assert_eq(attachment.rigid_body, rigid_body, "Body is rigid.")
+	
+	attachment.body = char_body
+	assert_eq(attachment.body, char_body, "Body is set properly.")
+	assert_eq(attachment.rigid_body, null, "Body is not rigid.")
 #endregion tests
