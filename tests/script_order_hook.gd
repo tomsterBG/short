@@ -22,6 +22,8 @@ const IS_DEEP := true
 var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
 	# components:
+	attachment_2d = [],
+	attachment_3d = [],
 	fold_button = [],
 	health = [&"convert"],
 	health_regen = [&"health"],
