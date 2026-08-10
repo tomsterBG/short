@@ -9,19 +9,13 @@ class_name Attachment3D extends Marker3D
 
 #region variables
 ## The physics body to attach to.
-##[br][br][b]Note:[/b] Automatically sets [member rigid_body].
-@export var body: PhysicsBody3D: set = set_body
-
-## The rigid body to affect. Automatically gets set if [member body] is [RigidBody3D].
-@export var rigid_body: RigidBody3D
+@export var body: PhysicsBody3D
 #endregion variables
 
 
-#region setters
-func set_body(value: PhysicsBody3D) -> void:
-	body = value
-	if value is RigidBody3D:
-		rigid_body = value
-	else:
-		rigid_body = null
-#endregion setters
+#region getters
+## If [member body] is a [RigidBody3D], returns it, otherwise returns [code]null[/code].
+func get_rigid_body() -> RigidBody3D:
+	if body is RigidBody3D: return body
+	return null
+#endregion getters
