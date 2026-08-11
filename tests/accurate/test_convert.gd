@@ -109,8 +109,6 @@ func test_power():
 	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, ERROR_INTERVAL)
 	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, ERROR_INTERVAL)
 	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, ERROR_INTERVAL)
-	assert_almost_eq(Convert.hp_to_bhb(73.0), 71.999_210, ERROR_INTERVAL)
-	assert_almost_eq(Convert.bhb_to_hp(89.0), 90.237_099, ERROR_INTERVAL)
 	assert_almost_eq(Convert.hp_to_ps(72.0), 72.998_615, ERROR_INTERVAL)
 	assert_almost_eq(Convert.ps_to_hp(49.0), 48.329_683, ERROR_INTERVAL)
 
@@ -186,7 +184,6 @@ func test_convert_and_back():
 	assert_eq(Convert.kw_to_mw(Convert.mw_to_kw(72.1)), 72.1)
 	assert_eq(Convert.w_to_hp(Convert.hp_to_w(99.9)), 99.9)
 	assert_eq(Convert.kw_to_hp(Convert.hp_to_kw(28.2)), 28.2)
-	assert_eq(Convert.hp_to_bhb(Convert.bhb_to_hp(72.8)), 72.8)
 	assert_eq(Convert.hp_to_ps(Convert.ps_to_hp(49.3)), 49.3)
 	# energy
 	assert_eq(Convert.j_to_kwh(Convert.kwh_to_j(742.1)), 742.1)

@@ -63,6 +63,8 @@
 # - deg_to_dot_product
 # BAD IDEAS:
 # - Add angular speed rads_to_degs and rads_to_degs? No, you can just use rad_to_deg and deg_to_rad.
+# - power
+# 	- hp_to_bhp - they are the same unit, measuring is different
 
 ## @experimental: This class could change.
 ## Convert between units.
@@ -413,14 +415,6 @@ static func kw_to_hp(kw: float) -> float:
 ## Converts a power from [code]hp[/code] to [code]kw[/code].
 static func hp_to_kw(hp: float) -> float:
 	return hp * 0.74569987158
-
-## Converts a power from [code]hp[/code] to [code]bhp[/code].
-static func hp_to_bhb(hp: float) -> float:
-	return hp / 1.0139
-
-## Converts a power from [code]bhp[/code] to [code]hp[/code].
-static func bhb_to_hp(bhp: float) -> float:
-	return bhp * 1.0139
 
 ## Converts a power from [code]hp[/code] to [code]Pferdestarke (ps)[/code].
 static func hp_to_ps(hp: float) -> float:
