@@ -16,6 +16,5 @@ class_name Attachment2D extends Marker2D
 #region getters
 ## If [member body] is a [RigidBody2D], returns it, otherwise returns [code]null[/code].
 func get_rigid_body() -> RigidBody2D:
-	if body is RigidBody2D: return body
-	return null
+	return body as RigidBody2D
 #endregion getters

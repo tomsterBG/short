@@ -10,6 +10,7 @@ const INCLUDES_EXTENSION = true
 #region tests
 func test_get_dir_children():
 	var dir_children := Helper.get_dir_children("res://")
+	assert_false(dir_children.invalid_dir)
 	assert_has(dir_children.files, "res://README.md", "Found README.md file.")
 	assert_has(dir_children.folders, "res://addons", "Found addons folder.")
 	assert_does_not_have(dir_children.files, "res://addons/gut/gut.gd", "Not recursive.")
@@ -17,9 +18,13 @@ func test_get_dir_children():
 	assert_has(dir_children.files, "res://addons/gut/gut.gd", "Found gut.gd file.")
 	dir_children = Helper.get_dir_children("res://tests")
 	assert_has(dir_children.folders, "res://tests/files")
+	dir_children = Helper.get_dir_children("res://tests/")
+	assert_has(dir_children.folders, "res://tests/files", "Supports trailing / on folders.")
 	dir_children = Helper.get_dir_children("")
 	assert_true(dir_children.folders.is_empty(), "Empty result.")
 	assert_true(dir_children.files.is_empty(), "Empty result.")
+	dir_children = Helper.get_dir_children("res://non_existent")
+	assert_true(dir_children.invalid_dir)
 
 func test_get_resource_filename():
 	var resource := ResourceLoader.load("res://tests/files/my capsule shape.tres")

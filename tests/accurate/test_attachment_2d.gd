@@ -23,11 +23,13 @@ func test_initial_method_values():
 
 func test_get_rigid_body():
 	var char_body := CharacterBody2D.new()
+	add_child_autofree(char_body)
 	attachment.body = char_body
 	assert_eq(attachment.body, char_body, "Body is set.")
 	assert_eq(attachment.get_rigid_body(), null, "Body is not rigid.")
 	
 	var rigid_body := RigidBody2D.new()
+	add_child_autofree(rigid_body)
 	attachment.body = rigid_body
 	assert_eq(attachment.body, rigid_body, "Body is set.")
 	assert_eq(attachment.get_rigid_body(), rigid_body, "Body is rigid.")

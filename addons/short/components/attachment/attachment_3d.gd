@@ -16,6 +16,5 @@ class_name Attachment3D extends Marker3D
 #region getters
 ## If [member body] is a [RigidBody3D], returns it, otherwise returns [code]null[/code].
 func get_rigid_body() -> RigidBody3D:
-	if body is RigidBody3D: return body
-	return null
+	return body as RigidBody3D
 #endregion getters

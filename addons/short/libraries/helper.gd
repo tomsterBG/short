@@ -62,9 +62,11 @@
 ## The result returned by [method Helper.get_dir_children].
 class DirChildrenResult:
 	## The files found at [param path].
-	var files: Array = []
+	var files: Array[String] = []
 	## The folders found at [param path].
-	var folders: Array = []
+	var folders: Array[String] = []
+	## Becomes [code]true[/code] if [param path] is invalid.
+	var invalid_dir: bool = false
 #endregion classes
 
 
@@ -74,6 +76,7 @@ class DirChildrenResult:
 static func get_dir_children(path: String, recursive: bool = false) -> DirChildrenResult:
 	var result := DirChildrenResult.new()
 	if !path.is_absolute_path(): return result
+	if !DirAccess.dir_exists_absolute(path): result.invalid_dir = true; return result
 	
 	var files: Array = DirAccess.get_files_at(path)
 	result.files.assign(files.map(func(f: String) -> String: return path.path_join(f)))
