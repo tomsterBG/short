@@ -95,16 +95,24 @@ func test_acceleration():
 func test_torque():
 	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, ERROR_INTERVAL)
 	assert_almost_eq(Convert.lbft_to_nm(3.0), 4.067_453, ERROR_INTERVAL)
+	assert_almost_eq(Convert.nm_to_kgm(256.0), 26.104_735, ERROR_INTERVAL)
+	assert_almost_eq(Convert.kgm_to_nm(41.0), 402.072_650, ERROR_INTERVAL)
+	assert_almost_eq(Convert.lbft_to_kgm(797.0), 110.189_202, ERROR_INTERVAL)
+	assert_almost_eq(Convert.kgm_to_lbft(81.0), 585.874_099, ERROR_INTERVAL)
 
 func test_power():
 	assert_eq(Convert.w_to_kw(995.0), 0.995)
 	assert_eq(Convert.kw_to_w(0.69), 690.0)
 	assert_eq(Convert.kw_to_mw(41.0), 0.041)
 	assert_eq(Convert.mw_to_kw(0.13), 130.0)
-	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, ERROR_INTERVAL)
-	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, ERROR_INTERVAL)
-	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, ERROR_INTERVAL)
 	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, ERROR_INTERVAL)
+	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_bhb(73.0), 71.999_210, ERROR_INTERVAL)
+	assert_almost_eq(Convert.bhb_to_hp(89.0), 90.237_099, ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_ps(72.0), 72.998_615, ERROR_INTERVAL)
+	assert_almost_eq(Convert.ps_to_hp(49.0), 48.329_683, ERROR_INTERVAL)
 
 func test_energy():
 	assert_eq(Convert.j_to_kwh(63459.0), 0.0176275)
@@ -171,11 +179,15 @@ func test_convert_and_back():
 	assert_eq(Convert.ms2_to_kms2(Convert.kms2_to_ms2(17.3)), 17.3)
 	# torque
 	assert_eq(Convert.nm_to_lbft(Convert.lbft_to_nm(40.8)), 40.8)
+	assert_eq(Convert.nm_to_kgm(Convert.kgm_to_nm(27.4)), 27.4)
+	assert_eq(Convert.lbft_to_kgm(Convert.kgm_to_lbft(99.7)), 99.7)
 	# power
 	assert_eq(Convert.w_to_kw(Convert.kw_to_w(23.4)), 23.4)
 	assert_eq(Convert.kw_to_mw(Convert.mw_to_kw(72.1)), 72.1)
-	assert_eq(Convert.hp_to_kw(Convert.kw_to_hp(28.2)), 28.2)
-	assert_eq(Convert.hp_to_w(Convert.w_to_hp(99.9)), 99.9)
+	assert_eq(Convert.w_to_hp(Convert.hp_to_w(99.9)), 99.9)
+	assert_eq(Convert.kw_to_hp(Convert.hp_to_kw(28.2)), 28.2)
+	assert_eq(Convert.hp_to_bhb(Convert.bhb_to_hp(72.8)), 72.8)
+	assert_eq(Convert.hp_to_ps(Convert.ps_to_hp(49.3)), 49.3)
 	# energy
 	assert_eq(Convert.j_to_kwh(Convert.kwh_to_j(742.1)), 742.1)
 	# temperature

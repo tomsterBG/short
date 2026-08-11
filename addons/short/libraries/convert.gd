@@ -44,9 +44,15 @@
 # 	- dl_to_l
 # 	- l_to_cl
 # 	- cl_to_l
+# - volume consumption
+# 	- l_per_100km_to_mpg
+# 	- mpg_to_l_per_100km
 # - power
 # 	- w_to_milliwatt
 # 	- milliwatt_to_w
+# - torque
+# 	- nm_to_kgm
+# 	- kgm_to_nm
 # - other
 # 	- ms_sec_to_m - meters/sec in t seconds to meters
 # - Change torque to energy and multiple units to correspond to their own unit because unit incompatibility makes conversions inaccurate.
@@ -350,13 +356,29 @@ static func kms2_to_ms2(kms2: float) -> float:
 	#endregion acceleration
 
 	#region torque
-## Converts a torque from [code]n*m[/code] to [code]lb-ft[/code].
+## Converts a torque from [code]n*m[/code] to [code]Pound-force foot (lb-ft)[/code].
 static func nm_to_lbft(nm: float) -> float:
 	return nm * 0.7375621493
 
-## Converts a torque from [code]lb-ft[/code] to [code]n*m[/code].
+## Converts a torque from [code]Pound-force foot (lb-ft)[/code] to [code]n*m[/code].
 static func lbft_to_nm(lbft: float) -> float:
 	return lbft / 0.7375621493
+
+## Converts a torque from [code]n*m[/code] to [code]Kilogram-force meter (kgm)[/code].
+static func nm_to_kgm(nm: float) -> float:
+	return nm * 0.1019716213
+
+## Converts a torque from [code]Kilogram-force meter (kgm)[/code] to [code]n*m[/code].
+static func kgm_to_nm(kgm: float) -> float:
+	return kgm / 0.1019716213
+
+## Converts a torque from [code]Pound-force foot (lb-ft)[/code] to [code]Kilogram-force meter (kgm)[/code].
+static func lbft_to_kgm(lbft: float) -> float:
+	return lbft * 0.1382549596
+
+## Converts a torque from [code]Kilogram-force meter (kgm)[/code] to [code]Pound-force foot (lb-ft)[/code].
+static func kgm_to_lbft(kgm: float) -> float:
+	return kgm / 0.1382549596
 	#endregion torque
 
 	#region power
@@ -378,19 +400,35 @@ static func mw_to_kw(mw: float) -> float:
 
 ## Converts a power from [code]watt[/code] to [code]hp[/code].
 static func w_to_hp(watt: float) -> float:
-	return watt / 745.6998716
+	return watt / 745.69987158
 
 ## Converts a power from [code]hp[/code] to [code]watt[/code].
 static func hp_to_w(hp: float) -> float:
-	return hp * 745.6998716
+	return hp * 745.69987158
 
 ## Converts a power from [code]kw[/code] to [code]hp[/code].
 static func kw_to_hp(kw: float) -> float:
-	return kw / 0.7456998716
+	return kw / 0.74569987158
 
 ## Converts a power from [code]hp[/code] to [code]kw[/code].
 static func hp_to_kw(hp: float) -> float:
-	return hp * 0.7456998716
+	return hp * 0.74569987158
+
+## Converts a power from [code]hp[/code] to [code]bhp[/code].
+static func hp_to_bhb(hp: float) -> float:
+	return hp / 1.0139
+
+## Converts a power from [code]bhp[/code] to [code]hp[/code].
+static func bhb_to_hp(bhp: float) -> float:
+	return bhp * 1.0139
+
+## Converts a power from [code]hp[/code] to [code]Pferdestarke (ps)[/code].
+static func hp_to_ps(hp: float) -> float:
+	return hp * 1.0138696654
+
+## Converts a power from [code]Pferdestarke (ps)[/code] to [code]hp[/code].
+static func ps_to_hp(ps: float) -> float:
+	return ps / 1.0138696654
 	#endregion power
 
 	#region energy
