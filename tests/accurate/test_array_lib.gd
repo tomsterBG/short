@@ -30,9 +30,9 @@ func before_all():
 
 #region tests
 func test_get_properties():
-	assert_eq(ArrayLib.get_properties(objects_read, "gizmo_extents"), [19.0, 3.0, 8.0, 3.0], "Gizmos are 19, 3, 8 and 3 respectively.")
+	assert_eq(ArrayLib.get_properties(objects_read, ^"gizmo_extents"), [19.0, 3.0, 8.0, 3.0], "Gizmos are 19, 3, 8 and 3 respectively.")
 	var marker: Marker2D = null
-	assert_eq(ArrayLib.get_properties([objects_read[0], marker, objects_read[1]], "gizmo_extents"), [19.0, null, 3.0], "Fill null values.")
+	assert_eq(ArrayLib.get_properties([objects_read[0], marker, objects_read[1]], ^"gizmo_extents"), [19.0, null, 3.0], "Fill null values.")
 
 func test_get_wrapped():
 	assert_eq(ArrayLib.get_wrapped(objects_read, -8).gizmo_extents, 19.0)
@@ -66,18 +66,18 @@ func test_flatten():
 
 func test_intersect():
 	assert_eq(ArrayLib.intersect(objects_read, [objects_read[2]]), [objects_read[2]])
-	var properties := ArrayLib.get_properties(objects_read, &"gizmo_extents")
+	var properties := ArrayLib.get_properties(objects_read, ^"gizmo_extents")
 	assert_eq(ArrayLib.intersect(properties, [3.0]), [3.0])
 	assert_eq(ArrayLib.intersect(properties, [3.0], ArrayLib.IntersectMode.B_IS_FILTER), [3.0, 3.0])
 
 func test_exclude():
 	assert_eq(ArrayLib.exclude(objects_read, [objects_read[2]]), [objects_read[0], objects_read[1], objects_read[3]])
-	var properties := ArrayLib.get_properties(objects_read, &"gizmo_extents")
+	var properties := ArrayLib.get_properties(objects_read, ^"gizmo_extents")
 	assert_eq(ArrayLib.exclude(properties, [3.0]), [19.0, 8.0, 3.0])
 	assert_eq(ArrayLib.exclude(properties, [3.0], ArrayLib.ExcludeMode.B_IS_FILTER), [19.0, 8.0])
 
 func test_merge():
-	var properties := ArrayLib.get_properties(objects_read, &"gizmo_extents")
+	var properties := ArrayLib.get_properties(objects_read, ^"gizmo_extents")
 	assert_eq(ArrayLib.merge(properties, [1.0, 2.0, 3.0]), [19.0, 3.0, 8.0, 3.0, 1.0, 2.0])
 
 func test_contains_all():
@@ -115,7 +115,7 @@ func test_pick_random():
 	assert_eq(ArrayLib.pick_random(weighted_array).value, objects_read[2])
 
 func test_move():
-	var properties := ArrayLib.get_properties(objects_read, &"gizmo_extents")
+	var properties := ArrayLib.get_properties(objects_read, ^"gizmo_extents")
 	assert_eq(properties, [19.0, 3.0, 8.0, 3.0])
 	ArrayLib.move(properties, 0, 2)
 	assert_eq(properties, [3.0, 8.0, 19.0, 3.0])
@@ -125,7 +125,7 @@ func test_move():
 	assert_eq(properties, [3.0, 3.0, 19.0, 8.0])
 
 func test_swap():
-	var properties := ArrayLib.get_properties(objects_read, &"gizmo_extents")
+	var properties := ArrayLib.get_properties(objects_read, ^"gizmo_extents")
 	assert_eq(properties, [19.0, 3.0, 8.0, 3.0])
 	ArrayLib.swap(properties, 0, 2)
 	assert_eq(properties, [8.0, 3.0, 19.0, 3.0])

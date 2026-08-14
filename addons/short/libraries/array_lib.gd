@@ -45,14 +45,14 @@ enum ExcludeMode {
 
 
 #region getters
-## Returns an [Array] of values extracted from the [param property] of each [Object] in [param objects].
+## Returns an [Array] of values extracted from the [param property_path] of each [Object] in [param objects].
 ##[br][br]Fills each failed object with [code]null[/code], this way input indices correspond to output indices.
-static func get_properties(objects: Array[Object], property: StringName) -> Array:
+static func get_properties(objects: Array[Object], property_path: NodePath) -> Array:
 	var result := []
 	
 	for object in objects:
-		if object and property in object:
-			result.append(object.get(property))
+		if object:
+			result.append(object.get_indexed(property_path))
 		else:
 			result.append(null)
 	
@@ -190,8 +190,7 @@ static func find_object(context: FindObjectContext) -> Object:
 		
 		if context.object_children.is_empty(): continue
 		
-		const ALLOW_EMPTY := true
-		var properties := context.object_children.split(".", !ALLOW_EMPTY)
+		var properties := context.object_children.split(".", !StringLib.ALLOW_EMPTY)
 		var children: Variant = object
 		for property in properties:
 			if property.ends_with("()"):
@@ -220,8 +219,7 @@ static func find_objects(context: FindObjectContext) -> Array[Object]:
 		
 		if context.object_children.is_empty(): continue
 		
-		const ALLOW_EMPTY := true
-		var properties := context.object_children.split(".", !ALLOW_EMPTY)
+		var properties := context.object_children.split(".", !StringLib.ALLOW_EMPTY)
 		var children: Variant = object
 		for property in properties:
 			if property.ends_with("()"):
