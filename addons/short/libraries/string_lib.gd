@@ -33,6 +33,7 @@
 
 
 #region constants
+## Usually used for [method String.split]'s [param allow_empty] parameter.
 const ALLOW_EMPTY := true
 #endregion constants
 

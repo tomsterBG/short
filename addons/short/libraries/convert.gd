@@ -160,12 +160,12 @@ static func year_to_day(year: float) -> float:
 	#endregion time
 
 	#region proportion
-## Converts a proportion from units to percentages. Units are from [code]0[/code] to [code]1[/code]. Percentages are from [code]0[/code] to [code]100[/code]. See [method percent_to_unit].
-static func unit_to_percent(unit: float) -> float:
-	return unit * 100.0
+## Converts a proportion from ratio to percentage. Ratio is from [code]0[/code] to [code]1[/code]. Percentage is from [code]0[/code] to [code]100[/code]. See [method percent_to_ratio].
+static func ratio_to_percent(ratio: float) -> float:
+	return ratio * 100.0
 
-## Converts a proportion from percentages to units. Percentages are from [code]0[/code] to [code]100[/code]. Units are from [code]0[/code] to [code]1[/code]. See [method unit_to_percent].
-static func percent_to_unit(percent: float) -> float:
+## Converts a proportion from percentage to ratio. Percentage is from [code]0[/code] to [code]100[/code]. Ratio is from [code]0[/code] to [code]1[/code]. See [method ratio_to_percent].
+static func percent_to_ratio(percent: float) -> float:
 	return percent / 100.0
 	#endregion proportion
 
@@ -483,5 +483,13 @@ static func nm_rpm_to_w(tq_nm: float, rpm: float) -> float:
 ## Converts from [code]Power (watt)[/code] and [code]Time (sec)[/code] to [code]Energy (joule)[/code].
 static func w_sec_to_j(watt: float, sec: float) -> float:
 	return watt * sec
+
+## Converts from [code]Frequency (hz)[/code] to delta [code]Time (seconds)[/code].
+static func hz_to_delta_sec(hz: float) -> float:
+	return 1.0 / hz
+
+## Converts from delta [code]Time (seconds)[/code] to [code]Frequency (hz)[/code].
+static func delta_sec_to_hz(delta_sec: float) -> float:
+	return 1.0 / delta_sec
 	#endregion multiple units
 #endregion methods

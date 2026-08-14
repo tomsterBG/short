@@ -6,11 +6,6 @@
 extends GutTest
 
 
-#region constants
-const ERROR_INTERVAL := 0.000_001
-#endregion constants
-
-
 #region tests
 func test_circle():
 	assert_eq(PolyLib.circle(0, 1).size(), 1)
@@ -18,23 +13,23 @@ func test_circle():
 	assert_eq(PolyLib.circle(0, 4)[0].length(), 0.0)
 	assert_eq(PolyLib.circle(4, 4)[0].length(), 4.0)
 	# Clockwise square
-	assert_almost_eq(PolyLib.circle(4, 4)[0].x, 4.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4)[0].y, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4)[1].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4)[1].y, 4.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4)[2].x, -4.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4)[2].y, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4)[3].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4)[3].y, -4.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[0].x, 4.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[0].y, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[1].x, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[1].y, 4.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[2].x, -4.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[2].y, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[3].x, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4)[3].y, -4.0, GConst.ERROR_INTERVAL)
 	# Clockwise square, off to the right, rotated 90°
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[0].x, 1.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[0].y, 4.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[1].x, -3.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[1].y, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[2].x, 1.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[2].y, -4.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[3].x, 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[3].y, 0.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[0].x, 1.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[0].y, 4.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[1].x, -3.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[1].y, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[2].x, 1.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[2].y, -4.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[3].x, 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.circle(4, 4, Vector2.RIGHT, PI/2)[3].y, 0.0, GConst.ERROR_INTERVAL)
 
 func test_arc():
 	var arc_context := PolyLib.ArcContext.new(0, 0, 0, 2)
@@ -47,25 +42,25 @@ func test_arc():
 	arc_context.to_angle = deg_to_rad(90)
 	arc_context.radius = 3
 	arc_context.vertices = 4
-	assert_almost_eq(PolyLib.arc(arc_context)[0].x, 3.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[0].y, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[1].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[1].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[2].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[2].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[3].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[3].y, 3.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[0].x, 3.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[0].y, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].x, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].y, 3.0, GConst.ERROR_INTERVAL)
 	# Bottom right 90° reverse arc
 	arc_context.from_angle = deg_to_rad(90)
 	arc_context.to_angle = 0
-	assert_almost_eq(PolyLib.arc(arc_context)[0].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[0].y, 3.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[1].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[1].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[2].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[2].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[3].x, 3.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.arc(arc_context)[3].y, 0.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[0].x, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[0].y, 3.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].x, Vector2(3, 0).rotated(deg_to_rad(60)).x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[1].y, Vector2(3, 0).rotated(deg_to_rad(60)).y, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].x, Vector2(3, 0).rotated(deg_to_rad(30)).x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[2].y, Vector2(3, 0).rotated(deg_to_rad(30)).y, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].x, 3.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.arc(arc_context)[3].y, 0.0, GConst.ERROR_INTERVAL)
 
 func test_thick_arc():
 	var thick_arc_context := PolyLib.ThickArcContext.new(0, 0, 0, 0, 2)
@@ -78,22 +73,22 @@ func test_thick_arc():
 
 func test_rounded_rect():
 	assert_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4).size(), 16)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[0].x, 30.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[0].y, 20.0 - 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[3].x, 30.0 - 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[3].y, 20.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[4].x, 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[4].y, 20.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[7].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[7].y, 20.0 - 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[8].x, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[8].y, 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[11].x, 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[11].y, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[12].x, 30.0 - 5.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[12].y, 0.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[15].x, 30.0, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[15].y, 5.0, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[0].x, 30.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[0].y, 20.0 - 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[3].x, 30.0 - 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[3].y, 20.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[4].x, 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[4].y, 20.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[7].x, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[7].y, 20.0 - 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[8].x, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[8].y, 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[11].x, 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[11].y, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[12].x, 30.0 - 5.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[12].y, 0.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[15].x, 30.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rounded_rect(Vector2(30, 20), 5, 4)[15].y, 5.0, GConst.ERROR_INTERVAL)
 
 func test_rounded_circle():
 	var rounded_polygon := PolyLib.rounded_circle(10, 2, 6, 7)
@@ -112,17 +107,17 @@ func test_offset_2d():
 func test_rotate_2d():
 	var my_points := [Vector2(0, 0), Vector2(2, 4)]
 	var expected := [Vector2(0, 0), Vector2(-4, 2)]
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[0].x, expected[0].x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[0].y, expected[0].y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[1].x, expected[1].x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[1].y, expected[1].y, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[0].x, expected[0].x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[0].y, expected[0].y, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[1].x, expected[1].x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90))[1].y, expected[1].y, GConst.ERROR_INTERVAL)
 	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 4)], "Preserves points input.")
 	
 	expected = [Vector2(2, -2), Vector2(-2, 0)]
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[0].x, expected[0].x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[0].y, expected[0].y, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[1].x, expected[1].x, ERROR_INTERVAL)
-	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[1].y, expected[1].y, ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[0].x, expected[0].x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[0].y, expected[0].y, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[1].x, expected[1].x, GConst.ERROR_INTERVAL)
+	assert_almost_eq(PolyLib.rotate_2d(my_points, deg_to_rad(90), Vector2(2, 0))[1].y, expected[1].y, GConst.ERROR_INTERVAL)
 	assert_eq(my_points, [Vector2(0, 0), Vector2(2, 4)], "Preserves points input.")
 
 func test_scale_2d():

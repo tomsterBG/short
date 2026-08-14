@@ -1,21 +1,16 @@
 extends GutTest
 
 
-#region constants
-const ERROR_INTERVAL := 0.000_001
-#endregion constants
-
-
 #region tests
 func test_constants():
-	assert_almost_eq(Math.PHI, 1.618_033, ERROR_INTERVAL)
+	assert_almost_eq(Math.PHI, 1.618_033, GConst.ERROR_INTERVAL)
 
 func test_sphere():
-	assert_almost_eq(Math.sphere_surface(9.0), 1017.876_020, ERROR_INTERVAL)
-	assert_almost_eq(Math.sphere_volume(9.0), 3053.628_059, ERROR_INTERVAL)
+	assert_almost_eq(Math.sphere_surface(9.0), 1017.876_020, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Math.sphere_volume(9.0), 3053.628_059, GConst.ERROR_INTERVAL)
 
 func test_triangle_area():
-	assert_almost_eq(Math.triangle_area_from_three_sides(5.0, 7.0, 11.090_076), 12.500_002, ERROR_INTERVAL)
+	assert_almost_eq(Math.triangle_area_from_three_sides(5.0, 7.0, 11.090_076), 12.500_002, GConst.ERROR_INTERVAL)
 
 func test_get_projected_vector():
 	assert_eq(Math.get_projected_vector(Vector2(3, 0), Vector2(3, 0)), Vector2(3, 0), "No change.")

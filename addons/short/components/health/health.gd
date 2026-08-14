@@ -75,6 +75,18 @@ class HealResult:
 #endregion classes
 
 
+#region constants
+## Useful for methods with a [param set_health_0] parameter such as [method kill].
+const SET_HEALTH_0 = true
+
+## Useful for methods with a [param set_health_max] parameter such as [method revive].
+const SET_HEALTH_MAX = true
+
+## Useful for methods with a [param recursive] parameter such as [method damage], [method kill] and [method revive].
+const RECURSIVE = true
+#endregion constants
+
+
 #region variables
 	#region health
 @export_group("Health")
@@ -166,7 +178,7 @@ func set_shield(value: Health) -> void:
 #region getters
 ## Represents the fullness of [member health] in [member max_health] as a percent from [code]0[/code] to [code]100[/code].
 func get_health_percent() -> float:
-	return Convert.unit_to_percent(get_health_ratio())
+	return Convert.ratio_to_percent(get_health_ratio())
 
 ## Represents the fullness of [member health] in [member max_health] as a unit from [code]0[/code] to [code]1[/code].
 func get_health_ratio() -> float:
@@ -184,9 +196,9 @@ func get_is_alive() -> bool:
 func get_damage_after_resistance(value: float) -> float:
 	if !resistance_enabled: return max(value, 0.0)
 	if resistance_order == ResistanceOrder.PERCENT_FLAT:
-		return max((value * Convert.percent_to_unit(100.0 - resistance_percent)) - resistance_flat, 0.0)
+		return max((value * Convert.percent_to_ratio(100.0 - resistance_percent)) - resistance_flat, 0.0)
 	else:
-		return max(value - resistance_flat, 0.0) * Convert.percent_to_unit(100.0 - resistance_percent)
+		return max(value - resistance_flat, 0.0) * Convert.percent_to_ratio(100.0 - resistance_percent)
 #endregion getters
 
 

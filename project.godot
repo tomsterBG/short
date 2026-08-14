@@ -34,6 +34,7 @@ folder_colors={
 "res://addons/gut/": "blue",
 "res://addons/kanban_tasks/": "blue",
 "res://addons/short/": "orange",
+"res://dev/": "green",
 "res://notes/": "purple",
 "res://other/": "gray",
 "res://tests/": "teal"

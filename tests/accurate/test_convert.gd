@@ -4,11 +4,6 @@
 extends GutTest
 
 
-#region constants
-const ERROR_INTERVAL := 0.000_001
-#endregion constants
-
-
 #region tests
 func test_time():
 	assert_eq(Convert.sec_to_msec(25.0), 25_000.0)
@@ -33,8 +28,8 @@ func test_time():
 	assert_eq(Convert.year_to_day(0.5), 182.625)
 
 func test_proportion():
-	assert_eq(Convert.unit_to_percent(1.75), 175.0)
-	assert_eq(Convert.percent_to_unit(0.5), 0.005)
+	assert_eq(Convert.ratio_to_percent(1.75), 175.0)
+	assert_eq(Convert.percent_to_ratio(0.5), 0.005)
 
 func test_distance():
 	assert_eq(Convert.meter_to_dm(31.2), 312.0)
@@ -51,7 +46,7 @@ func test_distance():
 	assert_eq(Convert.inch_to_meter(291.0), 7.3914)
 	assert_eq(Convert.km_to_megameter(274.0), 0.274)
 	assert_eq(Convert.megameter_to_km(8.1), 8100.0)
-	assert_almost_eq(Convert.km_to_au(84721753.0), 0.566_329, ERROR_INTERVAL)
+	assert_almost_eq(Convert.km_to_au(84721753.0), 0.566_329, GConst.ERROR_INTERVAL)
 	assert_eq(Convert.au_to_km(0.0047), 703110.13)
 	assert_eq(Convert.radius_to_diameter(68.0), 136.0)
 	assert_eq(Convert.diameter_to_radius(54.0), 27.0)
@@ -79,8 +74,8 @@ func test_volume():
 func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
 	assert_eq(Convert.kmh_to_ms(360.0), 100.0)
-	assert_almost_eq(Convert.kmh_to_mph(100.0), 62.137_119, ERROR_INTERVAL)
-	assert_almost_eq(Convert.mph_to_kmh(20.0), 32.186_880, ERROR_INTERVAL)
+	assert_almost_eq(Convert.kmh_to_mph(100.0), 62.137_119, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.mph_to_kmh(20.0), 32.186_880, GConst.ERROR_INTERVAL)
 
 func test_angular_speed():
 	assert_eq(Convert.rads_to_rpm(TAU), 60.0)
@@ -93,24 +88,24 @@ func test_acceleration():
 	assert_eq(Convert.kms2_to_ms2(0.21), 210.0)
 
 func test_torque():
-	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, ERROR_INTERVAL)
-	assert_almost_eq(Convert.lbft_to_nm(3.0), 4.067_453, ERROR_INTERVAL)
-	assert_almost_eq(Convert.nm_to_kgm(256.0), 26.104_735, ERROR_INTERVAL)
-	assert_almost_eq(Convert.kgm_to_nm(41.0), 402.072_650, ERROR_INTERVAL)
-	assert_almost_eq(Convert.lbft_to_kgm(797.0), 110.189_202, ERROR_INTERVAL)
-	assert_almost_eq(Convert.kgm_to_lbft(81.0), 585.874_099, ERROR_INTERVAL)
+	assert_almost_eq(Convert.nm_to_lbft(13.0), 9.588_307, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.lbft_to_nm(3.0), 4.067_453, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.nm_to_kgm(256.0), 26.104_735, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.kgm_to_nm(41.0), 402.072_650, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.lbft_to_kgm(797.0), 110.189_202, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.kgm_to_lbft(81.0), 585.874_099, GConst.ERROR_INTERVAL)
 
 func test_power():
 	assert_eq(Convert.w_to_kw(995.0), 0.995)
 	assert_eq(Convert.kw_to_w(0.69), 690.0)
 	assert_eq(Convert.kw_to_mw(41.0), 0.041)
 	assert_eq(Convert.mw_to_kw(0.13), 130.0)
-	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, ERROR_INTERVAL)
-	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, ERROR_INTERVAL)
-	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, ERROR_INTERVAL)
-	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, ERROR_INTERVAL)
-	assert_almost_eq(Convert.hp_to_ps(72.0), 72.998_615, ERROR_INTERVAL)
-	assert_almost_eq(Convert.ps_to_hp(49.0), 48.329_683, ERROR_INTERVAL)
+	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_kw(37.0), 27.590_895, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.hp_to_ps(72.0), 72.998_615, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.ps_to_hp(49.0), 48.329_683, GConst.ERROR_INTERVAL)
 
 func test_energy():
 	assert_eq(Convert.j_to_kwh(63459.0), 0.0176275)
@@ -129,9 +124,11 @@ func test_mass():
 	assert_eq(Convert.g_to_kg(184.0), 0.184)
 
 func test_multiple_units():
-	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, ERROR_INTERVAL)
-	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_197, ERROR_INTERVAL)
+	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_197, GConst.ERROR_INTERVAL)
 	assert_eq(Convert.w_sec_to_j(6.0, 3.0), 18.0)
+	assert_eq(Convert.hz_to_delta_sec(12.5), 0.08)
+	assert_eq(Convert.delta_sec_to_hz(0.4), 2.5)
 
 func test_convert_and_back():
 	# time
@@ -146,7 +143,7 @@ func test_convert_and_back():
 	assert_eq(Convert.day_to_week(Convert.week_to_day(284.0)), 284.0)
 	assert_eq(Convert.day_to_year(Convert.year_to_day(718.0)), 718.0)
 	# proportion
-	assert_eq(Convert.unit_to_percent(Convert.percent_to_unit(23.4)), 23.4)
+	assert_eq(Convert.ratio_to_percent(Convert.percent_to_ratio(23.4)), 23.4)
 	# distance
 	assert_eq(Convert.meter_to_dm(Convert.dm_to_meter(914.2)), 914.2)
 	assert_eq(Convert.meter_to_cm(Convert.cm_to_meter(67.9)), 67.9)
@@ -193,4 +190,6 @@ func test_convert_and_back():
 	# mass
 	assert_eq(Convert.kg_to_t(Convert.t_to_kg(831.14)), 831.14)
 	assert_eq(Convert.kg_to_g(Convert.g_to_kg(74.12)), 74.12)
+	# multiple units
+	assert_eq(Convert.hz_to_delta_sec(Convert.delta_sec_to_hz(273.1)), 273.1)
 #endregion tests
