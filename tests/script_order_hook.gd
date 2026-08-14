@@ -22,6 +22,7 @@ const IS_DEEP := true
 var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# name = [dependencies],
 	# components:
+	antilock_braking = [],
 	attachment_2d = [],
 	attachment_3d = [],
 	fold_button = [],
@@ -46,6 +47,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	poly_lib = [],
 	signal_lib = [],
 	string_lib = [],
+	vehicle_lib = [],
 }
 
 var inaccurate_test_scripts: Dictionary[StringName, Array] = {
