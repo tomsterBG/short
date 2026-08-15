@@ -158,4 +158,7 @@ func test_sync_nodes():
 	assert_eq(parent_node.get_child(0).get_meta(&"synced_node"), 1)
 	assert_eq(parent_node.get_child(1).get_meta(&"synced_node"), 9)
 	assert_eq(parent_node.get_child(2).get_meta(&"synced_node"), 12)
+
+func test_from_csv():
+	assert_eq(ArrayLib.from_csv("Hello,world,!"), PackedStringArray(["Hello", "world", "!"]))
 #endregion tests

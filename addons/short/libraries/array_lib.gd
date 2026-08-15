@@ -343,6 +343,13 @@ static func sync_nodes(context: SyncContext) -> void:
 	for data: Variant in data_to_node_map:
 		var orphaned_node: Node = data_to_node_map[data]
 		orphaned_node.queue_free()
+
+## Constructs an array from a CSV line.
+static func from_csv(line: String) -> PackedStringArray:
+	var result: PackedStringArray = []
+	for element in line.split(","):
+		result.append(element)
+	return result
 #endregion methods
 
 
