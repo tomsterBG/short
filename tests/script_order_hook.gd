@@ -30,6 +30,11 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	health_regen = [&"health"],
 	procedural_poly_2d = [],
 	scene_button = [],
+	short_button = [&"array_lib", &"property_binding"],
+	short_check_box = [&"array_lib", &"property_binding"],
+	short_option_button = [&"array_lib", &"property_binding"],
+	short_h_slider = [&"array_lib", &"property_binding"],
+	short_v_slider = [&"array_lib", &"property_binding"],
 	# data:
 	animation_binding = [],
 	property_binding = [],
