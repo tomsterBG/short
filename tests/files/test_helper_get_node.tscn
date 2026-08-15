@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c58iekes33tou"]
+
+[node name="TestHelperGetNode" type="Node" unique_id=74540689]
+
+[node name="Node1" type="Node" parent="." unique_id=852609190]
+
+[node name="Node2" type="Node" parent="." unique_id=279295877 groups=["Group2"]]
+
+[node name="Node1" type="Node" parent="Node2" unique_id=1489461130]
+
+[node name="Node2" type="Node" parent="Node2" unique_id=346058630]
+
+[node name="Node3" type="Node" parent="Node2" unique_id=2097136206]
+
+[node name="Node4" type="Node" parent="Node2" unique_id=707570445]
+
+[node name="Node5" type="Node" parent="Node2" unique_id=1619446810]
+
+[node name="Node3" type="Node" parent="." unique_id=899430603]
+
+[node name="Node4" type="Node" parent="." unique_id=260939901]
+
+[node name="Node5" type="Node" parent="." unique_id=903561965]
