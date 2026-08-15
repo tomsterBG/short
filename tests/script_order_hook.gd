@@ -31,6 +31,8 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	procedural_poly_2d = [],
 	scene_button = [],
 	# data:
+	animation_binding = [],
+	property_binding = [],
 	timestamp_data = [&"convert", &"time_info"], # NOTE: &"date_info" circular dependency
 	# info:
 	date_info = [&"date_time_lib", &"timestamp_data"],
