@@ -22,6 +22,9 @@
 # IDEAS:
 # - get_script_logic_ratio(source: String) -> float: how much of the source code is actual logic?
 # - Optimize the ordering of (line.contains("var") or line.contains("func") or line.contains("signal") or line.contains("const")) with data. Run a script that says "Definitions: var - x, func - x, signal - x, const - x"
+# BAD IDEAS:
+# - Existing:
+# 	- String: to_snake_case, to_pascal_case, to_camel_case, to_kebab_case
 
 ## @experimental: This class could change.
 ## Work with strings.

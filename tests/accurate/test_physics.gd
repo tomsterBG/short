@@ -7,6 +7,7 @@ func test_constants():
 	assert_eq(Physics.EARTH_GRAVITY, 9.80665, "Gravity (Earth) = 9.80665 (m/s^2)")
 	assert_eq(Physics.EARTH_RADIUS, 6371_000.0, "Radius (Earth) = 6371_000 (m)")
 	assert_eq(Physics.EARTH_MASS, 5.972e24, "Mass (Earth) = 5.972e24 (kg)")
+	assert_eq(Physics.EARTH_AIR_PRESSURE, 1.0, "Pressure (Earth) = 1 (atm)")
 	assert_eq(Physics.MARS_GRAVITY, 3.728, "Gravity (Mars) = 3.728 (m/s^2)")
 	assert_eq(Physics.MARS_MASS, 6.41693e23, "Mass (Mars) = 6.41693e23 (kg)")
 

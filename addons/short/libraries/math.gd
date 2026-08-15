@@ -16,6 +16,10 @@
 # 	- right_triangle_area(side_x, side_y)
 # 	- triangle_perimeter(a, b, c)
 # IDEAS:
+# - nearest_point_on_line2(line_start, line_end, target) -> Vector2
+# - nearest_point_on_line3(line_start, line_end, target) -> Vector3
+# - reflect2(vector, axis) -> Vector2
+# - reflect3(vector, axis) -> Vector3
 # - class or class_name Matrix to more easily define what a matrix is
 # - add_matrix(matrix_a, matrix_b)
 # - multiply_matrix(matrix_a, matrix_b)
@@ -56,10 +60,10 @@ static func sphere_volume(radius: float) -> float:
 static func triangle_area_from_three_sides(a: float, b: float, c: float) -> float:
 	assert(a + b > c and b + c > a and c + a > b, "Triangle inequality theorem failed: The sum of any 2 sides must be > than the 3rd.")
 	return 0.25 * sqrt( (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c) )
-	#endregion geometry
 
 ## Returns [code]true[/code] if [param vector_a]'s direction relative to [param vector_b] is within [param max_angle_rad] radians.
 static func is_vector2_within_angle(vector_a: Vector2, vector_b: Vector2, max_angle_rad: float) -> bool:
 	var angle_to := absf(vector_a.angle_to(vector_b))
 	return angle_to <= max_angle_rad
+	#endregion geometry
 #endregion methods

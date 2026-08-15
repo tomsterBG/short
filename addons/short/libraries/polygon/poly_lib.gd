@@ -4,6 +4,8 @@
 # - bevel - like blender bevel for rounding corners in an alternative way
 # - chain/spine/rope - takes a list of points and a distance (optionally curve distance_curve), applies distance constraint/forward kinematic
 # - rename _curve to _profile or something
+# - star(inner_r, outer_r, vertices, position, from_angle)
+# - is_clockwise
 
 ## Work with polygons of 2D and 3D points.
 ##

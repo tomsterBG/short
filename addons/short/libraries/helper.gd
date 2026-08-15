@@ -14,8 +14,6 @@
 # - get_dir_file_extensions() -> PackedStringArray: like get_dir_children, but returns a list of file extensions
 # - get_descendants(node: Node, type_hint := &"Node") -> Array[Node]
 # - free_children(node: Node) -> void
-# - safe_connect():
-# - safe_disconnect(source: Object, signal_name: StringName, target: Callable) -> void
 # - get_uid_path(resource: Resource) -> String
 # - is_uid_string(string: String) -> bool: maybe for StringLib?
 # - array_to_dict(key: StringName, value: Array) -> Dictionary
@@ -23,13 +21,6 @@
 # - try_call(target: Object, method: StringName, args := []) -> Variant
 # 	- alternative to if target.has_method(...): target.call(...)
 # - is_scene_root(node: Node) -> bool: does node own itself
-# - batch_connect(source: Object, connections: Dictionary) -> void: connections = { "signal_name": callable }
-# - split_array(array: Array, is_worthy: Callable) -> Array[Array]: [ [worthy], [unworthy] ]
-# - remove_duplicates(array: Array) - removes duplicate array values
-# - flatten_array(array: Array) - converts nested arrays to elements of the parent array
-# 	- a matrixify(array, size) counterpart to turn a flat array into a matrix or something complex
-# - 
-# - 
 # IDEAS:
 # - Improve performance of the find_child family of methods.
 # - Make tyre size calculator function. Takes width (mm)/ratio (percent) R (inch). Spits out a TyreSizeResult with width (m), diameter (m), rim diameter (m), sidewall height (m).

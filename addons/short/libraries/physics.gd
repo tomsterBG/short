@@ -36,6 +36,7 @@
 # - mars, moon, sun, jupiter, saturn - gravity, radius, mass
 # - get_air_drag(speed, air_density, ...)
 # - get_water_drag(speed, water_density, ...)
+# - earth_air_density(altitude, temp_c)
 
 ## @experimental: This class could change.
 ## Work with physics.
@@ -57,6 +58,9 @@ const EARTH_RADIUS := 6_371_000.0
 
 ## Earth's mass in kg.
 const EARTH_MASS := 5.972e24
+
+## Earth's sea level air pressure in [code]atmospheres[/code].
+const EARTH_AIR_PRESSURE := 1.0
 
 ## Mars' surface gravity in [code]meters/second^2[/code].
 const MARS_GRAVITY := 3.728

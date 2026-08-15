@@ -44,7 +44,7 @@
 # 	- dl_to_l
 # 	- l_to_cl
 # 	- cl_to_l
-# - volume consumption
+# - volume consumption / liquid flow
 # 	- l_per_100km_to_mpg
 # 	- mpg_to_l_per_100km
 # - power
@@ -53,6 +53,7 @@
 # - torque
 # 	- nm_to_kgm
 # 	- kgm_to_nm
+# - angle
 # - other
 # 	- ms_sec_to_m - meters/sec in t seconds to meters
 # - Change torque to energy and multiple units to correspond to their own unit because unit incompatibility makes conversions inaccurate.
@@ -308,6 +309,21 @@ static func meter3_to_km3(meter3: float) -> float:
 static func km3_to_meter3(km3: float) -> float:
 	return km3 * 1.0e9
 	#endregion volume
+
+	#region angle
+# TODO: Doc these.
+static func rad_to_dot(radians: float) -> float:
+	return cos(radians)
+
+static func dot_to_rad(dot_product: float) -> float:
+	return acos(dot_product)
+
+static func deg_to_dot(degrees: float) -> float:
+	return cos(deg_to_rad(degrees))
+
+static func dot_to_deg(dot_product: float) -> float:
+	return rad_to_deg(acos(dot_product))
+	#endregion angle
 
 	#region speed
 ## Converts a speed from [code]meters/second[/code] to [code]km/h[/code]. See also [url=https://www.youtube.com/watch?v=wFV3ycTIfn0]Converting m/s to km/h[/url].

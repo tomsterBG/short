@@ -1,6 +1,8 @@
 # INFO:
 # - Logic for managing signal flow and timing.
 # - Provides safe connection utilities to prevent "already connected" errors.
+# IDEAS:
+# - batch_connect(source: Object, connections: Dictionary) -> void: connections = { "signal_name": callable }
 
 ## @experimental: This class could change.
 ## Utilities for flow control and signal management.

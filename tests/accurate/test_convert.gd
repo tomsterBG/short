@@ -71,6 +71,12 @@ func test_volume():
 	assert_eq(Convert.meter3_to_km3(9410.0), 0.00000941)
 	assert_eq(Convert.km3_to_meter3(1.6), 1600000000.0)
 
+func test_angle():
+	assert_almost_eq(Convert.rad_to_dot(2.16), -0.555_699, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.dot_to_rad(0.5), PI / 3.0, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.deg_to_dot(20.626_48), 0.935_896, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.dot_to_deg(0.65), 49.458_398, GConst.ERROR_INTERVAL)
+
 func test_speed():
 	assert_eq(Convert.ms_to_kmh(100.0), 360.0)
 	assert_eq(Convert.kmh_to_ms(360.0), 100.0)
@@ -180,6 +186,9 @@ func test_convert_and_back():
 	assert_eq(Convert.meter3_to_cm3(Convert.cm3_to_meter3(920.0)), 920.0)
 	assert_eq(Convert.meter3_to_mm3(Convert.mm3_to_meter3(2.45)), 2.45)
 	assert_eq(Convert.meter3_to_km3(Convert.km3_to_meter3(3.1488)), 3.1488)
+	# angle
+	assert_eq(Convert.rad_to_dot(Convert.dot_to_rad(0.981)), 0.981)
+	assert_eq(Convert.deg_to_dot(Convert.dot_to_deg(0.755)), 0.755)
 	# speed
 	assert_eq(Convert.ms_to_kmh(Convert.kmh_to_ms(23.4)), 23.4)
 	assert_eq(Convert.kmh_to_mph(Convert.mph_to_kmh(100.0)), 100.0)

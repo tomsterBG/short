@@ -1,7 +1,11 @@
 # NOTE:
 # TODO:
 # - Test them all!!!
+# - remove_duplicates(array: Array) - removes duplicate array values
 # IDEAS:
+# - split_worthy(array: Array, is_worthy: Callable) -> Array[Array]: [ [worthy], [unworthy] ]
+# - flatten(array: Array) - converts nested arrays to elements of the parent array
+# 	- a matrixify(array, size) counterpart to turn a flat array into a matrix or something complex
 
 ## @experimental: This class could change.
 ## Work with arrays.
