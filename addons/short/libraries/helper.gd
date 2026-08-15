@@ -49,7 +49,6 @@
 # - get_usec_since_event(event_at) - usec, Time.get_ticks_usec() - event_at. Hard to test.
 # - trash_dir(path) - Just use OS.move_to_trash(ProjectSettings.globalize_path(path)).
 
-## @experimental: This class could change.
 ## Shorten your code.
 ##
 ## Available in all scripts without any setup.

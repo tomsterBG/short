@@ -16,9 +16,9 @@
 # 	- Acceleration = Velocity / Time
 # 	- Force = Mass * Acceleration
 # - https://www.youtube.com/watch?v=lt7iUBE3_AE
-# - https://www.youtube.com/watch?v=jkCXdDmP618
+# - https://www.youtube.com/watch?v=jkCXdDmP618 and https://www.youtube.com/watch?v=LUgjpDMcwpI
 # 	- Torque = Force * Radius, Torque = Force * Distance
-# 	- Power = Force * Velocity, Power = Torque / Time, Power = Torque * RPM
+# 	- Power = Force * Velocity, Power = Torque / Time, Power = Torque * Frequency
 # - https://whycalculator.com
 # - https://www.unitconverters.net
 # - https://www.omnicalculator.com
@@ -66,7 +66,6 @@
 # - power
 # 	- hp_to_bhp - they are the same unit, measuring is different
 
-## @experimental: This class could change.
 ## Convert between units.
 ##
 ## Available in all scripts without any setup.

@@ -119,7 +119,7 @@ func test_temperature():
 
 func test_mass():
 	assert_eq(Convert.kg_to_t(43.0), 0.043)
-	assert_eq(Convert.t_to_kg(2.41), 2410.0)
+	assert_eq(Convert.t_to_kg(2.41), 2_410.0)
 	assert_eq(Convert.kg_to_g(0.2), 200.0)
 	assert_eq(Convert.g_to_kg(184.0), 0.184)
 

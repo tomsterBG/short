@@ -42,7 +42,9 @@
 			"uuid": "a320e307-2f0d-4b11-9b0b-519b68d52f01",
 			"title": "Todo",
 			"tasks": [
-				"11700b5b-e154-49a5-af3e-39f906828a81"
+				"11700b5b-e154-49a5-af3e-39f906828a81",
+				"ce093f8c-6597-46e8-b65c-2fc5387724a0",
+				"dbb46a02-07be-43e4-a405-d3095ba9e523"
 			]
 		},
 		{
@@ -276,6 +278,20 @@
 					"done": false
 				}
 			]
+		},
+		{
+			"uuid": "ce093f8c-6597-46e8-b65c-2fc5387724a0",
+			"title": "UILib",
+			"description": "A library for extra UI functionality.\nHelpful for decluttering.",
+			"category": "8c81c050-2d8d-4630-bf54-dceecf445d90",
+			"steps": []
+		},
+		{
+			"uuid": "dbb46a02-07be-43e4-a405-d3095ba9e523",
+			"title": "Something ClassName Something",
+			"description": "Extends Node and adds common functionality to classes.\nLike for Range, Slider or BaseButton.",
+			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
+			"steps": []
 		}
 	],
 	"layout": {
