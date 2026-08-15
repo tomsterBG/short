@@ -12,7 +12,6 @@ config_version=5
 
 config/name="short"
 config/tags=PackedStringArray("git_project", "gut")
-run/main_scene="uid://c111v0vk5tgal"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="uid://3rye0sjdukfg"
 
