@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://crbbdsjo6103y"]
+
+[ext_resource type="Script" uid="uid://c572buss7eq8t" path="res://addons/short/components/slider/short_v_slider.gd" id="1_725mb"]
+[ext_resource type="Script" uid="uid://4n43h0hb65qj" path="res://addons/short/data/property_binding.gd" id="2_2s06o"]
+[ext_resource type="Script" uid="uid://pcx0f6vh65li" path="res://addons/short/components/button/short_check_box.gd" id="3_kynyw"]
+[ext_resource type="Script" uid="uid://do6vybxrx4gc0" path="res://addons/short/data/animation_binding.gd" id="4_htx38"]
+[ext_resource type="Script" uid="uid://dwmbwnhgu0ug" path="res://addons/short/components/button/short_option_button.gd" id="4_i6v8v"]
+[ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="6_s8pk6"]
+[ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_ing1m"]
+
+[sub_resource type="Resource" id="Resource_725mb"]
+script = ExtResource("2_2s06o")
+path_a = NodePath(".:value")
+path_b = NodePath("../ColorRect:position:y")
+metadata/_custom_type_script = "uid://4n43h0hb65qj"
+
+[sub_resource type="Resource" id="Resource_kynyw"]
+script = ExtResource("2_2s06o")
+path_a = NodePath(".:button_pressed")
+path_b = NodePath("../ColorRect:visible")
+metadata/_custom_type_script = "uid://4n43h0hb65qj"
+
+[sub_resource type="Resource" id="Resource_htx38"]
+script = ExtResource("4_htx38")
+path = NodePath("AnimationPlayer")
+animation = &"red"
+metadata/_custom_type_script = "uid://do6vybxrx4gc0"
+
+[sub_resource type="Animation" id="Animation_yew2u"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s8pk6"]
+resource_name = "red"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ing1m"]
+_data = {
+&"RESET": SubResource("Animation_yew2u"),
+&"red": SubResource("Animation_s8pk6")
+}
+
+[sub_resource type="Resource" id="Resource_afx16"]
+script = ExtResource("2_2s06o")
+path_a = NodePath(".:selected")
+path_b = NodePath("../Label:text")
+metadata/_custom_type_script = "uid://4n43h0hb65qj"
+
+[node name="Thing" type="Node" unique_id=39787891]
+
+[node name="ShortVSlider" type="VSlider" parent="." unique_id=1046853180]
+offset_right = 16.0
+offset_bottom = 377.0
+tooltip_text = "bee"
+script = ExtResource("1_725mb")
+bind_properties_enabled = true
+bind_properties_array = Array[ExtResource("2_2s06o")]([SubResource("Resource_725mb")])
+tooltip_enabled = true
+metadata/_custom_type_script = "uid://c572buss7eq8t"
+
+[node name="ShortCheckBox" type="CheckBox" parent="." unique_id=489579277]
+offset_left = 136.0
+offset_top = 21.0
+offset_right = 160.0
+offset_bottom = 45.0
+button_pressed = true
+script = ExtResource("3_kynyw")
+bind_properties_enabled = true
+bind_properties_array = Array[ExtResource("2_2s06o")]([SubResource("Resource_kynyw")])
+tooltip_enabled = true
+tooltip_format_string = "visible: %s"
+metadata/_custom_type_script = "uid://pcx0f6vh65li"
+
+[node name="ShortCheckBox2" type="CheckBox" parent="." unique_id=1859122879]
+offset_left = 135.0
+offset_top = 61.0
+offset_right = 159.0
+offset_bottom = 85.0
+script = ExtResource("3_kynyw")
+animation_enabled = true
+animation_press = SubResource("Resource_htx38")
+animation_reverse_on_toggle_off = true
+tooltip_enabled = true
+tooltip_format_string = "red: %s"
+metadata/_custom_type_script = "uid://pcx0f6vh65li"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ShortCheckBox2" unique_id=926203071]
+libraries/ = SubResource("AnimationLibrary_ing1m")
+playback_default_blend_time = 0.1
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1158785461]
+offset_left = 56.0
+offset_right = 96.0
+offset_bottom = 40.0
+
+[node name="ShortOptionButton" type="OptionButton" parent="." unique_id=78398064]
+offset_left = 138.0
+offset_top = 109.0
+offset_right = 178.0
+offset_bottom = 129.0
+selected = 0
+item_count = 3
+popup/item_0/text = "0"
+popup/item_0/id = 0
+popup/item_1/text = "1"
+popup/item_1/id = 1
+popup/item_2/text = "2"
+popup/item_2/id = 2
+script = ExtResource("4_i6v8v")
+bind_properties_enabled = true
+bind_properties_array = Array[ExtResource("2_2s06o")]([SubResource("Resource_afx16")])
+metadata/_custom_type_script = "uid://dwmbwnhgu0ug"
+
+[node name="Label" type="Label" parent="." unique_id=321894914]
+offset_left = 211.0
+offset_top = 160.0
+offset_right = 251.0
+offset_bottom = 183.0
+text = "0"
+
+[node name="FoldButton" type="Button" parent="." unique_id=1091294331 node_paths=PackedStringArray("node")]
+offset_left = 113.0
+offset_top = 22.0
+offset_right = 133.0
+offset_bottom = 42.0
+toggle_mode = true
+icon = ExtResource("6_s8pk6")
+script = ExtResource("7_ing1m")
+node = NodePath("../ShortCheckBox")
+metadata/_custom_type_script = "uid://dspvbe1esnf0o"
