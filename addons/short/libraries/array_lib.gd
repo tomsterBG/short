@@ -47,7 +47,7 @@ enum ExcludeMode {
 #region getters
 ## Returns an [Array] of values extracted from the [param property_path] of each [Object] in [param objects].
 ##[br][br]Fills each failed object with [code]null[/code], this way input indices correspond to output indices.
-static func get_properties(objects: Array[Object], property_path: NodePath) -> Array:
+static func get_objects_property(objects: Array[Object], property_path: NodePath) -> Array:
 	var result := []
 	
 	for object in objects:
@@ -55,6 +55,16 @@ static func get_properties(objects: Array[Object], property_path: NodePath) -> A
 			result.append(object.get_indexed(property_path))
 		else:
 			result.append(null)
+	
+	return result
+
+## Returns an [Array] of values extracted from the [param property_paths] of the [param object].
+##[br][br]Fills each failed path with [code]null[/code], this way input indices correspond to output indices.
+static func get_object_properties(object: Object, property_paths: Array[NodePath]) -> Array:
+	var result := []
+	
+	for property_path in property_paths:
+		result.append(object.get_indexed(property_path))
 	
 	return result
 
@@ -346,10 +356,7 @@ static func sync_nodes(context: SyncContext) -> void:
 
 ## Constructs an array from a CSV line.
 static func from_csv(line: String) -> PackedStringArray:
-	var result: PackedStringArray = []
-	for element in line.split(","):
-		result.append(element)
-	return result
+	return line.split(",")
 #endregion methods
 
 
