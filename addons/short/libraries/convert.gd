@@ -470,6 +470,20 @@ static func g_to_kg(gram: float) -> float:
 	return gram / 1000.0
 	#endregion mass
 
+	#region mass flow
+static func kg_sec_to_kg_h(kg_sec: float) -> float:
+	return kg_sec / sec_to_h(1)
+
+static func kg_h_to_kg_sec(kg_h: float) -> float:
+	return kg_h / h_to_sec(1)
+
+static func kg_h_to_g_h(kg_h: float) -> float:
+	return kg_h / g_to_kg(1)
+
+static func g_h_to_kg_h(g_h: float) -> float:
+	return g_h / kg_to_g(1)
+	#endregion mass flow
+
 	#region multiple units
 ## Converts from [code]Torque (lb-ft)[/code] and [code]rpm[/code] to [code]Power (hp mechanical)[/code].
 static func lbft_rpm_to_hp(tq_lbft: float, rpm: float) -> float:

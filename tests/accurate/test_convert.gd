@@ -123,6 +123,12 @@ func test_mass():
 	assert_eq(Convert.kg_to_g(0.2), 200.0)
 	assert_eq(Convert.g_to_kg(184.0), 0.184)
 
+func test_mass_flow():
+	assert_eq(Convert.kg_sec_to_kg_h(3.1), 11_160.0)
+	assert_eq(Convert.kg_h_to_kg_sec(7_425.0), 2.062_5)
+	assert_eq(Convert.kg_h_to_g_h(0.24), 240.0)
+	assert_eq(Convert.g_h_to_kg_h(690.0), 0.69)
+
 func test_multiple_units():
 	assert_almost_eq(Convert.lbft_rpm_to_hp(100.0, 60.0), 1.142_421, GConst.ERROR_INTERVAL)
 	assert_almost_eq(Convert.nm_rpm_to_w(10.0, 1.0), 1.047_197, GConst.ERROR_INTERVAL)
@@ -190,6 +196,9 @@ func test_convert_and_back():
 	# mass
 	assert_eq(Convert.kg_to_t(Convert.t_to_kg(831.14)), 831.14)
 	assert_eq(Convert.kg_to_g(Convert.g_to_kg(74.12)), 74.12)
+	# mass flow
+	assert_eq(Convert.kg_sec_to_kg_h(Convert.kg_h_to_kg_sec(44.3)), 44.3)
+	assert_eq(Convert.kg_h_to_g_h(Convert.g_h_to_kg_h(33.4)), 33.4)
 	# multiple units
 	assert_eq(Convert.hz_to_delta_sec(Convert.delta_sec_to_hz(273.1)), 273.1)
 #endregion tests
