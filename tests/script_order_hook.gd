@@ -55,6 +55,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	poly_lib = [],
 	signal_lib = [],
 	string_lib = [],
+	ui_lib = [],
 	vehicle_lib = [],
 }
 

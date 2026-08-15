@@ -109,7 +109,7 @@ class SensorInfo:
 	func set_output_brake_ratio(value: float) -> void:
 		output_brake_ratio = clampf(value, 0.0, 1.0)
 	
-	##@experimental: Untested.
+	## @experimental: Untested.
 	## Simulate a sensor cycle.
 	func simulate_cycle() -> void:
 		#if slip_ratio > target_slip:

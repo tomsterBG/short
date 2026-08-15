@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://dwmbwnhgu0ug" path="res://addons/short/components/button/short_option_button.gd" id="4_i6v8v"]
 [ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="6_s8pk6"]
 [ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_ing1m"]
+[ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button/scene_button.gd" id="8_ing1m"]
+[ext_resource type="PackedScene" uid="uid://c111v0vk5tgal" path="res://other/test_scene.tscn" id="9_afx16"]
 
 [sub_resource type="Resource" id="Resource_725mb"]
 script = ExtResource("2_2s06o")
@@ -150,3 +152,13 @@ icon = ExtResource("6_s8pk6")
 script = ExtResource("7_ing1m")
 node = NodePath("../ShortCheckBox")
 metadata/_custom_type_script = "uid://dspvbe1esnf0o"
+
+[node name="SceneButton" type="Button" parent="." unique_id=750748045]
+offset_left = 279.0
+offset_top = 57.0
+offset_right = 287.0
+offset_bottom = 65.0
+text = "test_scene.tscn"
+script = ExtResource("8_ing1m")
+scene = ExtResource("9_afx16")
+metadata/_custom_type_script = "uid://dau8wonrvwvue"

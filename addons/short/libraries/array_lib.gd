@@ -2,7 +2,6 @@
 # TODO:
 # - Test them all!!!
 # IDEAS:
-# - make get_properties compatible with deep properties
 
 ## @experimental: This class could change.
 ## Work with arrays.

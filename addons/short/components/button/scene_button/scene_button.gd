@@ -11,7 +11,7 @@ class_name SceneButton extends Button
 
 
 #region variables
-## Change to this [PackedScene].
+## Changes to this [PackedScene] when the button is pressed.
 @export var scene: PackedScene: set = set_scene
 #endregion variables
 

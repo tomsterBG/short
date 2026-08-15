@@ -119,6 +119,6 @@ func _process(delta: float) -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
 	if !health:
-		warnings.append("Health is null.")
+		warnings.append("Missing Health. The regen won't do anything.")
 	return warnings
 #endregion virtual
