@@ -5,7 +5,6 @@
 # - chain/spine/rope - takes a list of points and a distance (optionally curve distance_curve), applies distance constraint/forward kinematic
 # - rename _curve to _profile or something
 
-## @experimental: This class could change.
 ## Work with polygons of 2D and 3D points.
 ##
 ## Available in all scripts without any setup.

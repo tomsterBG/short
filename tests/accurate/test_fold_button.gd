@@ -28,14 +28,19 @@ func test_initial_values():
 	assert_false(fold_button.button_pressed, "Button isn't pressed.")
 	assert_true(control.visible, "Control is visible.")
 
+func test_initial_method_values():
+	assert_eq(fold_button._get_configuration_warnings().size(), 1, "Node is null.")
+
 func test_refresh():
 	fold_button.refresh()
 	assert_eq(fold_button.icon, fold_button.icon_unfolded, "Icon is still unfolded.")
+	assert_eq(fold_button._get_configuration_warnings().size(), 1, "Node is still null.")
 
 func test_set_node():
 	fold_button.node = control
 	assert_true(control.visible, "Control is visible.")
 	assert_eq(fold_button.icon, fold_button.icon_unfolded, "Icon is still unfolded.")
+	assert_eq(fold_button._get_configuration_warnings().size(), 0, "All good.")
 
 func test_toggle():
 	fold_button.button_pressed = true

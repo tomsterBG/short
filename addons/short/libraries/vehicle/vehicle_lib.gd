@@ -1,6 +1,8 @@
 # INFO:
 # Convention:
 # - Tyre, not tire because tire also means to tire somebody, as in to make them tired.
+# SOURCES:
+# https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html#gsc.tab=0
 # IDEAS:
 # - max_shear_force(): Calculates max contact patch shear force. The force a tyre or any other object can generate on a surface. It depends on multiple things, such as contact patch area (which depends on other things), friction of both surfaces (which depends on many other things), load (which depends on other things)
 
@@ -25,4 +27,10 @@ static func wheel_slip_ratiof(wheel_linear_velocity: float, wheel_angular_veloci
 	if is_equal_approx(wheel_linear_velocity, 0.0):
 		return 0.0
 	return (wheel_angular_velocity * effective_wheel_radius) / wheel_linear_velocity - 1.0
+
+## Returns brake specific fuel consumption. A measure of how much power you make per unit of consumed fuel.
+##[br][br][b]Note:[/b] [param fuel_mass_flow] is in units of mass/time (g/hr, kg/hr, etc.).
+##[br][br][b]Note:[/b] Typically [param fuel_mass_flow] is in g/hr and [param power] is in kW, meaning you get g/kWh.
+static func bsfc(fuel_mass_flow: float, power: float) -> float:
+	return fuel_mass_flow / power
 #endregion methods

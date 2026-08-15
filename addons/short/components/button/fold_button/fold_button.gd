@@ -1,12 +1,11 @@
 # TODO:
 # IDEAS:
 
-## @experimental: This class could change.
 ## A button that folds something.
 ##
 ## When the button is pressed, the [member node] will be visible, otherwise it will be invisible.
-##[br][br][b]Note:[/b] For more generic buttons, see [ShortCheckBox].
 ##[br][br][b]Note:[/b] The [member Button.icon] property is set automatically based on [member BaseButton.button_pressed]. It shouldn't be changed manually.
+##[br][br][b]Note:[/b] This overrides [method Node._get_configuration_warnings], [method Node._enter_tree] and [method BaseButton._toggled]. Use [code]super()[/code] if you want to extend the same methods.
 
 @tool
 @icon("unfolded.svg")
@@ -31,6 +30,7 @@ class_name FoldButton extends Button
 func set_node(value: CanvasItem) -> void:
 	node = value
 	refresh()
+	if Engine.is_editor_hint(): update_configuration_warnings()
 #endregion setters
 
 
