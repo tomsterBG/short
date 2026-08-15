@@ -117,6 +117,16 @@ func test_temperature():
 	assert_eq(Convert.c_to_f(10.0), 50.0)
 	assert_eq(Convert.f_to_c(122.0), 50.0)
 
+func test_pressure():
+	assert_eq(Convert.pa_to_kpa(2632.0), 2.632)
+	assert_eq(Convert.kpa_to_pa(0.91), 910.0)
+	assert_eq(Convert.pa_to_bar(623_719.0), 6.237_19)
+	assert_eq(Convert.bar_to_pa(1.359), 135_900.0)
+	assert_almost_eq(Convert.bar_to_atm(9.999), 9.868_245, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.atm_to_bar(9.999), 10.131_486, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.bar_to_psi(0.6), 8.702_264, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.psi_to_bar(18.0), 1.241_056, GConst.ERROR_INTERVAL)
+
 func test_mass():
 	assert_eq(Convert.kg_to_t(43.0), 0.043)
 	assert_eq(Convert.t_to_kg(2.41), 2_410.0)
@@ -193,6 +203,11 @@ func test_convert_and_back():
 	# temperature
 	assert_eq(Convert.c_to_k(Convert.k_to_c(23.0)), 23.0)
 	assert_eq(Convert.c_to_f(Convert.f_to_c(94.2)), 94.2)
+	# pressure
+	assert_eq(Convert.pa_to_kpa(Convert.kpa_to_pa(79.3)), 79.3)
+	assert_eq(Convert.pa_to_bar(Convert.bar_to_pa(39.8)), 39.8)
+	assert_eq(Convert.bar_to_atm(Convert.atm_to_bar(9.12)), 9.12)
+	assert_eq(Convert.bar_to_psi(Convert.psi_to_bar(33.6)), 33.6)
 	# mass
 	assert_eq(Convert.kg_to_t(Convert.t_to_kg(831.14)), 831.14)
 	assert_eq(Convert.kg_to_g(Convert.g_to_kg(74.12)), 74.12)

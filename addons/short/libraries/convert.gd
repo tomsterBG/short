@@ -70,7 +70,6 @@
 ##
 ## Available in all scripts without any setup.
 ##[br][br]Convert between units while having more readable code.
-##[br][br][b]Note:[/b] This assumes that the [StringLib] class exists.
 
 @abstract class_name Convert extends Object
 
@@ -452,6 +451,33 @@ static func f_to_c(fahrenheit: float) -> float:
 	return (5.0/9.0) * (fahrenheit - 32.0)
 	#endregion temperature
 
+	#region pressure
+# TODO: Doc these.
+static func pa_to_kpa(pa: float) -> float:
+	return pa / 1000.0
+
+static func kpa_to_pa(kpa: float) -> float:
+	return kpa * 1000.0
+
+static func pa_to_bar(pa: float) -> float:
+	return pa / 100_000.0
+
+static func bar_to_pa(bar: float) -> float:
+	return bar * 100_000.0
+
+static func bar_to_atm(bar: float) -> float:
+	return bar * 0.9869232667
+
+static func atm_to_bar(atmosphere: float) -> float:
+	return atmosphere / 0.9869232667
+
+static func bar_to_psi(bar: float) -> float:
+	return bar * 14.503773773
+
+static func psi_to_bar(psi: float) -> float:
+	return psi / 14.503773773
+	#endregion pressure
+
 	#region mass
 ## Converts a mass from [code]kilograms[/code] to [code]tons[/code].
 static func kg_to_t(kilogram: float) -> float:
@@ -471,6 +497,7 @@ static func g_to_kg(gram: float) -> float:
 	#endregion mass
 
 	#region mass flow
+# TODO: Doc these.
 static func kg_sec_to_kg_h(kg_sec: float) -> float:
 	return kg_sec / sec_to_h(1)
 
