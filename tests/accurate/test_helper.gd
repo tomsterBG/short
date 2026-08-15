@@ -31,6 +31,14 @@ func test_get_resource_filename():
 	assert_eq(Helper.get_resource_filename(resource), "my capsule shape", 'Name is "my capsule shape".')
 	assert_eq(Helper.get_resource_filename(resource, INCLUDES_EXTENSION), "my capsule shape.tres", 'Name is "my capsule shape.tres".')
 
+func test_get_node():
+	var node: Node = (load("uid://c58iekes33tou") as PackedScene).instantiate()
+	add_child_autofree(node)
+	assert_eq(Helper.get_node(node, ^"Node4"), node.get_node(^"Node4"))
+	assert_eq(Helper.get_node(node, "Node4"), node.get_node(^"Node4"))
+	assert_eq(Helper.get_node(node, ^"Node4", &"Group2"), node.get_node(^"Node2/Node4"))
+	assert_eq(Helper.get_node(node, "Node4", "Group2"), node.get_node(^"Node2/Node4"))
+
 func test_save_resource():
 	var resource := Resource.new()
 	var new_folder := "res://tests/files/new_folder"

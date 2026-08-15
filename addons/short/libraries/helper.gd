@@ -94,6 +94,14 @@ static func get_dir_children(path: String, recursive: bool = false) -> DirChildr
 static func get_resource_filename(resource: Resource, include_extension := false) -> String:
 	if include_extension: return resource.resource_path.get_file()
 	return resource.resource_path.get_basename().get_file()
+
+# NOTE: May fit better in different lib.
+## Returns a [Node] relative to [param node] using [param path]. If [param group] is set, the returned [Node] is relative to the first one in the given group.
+static func get_node(node: Node, path: NodePath, group: StringName = &"") -> Node:
+	if !group:
+		return node.get_node(path)
+	else:
+		return node.get_tree().get_first_node_in_group(group).get_node(path)
 #endregion getters
 
 
