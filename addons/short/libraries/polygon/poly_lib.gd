@@ -10,6 +10,7 @@
 ## Work with polygons of 2D and 3D points.
 ##
 ## Available in all scripts without any setup.
+##[br][br][b]Note:[/b] It is assumed that 2D forward is [Vector2.RIGHT] and all unrotated objects point that way.
 
 @abstract class_name PolyLib extends Object
 

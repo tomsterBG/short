@@ -12,4 +12,17 @@ func test_wheel_slip_ratiof():
 
 func test_bsfc():
 	assert_eq(VehicleLib.bsfc(10_800, 90), 120, "10_800 g/hr giving 90 kW = 120 g/kWh")
+
+func test_icr2():
+	# NOTE: For a transform that looks right, the icr for a right turn with radius of 5 should be 5 to the local right, or 5 to the global down.
+	assert_eq(VehicleLib.icr2(Transform2D(0.0, Vector2(12.0, 7.0)), 5.0), Vector2(12.0, 12.0))
+	# NOTE: For a transform rotated to look downwards, the icr for a right turn with radius of 5 should be 5 to the local right, or 5 to the global left.
+	assert_eq(VehicleLib.icr2(Transform2D(PI / 2, Vector2(12.0, 7.0)), 5.0), Vector2(7.0, 7.0))
+	# NOTE: For a transform rotated to look downwards, the icr for a left turn with radius of 5 should be 5 to the local left, or 5 to the global right.
+	assert_eq(VehicleLib.icr2(Transform2D(PI / 2, Vector2(12.0, 7.0)), -5.0), Vector2(17.0, 7.0))
+
+func test_ackermann2():
+	# NOTE: For a transform that looks right and a wheel 1 meter forward, the steering angle for a right turn with radius of 1 should be 45 degrees.
+	assert_eq(VehicleLib.icr2(Transform2D(0.0, Vector2(4.0, 5.0)), 1.0), Vector2(4.0, 6.0))
+	assert_almost_eq(VehicleLib.ackermann2(Transform2D(0.0, Vector2(4.0, 5.0)), [Vector2(5.0, 5.0)], 1.0)[0], deg_to_rad(45.0), GConst.ERROR_INTERVAL)
 #endregion tests

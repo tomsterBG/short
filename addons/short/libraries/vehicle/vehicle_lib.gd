@@ -11,6 +11,7 @@
 ##
 ## Available in all scripts without any setup.
 ##[br][br]Work with the complex math required to implement vehicles.
+##[br][br][b]Note:[/b] It is assumed that 2D forward is [Vector2.RIGHT] and all unrotated objects point that way.
 
 @abstract class_name VehicleLib extends Object
 
@@ -33,4 +34,20 @@ static func wheel_slip_ratiof(wheel_linear_velocity: float, wheel_angular_veloci
 ##[br][br][b]Note:[/b] Typically [param fuel_mass_flow] is in g/hr and [param power] is in kW, meaning you get g/kWh.
 static func bsfc(fuel_mass_flow: float, power: float) -> float:
 	return fuel_mass_flow / power
+
+## Returns the instantaneous center of rotation.
+##[br][br] [param radius] is the desired turning radius measured from the [param ackermann_point]. A positive [param radius] turns right, negative turns left.
+static func icr2(ackermann_point: Transform2D, radius: float) -> Vector2:
+	return ackermann_point.origin + ackermann_point.y * radius
+
+## Returns an array of steering angles (in radians) for the given [param wheel_positions].
+##[br][br] [param ackermann_point] is the center of the rear axle(s), or the vehicle pivot point. Its x axis is pointing at the vehicle's forward and its y axis is pointing at the vehicle's right.
+##[br][br] [param radius] is the desired turning radius measured from the [param ackermann_point]. A positive [param radius] turns right, negative turns left.
+##[br][br][b]Note:[/b] [param ackermann_point] and all [param wheel_positions] must have the same origin.
+static func ackermann2(ackermann_point: Transform2D, wheel_positions: Array[Vector2], radius: float) -> Array[float]:
+	var result: Array[float] = []
+	result.resize(len(wheel_positions))
+	for i in range(len(wheel_positions)):
+		result[i] = wheel_positions[i].angle_to_point(icr2(ackermann_point, radius)) - (PI / 2.0 + ackermann_point.get_rotation())
+	return result
 #endregion methods
