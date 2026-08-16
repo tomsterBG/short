@@ -31,4 +31,6 @@ func test_ackermann2():
 	assert_almost_eq(VehicleLib.ackermann2(Transform2D(0.0, Vector2(4.0, 5.0)), [Vector2(5.0, 5.0)], -INF)[0], deg_to_rad(0.0), GConst.ERROR_INTERVAL)
 	# NOTE: For a transform that looks right and a wheel 1 meter forward, the steering angle for a left turn with radius of -1 should be -45 degrees.
 	assert_almost_eq(VehicleLib.ackermann2(Transform2D(0.0, Vector2(4.0, 5.0)), [Vector2(5.0, 5.0)], -1.0)[0], deg_to_rad(-45.0), GConst.ERROR_INTERVAL)
+	# NOTE: For a transform that looks up and a wheel 1 meter forward, the steering angle for a left turn with radius of -1 should be -45 degrees.
+	assert_almost_eq(VehicleLib.ackermann2(Transform2D(-PI / 2, Vector2(4.0, 5.0)), [Vector2(4.0, 4.0)], -1.0)[0], deg_to_rad(-45.0), GConst.ERROR_INTERVAL)
 #endregion tests

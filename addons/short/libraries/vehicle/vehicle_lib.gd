@@ -47,9 +47,9 @@ static func icr2(ackermann_point: Transform2D, radius: float) -> Vector2:
 static func ackermann2(ackermann_point: Transform2D, wheel_positions: Array[Vector2], radius: float) -> Array[float]:
 	var result: Array[float] = []
 	result.resize(len(wheel_positions))
-	if radius == INF or radius == -INF:
+	if is_inf(radius):
 		return result
 	for i in range(len(wheel_positions)):
-		result[i] = wheel_positions[i].angle_to_point(icr2(ackermann_point, radius)) - (PI / 2.0 + ackermann_point.get_rotation())
+			result[i] = icr2(ackermann_point, radius).direction_to(ackermann_point.origin).angle_to(icr2(ackermann_point, radius).direction_to(wheel_positions[i]))
 	return result
 #endregion methods
