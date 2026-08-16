@@ -240,6 +240,13 @@ static func radius_to_diameter(radius: float) -> float:
 ## Converts a distance from diameter to radius.
 static func diameter_to_radius(diameter: float) -> float:
 	return diameter / 2.0
+
+# TODO: Doc these.
+static func meter_to_px(meter: float) -> float:
+	return meter * 100.0
+
+static func px_to_meter(pixel: float) -> float:
+	return pixel / 100.0
 	#endregion distance
 
 	#region area

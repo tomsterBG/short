@@ -50,6 +50,8 @@ func test_distance():
 	assert_eq(Convert.au_to_km(0.0047), 703110.13)
 	assert_eq(Convert.radius_to_diameter(68.0), 136.0)
 	assert_eq(Convert.diameter_to_radius(54.0), 27.0)
+	assert_eq(Convert.meter_to_px(9.81), 981.0)
+	assert_eq(Convert.px_to_meter(490.0), 4.9)
 
 func test_area():
 	assert_eq(Convert.meter2_to_dm2(6.0), 600.0)
@@ -176,6 +178,7 @@ func test_convert_and_back():
 	assert_eq(Convert.km_to_megameter(Convert.megameter_to_km(33.9)), 33.9)
 	assert_eq(Convert.km_to_au(Convert.au_to_km(0.071)), 0.071)
 	assert_eq(Convert.radius_to_diameter(Convert.diameter_to_radius(49.1)), 49.1)
+	assert_eq(Convert.meter_to_px(Convert.px_to_meter(28.1)), 28.1)
 	# area
 	assert_eq(Convert.meter2_to_dm2(Convert.dm2_to_meter2(95.1)), 95.1)
 	assert_eq(Convert.meter2_to_cm2(Convert.cm2_to_meter2(920.0)), 920.0)
