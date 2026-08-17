@@ -22,33 +22,33 @@ const IS_DEEP := true
 var accurate_test_scripts: Dictionary[StringName, Array] = {
 	# name: [dependencies],
 	# components:
-	&"antilock_braking": [],
+	&"vehicle/antilock_braking": [],
 	&"attachment_2d": [],
 	&"attachment_3d": [],
-	&"fold_button": [],
-	&"health": [&"convert"],
-	&"health_regen": [&"health"],
+	&"button/fold_button": [],
+	&"health/health": [&"convert"],
+	&"health/health_regen": [&"health"],
 	&"polygon/procedural_poly_2d": [],
-	&"scene_button": [],
-	&"short_button": [&"array_lib", &"property_binding"],
-	&"short_check_box": [&"array_lib", &"property_binding"],
-	&"short_option_button": [&"array_lib", &"property_binding"],
-	&"short_h_slider": [&"array_lib", &"property_binding"],
-	&"short_v_slider": [&"array_lib", &"property_binding"],
+	&"button/scene_button": [],
+	&"button/short_button": [&"array_lib", &"property_binding"],
+	&"button/short_check_box": [&"array_lib", &"property_binding"],
+	&"button/short_option_button": [&"array_lib", &"property_binding"],
+	&"slider/short_h_slider": [&"array_lib", &"property_binding"],
+	&"slider/short_v_slider": [&"array_lib", &"property_binding"],
 	# data:
 	&"animation_binding": [],
 	&"property_binding": [],
 	&"timestamp_data": [&"convert", &"time_info"], # NOTE: &"date_info" circular dependency
 	# info:
-	&"date_info": [&"date_time_lib", &"timestamp_data"],
-	&"date_time_info": [&"date_info", &"time_info"],
-	&"time_info": [],
+	&"date_time/date_info": [&"date_time_lib", &"timestamp_data"],
+	&"date_time/date_time_info": [&"date_info", &"time_info"],
+	&"date_time/time_info": [],
 	# libraries:
 	&"array_lib": [],
 	&"bind_lib": [],
 	&"console_lib": [],
 	&"convert": [],
-	&"date_time_lib": [&"convert"], # NOTE: &"date_info" circular dependency
+	&"date_time/date_time_lib": [&"convert"], # NOTE: &"date_info" circular dependency
 	&"helper/helper": [],
 	&"math": [],
 	&"physics": [],
@@ -56,7 +56,7 @@ var accurate_test_scripts: Dictionary[StringName, Array] = {
 	&"signal_lib": [],
 	&"string/string_lib": [],
 	&"ui_lib": [],
-	&"vehicle_lib": [],
+	&"vehicle/vehicle_lib": [],
 }
 
 var inaccurate_test_scripts: Dictionary[StringName, Array] = {
