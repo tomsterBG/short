@@ -106,6 +106,23 @@ func test_get_line_at_offset():
 	assert_eq(StringLib.get_line_at_offset("string\n\nthree", 8), 3)
 	assert_eq(StringLib.get_line_at_offset("string\n\n\n", 8), 3)
 	assert_eq(StringLib.get_line_at_offset("string\n\n\n", 9), 3)
+
+func test_get_function_name():
+	assert_eq(StringLib.get_function_name(" func hello"), "hello")
+	assert_eq(StringLib.get_function_name("func my_problem"), "my_problem")
+	assert_eq(StringLib.get_function_name("static func  my_problem"), "my_problem")
+	assert_eq(StringLib.get_function_name("static  func my_problem()"), "my_problem")
+	assert_eq(StringLib.get_function_name("@abstract func my_problem"), "my_problem")
+	assert_eq(StringLib.get_function_name(" @abstract  func  my_problem()"), "my_problem")
+	assert_eq(StringLib.get_function_name(" @abstract  func  my_problem ()"), "my_problem")
+	assert_eq(StringLib.get_function_name("static func "), "")
+	assert_eq(StringLib.get_function_name("static var"), "")
+	assert_eq(StringLib.get_function_name(" func "), "")
+	assert_eq(StringLib.get_function_name("func"), "")
+	assert_eq(StringLib.get_function_name(""), "")
+
+func test_get_function_names():
+	assert_eq(StringLib.get_function_names(FileAccess.get_file_as_string("uid://cgftb1w5yi4lr")), PackedStringArray(["get_class_name", "get_base_class", "get_referenced_classes", "get_indent_level", "get_comment", "get_region_name", "get_todo_info", "get_project_relative_path", "get_lines_in_file", "get_line_at_offset", "get_function_name", "get_function_names", "is_affirmative", "is_negative", "is_binary", "is_character", "is_digit", "is_letter", "is_func_definition", "is_var_definition", "is_signal_definition", "is_region_start", "is_region_end", "is_inside_string", "is_inside_comment", "strip_comment", "strip_strings"]))
 	#endregion getters
 
 	#region is_
@@ -165,15 +182,17 @@ func test_is_letter():
 	assert_false(StringLib.is_letter(""), "Not a letter.")
 
 func test_is_func_definition():
+	assert_true(StringLib.is_func_definition("func"), "A function.")
+	assert_true(StringLib.is_func_definition(" func "), "A function.")
 	assert_true(StringLib.is_func_definition(" func hello"), "A function.")
+	assert_true(StringLib.is_func_definition("static func "), "A function.")
 	assert_true(StringLib.is_func_definition("func my_problem"), "A function.")
 	assert_true(StringLib.is_func_definition("static func my_problem"), "A function.")
+	assert_true(StringLib.is_func_definition("static  func my_problem()"), "A function.")
 	assert_true(StringLib.is_func_definition("@abstract func my_problem"), "A function.")
-	assert_false(StringLib.is_func_definition("static func "), "Not a function.")
 	assert_false(StringLib.is_func_definition("static var"), "Not a function.")
-	assert_false(StringLib.is_func_definition(" func "), "Not a function.")
-	assert_false(StringLib.is_func_definition("func"), "Not a function.")
 	assert_false(StringLib.is_func_definition(""), "Not a function.")
+	assert_false(StringLib.is_func_definition("""# - Optimize the ordering of (line.contains("var") or line.contains("func") or line.contains("signal") or line.contains("const")) with data. Run a script that says "Definitions: var - x, func - x, signal - x, const - x\""""), "Not a function.")
 
 func test_is_var_definition():
 	assert_true(StringLib.is_var_definition("var hello"), "A variable.")

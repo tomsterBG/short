@@ -152,6 +152,22 @@ static func get_line_at_offset(string: String, offset: int) -> int:
 		if offset <= 0: return line_num
 		line_num += 1
 	return line_num
+
+## Returns the function name found in this [param line].
+static func get_function_name(line: String) -> String:
+	if !is_func_definition(line): return ""
+	var stripped := line.strip_edges().trim_prefix("@abstract")
+	stripped = stripped.strip_edges().trim_prefix("static")
+	stripped = stripped.strip_edges().trim_prefix("func").strip_edges()
+	return stripped.substr(0, stripped.find("(")).strip_edges()
+
+## Returns all functions by name in the given [param source].
+static func get_function_names(source: String) -> PackedStringArray:
+	var result: PackedStringArray = []
+	for line in source.split("\n", !ALLOW_EMPTY):
+		if !is_func_definition(line): continue
+		result.append(get_function_name(line))
+	return result
 #endregion getters
 
 
@@ -190,12 +206,12 @@ static func is_letter(character: String) -> bool:
 	return (character >= "a" and character <= "z") or (character >= "A" and character <= "Z")
 
 		#region definition
-## Returns [code]true[/code] if the given line is a GDScript function definition. 
+## Returns [code]true[/code] if the given line is a GDScript function definition. Ignores comments and strings.
 static func is_func_definition(line: String) -> bool:
-	var stripped := line.strip_edges()
-	if (stripped.begins_with("func ")
-	or stripped.begins_with("static func ")
-	or stripped.begins_with("@abstract func ")): return true
+	var tokens := strip_strings(strip_comment(line.strip_edges())).split(" ", !ALLOW_EMPTY)
+	if (tokens.has("func")
+	or (tokens.has("static") and tokens.has("func"))
+	or (tokens.has("@abstract") and tokens.has("func"))): return true
 	return false
 
 ## Returns [code]true[/code] if the line is a GDScript variable definition.

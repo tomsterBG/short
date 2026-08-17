@@ -1,5 +1,30 @@
 extends GutTest
 
 
+#region variables
+var button: ShortButton
+#endregion variables
+
+
+#region virtual
+func before_each():
+	button = ShortButton.new()
+	add_child_autofree(button)
+#endregion virtual
+
+
 #region tests
+func test_initial_values():
+	assert_false(button.bind_properties_enabled, "Bind properties is disabled.")
+	assert_true(button.bind_properties_array.is_empty(), "Bind properties array is empty.")
+	assert_false(button.tooltip_enabled, "Tooltip is disabled.")
+	assert_false(button.tooltip_format_string.is_empty(), "Tooltip format string isn't empty.")
+	assert_false(button.tooltip_properties.is_empty(), "Tooltip properties aren't empty.")
+
+func test__get_tooltip():
+	assert_eq(button._get_tooltip(Vector2.ZERO), button.tooltip_text, "Disabled by default.")
+
+func test__pressed():
+	button._pressed()
+	assert_false(button.button_pressed, "Button stays unpressed.")
 #endregion tests
