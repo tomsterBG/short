@@ -40,6 +40,11 @@ static func bsfc(fuel_mass_flow: float, power: float) -> float:
 static func icr2(ackermann_point: Transform2D, radius: float) -> Vector2:
 	return ackermann_point.origin + ackermann_point.y * radius
 
+## Returns the instantaneous center of rotation as a [Vector2].
+##[br][br] [param steering_point] is the [Transform2D] (position and rotation) at a wheel (or the average of multiple wheels). If [param steering_point] has the same angle as [param ackermann_point], both axles are parallel, resulting [code]null[/code].
+static func icr2_from_steering_point(ackermann_point: Transform2D, steering_point: Transform2D) -> Variant:
+	return Geometry2D.line_intersects_line(ackermann_point.origin, ackermann_point.y, steering_point.origin, steering_point.y)
+
 ## Returns an array of steering angles (in radians) for the given [param wheel_positions].
 ##[br][br] [param ackermann_point] is the center of the rear axle(s), or the vehicle pivot point. Its x axis is pointing at the vehicle's forward and its y axis is pointing at the vehicle's right.
 ##[br][br] [param radius] is the desired turning radius measured from the [param ackermann_point]. A positive [param radius] turns right, negative turns left.
