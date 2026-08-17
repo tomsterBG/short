@@ -87,12 +87,15 @@ func test_get_project_relative_path():
 	assert_eq(StringLib.get_project_relative_path(ProjectSettings.globalize_path("res://tests/files")), "res://tests/files")
 
 func test_get_lines_in_file():
-	assert_eq(StringLib.get_lines_in_file("res://tests/files/empty file.txt"), 0, "Lines are 0.")
-	assert_eq(StringLib.get_lines_in_file("res://tests/files/empty file.txt", !ALLOW_EMPTY), 0, "Lines are 0.")
-	assert_eq(StringLib.get_lines_in_file("res://tests/files/79 line text.md"), 79, "Lines are 79.")
-	assert_eq(StringLib.get_lines_in_file("res://tests/files/79 line text.md", !ALLOW_EMPTY), 1, "Only 1 non-empty line.")
-	assert_eq(StringLib.get_lines_in_file("res://tests/files/123 line script.gd"), 123, "Lines are 123.")
-	assert_eq(StringLib.get_lines_in_file("res://tests/files/123 line script.gd", !ALLOW_EMPTY), 2, "Only 2 non-empty lines.")
+	var file_empty := "res://tests/accurate/string/empty file.txt"
+	var file_79 := "res://tests/accurate/string/79 line text.md"
+	var file_123 := "uid://dri8lfgb8uvm6"
+	assert_eq(StringLib.get_lines_in_file(file_empty), 0, "Lines are 0.")
+	assert_eq(StringLib.get_lines_in_file(file_empty, !ALLOW_EMPTY), 0, "Lines are 0.")
+	assert_eq(StringLib.get_lines_in_file(file_79), 79, "Lines are 79.")
+	assert_eq(StringLib.get_lines_in_file(file_79, !ALLOW_EMPTY), 1, "Only 1 non-empty line.")
+	assert_eq(StringLib.get_lines_in_file(file_123), 123, "Lines are 123.")
+	assert_eq(StringLib.get_lines_in_file(file_123, !ALLOW_EMPTY), 2, "Only 2 non-empty lines.")
 
 func test_get_line_at_offset():
 	assert_eq(StringLib.get_line_at_offset("", 0), 1)

@@ -27,7 +27,7 @@ func test_get_dir_children():
 	assert_true(dir_children.invalid_dir)
 
 func test_get_resource_filename():
-	var resource := ResourceLoader.load("res://tests/files/my capsule shape.tres")
+	var resource := load("uid://c3yaquyu4ch88")
 	assert_eq(Helper.get_resource_filename(resource), "my capsule shape", 'Name is "my capsule shape".')
 	assert_eq(Helper.get_resource_filename(resource, INCLUDES_EXTENSION), "my capsule shape.tres", 'Name is "my capsule shape.tres".')
 

@@ -20,43 +20,43 @@ const IS_DEEP := true
 
 #region variables
 var accurate_test_scripts: Dictionary[StringName, Array] = {
-	# name = [dependencies],
+	# name: [dependencies],
 	# components:
-	antilock_braking = [],
-	attachment_2d = [],
-	attachment_3d = [],
-	fold_button = [],
-	health = [&"convert"],
-	health_regen = [&"health"],
-	procedural_poly_2d = [],
-	scene_button = [],
-	short_button = [&"array_lib", &"property_binding"],
-	short_check_box = [&"array_lib", &"property_binding"],
-	short_option_button = [&"array_lib", &"property_binding"],
-	short_h_slider = [&"array_lib", &"property_binding"],
-	short_v_slider = [&"array_lib", &"property_binding"],
+	&"antilock_braking": [],
+	&"attachment_2d": [],
+	&"attachment_3d": [],
+	&"fold_button": [],
+	&"health": [&"convert"],
+	&"health_regen": [&"health"],
+	&"polygon/procedural_poly_2d": [],
+	&"scene_button": [],
+	&"short_button": [&"array_lib", &"property_binding"],
+	&"short_check_box": [&"array_lib", &"property_binding"],
+	&"short_option_button": [&"array_lib", &"property_binding"],
+	&"short_h_slider": [&"array_lib", &"property_binding"],
+	&"short_v_slider": [&"array_lib", &"property_binding"],
 	# data:
-	animation_binding = [],
-	property_binding = [],
-	timestamp_data = [&"convert", &"time_info"], # NOTE: &"date_info" circular dependency
+	&"animation_binding": [],
+	&"property_binding": [],
+	&"timestamp_data": [&"convert", &"time_info"], # NOTE: &"date_info" circular dependency
 	# info:
-	date_info = [&"date_time_lib", &"timestamp_data"],
-	date_time_info = [&"date_info", &"time_info"],
-	time_info = [],
+	&"date_info": [&"date_time_lib", &"timestamp_data"],
+	&"date_time_info": [&"date_info", &"time_info"],
+	&"time_info": [],
 	# libraries:
-	array_lib = [],
-	bind_lib = [],
-	console_lib = [],
-	convert = [],
-	date_time_lib = [&"convert"], # NOTE: &"date_info" circular dependency
-	helper = [],
-	math = [],
-	physics = [],
-	poly_lib = [],
-	signal_lib = [],
-	string_lib = [],
-	ui_lib = [],
-	vehicle_lib = [],
+	&"array_lib": [],
+	&"bind_lib": [],
+	&"console_lib": [],
+	&"convert": [],
+	&"date_time_lib": [&"convert"], # NOTE: &"date_info" circular dependency
+	&"helper/helper": [],
+	&"math": [],
+	&"physics": [],
+	&"polygon/poly_lib": [],
+	&"signal_lib": [],
+	&"string/string_lib": [],
+	&"ui_lib": [],
+	&"vehicle_lib": [],
 }
 
 var inaccurate_test_scripts: Dictionary[StringName, Array] = {
