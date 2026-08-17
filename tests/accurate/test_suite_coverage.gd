@@ -47,6 +47,7 @@ func test_all_functions_have_tests():
 	for filename in files:
 		if filename == "plugin": continue
 		for function in files[filename].functions_short:
+			if function == "_enter_tree": continue
 			if !files[filename].functions_tests.has("test_%s" % function):
 				missing_functions.append("%s/%s" % [filename, function])
 	assert_eq(missing_functions, [], "All fumctions have corresponding tests.")

@@ -9,6 +9,10 @@
 [ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_ing1m"]
 [ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button/scene_button.gd" id="8_ing1m"]
 [ext_resource type="PackedScene" uid="uid://c111v0vk5tgal" path="res://other/test_scene.tscn" id="9_afx16"]
+[ext_resource type="Script" uid="uid://beofo17l6fff2" path="res://addons/short/libraries/polygon/circle_poly_2d.gd" id="10_bly6f"]
+[ext_resource type="Script" uid="uid://bu68qyknnlvch" path="res://addons/short/libraries/polygon/rounded_circle_poly_2d.gd" id="10_s1a1f"]
+[ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/libraries/polygon/rounded_rect_poly_2d.gd" id="12_a24rm"]
+[ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/libraries/polygon/thick_arc_poly_2d.gd" id="13_y2a0u"]
 
 [sub_resource type="Resource" id="Resource_725mb"]
 script = ExtResource("2_2s06o")
@@ -162,3 +166,34 @@ text = "test_scene.tscn"
 script = ExtResource("8_ing1m")
 scene = ExtResource("9_afx16")
 metadata/_custom_type_script = "uid://dau8wonrvwvue"
+
+[node name="CirclePoly2D" type="Polygon2D" parent="." unique_id=871359269]
+position = Vector2(625, 182)
+polygon = PackedVector2Array(50, 0, -25.000004, 43.30127, -24.999996, -43.301273)
+script = ExtResource("10_bly6f")
+radius = 50.0
+vertices = 3
+metadata/_custom_type_script = "uid://beofo17l6fff2"
+
+[node name="RoundedCirclePoly2D" type="Polygon2D" parent="." unique_id=1484670247]
+position = Vector2(424, 252)
+polygon = PackedVector2Array(48.928204, -4, 49.51754, -2.736161, 49.878464, -1.3891854, 50, 0, 49.878464, 1.3891854, 49.51754, 2.736161, 48.928204, 4, 27.928202, 40.37307, 27.128353, 41.51537, 26.1423, 42.501427, 24.999998, 43.301273, 23.73616, 43.89061, 22.389183, 44.251534, 20.999998, 44.37307, -21.000004, 44.373066, -22.389189, 44.251526, -23.736164, 43.890606, -25.000004, 43.30127, -26.142305, 42.501423, -27.128359, 41.515366, -27.928207, 40.373066, -48.928204, 3.999997, -49.51754, 2.7361581, -49.878464, 1.3891827, -50, -4.371139e-06, -49.878464, -1.3891895, -49.51754, -2.7361648, -48.928204, -4.0000033, -27.9282, -40.37307, -27.128353, -41.51537, -26.142296, -42.501427, -24.999996, -43.301273, -23.736156, -43.89061, -22.389181, -44.251534, -20.999996, -44.37307, 20.999996, -44.37307, 22.389181, -44.251534, 23.736156, -43.89061, 24.999996, -43.301273, 26.142296, -42.501427, 27.128351, -41.515373, 27.9282, -40.37307)
+script = ExtResource("10_s1a1f")
+radius = 50.0
+metadata/_custom_type_script = "uid://bu68qyknnlvch"
+
+[node name="RoundedRectPoly2D" type="Polygon2D" parent="." unique_id=2092436424]
+position = Vector2(612, 300)
+polygon = PackedVector2Array(100, 92, 99.72741, 94.07055, 98.9282, 96, 97.65685, 97.65685, 96, 98.92821, 94.07055, 99.72741, 92, 100, 7.9999995, 100, 5.9294477, 99.72741, 3.9999995, 98.9282, 2.3431458, 97.65685, 1.0717969, 96, 0.2725935, 94.07056, 0, 92, 0, 7.9999995, 0.2725935, 5.929447, 1.0717969, 4, 2.3431454, 2.3431463, 4.000001, 1.0717964, 5.929448, 0.27259302, 8, 0, 92, 0, 94.07055, 0.2725935, 96, 1.0717964, 97.65685, 2.343145, 98.9282, 3.9999986, 99.72741, 5.929449, 100, 8.000001)
+script = ExtResource("12_a24rm")
+size = Vector2(100, 100)
+metadata/_custom_type_script = "uid://bmmekgdhctm4q"
+
+[node name="ThickArcPoly2D" type="Polygon2D" parent="." unique_id=202650703]
+position = Vector2(442, 360)
+polygon = PackedVector2Array(100, 0, 95.10439, 30.905575, 80.89691, 58.78512, 58.768635, 80.90888, 30.886196, 95.11069, -0.020365318, 100, -0.010182659, 50, 15.443098, 47.555344, 29.384317, 40.45444, 40.448456, 29.39256, 47.552197, 15.452787, 50, 0)
+script = ExtResource("13_y2a0u")
+to_angle = 1.571
+outer_radius = 100.0
+inner_radius = 50.0
+metadata/_custom_type_script = "uid://5011o82cme25"

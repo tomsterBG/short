@@ -17,8 +17,10 @@ signal remade_polygon()
 
 #region variables
 @export_group("Remake Polygon", "do_remake_polygon_")
+
 ## If true, calls [method remake_polygon] every time a parameter has been changed. For this to work, you have to write proper setters for each custom polygon parameter that you make. See [method call_remake_polygon].
 @export var do_remake_polygon: bool = true
+
 ## If true, calls [method remake_polygon] every time a parameter has been changed in the editor. For this to work, you have to write proper setters for each custom polygon parameter that you make. See [method call_remake_polygon].
 @export var do_remake_polygon_in_editor: bool = true
 #endregion variables
