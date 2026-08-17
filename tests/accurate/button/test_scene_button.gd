@@ -17,6 +17,7 @@ func before_each():
 #region tests
 func test_initial_values():
 	assert_null(scene_button.scene, "Scene is null.")
+	assert_true(scene_button.scene_path.is_empty(), "Scene path is null.")
 
 func test_initial_method_values():
 	assert_eq(scene_button._get_configuration_warnings().size(), 1, "Scene is null.")

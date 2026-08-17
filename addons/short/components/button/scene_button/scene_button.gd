@@ -13,6 +13,9 @@ class_name SceneButton extends Button
 #region variables
 ## Changes to this [PackedScene] when the button is pressed.
 @export var scene: PackedScene: set = set_scene
+
+## Loads and changes to this scene when the button is pressed. Useful when [member scene] causes circular dependency.
+@export_file("*.tscn") var scene_path: String: set = set_scene_path
 #endregion variables
 
 
@@ -20,13 +23,20 @@ class_name SceneButton extends Button
 func set_scene(value: PackedScene) -> void:
 	scene = value
 	if Engine.is_editor_hint(): update_configuration_warnings()
+
+func set_scene_path(value: String) -> void:
+	scene_path = value
+	if Engine.is_editor_hint(): update_configuration_warnings()
 #endregion setters
 
 
 #region methods
 ## Changes to [member scene].
 func change_scene() -> void:
-	get_tree().change_scene_to_packed(scene)
+	if scene:
+		get_tree().change_scene_to_packed(scene)
+	else:
+		get_tree().change_scene_to_file(scene_path)
 #endregion methods
 
 
@@ -36,7 +46,7 @@ func _pressed() -> void:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
-	if !scene:
+	if !scene and !scene_path:
 		warnings.append("Missing scene. The button won't do anything.")
 	return warnings
 #endregion virtual
