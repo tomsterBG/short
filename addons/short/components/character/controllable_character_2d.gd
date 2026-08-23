@@ -5,6 +5,8 @@
 # - walk_local_direction
 
 ## A character that can be controlled.
+##
+##[br][br][b]Note:[/b] This assumes that the [StringLib] class exists.
 
 @tool
 class_name ControllableCharacter2D extends CharacterBody2D
@@ -114,9 +116,9 @@ func _physics_process(delta: float) -> void:
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
 	if walk_enabled:
-		if walk_left_action.is_empty():
-			warnings.append("Missing walk_left_action.")
-		if !walk_right_action.is_empty():
-			warnings.append("Missing walk_right_action.")
+		if !StringLib.is_valid_action(walk_left_action):
+			warnings.append("Invalid walk_left_action.")
+		if !StringLib.is_valid_action(walk_right_action):
+			warnings.append("Invalid walk_right_action.")
 	return warnings
 #endregion virtual

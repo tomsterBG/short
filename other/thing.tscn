@@ -203,6 +203,4 @@ metadata/_custom_type_script = "uid://5011o82cme25"
 script = ExtResource("14_syd57")
 walk_enabled = true
 walk_left_action = &"walk_left"
-walk_up_action = null
-walk_down_action = null
 metadata/_custom_type_script = "uid://cdk2nlm2eovhs"

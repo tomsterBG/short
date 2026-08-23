@@ -122,7 +122,7 @@ func test_get_function_name():
 	assert_eq(StringLib.get_function_name(""), "")
 
 func test_get_function_names():
-	assert_eq(StringLib.get_function_names(FileAccess.get_file_as_string("uid://cgftb1w5yi4lr")), PackedStringArray(["get_class_name", "get_base_class", "get_referenced_classes", "get_indent_level", "get_comment", "get_region_name", "get_todo_info", "get_project_relative_path", "get_lines_in_file", "get_line_at_offset", "get_function_name", "get_function_names", "is_affirmative", "is_negative", "is_binary", "is_character", "is_digit", "is_letter", "is_func_definition", "is_var_definition", "is_signal_definition", "is_region_start", "is_region_end", "is_inside_string", "is_inside_comment", "strip_comment", "strip_strings"]))
+	assert_eq(StringLib.get_function_names(FileAccess.get_file_as_string("uid://cgftb1w5yi4lr")), PackedStringArray(["get_class_name", "get_base_class", "get_referenced_classes", "get_indent_level", "get_comment", "get_region_name", "get_todo_info", "get_project_relative_path", "get_lines_in_file", "get_line_at_offset", "get_function_name", "get_function_names", "is_affirmative", "is_negative", "is_binary", "is_character", "is_digit", "is_letter", "is_func_definition", "is_var_definition", "is_signal_definition", "is_region_start", "is_region_end", "is_inside_string", "is_inside_comment", "is_valid_action", "strip_comment", "strip_strings"]))
 	#endregion getters
 
 	#region is_
@@ -244,6 +244,11 @@ func test_is_inside_comment():
 	assert_false(StringLib.is_inside_comment('# This is a comment.\n ', 21), "Not inside a comment.")
 	assert_false(StringLib.is_inside_comment('"# ', 2), "Not inside a comment.")
 	assert_false(StringLib.is_inside_comment(' ', 0), "Not inside a comment.")
+
+func test_is_valid_action():
+	assert_eq(StringLib.is_valid_action("why?"), false, "Not an action.")
+	assert_eq(StringLib.is_valid_action("walk_left"), true, "An action.")
+	assert_eq(StringLib.is_valid_action("walk_up"), true, "An action.")
 	#endregion is_
 
 func test_strip_comment():

@@ -274,6 +274,10 @@ static func is_inside_comment(source: String, index: int) -> bool:
 		else:
 			hash_pos = source.find("#", hash_pos + 1)
 	return false
+
+## Returns [code]true[/code] if the [param action_name] is part of the [InputMap] of this project.
+static func is_valid_action(action_name: StringName) -> bool:
+	return action_name in InputMap.get_actions()
 	#endregion is_
 
 ## Returns the line with GDScript comment removed. Ignores comment inside strings.
