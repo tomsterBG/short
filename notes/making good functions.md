@@ -43,3 +43,10 @@ If performance is ever an issue, you have the tools to solve it without needing 
 
 How to ensure that performance *is* a problem?
 Simple, unit-test a big amount of operations and fail the test if it takes too long.
+
+# Outside knowledge
+
+I just got recommended this video: <https://www.youtube.com/watch?v=2OMRWPOSw9s>
+It was immediately very good and it kept getting better.
+
+The part about honest and dishonest functions really explained why HealthRegen needed to be rewritten such that it has a `simulate_regen()` function. Since dishonest functions like `get_ticks_msec()` are infectious, this immediately made my whole health regeneration logic infected with dishonesty, as in, untestable. So i looked for a better solution and found that i had to completely separate the untestable time from the fully testable logic. This also added a benefit of, if i would ever need to regenerate in different ways, rather than per frame, i would be able to do it. Like for a turn-based game where regeneration happens every turn. You just simulate 1 second of regeneration and assume that 1 second means 1 turn.

@@ -70,12 +70,12 @@ const MARS_MASS := 6.41693e23
 #endregion constants
 
 
-#region getters
-## Returns gravity in [code]meters/second^2[/code] at [param height] from sea level in [code]meters[/code]. Ignores spin.
-static func get_earth_gravity(height_m: float) -> float:
-	return EARTH_GRAVITY * pow((EARTH_RADIUS) / (EARTH_RADIUS + height_m), 2)
-
+#region methods
 ## Returns force in [code]newtons[/code] between two point masses. See also [url=https://www.omnicalculator.com/physics/gravitational-force]Gravitational force calculator[/url].
-static func get_gravity_between(mass_1_kg: float, mass_2_kg: float, distance_m: float) -> float:
+static func gravity_between(mass_1_kg: float, mass_2_kg: float, distance_m: float) -> float:
 	return GRAVITY_CONSTANT * ((mass_1_kg * mass_2_kg) / pow(distance_m, 2))
-#endregion getters
+
+## Returns gravity in [code]meters/second^2[/code] at [param height_m] from sea level in [code]meters[/code]. Ignores spin.
+static func earth_gravity(height_m: float) -> float:
+	return EARTH_GRAVITY * pow((EARTH_RADIUS) / (EARTH_RADIUS + height_m), 2)
+#endregion methods

@@ -134,6 +134,10 @@ func test_pressure():
 	assert_almost_eq(Convert.atm_to_bar(9.999), 10.131_486, GConst.ERROR_INTERVAL)
 	assert_almost_eq(Convert.bar_to_psi(0.6), 8.702_264, GConst.ERROR_INTERVAL)
 	assert_almost_eq(Convert.psi_to_bar(18.0), 1.241_056, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.pa_to_psi(65.0), 0.009_427, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.psi_to_pa(0.15), 1034.213_594, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.kpa_to_psi(8.8), 1.276_332, GConst.ERROR_INTERVAL)
+	assert_almost_eq(Convert.psi_to_kpa(2.9), 19.994_796, GConst.ERROR_INTERVAL)
 
 func test_mass():
 	assert_eq(Convert.kg_to_t(43.0), 0.043)
@@ -220,6 +224,8 @@ func test_convert_and_back():
 	assert_eq(Convert.pa_to_bar(Convert.bar_to_pa(39.8)), 39.8)
 	assert_eq(Convert.bar_to_atm(Convert.atm_to_bar(9.12)), 9.12)
 	assert_eq(Convert.bar_to_psi(Convert.psi_to_bar(33.6)), 33.6)
+	assert_eq(Convert.pa_to_psi(Convert.psi_to_pa(371.2)), 371.2)
+	assert_eq(Convert.kpa_to_psi(Convert.psi_to_kpa(7.127)), 7.127)
 	# mass
 	assert_eq(Convert.kg_to_t(Convert.t_to_kg(831.14)), 831.14)
 	assert_eq(Convert.kg_to_g(Convert.g_to_kg(74.12)), 74.12)

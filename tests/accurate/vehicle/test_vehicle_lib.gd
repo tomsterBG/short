@@ -41,4 +41,25 @@ func test_ackermann2():
 	assert_almost_eq(VehicleLib.ackermann2(Transform2D(0.0, Vector2(4.0, 5.0)), [Vector2(5.0, 5.0)], -1.0)[0], deg_to_rad(-45.0), GConst.ERROR_INTERVAL)
 	# NOTE: For a transform that looks up and a wheel 1 meter forward, the steering angle for a left turn with radius of -1 should be -45 degrees.
 	assert_almost_eq(VehicleLib.ackermann2(Transform2D(-PI / 2, Vector2(4.0, 5.0)), [Vector2(4.0, 4.0)], -1.0)[0], deg_to_rad(-45.0), GConst.ERROR_INTERVAL)
+
+func test_steering_angle():
+	assert_almost_eq(VehicleLib.steering_angle(10.0, 10.0), deg_to_rad(45.0), GConst.ERROR_INTERVAL)
+	assert_almost_eq(VehicleLib.steering_angle(10.0, -10.0), deg_to_rad(-45.0), GConst.ERROR_INTERVAL)
+	assert_almost_eq(VehicleLib.steering_angle(3.0, 2.0), deg_to_rad(56.3099), GConst.ERROR_INTERVAL)
+
+func test_parallel_steering2():
+	# NOTE: For a transform that looks right and 3 wheels where 2 are 2 meters forward and 2 meters apart and 1 is 3 meters forward, the steering angles for a right turn with radius of 2 should be [45, 45, 56.31] degrees.
+	var result := VehicleLib.parallel_steering2(Transform2D(0.0, Vector2(3.0, 5.0)), [Vector2(5.0, 4.0), Vector2(5.0, 6.0), Vector2(6.0, 5.0)], 2.0)
+	assert_almost_eq(result[0], deg_to_rad(45.0), GConst.ERROR_INTERVAL)
+	assert_almost_eq(result[1], deg_to_rad(45.0), GConst.ERROR_INTERVAL)
+	assert_almost_eq(result[2], deg_to_rad(56.3099), GConst.ERROR_INTERVAL)
+
+func test_blended_steering():
+	var transform := Transform2D(0.0, Vector2(3.0, 5.0))
+	assert_almost_eq(VehicleLib.ackermann2(transform, [Vector2(6.0, 6.0)], 2.0)[0], deg_to_rad(71.565), GConst.ERROR_INTERVAL)
+	assert_almost_eq(VehicleLib.blended_steering2(1.0, transform, [Vector2(6.0, 6.0)], 2.0)[0], deg_to_rad(71.565), GConst.ERROR_INTERVAL)
+	assert_almost_eq(VehicleLib.parallel_steering2(transform, [Vector2(6.0, 6.0)], 2.0)[0], deg_to_rad(56.3099), GConst.ERROR_INTERVAL)
+	assert_almost_eq(VehicleLib.blended_steering2(0.0, transform, [Vector2(6.0, 6.0)], 2.0)[0], deg_to_rad(56.3099), GConst.ERROR_INTERVAL)
+	assert_almost_eq(VehicleLib.blended_steering2(0.5, transform, [Vector2(6.0, 6.0)], 2.0)[0], deg_to_rad(63.937_45), GConst.ERROR_INTERVAL)
+	assert_almost_eq(VehicleLib.blended_steering2(0.5, transform, [Vector2(6.0, 6.0)], INF)[0], 0.0, GConst.ERROR_INTERVAL)
 #endregion tests

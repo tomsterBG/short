@@ -5,6 +5,10 @@
 # https://www.engineeringtoolbox.com/fuels-higher-calorific-values-d_169.html#gsc.tab=0
 # IDEAS:
 # - max_shear_force(): Calculates max contact patch shear force. The force a tyre or any other object can generate on a surface. It depends on multiple things, such as contact patch area (which depends on other things), friction of both surfaces (which depends on many other things), load (which depends on other things)
+# - idle_throttle: What is the throttle position of an engine if its RPM falls below idle RPM? This may be very nuanced and require its own ICEngine class.
+# - Fuel class (Node) or FuelTank (3D with mass). It can know what type of fuel it uses (or a mixture) and its heating values, its stoichiometric air:fuel ratios, etc.
+# - Air drag calculations with center of lift and center of mass difference-induced torques.
+# - Downforce calculations for surfaces that move air up. (or away in any direction) With occlusion directions to ensure no downforce in weird situations like when falling.
 
 ## @experimental: This class could change.
 ## Work with vehicles.
@@ -45,7 +49,7 @@ static func icr2(ackermann_point: Transform2D, radius: float) -> Vector2:
 static func icr2_from_steering_point(ackermann_point: Transform2D, steering_point: Transform2D) -> Variant:
 	return Geometry2D.line_intersects_line(ackermann_point.origin, ackermann_point.y, steering_point.origin, steering_point.y)
 
-## Returns an array of steering angles (in radians) for the given [param wheel_positions].
+## Returns an array of Ackermann steering angles (in radians) for the given [param wheel_positions].
 ##[br][br] [param ackermann_point] is the center of the rear axle(s), or the vehicle pivot point. Its x axis is pointing at the vehicle's forward and its y axis is pointing at the vehicle's right.
 ##[br][br] [param radius] is the desired turning radius measured from the [param ackermann_point]. A positive [param radius] turns right, negative turns left.
 ##[br][br][b]Note:[/b] [param ackermann_point] and all [param wheel_positions] must have the same origin.
@@ -56,5 +60,36 @@ static func ackermann2(ackermann_point: Transform2D, wheel_positions: Array[Vect
 		return result
 	for i in range(len(wheel_positions)):
 			result[i] = icr2(ackermann_point, radius).direction_to(ackermann_point.origin).angle_to(icr2(ackermann_point, radius).direction_to(wheel_positions[i]))
+	return result
+
+## Returns a steering angle of a front wheel (in radians), given the [param forward_distance] to a rear wheel. Useful for bicycles.
+##[br][br] [param radius] is the desired turning radius. A positive [param radius] turns right, negative turns left.
+static func steering_angle(forward_distance: float, radius: float) -> float:
+	return atan(forward_distance / radius)
+
+## Returns an array of parallel steering angles (in radians) for the given [param wheel_positions]. Useful for vehicles with more than 1 front steering axle.
+##[br][br] [param ackermann_point] is the center of the rear axle(s), or the vehicle pivot point. Its x axis is pointing at the vehicle's forward and its y axis is pointing at the vehicle's right.
+##[br][br] [param radius] is the desired turning radius measured from the [param ackermann_point]. A positive [param radius] turns right, negative turns left.
+##[br][br][b]Note:[/b] [param ackermann_point] and all [param wheel_positions] must have the same origin.
+static func parallel_steering2(ackermann_point: Transform2D, wheel_positions: Array[Vector2], radius: float) -> Array[float]:
+	var result: Array[float] = []
+	for wheel in wheel_positions:
+		result.append(steering_angle(ackermann_point.origin.distance_to(wheel) * ackermann_point.x.dot(ackermann_point.origin.direction_to(wheel)), radius))
+	return result
+
+## Returns an array of blended steering angles (in radians) for the given [param wheel_positions]. Useful for vehicles with steering geometry that isn't just parallel or Ackermann.
+##[br][br] [param ackermann_ratio] is the blending ratio. At [code]0.0[/code] the steering is parallel, at [code]1.0[/code] the steering is Ackermann and anything in-between is blended between the two. At [code]-1.0[/code] the steering is Anti-Ackermann and anything in-between is also blended. This method also supports values outside the range of [code][-1, 1][/code], resulting in even more extreme steering geometry while allowing straight wheels while not turning.
+##[br][br] [param ackermann_point] is the center of the rear axle(s), or the vehicle pivot point. Its x axis is pointing at the vehicle's forward and its y axis is pointing at the vehicle's right.
+##[br][br] [param radius] is the desired turning radius measured from the [param ackermann_point]. A positive [param radius] turns right, negative turns left.
+##[br][br][b]Note:[/b] [param ackermann_point] and all [param wheel_positions] must have the same origin.
+static func blended_steering2(ackermann_ratio: float, ackermann_point: Transform2D, wheel_positions: Array[Vector2], radius: float) -> Array[float]:
+	var result: Array[float] = []
+	result.resize(len(wheel_positions))
+	if is_inf(radius):
+		return result
+	var ackermann: Array[float] = ackermann2(ackermann_point, wheel_positions, radius)
+	var parallel: Array[float] = parallel_steering2(ackermann_point, wheel_positions, radius)
+	for i in range(len(wheel_positions)):
+		result[i] = lerpf(parallel[i], ackermann[i], ackermann_ratio)
 	return result
 #endregion methods

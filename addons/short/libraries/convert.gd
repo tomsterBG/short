@@ -476,14 +476,14 @@ static func f_to_c(fahrenheit: float) -> float:
 
 	#region pressure
 # TODO: Doc these.
-static func pa_to_kpa(pa: float) -> float:
-	return pa / 1000.0
+static func pa_to_kpa(pascal: float) -> float:
+	return pascal / 1000.0
 
-static func kpa_to_pa(kpa: float) -> float:
-	return kpa * 1000.0
+static func kpa_to_pa(kilo_pascal: float) -> float:
+	return kilo_pascal * 1000.0
 
-static func pa_to_bar(pa: float) -> float:
-	return pa / 100_000.0
+static func pa_to_bar(pascal: float) -> float:
+	return pascal / 100_000.0
 
 static func bar_to_pa(bar: float) -> float:
 	return bar * 100_000.0
@@ -499,6 +499,18 @@ static func bar_to_psi(bar: float) -> float:
 
 static func psi_to_bar(psi: float) -> float:
 	return psi / 14.503773773
+
+static func pa_to_psi(pascal: float) -> float:
+	return pascal / 6894.7572932
+
+static func psi_to_pa(psi: float) -> float:
+	return psi * 6894.7572932
+
+static func kpa_to_psi(kilo_pascal: float) -> float:
+	return kilo_pascal / 6.8947572932
+
+static func psi_to_kpa(psi: float) -> float:
+	return psi * 6.8947572932
 	#endregion pressure
 
 	#region mass
