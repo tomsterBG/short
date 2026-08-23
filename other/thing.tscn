@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://bu68qyknnlvch" path="res://addons/short/libraries/polygon/rounded_circle_poly_2d.gd" id="10_s1a1f"]
 [ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/libraries/polygon/rounded_rect_poly_2d.gd" id="12_a24rm"]
 [ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/libraries/polygon/thick_arc_poly_2d.gd" id="13_y2a0u"]
+[ext_resource type="Script" uid="uid://cdk2nlm2eovhs" path="res://addons/short/components/character/controllable_character_2d.gd" id="14_syd57"]
 
 [sub_resource type="Resource" id="Resource_725mb"]
 script = ExtResource("2_2s06o")
@@ -197,3 +198,11 @@ to_angle = 1.571
 outer_radius = 100.0
 inner_radius = 50.0
 metadata/_custom_type_script = "uid://5011o82cme25"
+
+[node name="ControllableCharacter2D" type="CharacterBody2D" parent="." unique_id=193599921]
+script = ExtResource("14_syd57")
+walk_enabled = true
+walk_left_action = &"walk_left"
+walk_up_action = null
+walk_down_action = null
+metadata/_custom_type_script = "uid://cdk2nlm2eovhs"
