@@ -1,5 +1,4 @@
 # IDEAS:
-# - walk_speed
 # - jump_action
 # - jump_speed
 # - walk_local_direction
@@ -118,10 +117,11 @@ func _physics_process(delta: float) -> void:
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
-	if walk_enabled:
-		if !StringLib.is_valid_action(walk_left_action):
-			warnings.append("Invalid walk_left_action.")
-		if !StringLib.is_valid_action(walk_right_action):
-			warnings.append("Invalid walk_right_action.")
+	if (walk_enabled
+		and !StringLib.is_valid_action(walk_left_action)
+		and !StringLib.is_valid_action(walk_right_action)
+		and !StringLib.is_valid_action(walk_up_action)
+		and !StringLib.is_valid_action(walk_down_action)):
+			warnings.append("Can't walk, all input actions are empty.")
 	return warnings
 #endregion virtual
