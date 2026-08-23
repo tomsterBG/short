@@ -29,6 +29,9 @@ class_name ControllableCharacter2D extends CharacterBody2D
 ## Toggles if the character can walk via user input.
 @export_custom(PROPERTY_HINT_GROUP_ENABLE, "") var walk_enabled: bool = false: set = set_walk_enabled
 
+## Speed of walking in [code]pixels/second[/code].
+@export var walk_speed: float = 100.0
+
 ## Input action for walking towards [constant Vector2.LEFT].
 @export_custom(PROPERTY_HINT_INPUT_NAME, "") var walk_left_action: StringName = &"": set = set_walk_left_action
 
@@ -96,7 +99,7 @@ func calculate_velocity(delta: float) -> Vector2:
 		result += get_gravity() * delta
 	
 	if walk_enabled:
-		result += get_walk_direction() * delta
+		result += get_walk_direction() * walk_speed * delta
 	
 	return result
 #endregion methods
