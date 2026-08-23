@@ -13,7 +13,7 @@ class_name ShortCheckBox extends CheckBox
 
 #region variables
 @export_group("Bind Animations", "animation_")
-## If true, enables playing animations when [method BaseButton._toggled] is called.
+## If true, enables playing animations when [method BaseButton._pressed] is called.
 @export_custom(PROPERTY_HINT_GROUP_ENABLE, "") var animation_enabled: bool = false
 ## Animation to play when the button is pressed.
 @export var animation_press: AnimationBinding

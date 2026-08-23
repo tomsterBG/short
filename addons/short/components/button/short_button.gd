@@ -12,6 +12,16 @@ class_name ShortButton extends Button
 
 
 #region variables
+@export_group("Bind Animations", "animation_")
+## If true, enables playing animations when [method BaseButton._pressed] is called.
+@export_custom(PROPERTY_HINT_GROUP_ENABLE, "") var animation_enabled: bool = false
+## Animation to play when the button is pressed.
+@export var animation_press: AnimationBinding
+## Animation to play when the button is un-pressed. Only works if [member BaseButton.toggle_mode] is [code]true[/code].
+@export var animation_unpress: AnimationBinding
+## When [code]true[/code] and [member animation_unpress] would be played, [member animation_press] is played in reverse instead.
+@export var animation_reverse_on_toggle_off: bool = false
+
 @export_group("Bind Properties", "bind_properties_")
 ## If true, enables binding [Node] properties when [method BaseButton._pressed] is called.
 @export_custom(PROPERTY_HINT_GROUP_ENABLE, "") var bind_properties_enabled: bool = false
@@ -35,8 +45,20 @@ func _get_tooltip(_at_position: Vector2) -> String:
 
 func _pressed() -> void:
 	if Engine.is_editor_hint(): return
-	if !bind_properties_enabled: return
-	for property_binding in bind_properties_array:
-		property_binding.update_nodes(self)
-		property_binding.apply()
+	
+	if bind_properties_enabled:
+		for property_binding in bind_properties_array:
+			property_binding.update_nodes(self)
+			property_binding.apply()
+	
+	if animation_enabled:
+		if !button_pressed and toggle_mode and animation_reverse_on_toggle_off:
+			animation_press.update_animation_player(self)
+			animation_press.play_backwards()
+		elif !button_pressed and toggle_mode:
+			animation_unpress.update_animation_player(self)
+			animation_unpress.play()
+		else:
+			animation_press.update_animation_player(self)
+			animation_press.play()
 #endregion virtual

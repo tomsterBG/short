@@ -15,6 +15,10 @@ func before_each():
 
 #region tests
 func test_initial_values():
+	assert_false(button.animation_enabled, "Animation is disabled.")
+	assert_null(button.animation_press, "Animation press is null.")
+	assert_null(button.animation_unpress, "Animation unpress is null.")
+	assert_false(button.animation_reverse_on_toggle_off, "Animation doesn't reverse.")
 	assert_false(button.bind_properties_enabled, "Bind properties is disabled.")
 	assert_true(button.bind_properties_array.is_empty(), "Bind properties array is empty.")
 	assert_false(button.tooltip_enabled, "Tooltip is disabled.")
