@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/libraries/polygon/rounded_rect_poly_2d.gd" id="12_a24rm"]
 [ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/libraries/polygon/thick_arc_poly_2d.gd" id="13_y2a0u"]
 [ext_resource type="Script" uid="uid://cdk2nlm2eovhs" path="res://addons/short/components/character/controllable_character_2d.gd" id="14_syd57"]
+[ext_resource type="Script" uid="uid://xy6unwbm28yo" path="res://addons/short/components/button/delete_button/delete_button.gd" id="15_pudf8"]
 
 [sub_resource type="Resource" id="Resource_725mb"]
 script = ExtResource("2_2s06o")
@@ -204,3 +205,14 @@ script = ExtResource("14_syd57")
 walk_enabled = true
 walk_left_action = &"walk_left"
 metadata/_custom_type_script = "uid://cdk2nlm2eovhs"
+
+[node name="DeleteButton" type="Button" parent="." unique_id=685655873 node_paths=PackedStringArray("delete_this_node")]
+offset_left = 729.0
+offset_top = 331.0
+offset_right = 746.0
+offset_bottom = 362.0
+text = "x"
+script = ExtResource("15_pudf8")
+delete_on_pressed = true
+delete_this_node = NodePath("../RoundedRectPoly2D")
+metadata/_custom_type_script = "uid://xy6unwbm28yo"
