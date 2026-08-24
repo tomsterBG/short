@@ -4,7 +4,7 @@
 
 ## A button that deletes a [Node].
 ##
-## When the button is pressed, the [member delete_this_node] will be deleted.
+## When the button is pressed, the [member delete_node] will be deleted.
 ##[br][br][b]Note:[/b] This overrides [method Node._get_configuration_warnings] and [method BaseButton._pressed]. Use [code]super()[/code] if you want to extend the same methods.
 
 @tool
@@ -29,7 +29,7 @@ enum DeletionMethod {
 @export var delete_on_pressed: bool = false
 
 ## Deletes this [Node] when the button is pressed.
-@export var delete_this_node: Node: set = set_delete_this_node
+@export var delete_node: Node: set = set_delete_node
 
 ## Uses this method for deletion.
 @export var delete_method: DeletionMethod = DeletionMethod.QUEUE_FREE
@@ -37,32 +37,32 @@ enum DeletionMethod {
 
 
 #region setters
-func set_delete_this_node(value: Node) -> void:
-	delete_this_node = value
+func set_delete_node(value: Node) -> void:
+	delete_node = value
 	if Engine.is_editor_hint(): update_configuration_warnings()
 #endregion setters
 
 
 #region methods
-## Deletes [member delete_this_node] according to [member delete_method].
-func delete_node() -> void:
-	if !delete_this_node: return
+## Deletes [member delete_node] according to [member delete_method].
+func delete() -> void:
+	if !delete_node: return
 	match delete_method:
 		DeletionMethod.FREE:
-			delete_this_node.free()
+			delete_node.free()
 		DeletionMethod.QUEUE_FREE:
-			delete_this_node.queue_free()
+			delete_node.queue_free()
 #endregion methods
 
 
 #region virtual
 func _pressed() -> void:
 	if !delete_on_pressed: return
-	delete_node()
+	delete()
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var warnings: PackedStringArray
-	if !delete_this_node:
+	if !delete_node:
 		warnings.append("Missing node to delete.")
 	return warnings
 #endregion virtual

@@ -17,7 +17,7 @@ func before_each():
 #region tests
 func test_initial_values():
 	assert_false(delete_button.delete_on_pressed, "Delete on pressed is disabled.")
-	assert_null(delete_button.delete_this_node, "Node is null.")
+	assert_null(delete_button.delete_node, "Node is null.")
 	assert_eq(delete_button.delete_method, DeleteButton.DeletionMethod.QUEUE_FREE, "Method is queue free.")
 
 func test_initial_method_values():
