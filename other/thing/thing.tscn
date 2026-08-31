@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_ing1m"]
 [ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button/scene_button.gd" id="8_ing1m"]
 [ext_resource type="PackedScene" uid="uid://c111v0vk5tgal" path="res://other/test_scene.tscn" id="9_afx16"]
+[ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/components/audio/button_audio_player.gd" id="10_ao2rc"]
 [ext_resource type="Script" uid="uid://beofo17l6fff2" path="res://addons/short/libraries/polygon/circle_poly_2d.gd" id="10_bly6f"]
 [ext_resource type="Script" uid="uid://bu68qyknnlvch" path="res://addons/short/libraries/polygon/rounded_circle_poly_2d.gd" id="10_s1a1f"]
 [ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/libraries/polygon/rounded_rect_poly_2d.gd" id="12_a24rm"]
@@ -159,6 +160,11 @@ script = ExtResource("7_ing1m")
 node = NodePath("../ShortCheckBox")
 metadata/_custom_type_script = "uid://dspvbe1esnf0o"
 
+[node name="ButtonAudioPlayer" type="AudioStreamPlayer" parent="FoldButton" unique_id=914890784 node_paths=PackedStringArray("button")]
+script = ExtResource("10_ao2rc")
+button = NodePath("..")
+metadata/_custom_type_script = "uid://d0vl8tihmejbp"
+
 [node name="SceneButton" type="Button" parent="." unique_id=750748045]
 offset_left = 279.0
 offset_top = 57.0
@@ -206,7 +212,7 @@ walk_enabled = true
 walk_left_action = &"walk_left"
 metadata/_custom_type_script = "uid://cdk2nlm2eovhs"
 
-[node name="DeleteButton" type="Button" parent="." unique_id=685655873 node_paths=PackedStringArray("delete_this_node")]
+[node name="DeleteButton" type="Button" parent="." unique_id=685655873]
 offset_left = 729.0
 offset_top = 331.0
 offset_right = 746.0
@@ -214,5 +220,4 @@ offset_bottom = 362.0
 text = "x"
 script = ExtResource("15_pudf8")
 delete_on_pressed = true
-delete_this_node = NodePath("../RoundedRectPoly2D")
 metadata/_custom_type_script = "uid://xy6unwbm28yo"
