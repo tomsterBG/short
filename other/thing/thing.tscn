@@ -1,36 +1,37 @@
 [gd_scene format=3 uid="uid://crbbdsjo6103y"]
 
-[ext_resource type="Script" uid="uid://c572buss7eq8t" path="res://addons/short/components/slider/short_v_slider.gd" id="1_725mb"]
-[ext_resource type="Script" uid="uid://4n43h0hb65qj" path="res://addons/short/data/property_binding.gd" id="2_2s06o"]
-[ext_resource type="Script" uid="uid://pcx0f6vh65li" path="res://addons/short/components/button/short_check_box.gd" id="3_kynyw"]
-[ext_resource type="Script" uid="uid://do6vybxrx4gc0" path="res://addons/short/data/animation_binding.gd" id="4_htx38"]
-[ext_resource type="Script" uid="uid://dwmbwnhgu0ug" path="res://addons/short/components/button/short_option_button.gd" id="4_i6v8v"]
-[ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="6_s8pk6"]
-[ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_ing1m"]
-[ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button/scene_button.gd" id="8_ing1m"]
-[ext_resource type="PackedScene" uid="uid://c111v0vk5tgal" path="res://other/test_scene.tscn" id="9_afx16"]
-[ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/components/audio/button_audio_player.gd" id="10_ao2rc"]
-[ext_resource type="Script" uid="uid://beofo17l6fff2" path="res://addons/short/libraries/polygon/circle_poly_2d.gd" id="10_bly6f"]
-[ext_resource type="Script" uid="uid://bu68qyknnlvch" path="res://addons/short/libraries/polygon/rounded_circle_poly_2d.gd" id="10_s1a1f"]
-[ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/libraries/polygon/rounded_rect_poly_2d.gd" id="12_a24rm"]
-[ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/libraries/polygon/thick_arc_poly_2d.gd" id="13_y2a0u"]
-[ext_resource type="Script" uid="uid://cdk2nlm2eovhs" path="res://addons/short/components/character/controllable_character_2d.gd" id="14_syd57"]
-[ext_resource type="Script" uid="uid://xy6unwbm28yo" path="res://addons/short/components/button/delete_button/delete_button.gd" id="15_pudf8"]
+[ext_resource type="Script" uid="uid://c572buss7eq8t" path="res://addons/short/components/slider/short_v_slider.gd" id="1_rews5"]
+[ext_resource type="Script" uid="uid://4n43h0hb65qj" path="res://addons/short/data/property_binding.gd" id="2_wwlva"]
+[ext_resource type="Script" uid="uid://pcx0f6vh65li" path="res://addons/short/components/button/short_check_box.gd" id="3_o8xnk"]
+[ext_resource type="Script" uid="uid://do6vybxrx4gc0" path="res://addons/short/data/animation_binding.gd" id="4_ymajg"]
+[ext_resource type="Script" uid="uid://dwmbwnhgu0ug" path="res://addons/short/components/button/short_option_button.gd" id="5_hi8uv"]
+[ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="6_yvwex"]
+[ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_k6tgo"]
+[ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/components/audio/button_audio_player.gd" id="8_bhw7h"]
+[ext_resource type="AudioStream" uid="uid://dkn4g8ws1im0h" path="res://other/thing/button_click.wav" id="9_j5a58"]
+[ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button/scene_button.gd" id="10_hsru3"]
+[ext_resource type="PackedScene" uid="uid://c111v0vk5tgal" path="res://other/test_scene.tscn" id="11_x02uy"]
+[ext_resource type="Script" uid="uid://beofo17l6fff2" path="res://addons/short/libraries/polygon/circle_poly_2d.gd" id="12_boq3i"]
+[ext_resource type="Script" uid="uid://bu68qyknnlvch" path="res://addons/short/libraries/polygon/rounded_circle_poly_2d.gd" id="13_pblxe"]
+[ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/libraries/polygon/rounded_rect_poly_2d.gd" id="14_h0wv7"]
+[ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/libraries/polygon/thick_arc_poly_2d.gd" id="15_ky24r"]
+[ext_resource type="Script" uid="uid://cdk2nlm2eovhs" path="res://addons/short/components/character/controllable_character_2d.gd" id="16_wrlcw"]
+[ext_resource type="Script" uid="uid://xy6unwbm28yo" path="res://addons/short/components/button/delete_button/delete_button.gd" id="17_pqo5r"]
 
 [sub_resource type="Resource" id="Resource_725mb"]
-script = ExtResource("2_2s06o")
+script = ExtResource("2_wwlva")
 path_a = NodePath(".:value")
 path_b = NodePath("../ColorRect:position:y")
 metadata/_custom_type_script = "uid://4n43h0hb65qj"
 
 [sub_resource type="Resource" id="Resource_kynyw"]
-script = ExtResource("2_2s06o")
+script = ExtResource("2_wwlva")
 path_a = NodePath(".:button_pressed")
 path_b = NodePath("../ColorRect:visible")
 metadata/_custom_type_script = "uid://4n43h0hb65qj"
 
 [sub_resource type="Resource" id="Resource_htx38"]
-script = ExtResource("4_htx38")
+script = ExtResource("4_ymajg")
 path = NodePath("AnimationPlayer")
 animation = &"red"
 metadata/_custom_type_script = "uid://do6vybxrx4gc0"
@@ -72,7 +73,7 @@ _data = {
 }
 
 [sub_resource type="Resource" id="Resource_afx16"]
-script = ExtResource("2_2s06o")
+script = ExtResource("2_wwlva")
 path_a = NodePath(".:selected")
 path_b = NodePath("../Label:text")
 metadata/_custom_type_script = "uid://4n43h0hb65qj"
@@ -83,9 +84,9 @@ metadata/_custom_type_script = "uid://4n43h0hb65qj"
 offset_right = 16.0
 offset_bottom = 377.0
 tooltip_text = "bee"
-script = ExtResource("1_725mb")
+script = ExtResource("1_rews5")
 bind_properties_enabled = true
-bind_properties_array = Array[ExtResource("2_2s06o")]([SubResource("Resource_725mb")])
+bind_properties_array = Array[ExtResource("2_wwlva")]([SubResource("Resource_725mb")])
 tooltip_enabled = true
 metadata/_custom_type_script = "uid://c572buss7eq8t"
 
@@ -95,9 +96,9 @@ offset_top = 21.0
 offset_right = 160.0
 offset_bottom = 45.0
 button_pressed = true
-script = ExtResource("3_kynyw")
+script = ExtResource("3_o8xnk")
 bind_properties_enabled = true
-bind_properties_array = Array[ExtResource("2_2s06o")]([SubResource("Resource_kynyw")])
+bind_properties_array = Array[ExtResource("2_wwlva")]([SubResource("Resource_kynyw")])
 tooltip_enabled = true
 tooltip_format_string = "visible: %s"
 metadata/_custom_type_script = "uid://pcx0f6vh65li"
@@ -107,7 +108,7 @@ offset_left = 135.0
 offset_top = 61.0
 offset_right = 159.0
 offset_bottom = 85.0
-script = ExtResource("3_kynyw")
+script = ExtResource("3_o8xnk")
 animation_enabled = true
 animation_press = SubResource("Resource_htx38")
 animation_reverse_on_toggle_off = true
@@ -137,9 +138,9 @@ popup/item_1/text = "1"
 popup/item_1/id = 1
 popup/item_2/text = "2"
 popup/item_2/id = 2
-script = ExtResource("4_i6v8v")
+script = ExtResource("5_hi8uv")
 bind_properties_enabled = true
-bind_properties_array = Array[ExtResource("2_2s06o")]([SubResource("Resource_afx16")])
+bind_properties_array = Array[ExtResource("2_wwlva")]([SubResource("Resource_afx16")])
 metadata/_custom_type_script = "uid://dwmbwnhgu0ug"
 
 [node name="Label" type="Label" parent="." unique_id=321894914]
@@ -155,14 +156,15 @@ offset_top = 22.0
 offset_right = 133.0
 offset_bottom = 42.0
 toggle_mode = true
-icon = ExtResource("6_s8pk6")
-script = ExtResource("7_ing1m")
+icon = ExtResource("6_yvwex")
+script = ExtResource("7_k6tgo")
 node = NodePath("../ShortCheckBox")
 metadata/_custom_type_script = "uid://dspvbe1esnf0o"
 
 [node name="ButtonAudioPlayer" type="AudioStreamPlayer" parent="FoldButton" unique_id=914890784 node_paths=PackedStringArray("button")]
-script = ExtResource("10_ao2rc")
+script = ExtResource("8_bhw7h")
 button = NodePath("..")
+press_stream = ExtResource("9_j5a58")
 metadata/_custom_type_script = "uid://d0vl8tihmejbp"
 
 [node name="SceneButton" type="Button" parent="." unique_id=750748045]
@@ -171,14 +173,14 @@ offset_top = 57.0
 offset_right = 287.0
 offset_bottom = 65.0
 text = "test_scene.tscn"
-script = ExtResource("8_ing1m")
-scene = ExtResource("9_afx16")
+script = ExtResource("10_hsru3")
+scene = ExtResource("11_x02uy")
 metadata/_custom_type_script = "uid://dau8wonrvwvue"
 
 [node name="CirclePoly2D" type="Polygon2D" parent="." unique_id=871359269]
 position = Vector2(625, 182)
 polygon = PackedVector2Array(50, 0, -25.000004, 43.30127, -24.999996, -43.301273)
-script = ExtResource("10_bly6f")
+script = ExtResource("12_boq3i")
 radius = 50.0
 vertices = 3
 metadata/_custom_type_script = "uid://beofo17l6fff2"
@@ -186,28 +188,28 @@ metadata/_custom_type_script = "uid://beofo17l6fff2"
 [node name="RoundedCirclePoly2D" type="Polygon2D" parent="." unique_id=1484670247]
 position = Vector2(424, 252)
 polygon = PackedVector2Array(48.928204, -4, 49.51754, -2.736161, 49.878464, -1.3891854, 50, 0, 49.878464, 1.3891854, 49.51754, 2.736161, 48.928204, 4, 27.928202, 40.37307, 27.128353, 41.51537, 26.1423, 42.501427, 24.999998, 43.301273, 23.73616, 43.89061, 22.389183, 44.251534, 20.999998, 44.37307, -21.000004, 44.373066, -22.389189, 44.251526, -23.736164, 43.890606, -25.000004, 43.30127, -26.142305, 42.501423, -27.128359, 41.515366, -27.928207, 40.373066, -48.928204, 3.999997, -49.51754, 2.7361581, -49.878464, 1.3891827, -50, -4.371139e-06, -49.878464, -1.3891895, -49.51754, -2.7361648, -48.928204, -4.0000033, -27.9282, -40.37307, -27.128353, -41.51537, -26.142296, -42.501427, -24.999996, -43.301273, -23.736156, -43.89061, -22.389181, -44.251534, -20.999996, -44.37307, 20.999996, -44.37307, 22.389181, -44.251534, 23.736156, -43.89061, 24.999996, -43.301273, 26.142296, -42.501427, 27.128351, -41.515373, 27.9282, -40.37307)
-script = ExtResource("10_s1a1f")
+script = ExtResource("13_pblxe")
 radius = 50.0
 metadata/_custom_type_script = "uid://bu68qyknnlvch"
 
 [node name="RoundedRectPoly2D" type="Polygon2D" parent="." unique_id=2092436424]
 position = Vector2(612, 300)
 polygon = PackedVector2Array(100, 92, 99.72741, 94.07055, 98.9282, 96, 97.65685, 97.65685, 96, 98.92821, 94.07055, 99.72741, 92, 100, 7.9999995, 100, 5.9294477, 99.72741, 3.9999995, 98.9282, 2.3431458, 97.65685, 1.0717969, 96, 0.2725935, 94.07056, 0, 92, 0, 7.9999995, 0.2725935, 5.929447, 1.0717969, 4, 2.3431454, 2.3431463, 4.000001, 1.0717964, 5.929448, 0.27259302, 8, 0, 92, 0, 94.07055, 0.2725935, 96, 1.0717964, 97.65685, 2.343145, 98.9282, 3.9999986, 99.72741, 5.929449, 100, 8.000001)
-script = ExtResource("12_a24rm")
+script = ExtResource("14_h0wv7")
 size = Vector2(100, 100)
 metadata/_custom_type_script = "uid://bmmekgdhctm4q"
 
 [node name="ThickArcPoly2D" type="Polygon2D" parent="." unique_id=202650703]
 position = Vector2(442, 360)
 polygon = PackedVector2Array(100, 0, 95.10439, 30.905575, 80.89691, 58.78512, 58.768635, 80.90888, 30.886196, 95.11069, -0.020365318, 100, -0.010182659, 50, 15.443098, 47.555344, 29.384317, 40.45444, 40.448456, 29.39256, 47.552197, 15.452787, 50, 0)
-script = ExtResource("13_y2a0u")
+script = ExtResource("15_ky24r")
 to_angle = 1.571
 outer_radius = 100.0
 inner_radius = 50.0
 metadata/_custom_type_script = "uid://5011o82cme25"
 
 [node name="ControllableCharacter2D" type="CharacterBody2D" parent="." unique_id=193599921]
-script = ExtResource("14_syd57")
+script = ExtResource("16_wrlcw")
 walk_enabled = true
 walk_left_action = &"walk_left"
 metadata/_custom_type_script = "uid://cdk2nlm2eovhs"
@@ -218,6 +220,6 @@ offset_top = 331.0
 offset_right = 746.0
 offset_bottom = 362.0
 text = "x"
-script = ExtResource("15_pudf8")
+script = ExtResource("17_pqo5r")
 delete_on_pressed = true
 metadata/_custom_type_script = "uid://xy6unwbm28yo"

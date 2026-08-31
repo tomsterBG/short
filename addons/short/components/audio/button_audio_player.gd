@@ -1,3 +1,7 @@
+# IDEAS:
+# - Differentiate between press and toggle on/toggle off.
+# - Add hover sound.
+
 ## An [AudioStreamPlayer] that specifically plays sounds for any [BaseButton].
 
 @tool
