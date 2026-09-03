@@ -47,6 +47,33 @@ static func get_projected_vector(vector_a: Variant, vector_b: Variant) -> Varian
 
 
 #region methods
+## Returns the fibonacci of [param n].
+##[br][br][b]Note:[/b] Recursive and expensive. Intended to be implemented with cache, similar to the dynamic programming pattern.
+static func fibonacci(n: int) -> int:
+	if n == 0: return 0
+	elif n == 1: return 1
+	elif n == 2: return 1
+	return fibonacci(n - 2) + fibonacci(n - 1)
+
+## Returns the factorial of [param n].
+##[br][br][b]Note:[/b] Recursive and expensive. Intended to be implemented with cache, similar to the dynamic programming pattern.
+static func factorial(n: int) -> int:
+	if n == 0: return 1
+	elif n == 1: return 1
+	elif n == 2: return 2
+	return n * factorial(n - 1)
+
+## Returns the pascal triangle value at the [param y]th row and [param x]th column. The position of [code]0, 0[/code] is [code]1[/code] at the tip of the triangle. Each row's beginning starts at [param x] [code]0[/code].
+##[br][br][b]Note:[/b] Recursive and expensive. Intended to be implemented with cache, similar to the dynamic programming pattern.
+##[br][br][b]Note:[/b] Useful for knowing the ways in which you can achieve a sequence of yes/no outcomes.
+static func pascal_triangle(x: int, y: int) -> int:
+	assert(x >= 0, "There are no numbers to the left of x == 0.")
+	assert(x <= y, "There are no numbers to the right of x == y.")
+	assert(y >= 0, "There are no numbers above y == 0.")
+	if x == 0: return 1 # left border of 1s
+	elif x == y: return 1 # right border of 1s
+	return pascal_triangle(x - 1, y - 1) + pascal_triangle(x, y - 1)
+
 	#region geometry
 ## Returns the surface of a sphere.
 static func sphere_surface(radius: float) -> float:

@@ -5,6 +5,31 @@ extends GutTest
 func test_constants():
 	assert_almost_eq(Math.PHI, 1.618_033, GConst.ERROR_INTERVAL)
 
+func test_fibonacci():
+	assert_eq(Math.fibonacci(0), 0)
+	assert_eq(Math.fibonacci(1), 1)
+	assert_eq(Math.fibonacci(2), 1)
+	assert_eq(Math.fibonacci(3), 2)
+	assert_eq(Math.fibonacci(4), 3)
+	assert_eq(Math.fibonacci(5), 5)
+
+func test_factorial():
+	assert_eq(Math.factorial(0), 1)
+	assert_eq(Math.factorial(1), 1)
+	assert_eq(Math.factorial(2), 2)
+	assert_eq(Math.factorial(3), 6)
+	assert_eq(Math.factorial(4), 24)
+	assert_eq(Math.factorial(5), 120)
+
+func test_pascal_triangle():
+	assert_eq(Math.pascal_triangle(0, 0), 1)
+	assert_eq(Math.pascal_triangle(0, 1), 1)
+	assert_eq(Math.pascal_triangle(1, 1), 1)
+	assert_eq(Math.pascal_triangle(0, 2), 1)
+	assert_eq(Math.pascal_triangle(1, 2), 2)
+	assert_eq(Math.pascal_triangle(2, 2), 1)
+	assert_eq(Math.pascal_triangle(2, 4), 6)
+
 func test_sphere():
 	assert_almost_eq(Math.sphere_surface(9.0), 1017.876_020, GConst.ERROR_INTERVAL)
 	assert_almost_eq(Math.sphere_volume(9.0), 3053.628_059, GConst.ERROR_INTERVAL)
