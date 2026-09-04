@@ -7,7 +7,7 @@
 [ext_resource type="Script" uid="uid://dwmbwnhgu0ug" path="res://addons/short/components/button/short_option_button.gd" id="5_hi8uv"]
 [ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="6_yvwex"]
 [ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_k6tgo"]
-[ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/components/audio/button_audio_player.gd" id="8_bhw7h"]
+[ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/libraries/audio/button_audio_player.gd" id="8_bhw7h"]
 [ext_resource type="AudioStream" uid="uid://dkn4g8ws1im0h" path="res://other/thing/button_click.wav" id="9_j5a58"]
 [ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button/scene_button.gd" id="10_hsru3"]
 [ext_resource type="PackedScene" uid="uid://c111v0vk5tgal" path="res://other/test_scene.tscn" id="11_x02uy"]
@@ -175,6 +175,7 @@ offset_bottom = 65.0
 text = "test_scene.tscn"
 script = ExtResource("10_hsru3")
 scene = ExtResource("11_x02uy")
+press_stream = ExtResource("9_j5a58")
 metadata/_custom_type_script = "uid://dau8wonrvwvue"
 
 [node name="CirclePoly2D" type="Polygon2D" parent="." unique_id=871359269]
