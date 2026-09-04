@@ -14,6 +14,9 @@ class_name ButtonAudioPlayer extends AudioStreamPlayer
 ## Played when [member button] is pressed.
 @export var press_stream: AudioStream
 
+## The position to begin playing [member press_stream] at.
+@export var press_stream_from_position: float = 0.0
+
 
 #region setters
 func set_button(value: BaseButton) -> void:
@@ -29,7 +32,7 @@ func set_button(value: BaseButton) -> void:
 ## Runs when [member button] is pressed.
 func _on_button_pressed() -> void:
 	stream = press_stream
-	play()
+	play(press_stream_from_position)
 
 func _get_configuration_warnings() -> PackedStringArray:
 	var result: PackedStringArray
