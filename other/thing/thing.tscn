@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://pcx0f6vh65li" path="res://addons/short/components/button/short_check_box.gd" id="3_o8xnk"]
 [ext_resource type="Script" uid="uid://do6vybxrx4gc0" path="res://addons/short/data/animation_binding.gd" id="4_ymajg"]
 [ext_resource type="Script" uid="uid://dwmbwnhgu0ug" path="res://addons/short/components/button/short_option_button.gd" id="5_hi8uv"]
+[ext_resource type="Shader" uid="uid://du5tixgyq675q" path="res://addons/short/shaders/blur/blur.gdshader" id="6_o8xnk"]
 [ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="6_yvwex"]
 [ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_k6tgo"]
 [ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/libraries/audio/button_audio_player.gd" id="8_bhw7h"]
@@ -78,6 +79,12 @@ path_a = NodePath(".:selected")
 path_b = NodePath("../Label:text")
 metadata/_custom_type_script = "uid://4n43h0hb65qj"
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vvpuq"]
+shader = ExtResource("6_o8xnk")
+shader_parameter/blur_amount = 1.0000000149012
+shader_parameter/solid_color = Color(1, 1, 1, 1)
+shader_parameter/solid_blend = 0.10000000149012
+
 [node name="Thing" type="Node" unique_id=39787891]
 
 [node name="ShortVSlider" type="VSlider" parent="." unique_id=1046853180]
@@ -91,9 +98,9 @@ tooltip_enabled = true
 metadata/_custom_type_script = "uid://c572buss7eq8t"
 
 [node name="ShortCheckBox" type="CheckBox" parent="." unique_id=489579277]
-offset_left = 136.0
+offset_left = 153.0
 offset_top = 21.0
-offset_right = 160.0
+offset_right = 177.0
 offset_bottom = 45.0
 button_pressed = true
 script = ExtResource("3_o8xnk")
@@ -119,11 +126,6 @@ metadata/_custom_type_script = "uid://pcx0f6vh65li"
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ShortCheckBox2" unique_id=926203071]
 libraries/ = SubResource("AnimationLibrary_ing1m")
 playback_default_blend_time = 0.1
-
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1158785461]
-offset_left = 56.0
-offset_right = 96.0
-offset_bottom = 40.0
 
 [node name="ShortOptionButton" type="OptionButton" parent="." unique_id=78398064]
 offset_left = 138.0
@@ -165,6 +167,7 @@ metadata/_custom_type_script = "uid://dspvbe1esnf0o"
 script = ExtResource("8_bhw7h")
 button = NodePath("..")
 press_stream = ExtResource("9_j5a58")
+press_stream_from_position = null
 metadata/_custom_type_script = "uid://d0vl8tihmejbp"
 
 [node name="SceneButton" type="Button" parent="." unique_id=750748045]
@@ -224,3 +227,11 @@ text = "x"
 script = ExtResource("17_pqo5r")
 delete_on_pressed = true
 metadata/_custom_type_script = "uid://xy6unwbm28yo"
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1158785461]
+material = SubResource("ShaderMaterial_vvpuq")
+offset_left = 124.0
+offset_top = 14.0
+offset_right = 164.0
+offset_bottom = 54.0
+mouse_filter = 2
