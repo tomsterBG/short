@@ -167,7 +167,6 @@ metadata/_custom_type_script = "uid://dspvbe1esnf0o"
 script = ExtResource("8_bhw7h")
 button = NodePath("..")
 press_stream = ExtResource("9_j5a58")
-press_stream_from_position = null
 metadata/_custom_type_script = "uid://d0vl8tihmejbp"
 
 [node name="SceneButton" type="Button" parent="." unique_id=750748045]
