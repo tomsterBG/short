@@ -21,7 +21,7 @@ func test_time():
 	assert_eq(Convert.sec_to_day(21600.0), 0.25)
 	assert_eq(Convert.day_to_sec(0.5), 43200.0)
 	assert_eq(Convert.h_to_day(3.0), 0.125)
-	assert_eq(Convert.day_to_h(0.76), 18.24)
+	assert_eq(Convert.day_to_h(0.625), 15.0)
 	assert_eq(Convert.sec_to_week(756000.0), 1.25)
 	assert_eq(Convert.week_to_sec(0.7), 423360.0)
 	assert_eq(Convert.day_to_week(21.0), 3.0)
