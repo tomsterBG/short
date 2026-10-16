@@ -14,9 +14,11 @@ func populate_files():
 		if path.get_extension() != "gd": continue
 		var new_file_info := FileInfo.new()
 		new_file_info.filename = path.get_file().trim_suffix(".%s" % path.get_extension())
+		if new_file_info.filename == "plugin": continue # Ignore plugin files.
 		new_file_info.path_short = path
 		new_file_info.functions_short = StringLib.get_function_names(FileAccess.get_file_as_string(path))
 		files[new_file_info.filename] = new_file_info
+	
 	for path in Helper.get_dir_children(GConst.TESTS_PATH, GConst.RECURSIVE).files:
 		if path.get_extension() != "gd": continue
 		var filename := path.get_file().trim_prefix("test_").trim_suffix(".%s" % path.get_extension())
@@ -37,20 +39,21 @@ func test_all_scripts_have_tests():
 	## Filenames of all addon scripts with missing test scripts.
 	var missing_script_names: Array[String] = []
 	for filename in files:
-		if filename == "plugin": continue
-		elif files[filename].path_short.is_empty() or files[filename].path_tests.is_empty():
+		if files[filename].path_short.is_empty() or files[filename].path_tests.is_empty():
 			missing_script_names.append(filename)
 	assert_eq(missing_script_names, [], "All scripts have corresponding test scripts.")
+	if !missing_script_names.is_empty(): print("Missing scripts: %s" % str(missing_script_names))
 
 func test_all_functions_have_tests():
+	## Function names of all addon script functions with missing tests.
 	var missing_functions: Array[String] = []
 	for filename in files:
-		if filename == "plugin": continue
 		for function in files[filename].functions_short:
 			if function == "_enter_tree": continue
 			if !files[filename].functions_tests.has("test_%s" % function):
 				missing_functions.append("%s/%s" % [filename, function])
 	assert_eq(missing_functions, [], "All functions have corresponding tests.")
+	if !missing_functions.is_empty(): print("Missing functions: %s" % str(missing_functions))
 #endregion tests
 
 

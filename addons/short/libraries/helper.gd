@@ -48,18 +48,6 @@
 @abstract class_name Helper extends Object
 
 
-#region classes
-## The result returned by [method Helper.get_dir_children].
-class DirChildrenResult:
-	## The files found at [param path].
-	var files: Array[String] = []
-	## The folders found at [param path].
-	var folders: Array[String] = []
-	## Becomes [code]true[/code] if [param path] is invalid.
-	var invalid_dir: bool = false
-#endregion classes
-
-
 #region getters
 ## Returns a [Helper.DirChildrenResult] containing paths to files and folders, at the given [param path]. Uses [method DirAccess.get_files_at], [method DirAccess.get_directories_at].
 ##[br][br]Each path starts from [param path] and ends with the file or folder name. For example if [param path] is [code]"res://"[/code] and you only have an [code]addons[/code] folder, the string for it would look like [code]"res://addons"[/code].
@@ -108,3 +96,15 @@ static func save_resource(resource: Resource, path: String, flags := 0 as Resour
 	var result := ResourceSaver.save(resource, path, flags)
 	return result
 #endregion methods
+
+
+#region classes
+## The result returned by [method Helper.get_dir_children].
+class DirChildrenResult:
+	## The files found at [param path].
+	var files: Array[String] = []
+	## The folders found at [param path].
+	var folders: Array[String] = []
+	## Becomes [code]true[/code] if [param path] is invalid.
+	var invalid_dir: bool = false
+#endregion classes

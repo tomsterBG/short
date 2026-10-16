@@ -59,7 +59,7 @@ static func ackermann2(ackermann_point: Transform2D, wheel_positions: Array[Vect
 	if is_inf(radius):
 		return result
 	for i in range(len(wheel_positions)):
-			result[i] = icr2(ackermann_point, radius).direction_to(ackermann_point.origin).angle_to(icr2(ackermann_point, radius).direction_to(wheel_positions[i]))
+		result[i] = icr2(ackermann_point, radius).direction_to(ackermann_point.origin).angle_to(icr2(ackermann_point, radius).direction_to(wheel_positions[i]))
 	return result
 
 ## Returns a steering angle of a front wheel (in radians), given the [param forward_distance] to a rear wheel. Useful for bicycles.
