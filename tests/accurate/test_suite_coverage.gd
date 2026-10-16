@@ -56,7 +56,7 @@ func test_all_functions_have_tests():
 
 #region classes
 class FileInfo:
-	## The name of the file without an extension.
+	## The name of the file without its extension.
 	var filename: StringName
 	## The filepath in short.
 	var path_short: String

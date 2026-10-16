@@ -21,8 +21,7 @@
 			"uuid": "9bcd8614-8858-420a-ae96-bf02ed1c34b6",
 			"title": "Checklists",
 			"tasks": [
-				"e5515d91-f4d8-48dd-aa2e-a7fa348a5f4f",
-				"153c2296-5156-4772-82c7-d415ca282110"
+				"e5515d91-f4d8-48dd-aa2e-a7fa348a5f4f"
 			]
 		},
 		{
@@ -207,10 +206,6 @@
 			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
 			"steps": [
 				{
-					"details": "ensure the test suite is registered in script_order_hook.gd\nUsually checked for automatically by the error in script_order_hook.gd",
-					"done": false
-				},
-				{
 					"details": "ensure full test coverage\nEvery property must be covered for initial values.\nEvery method value (data that is logically derived) must be covered for initial values.\nEvery method must have a corresponding test.\nEvery parameter of each method must be covered by tests.",
 					"done": false
 				},
@@ -220,18 +215,6 @@
 				},
 				{
 					"details": "ensure consistency",
-					"done": false
-				}
-			]
-		},
-		{
-			"uuid": "3fd45060-3f16-49f6-a4ce-d04e83ecf570",
-			"title": "DateTimeLib",
-			"description": "",
-			"category": "8c81c050-2d8d-4630-bf54-dceecf445d90",
-			"steps": [
-				{
-					"details": "put Date, Time and DateTime in the same file as the Lib\nThey are not intended to be separate resources anyway, but are type-safe function parameters",
 					"done": false
 				}
 			]
@@ -252,26 +235,6 @@
 				},
 				{
 					"details": "full test coverage",
-					"done": false
-				}
-			]
-		},
-		{
-			"uuid": "153c2296-5156-4772-82c7-d415ca282110",
-			"title": "Script order hook quality pass",
-			"description": "",
-			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
-			"steps": [
-				{
-					"details": "ensure every test is in the hook",
-					"done": false
-				},
-				{
-					"details": "ensure correctly defined dependencies",
-					"done": false
-				},
-				{
-					"details": "ensure doc of each class aligns with dependencies\nThat sentence in the class description documentation must hold the same dependencies as the actual referenced classes in the script (ignoring built-ins).",
 					"done": false
 				}
 			]

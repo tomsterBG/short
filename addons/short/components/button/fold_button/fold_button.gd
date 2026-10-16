@@ -3,7 +3,7 @@
 
 ## A button that folds something.
 ##
-## When the button is pressed, the [member node] will be visible, otherwise it will be invisible.
+## When the button is pressed, it is considered folded, otherwise it is considered unfolded.
 ##[br][br][b]Note:[/b] The [member Button.icon] property is set automatically based on [member BaseButton.button_pressed]. It shouldn't be changed manually.
 ##[br][br][b]Note:[/b] This overrides [method Node._get_configuration_warnings], [method Node._enter_tree] and [method BaseButton._toggled]. Use [code]super()[/code] if you want to extend the same methods.
 
@@ -18,10 +18,10 @@ class_name FoldButton extends Button
 
 @export_group("Icons", "icon_")
 
-## Used when the button isn't pressed. See [member BaseButton.button_pressed].
+## Used when the button is pressed. See [member BaseButton.button_pressed].
 @export var icon_folded: Texture2D = preload("uid://0kuvxm3lm6ed")
 
-## Used when the button is pressed. See [member BaseButton.button_pressed].
+## Used when the button isn't pressed. See [member BaseButton.button_pressed].
 @export var icon_unfolded: Texture2D = preload("uid://diktvutgm43e6")
 #endregion variables
 

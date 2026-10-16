@@ -81,7 +81,7 @@ I say this from the frame of being this library's creator. If you want these ben
 
 Download the project and delete anything you don't need.
 - Everything you need is `addons/short/`. Everything else is just helping me develop this project.
-- Careful with deleting things inside my addon's folders. Some scripts depend on each other. You can see which script depends on which by looking at `tests/script_order_hook.gd`.
+- Careful with deleting things inside my addon's folders. Some scripts depend on each other.
 
 # License
 
