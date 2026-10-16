@@ -32,12 +32,14 @@ func test_proportion():
 	assert_eq(Convert.percent_to_ratio(0.5), 0.005)
 
 func test_distance():
-	assert_eq(Convert.meter_to_dm(31.2), 312.0)
-	assert_eq(Convert.dm_to_meter(731.0), 73.1)
-	assert_eq(Convert.meter_to_cm(83.2), 8320.0)
-	assert_eq(Convert.cm_to_meter(199.2), 1.992)
+	assert_eq(Convert.meter_to_um(0.629), 629_000.0)
+	assert_eq(Convert.um_to_meter(391_243.0), 0.391_243)
 	assert_eq(Convert.meter_to_mm(0.5), 500.0)
 	assert_eq(Convert.mm_to_meter(10.0), 0.01)
+	assert_eq(Convert.meter_to_cm(83.2), 8320.0)
+	assert_eq(Convert.cm_to_meter(199.2), 1.992)
+	assert_eq(Convert.meter_to_dm(31.2), 312.0)
+	assert_eq(Convert.dm_to_meter(731.0), 73.1)
 	assert_eq(Convert.meter_to_km(941.0), 0.941)
 	assert_eq(Convert.km_to_meter(1.32), 1320.0)
 	assert_eq(Convert.mm_to_inch(25.4), 1.0)
@@ -64,12 +66,12 @@ func test_area():
 	assert_eq(Convert.km2_to_meter2(1.6), 1600000.0)
 
 func test_volume():
-	assert_eq(Convert.meter3_to_dm3(8.0), 8000.0)
-	assert_eq(Convert.dm3_to_meter3(2900.0), 2.9)
-	assert_eq(Convert.meter3_to_cm3(2.1), 2100000.0)
-	assert_eq(Convert.cm3_to_meter3(1830000.0), 1.83)
 	assert_eq(Convert.meter3_to_mm3(0.91), 910000000.0)
 	assert_eq(Convert.mm3_to_meter3(1450000000.0), 1.45)
+	assert_eq(Convert.meter3_to_cm3(2.1), 2100000.0)
+	assert_eq(Convert.cm3_to_meter3(1830000.0), 1.83)
+	assert_eq(Convert.meter3_to_dm3(8.0), 8000.0)
+	assert_eq(Convert.dm3_to_meter3(2900.0), 2.9)
 	assert_eq(Convert.meter3_to_km3(9410.0), 0.00000941)
 	assert_eq(Convert.km3_to_meter3(1.6), 1600000000.0)
 
@@ -106,8 +108,8 @@ func test_torque():
 func test_power():
 	assert_eq(Convert.w_to_kw(995.0), 0.995)
 	assert_eq(Convert.kw_to_w(0.69), 690.0)
-	assert_eq(Convert.kw_to_mw(41.0), 0.041)
-	assert_eq(Convert.mw_to_kw(0.13), 130.0)
+	assert_eq(Convert.kw_to_megaw(41.0), 0.041)
+	assert_eq(Convert.megaw_to_kw(0.13), 130.0)
 	assert_almost_eq(Convert.w_to_hp(75.0), 0.100_576, GConst.ERROR_INTERVAL)
 	assert_almost_eq(Convert.hp_to_w(37.0), 27590.895_249, GConst.ERROR_INTERVAL)
 	assert_almost_eq(Convert.kw_to_hp(75.0), 100.576_656, GConst.ERROR_INTERVAL)
@@ -173,9 +175,10 @@ func test_convert_and_back():
 	# proportion
 	assert_eq(Convert.ratio_to_percent(Convert.percent_to_ratio(23.4)), 23.4)
 	# distance
-	assert_eq(Convert.meter_to_dm(Convert.dm_to_meter(914.2)), 914.2)
-	assert_eq(Convert.meter_to_cm(Convert.cm_to_meter(67.9)), 67.9)
+	assert_eq(Convert.meter_to_um(Convert.um_to_meter(0.084)), 0.084)
 	assert_eq(Convert.meter_to_mm(Convert.mm_to_meter(52.9)), 52.9)
+	assert_eq(Convert.meter_to_cm(Convert.cm_to_meter(67.9)), 67.9)
+	assert_eq(Convert.meter_to_dm(Convert.dm_to_meter(914.2)), 914.2)
 	assert_eq(Convert.meter_to_km(Convert.km_to_meter(84.9)), 84.9)
 	assert_eq(Convert.mm_to_inch(Convert.inch_to_mm(23.4)), 23.4)
 	assert_eq(Convert.meter_to_inch(Convert.inch_to_meter(68.1)), 68.1)
@@ -189,9 +192,9 @@ func test_convert_and_back():
 	assert_eq(Convert.meter2_to_mm2(Convert.mm2_to_meter2(254.0)), 254.0)
 	assert_eq(Convert.meter2_to_km2(Convert.km2_to_meter2(3.1488)), 3.1488)
 	# volume
-	assert_eq(Convert.meter3_to_dm3(Convert.dm3_to_meter3(95.1)), 95.1)
-	assert_eq(Convert.meter3_to_cm3(Convert.cm3_to_meter3(920.0)), 920.0)
 	assert_eq(Convert.meter3_to_mm3(Convert.mm3_to_meter3(2.45)), 2.45)
+	assert_eq(Convert.meter3_to_cm3(Convert.cm3_to_meter3(920.0)), 920.0)
+	assert_eq(Convert.meter3_to_dm3(Convert.dm3_to_meter3(95.1)), 95.1)
 	assert_eq(Convert.meter3_to_km3(Convert.km3_to_meter3(3.1488)), 3.1488)
 	# angle
 	assert_eq(Convert.rad_to_dot(Convert.dot_to_rad(0.981)), 0.981)
@@ -210,7 +213,7 @@ func test_convert_and_back():
 	assert_eq(Convert.lbft_to_kgm(Convert.kgm_to_lbft(99.7)), 99.7)
 	# power
 	assert_eq(Convert.w_to_kw(Convert.kw_to_w(23.4)), 23.4)
-	assert_eq(Convert.kw_to_mw(Convert.mw_to_kw(72.1)), 72.1)
+	assert_eq(Convert.kw_to_megaw(Convert.megaw_to_kw(72.1)), 72.1)
 	assert_eq(Convert.w_to_hp(Convert.hp_to_w(99.9)), 99.9)
 	assert_eq(Convert.kw_to_hp(Convert.hp_to_kw(28.2)), 28.2)
 	assert_eq(Convert.hp_to_ps(Convert.ps_to_hp(49.3)), 49.3)
