@@ -5,19 +5,19 @@
 [ext_resource type="Script" uid="uid://pcx0f6vh65li" path="res://addons/short/components/button/short_check_box.gd" id="3_o8xnk"]
 [ext_resource type="Script" uid="uid://do6vybxrx4gc0" path="res://addons/short/data/animation_binding.gd" id="4_ymajg"]
 [ext_resource type="Script" uid="uid://dwmbwnhgu0ug" path="res://addons/short/components/button/short_option_button.gd" id="5_hi8uv"]
-[ext_resource type="Shader" uid="uid://du5tixgyq675q" path="res://addons/short/shaders/blur/blur.gdshader" id="6_o8xnk"]
+[ext_resource type="Shader" uid="uid://du5tixgyq675q" path="res://addons/short/shaders/blur.gdshader" id="6_o8xnk"]
 [ext_resource type="Texture2D" uid="uid://diktvutgm43e6" path="res://addons/short/components/button/fold_button/unfolded.svg" id="6_yvwex"]
 [ext_resource type="Script" uid="uid://dspvbe1esnf0o" path="res://addons/short/components/button/fold_button/fold_button.gd" id="7_k6tgo"]
-[ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/libraries/audio/button_audio_player.gd" id="8_bhw7h"]
+[ext_resource type="Script" uid="uid://d0vl8tihmejbp" path="res://addons/short/domains/audio/button_audio_player.gd" id="8_bhw7h"]
 [ext_resource type="AudioStream" uid="uid://dkn4g8ws1im0h" path="res://other/thing/button_click.wav" id="9_j5a58"]
-[ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button/scene_button.gd" id="10_hsru3"]
+[ext_resource type="Script" uid="uid://dau8wonrvwvue" path="res://addons/short/components/button/scene_button.gd" id="10_hsru3"]
 [ext_resource type="PackedScene" uid="uid://c111v0vk5tgal" path="res://other/test_scene.tscn" id="11_x02uy"]
-[ext_resource type="Script" uid="uid://beofo17l6fff2" path="res://addons/short/libraries/polygon/circle_poly_2d.gd" id="12_boq3i"]
-[ext_resource type="Script" uid="uid://bu68qyknnlvch" path="res://addons/short/libraries/polygon/rounded_circle_poly_2d.gd" id="13_pblxe"]
-[ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/libraries/polygon/rounded_rect_poly_2d.gd" id="14_h0wv7"]
-[ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/libraries/polygon/thick_arc_poly_2d.gd" id="15_ky24r"]
-[ext_resource type="Script" uid="uid://cdk2nlm2eovhs" path="res://addons/short/components/character/controllable_character_2d.gd" id="16_wrlcw"]
-[ext_resource type="Script" uid="uid://xy6unwbm28yo" path="res://addons/short/components/button/delete_button/delete_button.gd" id="17_pqo5r"]
+[ext_resource type="Script" uid="uid://beofo17l6fff2" path="res://addons/short/domains/polygon/circle_poly_2d.gd" id="12_boq3i"]
+[ext_resource type="Script" uid="uid://bu68qyknnlvch" path="res://addons/short/domains/polygon/rounded_circle_poly_2d.gd" id="13_pblxe"]
+[ext_resource type="Script" uid="uid://bmmekgdhctm4q" path="res://addons/short/domains/polygon/rounded_rect_poly_2d.gd" id="14_h0wv7"]
+[ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/domains/polygon/thick_arc_poly_2d.gd" id="15_ky24r"]
+[ext_resource type="Script" uid="uid://cdk2nlm2eovhs" path="res://addons/short/components/controllable_character_2d.gd" id="16_wrlcw"]
+[ext_resource type="Script" uid="uid://xy6unwbm28yo" path="res://addons/short/components/button/delete_button.gd" id="17_pqo5r"]
 
 [sub_resource type="Resource" id="Resource_725mb"]
 script = ExtResource("2_wwlva")
@@ -167,7 +167,6 @@ metadata/_custom_type_script = "uid://dspvbe1esnf0o"
 script = ExtResource("8_bhw7h")
 button = NodePath("..")
 press_stream = ExtResource("9_j5a58")
-metadata/_custom_type_script = "uid://d0vl8tihmejbp"
 
 [node name="SceneButton" type="Button" parent="." unique_id=750748045]
 offset_left = 279.0

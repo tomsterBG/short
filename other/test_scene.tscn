@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://jrf8kxsondmi" path="res://addons/short/components/health/health.gd" id="1_lrf84"]
 [ext_resource type="Script" uid="uid://dj3aadubv4gi" path="res://addons/short/components/health/health_regen.gd" id="2_r0f7j"]
-[ext_resource type="Script" uid="uid://kwnyym3tclmr" path="res://addons/short/libraries/vehicle/antilock_braking.gd" id="5_t58tn"]
+[ext_resource type="Script" uid="uid://kwnyym3tclmr" path="res://addons/short/domains/vehicle/antilock_braking.gd" id="5_t58tn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_poy3p"]
 

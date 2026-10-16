@@ -10,6 +10,7 @@ Everything is well documented, you can use the in-engine documentation for each 
 
 - Components - Used like nodes in a scene. If a component has related files, it goes in domains.
 - Libraries - Used without instances. Abstract, standalone, foundational. If a library has related files, it goes in domains.
+- Shaders - Used to efficiently apply visual effects.
 - Domains - Related files grouped together.
 
 # Other
