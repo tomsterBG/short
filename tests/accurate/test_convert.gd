@@ -20,6 +20,8 @@ func test_time():
 	assert_eq(Convert.h_to_sec(0.25), 900.0)
 	assert_eq(Convert.sec_to_day(21600.0), 0.25)
 	assert_eq(Convert.day_to_sec(0.5), 43200.0)
+	assert_eq(Convert.h_to_day(3.0), 0.125)
+	assert_eq(Convert.day_to_h(0.76), 18.24)
 	assert_eq(Convert.sec_to_week(756000.0), 1.25)
 	assert_eq(Convert.week_to_sec(0.7), 423360.0)
 	assert_eq(Convert.day_to_week(21.0), 3.0)
@@ -56,12 +58,12 @@ func test_distance():
 	assert_eq(Convert.px_to_meter(490.0), 4.9)
 
 func test_area():
-	assert_eq(Convert.meter2_to_dm2(6.0), 600.0)
-	assert_eq(Convert.dm2_to_meter2(580.0), 5.8)
-	assert_eq(Convert.meter2_to_cm2(2.1), 21000.0)
-	assert_eq(Convert.cm2_to_meter2(18300.0), 1.83)
 	assert_eq(Convert.meter2_to_mm2(0.91), 910000.0)
 	assert_eq(Convert.mm2_to_meter2(1450000.0), 1.45)
+	assert_eq(Convert.meter2_to_cm2(2.1), 21000.0)
+	assert_eq(Convert.cm2_to_meter2(18300.0), 1.83)
+	assert_eq(Convert.meter2_to_dm2(6.0), 600.0)
+	assert_eq(Convert.dm2_to_meter2(580.0), 5.8)
 	assert_eq(Convert.meter2_to_km2(9410.0), 0.00941)
 	assert_eq(Convert.km2_to_meter2(1.6), 1600000.0)
 
@@ -169,6 +171,7 @@ func test_convert_and_back():
 	assert_eq(Convert.min_to_h(Convert.h_to_min(17.4)), 17.4)
 	assert_eq(Convert.sec_to_h(Convert.h_to_sec(741.2)), 741.2)
 	assert_eq(Convert.sec_to_day(Convert.day_to_sec(8241.0)), 8241.0)
+	assert_eq(Convert.h_to_day(Convert.day_to_h(73.2)), 73.2)
 	assert_eq(Convert.sec_to_week(Convert.week_to_sec(941.0)), 941.0)
 	assert_eq(Convert.day_to_week(Convert.week_to_day(284.0)), 284.0)
 	assert_eq(Convert.day_to_year(Convert.year_to_day(718.0)), 718.0)
@@ -187,9 +190,9 @@ func test_convert_and_back():
 	assert_eq(Convert.radius_to_diameter(Convert.diameter_to_radius(49.1)), 49.1)
 	assert_eq(Convert.meter_to_px(Convert.px_to_meter(28.1)), 28.1)
 	# area
-	assert_eq(Convert.meter2_to_dm2(Convert.dm2_to_meter2(95.1)), 95.1)
-	assert_eq(Convert.meter2_to_cm2(Convert.cm2_to_meter2(920.0)), 920.0)
 	assert_eq(Convert.meter2_to_mm2(Convert.mm2_to_meter2(254.0)), 254.0)
+	assert_eq(Convert.meter2_to_cm2(Convert.cm2_to_meter2(920.0)), 920.0)
+	assert_eq(Convert.meter2_to_dm2(Convert.dm2_to_meter2(95.1)), 95.1)
 	assert_eq(Convert.meter2_to_km2(Convert.km2_to_meter2(3.1488)), 3.1488)
 	# volume
 	assert_eq(Convert.meter3_to_mm3(Convert.mm3_to_meter3(2.45)), 2.45)

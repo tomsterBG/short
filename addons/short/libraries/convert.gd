@@ -25,7 +25,6 @@
 # 	- Mechanical hp l aka hp imperial, the default.
 # TODO:
 # - time
-# 	- h_to_day, day_to_h
 # - distance
 # 	- radius_to_circumference, circumference_to_radius
 # - area
@@ -40,8 +39,6 @@
 # 	- l_to_dl, dl_to_l
 # - volume consumption / liquid flow
 # 	- l_per_100km_to_mpg, mpg_to_l_per_100km
-# - power
-# 	- w_to_milliwatt, milliwatt_to_w
 # - torque
 # 	- nm_to_kgm, kgm_to_nm
 # - angle
@@ -49,6 +46,10 @@
 # 	- ms_to_mph, mph_to_ms
 # - acceleration
 # 	- ms2_to_earth_g, earth_g_to_ms2
+# - power
+# 	- w_to_milliwatt, milliwatt_to_w
+# - energy
+# 	- j_to_wh, wh_to_j
 # - temperature
 # 	- k_to_f, f_to_k
 # - mass
@@ -135,6 +136,14 @@ static func sec_to_day(sec: float) -> float:
 ## Converts a time from [code]days[/code] to [code]seconds[/code].
 static func day_to_sec(day: float) -> float:
 	return day * 86_400.0
+
+## Converts a time from [code]hours[/code] to [code]days[/code].
+static func h_to_day(hour: float) -> float:
+	return hour / 24.0
+
+## Converts a time from [code]days[/code] to [code]hours[/code].
+static func day_to_h(day: float) -> float:
+	return day * 24.0
 
 ## Converts a time from [code]seconds[/code] to [code]weeks[/code].
 static func sec_to_week(sec: float) -> float:
@@ -262,13 +271,13 @@ static func px_to_meter(pixel: float) -> float:
 	#endregion distance
 
 	#region area
-## Converts an area from [code]meters^2[/code] to [code]decimeters^2[/code].
-static func meter2_to_dm2(meter2: float) -> float:
-	return meter2 * 1.0e2
+## Converts an area from [code]meters^2[/code] to [code]millimeters^2[/code].
+static func meter2_to_mm2(meter2: float) -> float:
+	return meter2 * 1.0e6
 
-## Converts an area from [code]decimeters^2[/code] to [code]meters^2[/code].
-static func dm2_to_meter2(dm2: float) -> float:
-	return dm2 / 1.0e2
+## Converts an area from [code]millimeters^2[/code] to [code]meters^2[/code].
+static func mm2_to_meter2(mm2: float) -> float:
+	return mm2 / 1.0e6
 
 ## Converts an area from [code]meters^2[/code] to [code]centimeters^2[/code].
 static func meter2_to_cm2(meter2: float) -> float:
@@ -278,13 +287,13 @@ static func meter2_to_cm2(meter2: float) -> float:
 static func cm2_to_meter2(cm2: float) -> float:
 	return cm2 / 1.0e4
 
-## Converts an area from [code]meters^2[/code] to [code]millimeters^2[/code].
-static func meter2_to_mm2(meter2: float) -> float:
-	return meter2 * 1.0e6
+## Converts an area from [code]meters^2[/code] to [code]decimeters^2[/code].
+static func meter2_to_dm2(meter2: float) -> float:
+	return meter2 * 1.0e2
 
-## Converts an area from [code]millimeters^2[/code] to [code]meters^2[/code].
-static func mm2_to_meter2(mm2: float) -> float:
-	return mm2 / 1.0e6
+## Converts an area from [code]decimeters^2[/code] to [code]meters^2[/code].
+static func dm2_to_meter2(dm2: float) -> float:
+	return dm2 / 1.0e2
 
 ## Converts an area from [code]meters^2[/code] to [code]kilometers^2[/code].
 static func meter2_to_km2(meter2: float) -> float:
