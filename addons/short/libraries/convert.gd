@@ -27,6 +27,8 @@
 # - time
 # - distance
 # 	- radius_to_circumference, circumference_to_radius
+# 	- nautical_mile_to_m, m_to_nautical_mile
+# 	- meter_to_feet, feet_to_meter
 # - area
 # 	- meter2_to_um2, um2_to_meter2
 # 	- km2_to_megam2, megam2_to_km2
@@ -44,6 +46,8 @@
 # - angle
 # - speed
 # 	- ms_to_mph, mph_to_ms
+# 	- ms_to_knot, knot_to_ms
+# 	- kmh_to_knot, knot_to_kmh
 # - acceleration
 # 	- ms2_to_earth_g, earth_g_to_ms2
 # - power
@@ -55,6 +59,7 @@
 # - mass
 # 	- kg_to_lb, lb_to_kg
 # - data size
+# 	- bit_to_b, b_to_bit
 # 	- b_to_kb, kb_to_b
 # 	- kb_to_mb, mb_to_kb
 # 	- mb_to_gb, gb_to_mb
@@ -66,6 +71,17 @@
 # - follow a consistent convention where there is no confusion between the prefix M for mega and m for milli
 # - world_to_chunk(world_pos: Vector3, chunk_size := 16) -> Vector3i, chunk_to_world_pos(chunk_pos: Vector3i, chunk_size := 16) -> Vector3
 # - deg_to_dot_product
+# - force_vel_to_w
+# - mass_vel_to_kinetic_energy_j
+# - mass_height_to_potential_energy_j
+# - kg_to_weight_n, weight_n_to_kg
+# - wheel_rads_to_ms, wheel_rpm_to_kmh, wheel_rads_to_kmh
+# - tire_spec_to_diameter_m
+# - volts_amps_to_w, w_volts_to_amps, w_amps_to_volts
+# - mah_to_wh, wh_to_mah
+# - fps_to_delta_sec, delta_sec_to_fps
+# - frames_to_sec, sec_to_frames
+# - sound_delay_to_distance_m
 # BAD IDEAS:
 # - Add angular speed rads_to_degs and rads_to_degs? No, you can just use rad_to_deg and deg_to_rad.
 # - power
