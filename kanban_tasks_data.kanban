@@ -35,7 +35,8 @@
 				"ee107dba-6384-4549-82fe-0231e87d903c",
 				"81f9867d-4c5d-461d-a9d4-9cb092f17360",
 				"826a5be9-0ec4-481d-a2f3-8ae5d449e9aa",
-				"60b91666-4274-4fcd-967e-93d7a64ae38f"
+				"60b91666-4274-4fcd-967e-93d7a64ae38f",
+				"c5f03c28-e24e-450e-93a0-59bbf6a00b85"
 			]
 		},
 		{
@@ -182,7 +183,7 @@
 		{
 			"uuid": "60b91666-4274-4fcd-967e-93d7a64ae38f",
 			"title": "Renames",
-			"description": "Sometimes name clashes occur and it isn't entirely obvious what class does what, which is why i believe it might be beneficial for the long-term to give everything its proper name.\nSure, suffixing all libraries with Lib isn't short, but it might be better? With some exceptions. Convert is definitely intended to be used in specific cases which occur very rarely, but when they occur, Convert is needed extensively, which means one-liners will become less one-liny.",
+			"description": "Sometimes name clashes occur and it isn't entirely obvious what class does what, which is why i believe it might be beneficial for the long-term to give everything its proper name.\nSure, suffixing all libraries with Lib isn't short, but it might be better? With some exceptions. Convert is definitely intended to be used in specific cases which occur very rarely, but when they occur, Convert is needed extensively, which means one-liners will become less one-liny.\n\nConvert is an exception because ConvertLib is too long of a name for the library to be practically useful in real code for what it actually does, which is some basic unit conversion in most cases.",
 			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
 			"steps": [
 				{
@@ -191,10 +192,6 @@
 				},
 				{
 					"details": "Helper -> HelperLib",
-					"done": false
-				},
-				{
-					"details": "Convert -> ConvertLib",
 					"done": false
 				},
 				{
@@ -292,6 +289,26 @@
 			"description": "Extends Node and adds common functionality to classes.\nLike for Range, Slider or BaseButton.",
 			"category": "1a33bd35-e7b3-4cdf-bf94-e983a4e66d78",
 			"steps": []
+		},
+		{
+			"uuid": "c5f03c28-e24e-450e-93a0-59bbf6a00b85",
+			"title": "Restructure",
+			"description": "Group files by domain (code that goes together), rather than by type (components, libraries).\n\nThe codebase began grouping files by type. Soon i realized the mistake and shifted to grouping files by domain, but it's inconsistent. The goal is to make it more consistent.\n\nRequirements:\n- Easily find code that goes together, near similar code\n- Easily find code that is alone, near similar lonely code",
+			"category": "1cc4d8fa-f634-4f2d-baaa-414f6777dc97",
+			"steps": [
+				{
+					"details": "Figure out a consistent structure to satisfy all requirements",
+					"done": false
+				},
+				{
+					"details": "Update documentation and README",
+					"done": false
+				},
+				{
+					"details": "Apply the structure",
+					"done": false
+				}
+			]
 		}
 	],
 	"layout": {

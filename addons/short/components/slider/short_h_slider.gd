@@ -5,7 +5,7 @@
 ## @experimental: This class could change.
 ## An [HSlider] with extra functionality.
 ##
-##[br][br][b]Note:[/b] This assumes that the [PropertyBinding] class exists.
+##[br][br][b]Note:[/b] This assumes that the [ArrayLib] and [PropertyBinding] classes exist.
 
 @tool
 class_name ShortHSlider extends HSlider

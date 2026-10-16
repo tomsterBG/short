@@ -1,7 +1,7 @@
 # NOTE:
 # Not yet passed through class quality checklist.
 # IDEAS:
-# - Instead of just two, make it any number of proeprties.
+# - Instead of just two, make it any number of properties.
 # - A function that takes the value found at [member node_a]'s property and returns the value to be set at [member node_b]'s property.
 # - A CSV string for signal names and methods to (un)bind a Node to all defined signals. This lets me use that to more briefly connect each binding to different node signals.
 

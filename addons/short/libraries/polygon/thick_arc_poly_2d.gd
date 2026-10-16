@@ -1,4 +1,6 @@
 ## A procedurally generated thick arc.
+##
+##[br][br][b]Note:[/b] This assumes that the [PolyLib] class exists.
 
 @tool
 class_name ThickArcPoly2D extends ProceduralPoly2D

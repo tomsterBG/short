@@ -5,7 +5,7 @@
 ## @experimental: This class could change.
 ## A [VSlider] with extra functionality.
 ##
-##[br][br][b]Note:[/b] This assumes that the [PropertyBinding] class exists.
+##[br][br][b]Note:[/b] This assumes that the [ArrayLib] and [PropertyBinding] classes exist.
 
 @tool
 class_name ShortVSlider extends VSlider

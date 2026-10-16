@@ -8,6 +8,7 @@
 class_name ButtonAudioPlayer extends AudioStreamPlayer
 
 
+#region variables
 ## The button to play audio for.
 @export var button: BaseButton: set = set_button
 
@@ -16,6 +17,7 @@ class_name ButtonAudioPlayer extends AudioStreamPlayer
 
 ## The position to begin playing [member press_stream] at.
 @export var press_stream_from_position: float = 0.0
+#endregion variables
 
 
 #region setters

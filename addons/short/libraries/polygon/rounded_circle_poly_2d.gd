@@ -1,4 +1,6 @@
 ## A procedurally generated rounded circle.
+##
+##[br][br][b]Note:[/b] This assumes that the [PolyLib] class exists.
 
 @tool
 class_name RoundedCirclePoly2D extends ProceduralPoly2D

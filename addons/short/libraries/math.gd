@@ -1,5 +1,3 @@
-# SOURCES:
-# - https://www.omnicalculator.com
 # INFO:
 # Some methods that were useless, were simply removed or not implemented. That was abstraction for the sake of abstraction. Such as:
 # - circle_area, circle_circumference
@@ -8,6 +6,8 @@
 # - square_area, square_diagonal, square_perimeter
 # - triangle_area_from_base_and_height, triangle_area_from_two_sides_and_angle_between, triangle_area_from_side_and_adjacent_angles
 # - rand_point_in_circle, rand_point_in_fov
+# SOURCES:
+# - https://www.omnicalculator.com
 # TODO:
 # - SQRT_2 = sqrt(2)
 # - geometry

@@ -10,6 +10,9 @@ class_name Attachment3D extends Marker3D
 #region variables
 ## The physics body to attach to.
 @export var body: PhysicsBody3D
+
+## Syntax sugar for [member body] [code]as RigidBody3D[/code].
+var rigid_body: RigidBody3D: get = get_rigid_body
 #endregion variables
 
 

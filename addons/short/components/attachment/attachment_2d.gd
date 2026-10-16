@@ -10,6 +10,9 @@ class_name Attachment2D extends Marker2D
 #region variables
 ## The physics body to attach to.
 @export var body: PhysicsBody2D
+
+## Syntax sugar for [member body] [code]as RigidBody2D[/code].
+var rigid_body: RigidBody2D: get = get_rigid_body
 #endregion variables
 
 

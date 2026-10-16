@@ -21,12 +21,6 @@ var blacklist: Array[String] = [
 #endregion variables
 
 
-#region virtual
-func _run() -> void:
-	print_project_stats()
-#endregion virtual
-
-
 #region methods
 func print_project_stats() -> void:
 	var start_time: int = Time.get_ticks_usec()
@@ -62,3 +56,9 @@ func is_blacklisted(path: String) -> bool:
 		if path.contains(blacklist_path): return true
 	return false
 #endregion methods
+
+
+#region virtual
+func _run() -> void:
+	print_project_stats()
+#endregion virtual

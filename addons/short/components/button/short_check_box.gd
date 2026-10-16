@@ -5,7 +5,7 @@
 ## @experimental: This class could change.
 ## A [CheckBox] with extra functionality.
 ##
-##[br][br][b]Note:[/b] This assumes that the [PropertyBinding] class exists.
+##[br][br][b]Note:[/b] This assumes that the [AnimationBinding], [ArrayLib] and [PropertyBinding] classes exist.
 
 @tool
 class_name ShortCheckBox extends CheckBox

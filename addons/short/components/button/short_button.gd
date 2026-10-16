@@ -5,7 +5,7 @@
 ## @experimental: This class could change.
 ## A [Button] with extra functionality.
 ##
-##[br][br][b]Note:[/b] This assumes that the [ArrayLib] and [PropertyBinding] classes exist.
+##[br][br][b]Note:[/b] This assumes that the [AnimationBinding], [ArrayLib] and [PropertyBinding] classes exist.
 
 @tool
 class_name ShortButton extends Button

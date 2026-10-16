@@ -17,16 +17,6 @@
 class_name HealthRegen extends Node
 
 
-#region classes
-## The result returned by [method HealthRegen.simulate_regen].
-class SimulateRegenResult:
-	## The success or failure of the simulation.
-	var success: bool
-	## The result from calling [method Health.heal].
-	var heal_result: Health.HealResult
-#endregion classes
-
-
 #region variables
 ## The [Health] this regeneration will work with.
 @export var health: Health: set = set_health
@@ -122,3 +112,13 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append("Missing Health. The regen won't do anything.")
 	return warnings
 #endregion virtual
+
+
+#region classes
+## The result returned by [method HealthRegen.simulate_regen].
+class SimulateRegenResult:
+	## The success or failure of the simulation.
+	var success: bool
+	## The result from calling [method Health.heal].
+	var heal_result: Health.HealResult
+#endregion classes

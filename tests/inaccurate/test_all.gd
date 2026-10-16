@@ -5,7 +5,7 @@ extends GutTest
 #endregion constants
 
 
-#region virtual
+#region tests
 func test_health_many_shields():
 	var health := Health.new()
 	var start_time := Time.get_ticks_usec()
@@ -15,4 +15,4 @@ func test_health_many_shields():
 	health.damage(10.0, GConst.RECURSIVE)
 	assert_lt(Time.get_ticks_usec() - start_time, 20_000, "Performance didn't explode.")
 	health.free()
-#endregion virtual
+#endregion tests

@@ -55,25 +55,6 @@ enum ResistanceOrder {
 #endregion enums
 
 
-#region classes
-## The result returned by [method Health.damage].
-class DamageResult:
-	## If [member Health.shield] is set, its [method Health.damage] method is called and this is what it returns.
-	var shield_result: DamageResult
-	## The damage taken by this [Health].
-	var taken_damage: float
-	## The remaining damage. If this is a [member Health.shield], its parent [Health] will take the damage.
-	var remaining_damage: float
-
-## The result returned by [method Health.heal].
-class HealResult:
-	## The heal taken by this [Health].
-	var healed_health: float
-	## The remaining heal.
-	var remaining_heal: float
-#endregion classes
-
-
 #region constants
 ## Useful for methods with a [param set_health_0] parameter such as [method kill].
 const SET_HEALTH_0 = true
@@ -150,7 +131,7 @@ func set_max_health(value: float) -> void:
 
 func set_is_dead(value: bool) -> void:
 	if !can_die: is_dead = false; return
-	if is_dead == false and value == true:
+	if !is_dead and value:
 		died.emit()
 	is_dead = value
 
@@ -276,3 +257,22 @@ func _get_configuration_warnings() -> PackedStringArray:
 		warnings.append("Cyclic shields.")
 	return warnings
 #endregion virtual
+
+
+#region classes
+## The result returned by [method Health.damage].
+class DamageResult:
+	## If [member Health.shield] is set, its [method Health.damage] method is called and this is what it returns.
+	var shield_result: DamageResult
+	## The damage taken by this [Health].
+	var taken_damage: float
+	## The remaining damage. If this is a [member Health.shield], its parent [Health] will take the damage.
+	var remaining_damage: float
+
+## The result returned by [method Health.heal].
+class HealResult:
+	## The heal taken by this [Health].
+	var healed_health: float
+	## The remaining heal.
+	var remaining_heal: float
+#endregion classes

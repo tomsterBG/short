@@ -11,19 +11,19 @@ var files: Dictionary[StringName, FileInfo] = {}
 ## Populates [member files].
 func populate_files():
 	for path in Helper.get_dir_children(GConst.SHORT_PATH, GConst.RECURSIVE).files:
-		if !path.get_extension() == "gd": continue
+		if path.get_extension() != "gd": continue
 		var new_file_info := FileInfo.new()
 		new_file_info.filename = path.get_file().trim_suffix(".%s" % path.get_extension())
 		new_file_info.path_short = path
 		new_file_info.functions_short = StringLib.get_function_names(FileAccess.get_file_as_string(path))
 		files[new_file_info.filename] = new_file_info
 	for path in Helper.get_dir_children(GConst.TESTS_PATH, GConst.RECURSIVE).files:
-		if !path.get_extension() == "gd": continue
+		if path.get_extension() != "gd": continue
 		var filename := path.get_file().trim_prefix("test_").trim_suffix(".%s" % path.get_extension())
 		if !files.has(filename): continue
 		files[filename].path_tests = path
 		files[filename].functions_tests = StringLib.get_function_names(FileAccess.get_file_as_string(path))
-#region methods
+#endregion methods
 
 
 #region virtual
@@ -50,7 +50,7 @@ func test_all_functions_have_tests():
 			if function == "_enter_tree": continue
 			if !files[filename].functions_tests.has("test_%s" % function):
 				missing_functions.append("%s/%s" % [filename, function])
-	assert_eq(missing_functions, [], "All fumctions have corresponding tests.")
+	assert_eq(missing_functions, [], "All functions have corresponding tests.")
 #endregion tests
 
 

@@ -5,7 +5,7 @@
 ## @experimental: This class could change.
 ## An [OptionButton] with extra functionality.
 ##
-##[br][br][b]Note:[/b] This assumes that the [PropertyBinding] and [SignalLib] classes exist.
+##[br][br][b]Note:[/b] This assumes that the [ArrayLib], [PropertyBinding] and [SignalLib] classes exist.
 
 @tool
 class_name ShortOptionButton extends OptionButton
@@ -39,7 +39,7 @@ func _enter_tree() -> void:
 ## Virtual method called every time when [signal OptionButton.item_selected] is emitted.
 func _on_item_selected(_index: int) -> void:
 	if Engine.is_editor_hint(): return
-	if bind_properties_array:
+	if bind_properties_enabled:
 		for property_binding in bind_properties_array:
 			property_binding.update_nodes(self)
 			property_binding.apply()

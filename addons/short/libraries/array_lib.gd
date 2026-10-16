@@ -398,7 +398,7 @@ class SyncContext:
 	var data_array: Array
 	## Node that hosts children which correspond to [member data_array].
 	var parent_node: Node
-	## Method tat creates a new child [Node] for a given data in [member data_array].
+	## Method that creates a new child [Node] for a given data in [member data_array].
 	var factory: Callable
 	## Name of the metadata used to track which child [Node] corresponds to which data.
 	var metadata_name: StringName
