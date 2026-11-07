@@ -18,6 +18,7 @@
 [ext_resource type="Script" uid="uid://5011o82cme25" path="res://addons/short/domains/polygon/thick_arc_poly_2d.gd" id="15_ky24r"]
 [ext_resource type="Script" uid="uid://cdk2nlm2eovhs" path="res://addons/short/components/controllable_character_2d.gd" id="16_wrlcw"]
 [ext_resource type="Script" uid="uid://xy6unwbm28yo" path="res://addons/short/components/button/delete_button.gd" id="17_pqo5r"]
+[ext_resource type="Script" uid="uid://brpf0n7e0c2a" path="res://addons/short/components/short_camera_2d.gd" id="19_o8xnk"]
 
 [sub_resource type="Resource" id="Resource_725mb"]
 script = ExtResource("2_wwlva")
@@ -233,3 +234,15 @@ offset_top = 14.0
 offset_right = 164.0
 offset_bottom = 54.0
 mouse_filter = 2
+
+[node name="ShortCamera2D" type="Camera2D" parent="." unique_id=579617926]
+position = Vector2(576, 324)
+script = ExtResource("19_o8xnk")
+move_enabled = true
+move_in_view_space = null
+move_left_action = &"walk_left"
+move_right_action = &"walk_right"
+move_up_action = &"walk_up"
+move_down_action = &"walk_down"
+pan_enabled = true
+metadata/_custom_type_script = "uid://brpf0n7e0c2a"
