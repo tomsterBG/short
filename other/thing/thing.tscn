@@ -239,7 +239,6 @@ mouse_filter = 2
 position = Vector2(576, 324)
 script = ExtResource("19_o8xnk")
 move_enabled = true
-move_in_view_space = null
 move_left_action = &"walk_left"
 move_right_action = &"walk_right"
 move_up_action = &"walk_up"

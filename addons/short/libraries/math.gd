@@ -47,6 +47,10 @@ static func get_projected_vector(vector_a: Variant, vector_b: Variant) -> Varian
 
 
 #region methods
+## Returns [param value] remapped and clamped between [param ostart] and [param ostop].
+static func remap_clamped(value: float, istart: float, istop: float, ostart: float, ostop: float) -> float:
+	return clampf(remap(value, istart, istop, ostart, ostop), ostart, ostop)
+
 ## Returns the fibonacci of [param n].
 ##[br][br][b]Note:[/b] Recursive and expensive. Intended to be implemented with cache, similar to the dynamic programming pattern.
 static func fibonacci(n: int) -> int:
@@ -88,9 +92,36 @@ static func triangle_area_from_three_sides(a: float, b: float, c: float) -> floa
 	assert(a + b > c and b + c > a and c + a > b, "Triangle inequality theorem failed: The sum of any 2 sides must be > than the 3rd.")
 	return 0.25 * sqrt( (a + b + c) * (-a + b + c) * (a - b + c) * (a + b - c) )
 
+## Returns the shortest distance from a 2D point to a line segment.
+static func distance_to_segment_2d(point: Vector2, s1: Vector2, s2: Vector2) -> float:
+	return point.distance_to(Geometry2D.get_closest_point_to_segment(point, s1, s2))
+
+static func segment_intersects_circle(point: Vector2, radius: float, s1: Vector2, s2: Vector2) -> bool:
+	return point.distance_to(Geometry2D.get_closest_point_to_segment(point, s1, s2)) < radius
+
 ## Returns [code]true[/code] if [param vector_a]'s direction relative to [param vector_b] is within [param max_angle_rad] radians.
 static func is_vector2_within_angle(vector_a: Vector2, vector_b: Vector2, max_angle_rad: float) -> bool:
 	var angle_to := absf(vector_a.angle_to(vector_b))
 	return angle_to <= max_angle_rad
+
+## Selects the candidate index closest in angle to the direction from [param origin] to [param target_pos].
+##[br][br]Returns [code]-1[/code] if [param candidates] is empty or distance between [param origin] and [param target_pos] is below [param min_dist].
+static func best_directional_index(origin: Vector2, target_pos: Vector2, candidates: Array[Vector2], min_dist: float = 0.0) -> int:
+	var direction: Vector2 = target_pos - origin
+	if (min_dist > 0.0 and direction.length() < min_dist) or candidates.is_empty():
+		return -1
+	
+	var unit_direction: Vector2 = direction.normalized()
+	var best_idx: int = -1
+	var best_dot: float = -INF
+	
+	for i: int in range(candidates.size()):
+		var candidate_unit_direction: Vector2 = (candidates[i] - origin).normalized()
+		var dot_value: float = unit_direction.dot(candidate_unit_direction)
+		if dot_value > best_dot:
+			best_dot = dot_value
+			best_idx = i
+	
+	return best_idx
 	#endregion geometry
 #endregion methods

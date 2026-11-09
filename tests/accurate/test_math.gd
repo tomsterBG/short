@@ -5,6 +5,16 @@ extends GutTest
 func test_constants():
 	assert_almost_eq(Math.PHI, 1.618_033, GConst.ERROR_INTERVAL)
 
+func test_get_projected_vector():
+	assert_eq(Math.get_projected_vector(Vector2(3, 0), Vector2(3, 0)), Vector2(3, 0), "No change.")
+	assert_eq(Math.get_projected_vector(Vector3(3, 2, 0), Vector3(3, 0, 0)), Vector3(3, 0, 0), "Flatten.")
+	assert_eq(Math.get_projected_vector(Vector2(0, 3), Vector2(3, 0)), Vector2(0, 0), "Perpendicular.")
+	assert_eq(Math.get_projected_vector(Vector3(-4, 2, 0), Vector3(3, 0, 0)), Vector3(-4, 0, 0), "Reverse.")
+
+func test_remap_clamped():
+	assert_eq(Math.remap_clamped(-1.0, 0.0, 100.0, 0.0, 1.0), 0.0)
+	assert_eq(Math.remap_clamped(111.0, 0.0, 100.0, 0.0, 1.0), 1.0)
+
 func test_fibonacci():
 	assert_eq(Math.fibonacci(0), 0)
 	assert_eq(Math.fibonacci(1), 1)
@@ -37,15 +47,23 @@ func test_sphere():
 func test_triangle_area():
 	assert_almost_eq(Math.triangle_area_from_three_sides(5.0, 7.0, 11.090_076), 12.500_002, GConst.ERROR_INTERVAL)
 
-func test_get_projected_vector():
-	assert_eq(Math.get_projected_vector(Vector2(3, 0), Vector2(3, 0)), Vector2(3, 0), "No change.")
-	assert_eq(Math.get_projected_vector(Vector3(3, 2, 0), Vector3(3, 0, 0)), Vector3(3, 0, 0), "Flatten.")
-	assert_eq(Math.get_projected_vector(Vector2(0, 3), Vector2(3, 0)), Vector2(0, 0), "Perpendicular.")
-	assert_eq(Math.get_projected_vector(Vector3(-4, 2, 0), Vector3(3, 0, 0)), Vector3(-4, 0, 0), "Reverse.")
+func test_segment_2d():
+	assert_eq(Math.distance_to_segment_2d(Vector2(1, 1), Vector2(-5, 3), Vector2(2, 3)), 2.0)
+	assert_eq(Math.segment_intersects_circle(Vector2(1, 1), 2, Vector2(-5, 3), Vector2(2, 3)), false)
+	assert_eq(Math.segment_intersects_circle(Vector2(1, 1), 2.1, Vector2(-5, 3), Vector2(2, 3)), true)
 
 func test_is_vector2_within_angle():
 	assert_eq(Math.is_vector2_within_angle(Vector2(10, 0), Vector2(0, 10), deg_to_rad(91.0)), true, "Vector is within angle.")
 	assert_eq(Math.is_vector2_within_angle(Vector2(10, 0), Vector2(0, 10), deg_to_rad(89.0)), false, "Vector isn't within angle.")
 	assert_eq(Math.is_vector2_within_angle(Vector2(10, 10), Vector2(0, 10), deg_to_rad(46.0)), true, "Vector is within angle.")
 	assert_eq(Math.is_vector2_within_angle(Vector2(10, 10), Vector2(0, 10), deg_to_rad(44.0)), false, "Vector isn't within angle.")
+
+func test_best_directional_index():
+	var candidates: Array[Vector2] = []
+	assert_eq(Math.best_directional_index(Vector2(0, 0), Vector2(1, 1), candidates), -1)
+	candidates = [Vector2.UP, Vector2.DOWN, Vector2.LEFT, Vector2.RIGHT]
+	assert_eq(Math.best_directional_index(Vector2(0, 0), Vector2(1, 1), candidates), 1)
+	assert_eq(Math.best_directional_index(Vector2(0, 0), Vector2(1, 1), candidates, 2.0), -1)
+	candidates.append(Vector2(0.5, 1))
+	assert_eq(Math.best_directional_index(Vector2(0, 0), Vector2(1, 1), candidates), 4)
 #endregion tests
