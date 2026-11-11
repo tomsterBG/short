@@ -14,6 +14,7 @@ func test_get_projected_vector():
 func test_remap_clamped():
 	assert_eq(Math.remap_clamped(-1.0, 0.0, 100.0, 0.0, 1.0), 0.0)
 	assert_eq(Math.remap_clamped(111.0, 0.0, 100.0, 0.0, 1.0), 1.0)
+	assert_eq(Math.remap_clamped(3.0, 1.0, 5.0, -1.0, -5.0), -3.0)
 
 func test_fibonacci():
 	assert_eq(Math.fibonacci(0), 0)

@@ -49,7 +49,8 @@ static func get_projected_vector(vector_a: Variant, vector_b: Variant) -> Varian
 #region methods
 ## Returns [param value] remapped and clamped between [param ostart] and [param ostop].
 static func remap_clamped(value: float, istart: float, istop: float, ostart: float, ostop: float) -> float:
-	return clampf(remap(value, istart, istop, ostart, ostop), ostart, ostop)
+	assert(istart >= istop, "Input range is inverted.")
+	return remap(clampf(value, istart, istop), istart, istop, ostart, ostop)
 
 ## Returns the fibonacci of [param n].
 ##[br][br][b]Note:[/b] Recursive and expensive. Intended to be implemented with cache, similar to the dynamic programming pattern.
