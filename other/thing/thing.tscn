@@ -238,10 +238,11 @@ mouse_filter = 2
 [node name="ShortCamera2D" type="Camera2D" parent="." unique_id=579617926]
 position = Vector2(576, 324)
 script = ExtResource("19_o8xnk")
-move_enabled = true
-move_left_action = &"walk_left"
-move_right_action = &"walk_right"
-move_up_action = &"walk_up"
-move_down_action = &"walk_down"
-pan_enabled = true
+move_on = true
+move_left = &"walk_left"
+move_right = &"walk_right"
+move_up = &"walk_up"
+move_down = &"walk_down"
+pan_on = true
+zoom_on = true
 metadata/_custom_type_script = "uid://brpf0n7e0c2a"
