@@ -244,5 +244,4 @@ move_right = &"walk_right"
 move_up = &"walk_up"
 move_down = &"walk_down"
 pan_on = true
-zoom_on = true
 metadata/_custom_type_script = "uid://brpf0n7e0c2a"
